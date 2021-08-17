@@ -1,21 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+import React, { Component } from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import Signup from './src/screens/signup';
+import ForgotPass from './src/screens/forgot-pass';
+import Profile from './src/screens/profile';
+import OTPAuth from './src/screens/otp-auth';
+const Project = createStackNavigator(
+  {
+    Signup: {
+      screen: Signup,
+    },
+    OTPAuth: {
+      screen: OTPAuth,
+    },
+    ForgotPass: {
+      screen: ForgotPass,
+    },
+    Profile: {
+      screen: Profile,
+    },
   },
-});
+  {
+    initialRouteName: 'ForgotPass',
+  }
+);
+export default createAppContainer(Project);
