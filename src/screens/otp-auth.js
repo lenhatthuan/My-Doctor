@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
-import OTPInputView from 'react-native-otp-input';
+import React, { Component } from "react";
+import { View, StyleSheet, Text, Button } from "react-native";
+import OTPInputView from "react-native-otp-input";
 
 export default class OTPAuth extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Xác thực bằng mã OTP',
-      code: '',
+      title: "Xác thực bằng mã OTP",
+      code: "",
     };
   }
   static navigationOptions = {
-    title: 'OTPAuth',
+    title: "OTPAuth",
   };
   render() {
     return (
@@ -26,7 +26,7 @@ export default class OTPAuth extends Component {
           codeInputFieldStyle={styles.underlineStyleBase}
           codeInputHighlightStyle={styles.underlineStyleHighLighted}
         />
-        <Text>{this.props.navigation.getParam('phone', '')}</Text>
+        <Text>{this.props.navigation.getParam("phone", "")}</Text>
         <View style={styles.label}>
           <Button
             title="Xác thực"
@@ -42,17 +42,17 @@ export default class OTPAuth extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
     padding: 8,
   },
   title: {
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: "center",
+    fontWeight: "bold",
     fontSize: 20,
   },
   label: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginHorizontal: 50,
     margin: 20,
   },
@@ -63,6 +63,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   underlineStyleHighLighted: {
-    borderColor: '#03DAC6',
+    borderColor: "#03DAC6",
   },
 });
