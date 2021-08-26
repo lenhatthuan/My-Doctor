@@ -20,28 +20,19 @@ export default class Signup extends Component {
     )
       .then((response) => response.json())
       .then((result) => {
-        if (
-          isValidNumber(this.state.phone) &&
-          this.state.pass != null &&
-          result.count === 0
-        ) {
-          Alert.alert("Ðăng ký thành công", "", [
-            {
-              text: "OK",
-              onPress: () =>
-                this.props.navigation.navigate("OTPAuth", {
-                  phone: this.state.phone,
-                  pass: this.state.pass,
-                }),
-            },
-          ]);
-        } else {
-          Alert.alert(
-            "Ðăng ký không thành công",
-            "Số điện thoại /& mật khẩu không hợp lý",
-            [{ text: "OK", onPress: () => console.log(result) }]
-          );
-        }
+        result.count === 0
+          ? Alert.alert("Đăng ký thành công", "", [
+              {
+                text: "OK",
+                onPress: () =>
+                  this.props.navigation.navigate("OTPAuth", {
+                    phone: this.state.phone,
+                    pass: this.state.pass,
+                    route: "signup",
+                  }),
+              },
+            ])
+          : Alert.alert("Đăng ký không thành công");
       })
       .catch((error) => console.error(error));
   }
@@ -68,7 +59,11 @@ export default class Signup extends Component {
           value={this.state.pass}
           secureTextEntry={true}
         />
-        <Button title="Đăng ký" onPress={this.showMessage} />
+        <Button
+          disabled={!(isValidNumber(this.state.phone) && this.state.pass)}
+          title="Đăng ký"
+          onPress={this.showMessage}
+        />
       </View>
     );
   }

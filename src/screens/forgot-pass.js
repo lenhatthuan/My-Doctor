@@ -23,48 +23,21 @@ export default class ForgotPass extends Component {
     )
       .then((response) => response.json())
       .then((result) => {
-        if (
-          isValidNumber(this.state.phone) &&
-          this.state.pass != null &&
-          result.count !== 0
-        ) {
-          Alert.alert("thành công", "", [
-            {
-              text: "OK",
-              onPress: () =>
-                this.props.navigation.navigate("OTPAuth", {
-                  phone: this.state.phone,
-                }),
-            },
-          ]);
-        } else {
-          Alert.alert(
-            " không thành công",
-            "Số điện thoại /& mật khẩu không hợp lý",
-            [{ text: "OK", onPress: () => console.log(this.state.phone) }]
-          );
-        }
-        //console.log(result);
+        result.count !== 0
+          ? Alert.alert("Đổi mật khẩu thành công", "", [
+              {
+                text: "OK",
+                onPress: () =>
+                  this.props.navigation.navigate("OTPAuth", {
+                    phone: this.state.phone,
+                    pass: this.state.pass,
+                    route: "forgot-pass",
+                  }),
+              },
+            ])
+          : Alert.alert("Đổi mật khẩu không thành công");
       })
       .catch((error) => console.error(error));
-
-    /*if (isValidNumber(this.state.phone) && this.state.pass != null) {
-      Alert.alert("thành công", "", [
-        {
-          text: "OK",
-          onPress: () =>
-            this.props.navigation.navigate("OTPAuth", {
-              phone: this.state.phone,
-            }),
-        },
-      ]);
-    } else {
-      Alert.alert(
-        " không thành công",
-        "Số điện thoại /& mật khẩu không hợp lý",
-        [{ text: "OK", onPress: () => console.log(this.state.phone) }]
-      );
-    }*/
   }
   render() {
     return (
@@ -85,7 +58,11 @@ export default class ForgotPass extends Component {
           value={this.state.pass}
           secureTextEntry={true}
         />
-        <Button title="Gửi mã OTP" onPress={this.showMessage} />
+        <Button
+          disabled={!(isValidNumber(this.state.phone) && this.state.pass)}
+          title="Gửi mã OTP"
+          onPress={this.showMessage}
+        />
       </View>
     );
   }

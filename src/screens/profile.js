@@ -1,28 +1,44 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text, Button, TextInput } from 'react-native';
-import { DatePicker } from 'react-native-woodpicker';
-import { RadioButton, Avatar } from 'react-native-paper';
+import React, { Component } from "react";
+import { View, StyleSheet, Text, Button, TextInput } from "react-native";
+import { DatePicker } from "react-native-woodpicker";
+import { RadioButton, Avatar } from "react-native-paper";
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Thông tin cá nhân',
-      lbName: 'Họ và tên',
-      lbGender: 'Giới tính',
-      ldMale: 'Nam',
-      lbFemale: 'Nữ',
-      lbBirthYear: 'Năm sinh',
-      lbAddress: 'Địa chỉ',
-      code: null,
+      title: "Thông tin cá nhân",
+      lbName: "Họ và tên",
+      lbGender: "Giới tính",
+      ldMale: "Nam",
+      lbFemale: "Nữ",
+      lbBirthYear: "Năm sinh",
+      lbAddress: "Địa chỉ",
+      name: "",
+
       pickedDate: new Date(),
-      checked: 'nam',
-      adress: null,
+      checked: "nam",
+      address: null,
     };
   }
   static navigationOptions = {
-    title: 'Profile',
+    title: "Profile",
   };
+  componentDidMount() {
+    fetch(
+      "https://still-wave-21655.herokuapp.com/patient/" +
+        this.props.navigation.getParam("id", "")
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        this.setState({
+          name: result.fullName,
+          //pickedDate: result.birthDate,
+          checked: result.gender,
+          address: result.address,
+        });
+      });
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -49,14 +65,14 @@ export default class Profile extends Component {
         <View style={styles.row}>
           <RadioButton
             value="nam"
-            status={this.state.checked == 'nam' ? 'checked' : 'unchecked'}
-            onPress={(checked) => this.setState({ checked: 'nam' })}
+            status={this.state.checked == "nam" ? "checked" : "unchecked"}
+            onPress={(checked) => this.setState({ checked: "nam" })}
           />
           <Text>{this.state.ldMale}</Text>
           <RadioButton
             value="nữ"
-            status={this.state.checked == 'nữ' ? 'checked' : 'unchecked'}
-            onPress={(checked) => this.setState({ checked: 'nữ' })}
+            status={this.state.checked == "nữ" ? "checked" : "unchecked"}
+            onPress={(checked) => this.setState({ checked: "nữ" })}
           />
           <Text>{this.state.lbFemale}</Text>
         </View>
@@ -64,7 +80,7 @@ export default class Profile extends Component {
         <TextInput
           style={styles.input}
           onChangeText={(name) => this.setState({ name })}
-          value={this.state.adrress}
+          value={this.state.addrress}
         />
         <Button title="Cập nhật" />
       </View>
@@ -75,18 +91,18 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
     padding: 8,
   },
   row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginHorizontal: 80,
     margin: 20,
   },
   title: {
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: "center",
+    fontWeight: "bold",
     fontSize: 20,
   },
   label: {
