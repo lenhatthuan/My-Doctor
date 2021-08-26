@@ -15,24 +15,28 @@ export default class Signup extends Component {
     };
   }
   showMessage() {
-    if (isValidNumber(this.state.phone) && this.state.pass != null) {
-      Alert.alert("Ðăng ký thành công", "", [
-        {
-          text: "OK",
-          onPress: () =>
-            this.props.navigation.navigate("OTPAuth", {
-              phone: this.state.phone,
-            }),
-        },
-      ]);
-    } else {
-      Alert.alert(
-        "Ðăng ký không thành công",
-        "Số điện thoại /& mật khẩu không hợp lý",
-        [{ text: "OK", onPress: () => console.log(this.state.phone) }]
-      );
-    }
+    fetch(
+      `https://still-wave-21655.herokuapp.com/accounts/${this.state.phone}/username`
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        result.count === 0
+          ? Alert.alert("Đăng ký thành công", "", [
+              {
+                text: "OK",
+                onPress: () =>
+                  this.props.navigation.navigate("OTPAuth", {
+                    phone: this.state.phone,
+                    pass: this.state.pass,
+                    route: "signup",
+                  }),
+              },
+            ])
+          : Alert.alert("Đăng ký không thành công");
+      })
+      .catch((error) => console.error(error));
   }
+
   static navigationOptions = {
     title: "Signup",
   };
@@ -55,7 +59,11 @@ export default class Signup extends Component {
           value={this.state.pass}
           secureTextEntry={true}
         />
-        <Button title="Đăng ký" onPress={this.showMessage} />
+        <Button
+          disabled={!(isValidNumber(this.state.phone) && this.state.pass)}
+          title="Đăng ký"
+          onPress={this.showMessage}
+        />
       </View>
     );
   }
