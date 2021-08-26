@@ -30,7 +30,7 @@ export default class OTPAuth extends Component {
         <View style={styles.label}>
           <Button
             title="Xác thực"
-            onPress={() => console.log(this.state.code)}
+            onPress={() => this.props.navigation.navigate('Home')}
           />
           <Button title="Gửi lại mã" />
         </View>
