@@ -2,21 +2,28 @@ import React , {useState} from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Button, TextInput } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input'
 import COLORS from '../../assets/colors';
+import { signin } from '../store/actions/account';
 
 const SigninScreen = (props) =>{
     const [titleAlert, setTitleAlert] =  useState('');
     const [isLogin, setIsLogin] = useState(false);
     const [phone, setPhone] = useState('')
+    const [password, setPassword] = useState('')
 
     const checkLogin = (username, password) =>{
-        // setIsLogin(true);
-        // if(isLogin) sendOTP();
-        // else sendError;
-     
-    }
+        console.log("vao llogin")
+        // signin(username, password).then(
+        //     json => console.log(json)
+        // )
+        
+    } 
 
     const sendError = ()=>{
         
+    }
+
+    const setPasswordInput = (text) =>{
+        setPassword(text)
     }
 
     const setPhoneNumber = phoneInput =>{
@@ -43,13 +50,15 @@ const SigninScreen = (props) =>{
             value = {phone}
             onChangeFormattedText = {(phoneInput) => {setPhoneNumber(phoneInput)}}
             />
-            <TextInput placeholder = 'Nhập mật khẩu'   style  = {styles.textInput}></TextInput>
+            <TextInput placeholder = 'Nhập mật khẩu'   style  = {styles.textInput} value = {password} onChangeText = {(text) => setPasswordInput(text)}></TextInput>
           </View>
-            <Button title = 'Đăng nhập' color = {COLORS.TeaGreen} onPress = {checkLogin}/>
+            <Button title = 'Đăng nhập' color = {COLORS.TeaGreen} onPress = {checkLogin(phone, password)}/>
             </View>
-            <Text onPress = {() =>{
+           <View style = {styles.btnSignup}>
+           <Text onPress = {() =>{
                props.navigation.navigate('Signup')
             }}>Đăng ký tài khoản</Text>
+           </View>
         </SafeAreaView>
     )
 }
@@ -69,7 +78,7 @@ const styles = StyleSheet.create({
 
     signinComponent:{
         height: '60%',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center'
     },
 
@@ -87,6 +96,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor:COLORS.Whisper,
         padding: 15
+    },
+    btnSignup:{
+    justifyContent: 'center',
+    alignItems: 'center'
     }
 })
 export default SigninScreen;

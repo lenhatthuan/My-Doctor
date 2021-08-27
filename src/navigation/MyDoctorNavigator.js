@@ -11,7 +11,7 @@ import OtpAuthScreen from "../screens/OtpAuthScreen";
 import OTPScreen from "../screens/OTPScreen";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import COLORS from "../../assets/colors";
-import ContactScreen from "../screens/ContactScreen";
+import ContactScreen from '../screens/ContactScreen';
 import ScheduleScreen from "../screens/ScheduleScreen";
 import FollowHeathyScreen from "../screens/FollowHeathyScreen";
 import {
@@ -35,6 +35,7 @@ const MyDoctorNavigator = createStackNavigator({
     navigationOptions: {
       headerShown: false,
       headerVisible: false,
+      tabBarVisible:false
     },
   },
   OtpAuth: { screen: OtpAuthScreen },
@@ -61,6 +62,7 @@ const MyDoctorNavBottom = createBottomTabNavigator(
       screen: MyDoctorNavigator,
       navigationOptions: {
         tabBarLabel: "Trang chủ",
+        // tabBarVisible: getTabBarVisibility(),
         tabBarIcon: (tabInfo) => {
           return (
             <Ionicons name="md-home" size={24} color={tabInfo.tintColor} />
@@ -131,4 +133,28 @@ const MyDoctorNavBottom = createBottomTabNavigator(
     },
   }
 );
+
+// function  getTabBarVisibility(route) {
+//   const routeName = route.state
+//     ? route.state.routes[route.state.index].name
+//     : '';
+
+//     console.log("hihi: " + route)
+
+//   if (routeName === 'Signin') {
+//     return false;
+//   }
+
+//   return true;
+// }
+
+function getTabBarVisibility (name) {
+
+  console.log("hihi: " + name)
+  if (name === 'Signin') {
+    return false;
+  }
+
+  return true;
+}
 export default createAppContainer(MyDoctorNavBottom);

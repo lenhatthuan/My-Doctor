@@ -5,7 +5,7 @@ const ScheduleScreen = props =>{
         <View style = {styles.screen}>
            <View>
            <Text>
-               HOME
+               SCHEDULE SCREEN
             </Text>
            </View>
         </View>

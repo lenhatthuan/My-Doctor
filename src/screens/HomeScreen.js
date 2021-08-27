@@ -8,7 +8,13 @@ import {
   Image,
   ImageBackground,
 } from "react-native";
+
 const HomeScreen = (props) => {
+
+const gotoLogin = () =>{
+  props.navigation.navigate('Signin')
+}
+
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.background}>
@@ -17,7 +23,7 @@ const HomeScreen = (props) => {
           source={require("../../assets/imgs/bg.jpg")}
         >
           <Text>Xin chào !</Text>
-          <Button title = 'Đăng nhập'></Button>
+          <Button title = 'Đăng nhập' onPress = {gotoLogin}></Button>
         </ImageBackground>
       </View>
       <View style={styles.personalOption}></View>
