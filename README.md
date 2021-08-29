@@ -1,23 +1,10 @@
-# My-Doctor
+
+# Đề tài tiểu luận chuyên ngành Công nghệ phần mềm (2021-2022)
+# Xây dựng app đặt lịch khám bệnh và theo dõi sức khỏe
+#### Sinh viên thực hiện (đại trà)
+###### Lê Nhật Thu An - 18110245
+###### Lê Thị Ngọc Yến - 18110402
 
 
 ### How to use:
-npm install react-native
-
-npm install react-native-phone-number-input
-
-npm install react-native-otp-input
-
-npm install react-native-woodpicker
-
-npm install react-native-paper
-
-npm install react-navigation
-
-npm install react-navigation-stack
-
-npm install react-native-gesture-handler
-
-npm install @react-native-picker/picker
-
-npm install @react-native-community/datetimepicker
+npm install 
