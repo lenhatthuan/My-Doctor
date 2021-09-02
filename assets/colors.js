@@ -6,7 +6,12 @@ const COLORS = {
     Malibu: '#89CCF6',
     Lochinvar:'#2D8D8B',
     Anakiwa:'#A3D8FF',
-    Viking:'#55D6C2'
+    Viking:'#55D6C2',
+    Pippin:'#FFE6E6',
+    Onahau: '#C2FFFD',
+    Sail: '#BBDEF9',
+    DoublePearlLusta: '#FCF5C7',
+    
 }
 
 export default COLORS;

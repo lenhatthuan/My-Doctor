@@ -1,21 +1,34 @@
 import React , {useState} from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Button, TextInput, Alert } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input'
 import COLORS from '../../assets/colors';
-import { signin } from '../store/actions/account';
+import {signin} from '../store/actions/account';
 
 const SigninScreen = (props) =>{
     const [titleAlert, setTitleAlert] =  useState('');
     const [isLogin, setIsLogin] = useState(false);
-    const [phone, setPhone] = useState('')
-    const [password, setPassword] = useState('')
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
 
-    const checkLogin = (username, password) =>{
-        console.log("vao llogin")
-        // signin(username, password).then(
-        //     json => console.log(json)
-        // )
-        
+    function checkLogin (){
+        let username = phone;
+        let pass = password;
+        signin(username, pass).then(data =>{
+            if(data.count == 1){
+                sendOTP()
+            }else{
+                Alert.alert(
+                    "Thông báo",
+                    "Đăng nhập không thành công!",
+                    [ {
+                     text: "OK",
+                     onPress: () => console.log("Cancel Pressed"),
+                     style: "cancel"
+                   }]
+                )
+            }
+            
+         })
     } 
 
     const sendError = ()=>{
@@ -33,7 +46,7 @@ const SigninScreen = (props) =>{
     
     const sendOTP = () =>{
         props.navigation.navigate(
-           'OTPScreen', {phone: phone}
+           'OTPAuth', {phone: phone}
         )
     }
 
@@ -50,9 +63,9 @@ const SigninScreen = (props) =>{
             value = {phone}
             onChangeFormattedText = {(phoneInput) => {setPhoneNumber(phoneInput)}}
             />
-            <TextInput placeholder = 'Nhập mật khẩu'   style  = {styles.textInput} value = {password} onChangeText = {(text) => setPasswordInput(text)}></TextInput>
+            <TextInput placeholder = 'Nhập mật khẩu'   style = {styles.textInput} value = {password} onChangeText = {(text) => setPasswordInput(text)}></TextInput>
           </View>
-            <Button title = 'Đăng nhập' color = {COLORS.TeaGreen} onPress = {checkLogin(phone, password)}/>
+            <Button title = 'Đăng nhập' color = {COLORS.TeaGreen} onPress={checkLogin}/>
             </View>
            <View style = {styles.btnSignup}>
            <Text onPress = {() =>{
