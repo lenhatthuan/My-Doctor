@@ -7,8 +7,6 @@ import Profile from "../screens/ProfileScreen";
 import OTPAuth from "../screens/OtpAuthScreen";
 import SigninScreen from "../screens/SigninScreen";
 import HomeScreen from "../screens/HomeScreen";
-import OtpAuthScreen from "../screens/OtpAuthScreen";
-import OTPScreen from "../screens/OTPScreen";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import COLORS from "../../assets/colors";
 import ContactScreen from '../screens/ContactScreen';
@@ -20,27 +18,20 @@ import {
   FontAwesome5,
   FontAwesome,
 } from "@expo/vector-icons";
+import STTScreen from "../screens/STTScreen";
+import OnlineMedicalScreen from "../screens/OnlineMedicalScreen";
+import OnlinePaymentScreen from "../screens/OnlinePaymentScreen";
+import RecordScreen from "../screens/RecordScreen";
+import MedicalGuideScreen from "../screens/MedicalGuideScreen";
 
-const defaulStackNavOptions = {};
+const defaulStackNavOptions = { headerShown: false,
+  headerVisible: false,};
 const MyDoctorNavigator = createStackNavigator({
   Home: {
     screen: HomeScreen,
-    navigationOptions: {
-      headerShown: false,
-      headerVisible: false,
-    },
   },
   Signin: {
     screen: SigninScreen,
-    navigationOptions: {
-      headerShown: false,
-      headerVisible: false,
-      tabBarVisible:false
-    },
-  },
-  OtpAuth: { screen: OtpAuthScreen },
-  OTPScreen: {
-    screen: OTPScreen,
   },
   Signup: {
     screen: Signup,
@@ -53,8 +44,23 @@ const MyDoctorNavigator = createStackNavigator({
   },
   Profile: {
     screen: Profile,
+    navigationOptions: {
+      headerShown: false,
+      headerVisible: false,
+    },
   },
-});
+  FollowHeathy:{screen: FollowHeathyScreen},
+  STT:{screen: STTScreen},
+  OnlineMedical:{screen: OnlineMedicalScreen},
+  OnlinePayment: {screen: OnlinePaymentScreen},
+  Record: {screen: RecordScreen},
+  Guide:{screen: MedicalGuideScreen}
+  
+},
+{
+  defaultNavigationOptions: defaulStackNavOptions
+}
+);
 
 const MyDoctorNavBottom = createBottomTabNavigator(
   {
@@ -134,27 +140,26 @@ const MyDoctorNavBottom = createBottomTabNavigator(
   }
 );
 
-// function  getTabBarVisibility(route) {
-//   const routeName = route.state
-//     ? route.state.routes[route.state.index].name
-//     : '';
+MyDoctorNavigator.navigationOptions = ({ navigation }) => {
 
-//     console.log("hihi: " + route)
+  let tabBarVisible = true;
 
-//   if (routeName === 'Signin') {
-//     return false;
-//   }
+  let routeName = navigation.state.routes[navigation.state.index].routeName
 
-//   return true;
-// }
-
-function getTabBarVisibility (name) {
-
-  console.log("hihi: " + name)
-  if (name === 'Signin') {
-    return false;
+  if (checkHideBottomTab(routeName) ) {
+      tabBarVisible = false
   }
 
-  return true;
+  return {
+      tabBarVisible,
+  }
 }
+
+function checkHideBottomTab(routeName){
+  let aName = ['Signin', 'Signup', 'OTPAuth', 'ForgotPass'];
+  if(aName.includes(routeName))
+    return true;
+  return false;
+}
+
 export default createAppContainer(MyDoctorNavBottom);
