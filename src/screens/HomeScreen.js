@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,14 +8,42 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
+  AsyncStorage,
+  Pressable,
 } from "react-native";
 import COLORS from "../../assets/colors";
+import { isLogin, logout } from "../store/actions/account";
+import { AntDesign } from "@expo/vector-icons";
 
 const HomeScreen = (props) => {
-  const gotoLogin = () => {
-    console.log("go to sigin")
-    props.navigation.navigate("Signin");
-  };
+  function gotoLogin() {
+    props.navigation.push("Signin");
+  }
+
+  const [checkIsLogin, setCheckIsLogin] = useState(false);
+  const [patientName, setPatientName] = useState("");
+
+  useEffect(() => {
+    isLogin().then((res) => {
+      if (!res) {
+        setCheckIsLogin(false);
+      } else {
+        let patient = null;
+        AsyncStorage.getItem("patientData").then((res) => {
+          patient = JSON.parse(res);
+          setPatientName(patient.fullName);
+          console.log("patientL " + patient);
+          setCheckIsLogin(true);
+        });
+      }
+    });
+  });
+
+  function signup() {
+    logout();
+    setCheckIsLogin(false);
+    setPatientName("");
+  }
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -24,12 +52,30 @@ const HomeScreen = (props) => {
           style={styles.imgBg}
           source={require("../../assets/imgs/bg.jpg")}
         >
-          <Text>Xin chào !</Text>
-          <Button style = {styles.btnLogin} title="Đăng nhập" onPress={gotoLogin}></Button>
+          <View style={styles.viewTextName}>
+            <Text style = {styles.txtHello}>Xin chào !</Text>
+            <Text style = {styles.txtName}>{patientName}</Text>
+          </View>
+          <View style={styles.viewBtnLogin}>
+            {!checkIsLogin ? (
+              <Pressable style={styles.btnLogin} onPress={() => gotoLogin()}>
+                  <AntDesign name="login" size={16} color="white" />
+                <Text style={styles.txtLogin}>Đăng nhập</Text>
+              </Pressable>
+            ) : null}
+            {checkIsLogin ? (
+              <Pressable style={styles.btnLogin} onPress={() => signup()}>
+                <AntDesign name="logout" size={16} color="white"/>
+                <Text style={styles.txtLogin}>Đăng xuất</Text>
+              </Pressable>
+            ) : null}
+          </View>
         </ImageBackground>
       </View>
-      <View style={styles.personalOption}>
-        <TouchableOpacity style={styles.buttonPersonal}>
+      <View style={styles.personalOption} disabled={!checkIsLogin}>
+        <TouchableOpacity style={styles.buttonPersonal} onPress = {() =>{
+          props.navigation.navigate("FollowHeathy")
+        }}>
           <Image
             style={styles.imgPersonal}
             source={require("../../assets/imgs/h3.png")}
@@ -38,7 +84,9 @@ const HomeScreen = (props) => {
             <Text style={styles.textPersonal}>Theo dõi sức khỏe</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonPersonal}>
+        <TouchableOpacity style={styles.buttonPersonal}  onPress = {() =>{
+          props.navigation.navigate("Record")
+        }}>
           <Image
             style={styles.imgPersonal}
             source={require("../../assets/imgs/record.png")}
@@ -48,9 +96,11 @@ const HomeScreen = (props) => {
           </View>
         </TouchableOpacity>
       </View>
-      <View style={styles.mainOption}>
+      <View style={styles.mainOption} disabled={!checkIsLogin} >
         <View style={styles.viewMainOption}>
-          <TouchableOpacity style={styles.bgBtnGuide}>
+          <TouchableOpacity style={styles.bgBtnGuide}  onPress = {() =>{
+          props.navigation.navigate("Guide")
+        }}>
             <View style={styles.viewTextPersonal}>
               <Text style={styles.textPersonal}>Hướng dẫn khám bệnh</Text>
             </View>
@@ -59,7 +109,9 @@ const HomeScreen = (props) => {
               source={require("../../assets/imgs/h1.png")}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.bgBtnSTT}>
+          <TouchableOpacity style={styles.bgBtnSTT} onPress = {() =>{
+          props.navigation.navigate("STT")
+        }}>
             <Image
               style={styles.imgOption}
               source={require("../../assets/imgs/h2.png")}
@@ -70,7 +122,9 @@ const HomeScreen = (props) => {
           </TouchableOpacity>
         </View>
         <View style={styles.viewMainOption}>
-          <TouchableOpacity style={styles.bgBtnOnline} >
+          <TouchableOpacity style={styles.bgBtnOnline} onPress = {() =>{
+          props.navigation.navigate("OnlineMedical")
+        }}>
             <View style={styles.viewTextPersonal}>
               <Text style={styles.textPersonal}>Mua thuốc online</Text>
             </View>
@@ -79,7 +133,9 @@ const HomeScreen = (props) => {
               source={require("../../assets/imgs/online.png")}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.bgBtnPayment}>
+          <TouchableOpacity style={styles.bgBtnPayment} onPress = {() =>{
+          props.navigation.navigate("OnlinePayment")
+        }}>
             <Image
               style={styles.imgOption}
               source={require("../../assets/imgs/payment.png")}
@@ -91,15 +147,44 @@ const HomeScreen = (props) => {
         </View>
       </View>
     </SafeAreaView>
-  ); 
+  );
 };
 
 const styles = StyleSheet.create({
-  btnLogin:{
-    marginTop: 10,
-    backgroundColor: COLORS.TeaGreen
+  txtHello:{
+    fontWeight:'bold'
   },
-  bgBtnGuide:{
+  txtName:{
+    fontWeight:'bold',
+    color:'white'
+  },
+  viewTextName: {
+    marginTop: 25,
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    padding: 30,
+  },
+  viewBtnLogin: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  txtLogin: {
+    color: "white",
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  btnLogin: {
+    flexDirection:'row',
+    backgroundColor: "black",
+    justifyContent: "center",
+    textAlign: "center",
+    alignItems: "center",
+    // width: "30%",
+    padding: 5,
+  },
+  bgBtnGuide: {
     borderColor: COLORS.Sail,
     borderWidth: 2,
     backgroundColor: COLORS.Malibu,
@@ -123,7 +208,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     borderRadius: 10,
   },
-  bgBtnSTT:{
+  bgBtnSTT: {
     borderColor: COLORS.Sail,
     borderWidth: 2,
     backgroundColor: COLORS.Lochinvar,
@@ -147,7 +232,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     borderRadius: 10,
   },
-  bgBtnOnline:{
+  bgBtnOnline: {
     borderColor: COLORS.Sail,
     borderWidth: 2,
     backgroundColor: COLORS.Anakiwa,
@@ -171,11 +256,11 @@ const styles = StyleSheet.create({
     elevation: 3,
     borderRadius: 10,
   },
-  bgBtnPayment:{
+  bgBtnPayment: {
     borderColor: COLORS.Sail,
     borderWidth: 2,
     backgroundColor: COLORS.Viking,
-     flex: 1,
+    flex: 1,
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
@@ -234,9 +319,9 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     backgroundColor: "#fff",
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
-    alignItems:'center',
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    alignItems: "center",
     paddingLeft: 5,
     paddingRight: 5,
     paddingBottom: 10,

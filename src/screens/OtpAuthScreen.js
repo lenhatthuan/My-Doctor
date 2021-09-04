@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Button, Alert, Pressable } from "react-native";
 import OTPInputView from "react-native-otp-input";
 import * as FirebaseRecaptcha from "expo-firebase-recaptcha";
 import * as firebase from "firebase";
+import { getPatientById } from "../store/actions/patient";
 
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyDbVPwRqEBmpvFCbawWPH4O2aLQN88qdP4",
@@ -31,9 +32,21 @@ export default class OTPAuth extends Component {
     };
     this.recaptchaVerifier = React.createRef(null);
   }
+   otpSignin() {
+     let id = this.props.navigation.getParam("patientId", "")
+     getPatientById(id);
+    Alert.alert("Xác thực thành công!", "", [{
+      text: "OK",
+      onPress: () =>{
+        this.props.navigation.navigate("Home")
+      }
+    }])
+  };
   static navigationOptions = {
     title: "OTPAuth",
   };
+
+ 
   async componentDidMount() {
     const phoneProvider = new firebase.auth.PhoneAuthProvider();
     try {
@@ -75,6 +88,9 @@ export default class OTPAuth extends Component {
                 const authResult = await firebase
                   .auth()
                   .signInWithCredential(credential);
+                  if(this.props.navigation.getParam("route", "") === "signin"){
+                   this.otpSignin();
+                  } else
                 if (this.props.navigation.getParam("route", "") === "signup") {
                   fetch("https://still-wave-21655.herokuapp.com/accounts", {
                     method: "POST",
