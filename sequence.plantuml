@@ -1,0 +1,185 @@
+@startuml Signup
+actor Patient 
+boundary SignupScreen 
+control SignupController
+entity Account 
+boundary OTPAuthScreen
+
+activate Patient
+Patient -> SignupScreen: Nhập số điện thoại và mật khẩu. Nhấn nút đăng ký
+activate SignupScreen
+
+SignupScreen -> SignupController: Gửi số điện thoại và mật khẩu
+activate SignupController
+
+SignupController -> SignupController: validate(phone)
+alt valid
+    SignupController -> Account: isAccount(phone, password)
+    activate Account
+    deactivate
+
+    SignupController -> SignupScreen: Gửi thông báo
+    SignupScreen -> Patient: Hiển thị thông báo
+    deactivate
+
+    alt not exist
+        SignupScreen -> OTPAuthScreen : navigation(phone, pass, action ='signup')
+        activate OTPAuthScreen
+        deactivate
+        deactivate
+    end
+else not valid    
+    SignupController -> SignupScreen: Gửi thông báo lỗi
+    activate SignupController
+    activate SignupScreen
+    SignupScreen -> Patient: Hiển thị thông báo
+end
+@enduml
+
+@startuml ForgotPass
+actor Patient
+boundary ForgotPassScreen 
+control ForgotPassController
+entity Account
+boundary OTPAuthScreen
+
+activate Patient
+Patient -> ForgotPassScreen: Nhập số điện thoại và mật khẩu. Nhấn nút reset
+activate ForgotPassScreen
+
+ForgotPassScreen -> ForgotPassController: Gửi số điện thoại và mật khẩu
+activate ForgotPassController
+
+ForgotPassController -> ForgotPassController: validate(phone)
+alt valid
+    ForgotPassController -> Account: isAccount(phone, password)
+    activate Account
+    deactivate
+
+    ForgotPassController -> ForgotPassScreen: Gửi thông báo
+    ForgotPassScreen -> Patient: Hiển thị thông báo
+    deactivate
+    
+    alt exist
+        ForgotPassScreen -> OTPAuthScreen : navigation(phone, password, action = 'updatePass')
+        activate OTPAuthScreen
+        deactivate
+        deactivate
+    end
+else not valid    
+    ForgotPassController -> ForgotPassScreen: Gửi thông báo lỗi
+    activate ForgotPassController
+    activate ForgotPassScreen
+    ForgotPassScreen -> Patient: Hiển thị thông báo
+end
+@enduml
+
+@startuml AuthOTP
+actor Patient 
+boundary OTPAuthScreen 
+control OTPAuthController
+entity Account 
+boundary HomeScreen
+
+activate Patient
+Patient -> OTPAuthScreen: Xác thực reCaptcha
+
+activate OTPAuthScreen
+OTPAuthScreen -> OTPAuthController: Gửi mã reCaptcha
+deactivate
+
+activate OTPAuthController
+OTPAuthController -> Patient: Gửi mã OTP về số điện thoại
+deactivate
+
+alt success
+    Patient -> OTPAuthScreen: Nhập mã OTP và nhấn xác nhận
+
+    activate OTPAuthScreen
+    OTPAuthScreen -> OTPAuthController: Gửi mã OTP
+
+    activate OTPAuthController
+    OTPAuthController -> OTPAuthController: Xác thực mã OTP  
+    alt equal
+        alt action = signup
+            OTPAuthController -> Account ++: createAccount(phone,password)
+            deactivate
+            deactivate
+        else action = updatePass 
+            OTPAuthController -> Account ++ : forgotPass(phone,password)
+            activate OTPAuthController
+            deactivate
+        end
+        OTPAuthController -> OTPAuthScreen: Gửi thông báo  
+        deactivate OTPAuthController             
+        OTPAuthScreen -> Patient: Hiển thị thông báo        
+        OTPAuthScreen -> HomeScreen ++ : navigation(id)      
+        deactivate  
+        deactivate
+    end
+else failure    
+    OTPAuthController -> OTPAuthScreen ++: Gửi thông báo lỗi
+    activate OTPAuthController
+    OTPAuthScreen -> Patient: Hiển thị thông báo
+end
+@enduml
+
+@startuml ChangePass
+actor Patient as Actor
+boundary ChangePassScreen 
+control ChangePassController
+entity Patient as Entity
+
+activate Actor
+Actor -> ChangePassScreen: Nhập mật khẩu hiện tại, mật khẩu mới,\nmã xác nhân và nhập lại mật khẩu mới.\nNhấn nút cập nhật
+activate ChangePassScreen
+
+ChangePassScreen -> ChangePassController: Gửi thông tin nhập
+activate ChangePassController
+
+ChangePassController -> ChangePassController: check(cofirmPass, newPass,\ncaptcha, cofirmCaptcha)
+alt cofirmPass = newPass & captcha = cofirmCaptcha 
+    ChangePassController -> Entity: changePass(oldPass, newPass)
+    activate Entity
+    deactivate
+end
+
+ChangePassController -> ChangePassScreen: Gửi thông báo
+ChangePassScreen -> Actor: Hiển thị thông báo
+deactivate
+@enduml
+
+@startuml Profile
+actor Patient as Actor
+boundary ProfileScreen 
+control ProfileController
+entity Patient as Entity
+
+activate Actor
+Actor -> ProfileScreen: Xem thông tin cá nhân
+activate ProfileScreen
+
+ProfileScreen -> ProfileController: Gửi yêu cầu
+activate ProfileController
+
+ProfileController -> Entity: showProfile()
+activate Entity
+
+ProfileController -> ProfileScreen: Gửi thông tin
+deactivate
+ProfileScreen -> Actor : Hiển thị profile
+deactivate
+
+Actor -> ProfileScreen: Nhập thông tin và nhấn cập nhật
+
+ProfileScreen -> ProfileController: Gửi thông tin
+activate ProfileController
+
+ProfileController -> Entity: updateProfile(info)
+activate Entity
+deactivate
+
+ProfileController -> ProfileScreen: Gửi thông báo
+ProfileScreen -> Actor: Hiển thị thông báo
+deactivate
+@enduml
