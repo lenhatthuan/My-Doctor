@@ -1,120 +1,193 @@
-import React, { useEffect } from "react";
+import React, { Component } from "react";
 import {
-  Switch,
   View,
-  SafeAreaView,
+  StyleSheet,
   Text,
   Button,
   TextInput,
-  Alert,
+  Image,
+  ImageStore,
 } from "react-native";
 import { DatePicker } from "react-native-woodpicker";
+import { RadioButton, Avatar } from "react-native-paper";
 import TYPES from "../models/types";
-import { Avatar } from "react-native-elements";
+import { FontAwesome } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
-import { getProfile } from "../store/actions/patient";
-import { styles } from "../theme/style";
 
-export default function ProfileScreen(props) {
-  const [avatar, setAvatar] = React.useState(
-    "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
-  );
-  const [fullname, setFullname] = React.useState();
-  const [birthdate, setBirthdate] = React.useState(new Date());
-  const [gender, setGender] = React.useState(false);
-  const [address, setAddress] = React.useState();
+export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "Thông tin cá nhân",
+      lbName: "Họ và tên",
+      lbGender: "Giới tính",
+      ldMale: TYPES.GENDER.MALE,
+      lbFemale: TYPES.GENDER.FEMALE,
+      lbBirthYear: "Năm sinh",
+      lbAddress: "Địa chỉ",
+      avatar: null,
+      name: "",
+      pickedDate: new Date(),
+      checked: TYPES.GENDER.MALE,
+      address: "",
+    };
+  }
 
-  useEffect(() => {
-    getProfile()
+  async componentDidMount() {
+    await fetch(
+      "https://still-wave-21655.herokuapp.com/patient/11ea7b72-85f2-4e4f-b1ac-3275e9c91699"
+      //id
+    )
+      .then((response) => response.json())
       .then((result) => {
-        if (result != null) {
-          setAvatar(result.avatar);
-          setFullname(result.fullname);
-          //setBirthdate(new Date(result.birthDate));
-          result.gender === TYPES.GENDER.FEMALE
-            ? setGender(true)
-            : setGender(false);
-          setAddress(result.address);
-        }
-      })
-      .catch((err) => console.error(err));
-  });
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Thông tin cá nhân</Text>
-      <Avatar
-        size="large"
-        rounded
-        source={{
-          uri: avatar,
-        }}
-        onPress={async () => {
-          const result = await ImagePicker.launchImageLibraryAsync({
-            uri: true,
-          });
-          if (!result.cancelled) {
-            setAvatar(result.uri);
-          }
-        }}
-      />
-      <Text style={styles.label}>Họ và tên</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setFullname(text)}
-        value={fullname}
-      />
-      <Text style={styles.label}>Ngày sinh</Text>
-      <DatePicker
-        style={{ height: 50, borderWidth: 1 }}
-        value={birthdate}
-        onDateChange={(text) => setBirthdate(text)}
-        text={birthdate.toLocaleDateString()}
-        iosDisplay="inline"
-      />
-      <Text style={styles.label}>Giới tính</Text>
-      <View style={styles.space}>
-        <Switch
-          onValueChange={() => setGender((previousState) => !previousState)}
-          value={gender}
+        this.setState({
+          avatar: result.patient.avatar,
+          name: result.patient.fullName,
+          pickedDate: new Date(result.patient.birthDate),
+          checked: result.patient.gender,
+          address: result.patient.address,
+        });
+      });
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>{this.state.title}</Text>
+        <Image
+          style={styles.avatar}
+          source={{ uri: "data:image/png;base64," + this.state.avatar }}
         />
-        <Text>{gender ? TYPES.GENDER.FEMALE : TYPES.GENDER.MALE}</Text>
+        <FontAwesome.Button
+          iconStyle={{ marginRight: 0 }}
+          backgroundColor="red"
+          name="camera"
+          onPress={async () => {
+            let result = await ImagePicker.launchImageLibraryAsync({
+              base64: true,
+              allowsEditing: true,
+            });
+            if (!result.cancelled) {
+              this.setState({ avatar: result.base64 });
+            }
+          }}
+          borderRadius={100}
+        />
+        <Text style={styles.label}>{this.state.lbName}</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(name) => this.setState({ name })}
+          value={this.state.name}
+        />
+        <Text style={styles.label}>{this.state.lbBirthYear}</Text>
+        <DatePicker
+          style={{ height: 50, borderWidth: 1 }}
+          value={this.state.pickedDate}
+          onDateChange={(pickedDate) => this.setState({ pickedDate })}
+          text={this.state.pickedDate.toLocaleDateString()}
+          iosDisplay="inline"
+        />
+        <Text style={styles.label}>{this.state.lbGender}</Text>
+        <View style={styles.row}>
+          <RadioButton
+            value={TYPES.GENDER.MALE}
+            status={
+              this.state.checked == TYPES.GENDER.MALE ? "checked" : "unchecked"
+            }
+            onPress={(checked) => this.setState({ checked: TYPES.GENDER.MALE })}
+          />
+          <Text>{this.state.ldMale}</Text>
+          <RadioButton
+            value={TYPES.GENDER.FEMALE}
+            status={
+              this.state.checked == TYPES.GENDER.FEMALE
+                ? "checked"
+                : "unchecked"
+            }
+            onPress={(checked) =>
+              this.setState({ checked: TYPES.GENDER.FEMALE })
+            }
+          />
+          <Text>{this.state.lbFemale}</Text>
+        </View>
+        <Text style={styles.label}>{this.state.lbAddress}</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(address) => this.setState({ address })}
+          value={this.state.address}
+        />
+        <View style={styles.separator}>
+          <Button
+            title="Cập nhật"
+            onPress={() => {
+              fetch(
+                //id
+                "https://still-wave-21655.herokuapp.com/patient/11ea7b72-85f2-4e4f-b1ac-3275e9c91699",
+                {
+                  method: "PUT",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    //avatar: atob(this.state.avatar),
+                    fullName: this.state.name,
+                    birthDate: this.state.pickedDate,
+                    gender: this.state.checked,
+                    address: this.state.address,
+                  }),
+                }
+              );
+            }}
+          />
+          <Button
+            title="Đổi mật khẩu"
+            onPress={() =>
+              this.props.navigation.navigate("ChangePass", {
+                phone: this.state.phone,
+              })
+            }
+          />
+        </View>
       </View>
-      <Text style={styles.label}>Địa chỉ</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setAddress(text)}
-        value={address}
-      />
-      <View style={styles.space}>
-        <Button
-          title="Cập nhật"
-          // onPress={() => {
-          //   fetch(
-          //     //id
-          //     "https://still-wave-21655.herokuapp.com/patient/11ea7b72-85f2-4e4f-b1ac-3275e9c91699",
-          //     {
-          //       method: "PUT",
-          //       headers: {
-          //         Accept: "application/json",
-          //         "Content-Type": "application/json",
-          //       },
-          //       body: JSON.stringify({
-          //         //avatar: atob(this.state.avatar),
-          //         fullname: this.state.name,
-          //         birthDate: this.state.pickedDate,
-          //         gender: this.state.checked,
-          //         address: this.state.address,
-          //       }),
-          //     }
-          //   );
-          // }}
-        />
-        <Button
-          title="Đổi mật khẩu"
-          onPress={() => props.navigation.navigate("ChangePass")}
-        />
-      </View>
-    </SafeAreaView>
-  );
+    );
+  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "flex-start",
+    padding: 8,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 80,
+    margin: 20,
+  },
+  title: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+  label: {
+    fontSize: 15,
+    marginTop: 10,
+  },
+  input: {
+    height: 40,
+    borderWidth: 1,
+  },
+  separator: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 50,
+    margin: 20,
+  },
+  avatar: {
+    alignSelf: "center",
+    width: 120,
+    height: 120,
+    borderRadius: 100,
+  },
+});
