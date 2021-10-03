@@ -19,7 +19,7 @@ export const signin = async (username, pass) => {
     .then((json) => {
       console.log("account: " + json.token + " username: " + username);
       const expirationDate = new Date(new Date().getTime() + 1000000);
-      saveDataToStorage(json.token, json.account.id, expirationDate);
+      saveDataToStorage(json.token, json.account.id, expirationDate, username);
       return json;
     })
     .catch((error) => {
@@ -27,7 +27,7 @@ export const signin = async (username, pass) => {
     });
 };
 
-const saveDataToStorage = (token, accountId, expirationDate) => {
+const saveDataToStorage = (token, accountId, expirationDate, username) => {
   try {
     AsyncStorage.setItem(
       "accountData",
@@ -35,6 +35,7 @@ const saveDataToStorage = (token, accountId, expirationDate) => {
         token: token,
         accountId: accountId,
         expirationDate: expirationDate,
+        username: username,
       })
     );
   } catch (error) {
@@ -72,21 +73,48 @@ export const signup = async (data) => {
     }),
   })
     .then((response) => response.json())
-    .then((result) => result.id)
+    .then((result) => {
+      const expirationDate = new Date(new Date().getTime() + 1000000);
+      saveDataToStorage(
+        result.token,
+        result.account.id,
+        expirationDate,
+        data.phone
+      );
+      return result;
+    })
     .catch((err) => console.error(err));
 };
 
 export const forgotpass = async (data) => {
-  return await fetch(BASE_URL + "/accounts/forgotpass/" + data.phone, {
+  return await fetch(BASE_URL + "/accounts/forgotPass", {
     method: "PUT",
     headers: header,
     body: JSON.stringify({
+      username: data.phone,
       password: data.password,
     }),
   })
     .then((response) => response.json())
     .then((result) => result.id)
     .catch((err) => console.error(err));
+};
+
+export const changePass = async (password) => {
+  await AsyncStorage.getItem("accountData").then((res) => {
+    result = JSON.parse(res);
+    return fetch(BASE_URL + `/accounts/${result.id}/changePass`, {
+      method: "PUT",
+      headers: header,
+      body: JSON.stringify({
+        oldPass: password.old,
+        newPass: password.new,
+        username: result.username,
+      }),
+    })
+      .then((response) => response.json())
+      .catch((err) => console.error(err));
+  });
 };
 
 export const logout = () => {
