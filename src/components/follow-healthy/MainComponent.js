@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import STRING from "../../utils/string";
 import { Ionicons } from "@expo/vector-icons";
@@ -6,6 +6,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const MainComponent = props =>{
     const [heigh, setHeigh] = useState("0");
     const [weight, setWeight] = useState("0");
+   
+    useEffect(() => {
+      // setHeigh(props.heigh);
+      // setWeight(props.weight);
+      });
+    
   return (
     <View style = {styles.main}>
         <View style = {styles.component}>

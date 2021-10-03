@@ -5,11 +5,12 @@ import COLORS from "../../../../assets/colors"
 import { FontAwesome } from "@expo/vector-icons";
 import BtnAddComponent from "../../common/BtnAddComponent";
 import STRING from "../../../utils/string";
-
+import { createBMI } from "../../../store/actions/bmi";
+import { AsyncStorage } from "react-native";
 const AddBMIComponent = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  const [tall, setTall] = useState("");
+  const [weigh, setWeigh] = useState("");
   useEffect(() => {
     setModalVisible(props.visible);
   });
@@ -19,7 +20,21 @@ const AddBMIComponent = (props) => {
   };
 
   const onSave = () =>{
-    console.log("Save component!!")
+   if(modalVisible){
+    AsyncStorage.getItem("patientData").then((res) => {
+      const patient = JSON.parse(res);
+      createBMI(patient.patientId, tall, weigh).then(bmi =>{
+        if(bmi){   
+          setTall("");
+          setWeigh("");
+          alert("Đã thêm BMI thành công !")
+          setModalVisible(false);
+        }else{
+          alert("Lỗi, không thêm được!");
+        }
+      })
+    });
+   }
   }
 
   return (
@@ -38,11 +53,17 @@ const AddBMIComponent = (props) => {
           cancelGoalHandler();
         }}
       >
-        <View style={styles.modalView}>
+        <Pressable style={styles.modalView}
+        
+        onPress={() => {
+        }}>
           <View style={styles.header}>
-            <View style={styles.iconHeader}>
+            <Pressable style={styles.iconHeader}
+            onPress={() => {
+              cancelGoalHandler();
+            }}>
               <FontAwesome name="remove" size={24} color="black" />
-            </View>
+            </Pressable>
             <View style = {styles.viewTxtHeader}>
               <Text style={styles.txtHeader}>Thêm dữ liệu</Text>
             </View>
@@ -51,25 +72,35 @@ const AddBMIComponent = (props) => {
             <View style={styles.bodyComponent}>
               <Text style={styles.txtBody}>Chiều cao (cm)</Text>
               <TextInput
+              returnKeyType = "done"
+              keyboardType='numeric'
                 placeholder="Chiều cao"
                 style={styles.input}
-                value={height}
+                value={tall}
+                onChangeText = {(text) =>{
+                  setTall(text);
+                }}
               ></TextInput>
             </View>
 
             <View style={styles.bodyComponent}>
               <Text style={styles.txtBody}>Cân nặng (kg)</Text>
               <TextInput
+               returnKeyType = "done"
                 placeholder="Cân nặng"
+                keyboardType='numeric'
                 style={styles.input}
-                value={height}
+                value={weigh}
+                onChangeText = {(text) =>{
+                  setWeigh(text)
+                }}
               ></TextInput>
             </View>
           </View>
            <BtnAddComponent
            title = {STRING.save}
            onPress = {onSave}/>
-        </View>
+        </Pressable>
       </Pressable>
     </Modal>
   );
@@ -85,7 +116,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     width: "100%",
-    height: "50%",
+    height: "65%",
     backgroundColor: "white",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -102,20 +133,22 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     justifyContent: "flex-start",
-    alignItems: 'center',
     width:'100%'
   },
   txtHeader: {
-    flex: 1,
     fontWeight: "bold",
     fontSize: 14,
    
   },
   viewTxtHeader:{
     alignItems:'center',
-    width:'90%'
+    flex:1,
+    justifyContent:'center'
   },
-  iconHeader: { marginLeft: 5, width: '5%'},
+  iconHeader: {
+    paddingLeft: 10,
+    alignItems:'center'
+  },
   input: {
     borderColor: "black",
     borderWidth: 1,
