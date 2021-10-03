@@ -9,7 +9,7 @@ import SigninScreen from "../screens/SigninScreen";
 import HomeScreen from "../screens/HomeScreen";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import COLORS from "../../assets/colors";
-import ContactScreen from '../screens/ContactScreen';
+import ContactScreen from "../screens/ContactScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
 import FollowHeathyScreen from "../screens/FollowHeathyScreen";
 import {
@@ -23,43 +23,47 @@ import OnlineMedicalScreen from "../screens/OnlineMedicalScreen";
 import OnlinePaymentScreen from "../screens/OnlinePaymentScreen";
 import RecordScreen from "../screens/RecordScreen";
 import MedicalGuideScreen from "../screens/MedicalGuideScreen";
+import ChangePass from "../screens/ChangePassScreen";
 
-const defaulStackNavOptions = { headerShown: false,
-  headerVisible: false,};
-const MyDoctorNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
-  },
-  Signin: {
-    screen: SigninScreen,
-  },
-  Signup: {
-    screen: Signup,
-  },
-  OTPAuth: {
-    screen: OTPAuth,
-  },
-  ForgotPass: {
-    screen: ForgotPass,
-  },
-  Profile: {
-    screen: Profile,
-    navigationOptions: {
-      headerShown: false,
-      headerVisible: false,
+const defaulStackNavOptions = { headerShown: false, headerVisible: false };
+const MyDoctorNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
     },
+    Signin: {
+      screen: SigninScreen,
+    },
+    Signup: {
+      screen: Signup,
+    },
+    OTPAuth: {
+      screen: OTPAuth,
+    },
+    ForgotPass: {
+      screen: ForgotPass,
+    },
+    Profile: {
+      screen: Profile,
+      navigationOptions: {
+        headerShown: false,
+        headerVisible: false,
+      },
+    },
+    ChangePass:{
+      screen: ChangePass
+    }
+    FollowHeathy: { screen: FollowHeathyScreen },
+    STT: { screen: STTScreen },
+    OnlineMedical: { screen: OnlineMedicalScreen },
+    OnlinePayment: { screen: OnlinePaymentScreen },
+    Record: { screen: RecordScreen },
+    Guide: { screen: MedicalGuideScreen },
   },
-  FollowHeathy:{screen: FollowHeathyScreen},
-  STT:{screen: STTScreen},
-  OnlineMedical:{screen: OnlineMedicalScreen},
-  OnlinePayment: {screen: OnlinePaymentScreen},
-  Record: {screen: RecordScreen},
-  Guide:{screen: MedicalGuideScreen}
-  
-},
-{
-  defaultNavigationOptions: defaulStackNavOptions
-}
+  {
+    defaultNavigationOptions: defaulStackNavOptions,
+    initialRouteName: "Profile",
+  }
 );
 
 const MyDoctorNavBottom = createBottomTabNavigator(
@@ -141,24 +145,22 @@ const MyDoctorNavBottom = createBottomTabNavigator(
 );
 
 MyDoctorNavigator.navigationOptions = ({ navigation }) => {
-
   let tabBarVisible = true;
 
-  let routeName = navigation.state.routes[navigation.state.index].routeName
+  let routeName = navigation.state.routes[navigation.state.index].routeName;
 
-  if (checkHideBottomTab(routeName) ) {
-      tabBarVisible = false
+  if (checkHideBottomTab(routeName)) {
+    tabBarVisible = false;
   }
 
   return {
-      tabBarVisible,
-  }
-}
+    tabBarVisible,
+  };
+};
 
-function checkHideBottomTab(routeName){
-  let aName = ['Signin', 'Signup', 'OTPAuth', 'ForgotPass'];
-  if(aName.includes(routeName))
-    return true;
+function checkHideBottomTab(routeName) {
+  let aName = ["Signin", "Signup", "OTPAuth", "ForgotPass"];
+  if (aName.includes(routeName)) return true;
   return false;
 }
 
