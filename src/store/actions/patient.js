@@ -6,6 +6,7 @@ const header = {
   Accept: "application/json",
   "Content-Type": "application/json",
 };
+
 export const getPatientById = async (patientId) => {
   return await fetch(BASE_URL + `/patient/${patientId}`, {
     method: "GET",
@@ -39,11 +40,25 @@ const savePatientToStorage = (patient) => {
   );
 };
 
-export const getProfile = async () => {
-  try {
-    const patient = await AsyncStorage.getItem("patientData");
-    return patient;
-  } catch (error) {
-    console.error(error);
-  }
+export const updateProfile = async (
+  id,
+  avatar,
+  fullName,
+  birthDate,
+  gender,
+  address
+) => {
+  return await fetch(BASE_URL + "/patient/" + id, {
+    method: "PUT",
+    headers: header,
+    body: JSON.stringify({
+      avatar: avatar,
+      fullName: fullName,
+      birthDate: birthDate,
+      gender: gender,
+      address: address,
+    }),
+  })
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
 };

@@ -1,9 +1,16 @@
 import * as React from "react";
-import { View, SafeAreaView, Text, Button, Alert } from "react-native";
+import {
+  View,
+  SafeAreaView,
+  Text,
+  Button,
+  Alert,
+  ImageBackground,
+} from "react-native";
 import OTPInputView from "react-native-otp-input";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import { FIREBASE_CONFIG } from "../../environment/enviroment";
-import { styles } from "../theme/style";
+import { styles, image } from "../theme/style";
 import * as firebase from "firebase";
 import { signup, forgotpass } from "../store/actions/account";
 import { getPatientById } from "../store/actions/patient";
@@ -23,13 +30,14 @@ export default function OTPAuth(props) {
   const data = props.navigation.getParam("data", "");
   const action = props.navigation.getParam("action", "");
 
-  const showMessage = (id, screen) => {
+  const showMessage = (screen) => {
     Alert.alert("Xác thực thành công", "", [
       {
         text: "OK",
         onPress: () =>
           getPatientById(id).then((result) => {
-            props.navigation.navigate(screen);
+            props.navigation.pop(3);
+            if (screen !== null) props.navigation.navigate(screen);
           }),
       },
     ]);
@@ -45,12 +53,12 @@ export default function OTPAuth(props) {
       switch (action) {
         case "signup":
           signup(data).then((result) => {
-            showMessage(result, "Profile");
+            showMessage("Profile");
           });
           break;
         case "forgot-pass":
           forgotpass(data).then((result) => {
-            showMessage(result, "Home");
+            showMessage();
           });
           break;
         default:
@@ -76,30 +84,36 @@ export default function OTPAuth(props) {
   };
 
   React.useEffect(() => {
-    console.log(action === "forgot-pass");
     sendOTP();
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <FirebaseRecaptchaVerifierModal
-        ref={recaptchaVerifier}
-        firebaseConfig={FIREBASE_CONFIG}
-        //attemptInvisibleVerification={true}
-      />
-      <Text style={styles.title}>Xác thực bằng mã OTP</Text>
-      <OTPInputView
-        style={{ height: 100 }}
-        pinCount={6}
-        code={verificationCode}
-        onCodeFilled={(text) => setVerificationCode(text)}
-        codeInputFieldStyle={styles.underlineStyleBase}
-        codeInputHighlightStyle={styles.underlineStyleHighLighted}
-      />
-      <View style={styles.space}>
-        <Button title="Xác thực" onPress={authOTP} />
-        <Button title="Gửi lại mã" onPress={sendOTP} />
-      </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ImageBackground
+        source={{
+          uri: image.background,
+        }}
+        style={styles.container}
+      >
+        <FirebaseRecaptchaVerifierModal
+          ref={recaptchaVerifier}
+          firebaseConfig={FIREBASE_CONFIG}
+          //attemptInvisibleVerification={true}
+        />
+        <Text style={styles.title}>Xác thực bằng mã OTP</Text>
+        <OTPInputView
+          style={{ height: 100 }}
+          pinCount={6}
+          code={verificationCode}
+          onCodeFilled={(text) => setVerificationCode(text)}
+          codeInputFieldStyle={styles.underlineStyleBase}
+          codeInputHighlightStyle={styles.underlineStyleHighLighted}
+        />
+        <View style={styles.space}>
+          <Button title="Xác thực" onPress={authOTP} />
+          <Button title="Gửi lại mã" onPress={sendOTP} />
+        </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
