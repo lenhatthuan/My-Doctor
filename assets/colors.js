@@ -11,6 +11,9 @@ const COLORS = {
     Onahau: '#C2FFFD',
     Sail: '#BBDEF9',
     DoublePearlLusta: '#FCF5C7',
+    alert:'#B0B0B0',
+    btnSave:'#0ED3EE',
+    blueMint:'#0E4DEE'
     
 }
 
