@@ -23,7 +23,8 @@ export const signin = async (username, pass) => {
       return json;
     })
     .catch((error) => {
-      console.error("sigin fail *********************: " + error);
+      console.log("sigin fail *********************: " + error);
+      return null;
     });
 };
 

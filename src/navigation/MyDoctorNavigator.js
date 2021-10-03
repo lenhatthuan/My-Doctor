@@ -24,7 +24,8 @@ import OnlinePaymentScreen from "../screens/OnlinePaymentScreen";
 import RecordScreen from "../screens/RecordScreen";
 import MedicalGuideScreen from "../screens/MedicalGuideScreen";
 import ChangePass from "../screens/ChangePassScreen";
-
+import HistoryBMIComponent from "../components/follow-healthy/BMI/HistoryBMIComponent";
+import ListBMIComponent from "../components/follow-healthy/BMI/ListBMIComponent";
 const defaulStackNavOptions = { headerShown: false, headerVisible: false };
 const MyDoctorNavigator = createStackNavigator(
   {
@@ -52,17 +53,18 @@ const MyDoctorNavigator = createStackNavigator(
     },
     ChangePass:{
       screen: ChangePass
-    }
+    },
     FollowHeathy: { screen: FollowHeathyScreen },
     STT: { screen: STTScreen },
     OnlineMedical: { screen: OnlineMedicalScreen },
     OnlinePayment: { screen: OnlinePaymentScreen },
     Record: { screen: RecordScreen },
     Guide: { screen: MedicalGuideScreen },
+    BMIHistory: { screen: HistoryBMIComponent },
+    ListBMI: {screen: ListBMIComponent},
   },
   {
     defaultNavigationOptions: defaulStackNavOptions,
-    initialRouteName: "Profile",
   }
 );
 
@@ -159,7 +161,7 @@ MyDoctorNavigator.navigationOptions = ({ navigation }) => {
 };
 
 function checkHideBottomTab(routeName) {
-  let aName = ["Signin", "Signup", "OTPAuth", "ForgotPass"];
+  let aName = ["Signin", "Signup", "OTPAuth", "ForgotPass", "BMIHistory"];
   if (aName.includes(routeName)) return true;
   return false;
 }
