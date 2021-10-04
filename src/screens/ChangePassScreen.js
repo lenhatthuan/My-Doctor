@@ -12,7 +12,7 @@ import { Icon } from "react-native-elements";
 import { styles, image } from "../theme/style";
 import { changePass } from "../store/actions/account";
 
-export default function ChangePass(props) {
+export default function ChangePassScreen(props) {
   const [oldPass, setOldPass] = React.useState();
   const [newPass, setNewPass] = React.useState();
   const [confirmPass, setConfirmPass] = React.useState();

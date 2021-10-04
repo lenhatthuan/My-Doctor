@@ -183,3 +183,32 @@ ProfileController -> ProfileScreen: Gửi thông báo
 ProfileScreen -> Actor: Hiển thị thông báo
 deactivate
 @enduml
+
+@startuml Booking
+actor Patient 
+boundary BookingScreen 
+control BookingController
+entity Position 
+
+activate Patient
+Patient -> BookingScreen: Chọn khoa/bác sĩ khám bệnh
+activate BookingScreen
+
+BookingScreen -> BookingController: Gửi yêu cầu
+activate BookingController
+
+BookingController -> BookingScreen: Hiển thị
+BookingScreen -> Patient: Hiển thị trang đặt lịch khám
+Patient -> BookingScreen: Chọn ngày, giờ khám và nhấn đặt lịch
+BookingScreen -> BookingController: Gửi ngày và giờ khám
+
+alt date > new Date() 
+    BookingController -> Position: createPosition (date)    
+    activate Position
+    deactivate
+end
+
+BookingController -> BookingScreen: Gửi thông báo
+BookingScreen -> Patient: Hiển thị thông báo
+deactivate
+@enduml

@@ -97,7 +97,7 @@ export const forgotpass = async (data) => {
     }),
   })
     .then((response) => response.json())
-    .then((result) => result.id)
+    .then((result) => console.log(result))
     .catch((err) => console.error(err));
 };
 

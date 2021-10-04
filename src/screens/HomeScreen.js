@@ -14,6 +14,7 @@ import {
 import COLORS from "../../assets/colors";
 import { isLogin, logout } from "../store/actions/account";
 import { AntDesign } from "@expo/vector-icons";
+import { useFocusEffect } from "@react-navigation/native";
 
 const HomeScreen = (props) => {
   function gotoLogin() {
@@ -23,21 +24,23 @@ const HomeScreen = (props) => {
   const [checkIsLogin, setCheckIsLogin] = useState(false);
   const [patientName, setPatientName] = useState("");
 
-  useEffect(() => {
-    isLogin().then((res) => {
-      if (!res) {
-        setCheckIsLogin(false);
-      } else {
-        let patient = null;
-        AsyncStorage.getItem("patientData").then((res) => {
-          patient = JSON.parse(res);
-          setPatientName(patient.fullName);
-          console.log("patientL " + patient);
-          setCheckIsLogin(true);
-        });
-      }
-    });
-  });
+  useFocusEffect(
+    React.useCallback(() => {
+      isLogin().then((res) => {
+        if (!res) {
+          setCheckIsLogin(false);
+        } else {
+          let patient = null;
+          AsyncStorage.getItem("patientData").then((res) => {
+            patient = JSON.parse(res);
+            setPatientName(patient.fullName);
+            console.log("patientL " + patient);
+            setCheckIsLogin(true);
+          });
+        }
+      });
+    }, [])
+  );
 
   function signup() {
     logout();
@@ -53,19 +56,19 @@ const HomeScreen = (props) => {
           source={require("../../assets/imgs/bg.jpg")}
         >
           <View style={styles.viewTextName}>
-            <Text style = {styles.txtHello}>Xin chào !</Text>
-            <Text style = {styles.txtName}>{patientName}</Text>
+            <Text style={styles.txtHello}>Xin chào !</Text>
+            <Text style={styles.txtName}>{patientName}</Text>
           </View>
           <View style={styles.viewBtnLogin}>
             {!checkIsLogin ? (
               <Pressable style={styles.btnLogin} onPress={() => gotoLogin()}>
-                  <AntDesign name="login" size={16} color="white" />
+                <AntDesign name="login" size={16} color="white" />
                 <Text style={styles.txtLogin}>Đăng nhập</Text>
               </Pressable>
             ) : null}
             {checkIsLogin ? (
               <Pressable style={styles.btnLogin} onPress={() => signup()}>
-                <AntDesign name="logout" size={16} color="white"/>
+                <AntDesign name="logout" size={16} color="white" />
                 <Text style={styles.txtLogin}>Đăng xuất</Text>
               </Pressable>
             ) : null}
@@ -73,9 +76,12 @@ const HomeScreen = (props) => {
         </ImageBackground>
       </View>
       <View style={styles.personalOption} disabled={!checkIsLogin}>
-        <TouchableOpacity style={styles.buttonPersonal} onPress = {() =>{
-          props.navigation.navigate("FollowHeathy")
-        }}>
+        <TouchableOpacity
+          style={styles.buttonPersonal}
+          onPress={() => {
+            props.navigation.navigate("FollowHeathy");
+          }}
+        >
           <Image
             style={styles.imgPersonal}
             source={require("../../assets/imgs/h3.png")}
@@ -84,9 +90,12 @@ const HomeScreen = (props) => {
             <Text style={styles.textPersonal}>Theo dõi sức khỏe</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonPersonal}  onPress = {() =>{
-          props.navigation.navigate("Record")
-        }}>
+        <TouchableOpacity
+          style={styles.buttonPersonal}
+          onPress={() => {
+            props.navigation.navigate("Record");
+          }}
+        >
           <Image
             style={styles.imgPersonal}
             source={require("../../assets/imgs/record.png")}
@@ -96,11 +105,14 @@ const HomeScreen = (props) => {
           </View>
         </TouchableOpacity>
       </View>
-      <View style={styles.mainOption} disabled={!checkIsLogin} >
+      <View style={styles.mainOption} disabled={!checkIsLogin}>
         <View style={styles.viewMainOption}>
-          <TouchableOpacity style={styles.bgBtnGuide}  onPress = {() =>{
-          props.navigation.navigate("Guide")
-        }}>
+          <TouchableOpacity
+            style={styles.bgBtnGuide}
+            onPress={() => {
+              props.navigation.navigate("Guide");
+            }}
+          >
             <View style={styles.viewTextPersonal}>
               <Text style={styles.textPersonal}>Hướng dẫn khám bệnh</Text>
             </View>
@@ -109,9 +121,12 @@ const HomeScreen = (props) => {
               source={require("../../assets/imgs/h1.png")}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.bgBtnSTT} onPress = {() =>{
-          props.navigation.navigate("STT")
-        }}>
+          <TouchableOpacity
+            style={styles.bgBtnSTT}
+            onPress={() => {
+              props.navigation.navigate("Position");
+            }}
+          >
             <Image
               style={styles.imgOption}
               source={require("../../assets/imgs/h2.png")}
@@ -122,9 +137,12 @@ const HomeScreen = (props) => {
           </TouchableOpacity>
         </View>
         <View style={styles.viewMainOption}>
-          <TouchableOpacity style={styles.bgBtnOnline} onPress = {() =>{
-          props.navigation.navigate("OnlineMedical")
-        }}>
+          <TouchableOpacity
+            style={styles.bgBtnOnline}
+            onPress={() => {
+              props.navigation.navigate("OnlineMedical");
+            }}
+          >
             <View style={styles.viewTextPersonal}>
               <Text style={styles.textPersonal}>Mua thuốc online</Text>
             </View>
@@ -133,9 +151,12 @@ const HomeScreen = (props) => {
               source={require("../../assets/imgs/online.png")}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.bgBtnPayment} onPress = {() =>{
-          props.navigation.navigate("OnlinePayment")
-        }}>
+          <TouchableOpacity
+            style={styles.bgBtnPayment}
+            onPress={() => {
+              props.navigation.navigate("OnlinePayment");
+            }}
+          >
             <Image
               style={styles.imgOption}
               source={require("../../assets/imgs/payment.png")}
@@ -151,12 +172,12 @@ const HomeScreen = (props) => {
 };
 
 const styles = StyleSheet.create({
-  txtHello:{
-    fontWeight:'bold'
+  txtHello: {
+    fontWeight: "bold",
   },
-  txtName:{
-    fontWeight:'bold',
-    color:'white'
+  txtName: {
+    fontWeight: "bold",
+    color: "white",
   },
   viewTextName: {
     marginTop: 25,
@@ -173,10 +194,10 @@ const styles = StyleSheet.create({
   txtLogin: {
     color: "white",
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
   },
   btnLogin: {
-    flexDirection:'row',
+    flexDirection: "row",
     backgroundColor: "black",
     justifyContent: "center",
     textAlign: "center",

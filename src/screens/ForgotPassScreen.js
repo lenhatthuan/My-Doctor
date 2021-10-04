@@ -18,7 +18,7 @@ export default function ForgotPass(props) {
                   }),
               },
             ])
-          : Alert.alert(" không thành công");
+          : Alert.alert("Không tồn tại tài khoản này");
       })
       .catch((err) => console.error(err));
   };
