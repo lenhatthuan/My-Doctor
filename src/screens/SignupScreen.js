@@ -18,7 +18,7 @@ export default function SignupScreen(props) {
                   }),
               },
             ])
-          : Alert.alert(" không thành công");
+          : Alert.alert("Tài khoản đã được đăng ký");
       })
       .catch((err) => console.error(err));
   };

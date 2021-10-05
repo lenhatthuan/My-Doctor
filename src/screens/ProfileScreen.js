@@ -17,6 +17,7 @@ import * as ImagePicker from "expo-image-picker";
 import { updateProfile } from "../store/actions/patient";
 import { isLogin } from "../store/actions/account";
 import { styles, image } from "../theme/style";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function ProfileScreen(props) {
   const [avatar, setAvatar] = React.useState(image.avatar);
@@ -24,26 +25,51 @@ export default function ProfileScreen(props) {
   const [birthdate, setBirthdate] = React.useState(new Date());
   const [gender, setGender] = React.useState();
   const [address, setAddress] = React.useState();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      isLogin().then((res) => {
+        if (!res) {
+          setProfile();
+        } else {
+          AsyncStorage.getItem("patientData").then((res) => {
+            const patient = JSON.parse(res);
+            console.log(patient);
+            setProfile(
+              patient.avatar,
+              patient.fullName,
+              patient.birthDate,
+              patient.gender,
+              patient.address
+            );
+          });
+        }
+      });
+      //alert("Screen was focused");
+      // Do something when the screen is focused
+    }, [])
+  );
+
   //useEffect ko load trong bottom tab
-  useEffect(() => {
-    isLogin().then((res) => {
-      if (!res) {
-        setProfile();
-      } else {
-        AsyncStorage.getItem("patientData").then((res) => {
-          const patient = JSON.parse(res);
-          console.log(patient);
-          setProfile(
-            patient.avatar,
-            patient.fullName,
-            patient.birthDate,
-            patient.gender,
-            patient.address
-          );
-        });
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   isLogin().then((res) => {
+  //     if (!res) {
+  //       setProfile();
+  //     } else {
+  //       AsyncStorage.getItem("patientData").then((res) => {
+  //         const patient = JSON.parse(res);
+  //         console.log(patient);
+  //         setProfile(
+  //           patient.avatar,
+  //           patient.fullName,
+  //           patient.birthDate,
+  //           patient.gender,
+  //           patient.address
+  //         );
+  //       });
+  //     }
+  //   });
+  // }, []);
 
   const setProfile = (
     avatar = image.avatar,

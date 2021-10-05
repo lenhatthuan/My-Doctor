@@ -1,169 +1,177 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
 import React from "react";
-import Signup from "../screens/SignupScreen";
-import ForgotPass from "../screens/ForgotPassScreen";
-import Profile from "../screens/ProfileScreen";
-import OTPAuth from "../screens/OtpAuthScreen";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import SignupScreen from "../screens/SignupScreen";
+import ForgotPassScreen from "../screens/ForgotPassScreen";
+import OtpAuthScreen from "../screens/OtpAuthScreen";
 import SigninScreen from "../screens/SigninScreen";
+
 import HomeScreen from "../screens/HomeScreen";
-import { createBottomTabNavigator } from "react-navigation-tabs";
-import COLORS from "../../assets/colors";
-import ContactScreen from "../screens/ContactScreen";
-import ScheduleScreen from "../screens/ScheduleScreen";
-import FollowHeathyScreen from "../screens/FollowHeathyScreen";
-import {
-  Ionicons,
-  MaterialIcons,
-  FontAwesome5,
-  FontAwesome,
-} from "@expo/vector-icons";
-import STTScreen from "../screens/STTScreen";
+import MedicalGuideScreen from "../screens/MedicalGuideScreen";
 import OnlineMedicalScreen from "../screens/OnlineMedicalScreen";
 import OnlinePaymentScreen from "../screens/OnlinePaymentScreen";
+import PositionScreen from "../screens/PositionScreen";
 import RecordScreen from "../screens/RecordScreen";
-import MedicalGuideScreen from "../screens/MedicalGuideScreen";
-import ChangePass from "../screens/ChangePassScreen";
+
+import ProfileScreen from "../screens/ProfileScreen";
+import ChangePassScreen from "../screens/ChangePassScreen";
+
+import ContactScreen from "../screens/ContactScreen";
+
+import ScheduleScreen from "../screens/ScheduleScreen";
+
 import HistoryBMIComponent from "../components/follow-healthy/BMI/HistoryBMIComponent";
 import ListBMIComponent from "../components/follow-healthy/BMI/ListBMIComponent";
-const defaulStackNavOptions = { headerShown: false, headerVisible: false };
-const MyDoctorNavigator = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    Signin: {
-      screen: SigninScreen,
-    },
-    Signup: {
-      screen: Signup,
-    },
-    OTPAuth: {
-      screen: OTPAuth,
-    },
-    ForgotPass: {
-      screen: ForgotPass,
-    },
-    Profile: {
-      screen: Profile,
-      navigationOptions: {
-        headerShown: false,
-        headerVisible: false,
-      },
-    },
-    ChangePass:{
-      screen: ChangePass
-    },
-    FollowHeathy: { screen: FollowHeathyScreen },
-    STT: { screen: STTScreen },
-    OnlineMedical: { screen: OnlineMedicalScreen },
-    OnlinePayment: { screen: OnlinePaymentScreen },
-    Record: { screen: RecordScreen },
-    Guide: { screen: MedicalGuideScreen },
-    BMIHistory: { screen: HistoryBMIComponent },
-    ListBMI: {screen: ListBMIComponent},
-  },
-  {
-    defaultNavigationOptions: defaulStackNavOptions,
-  }
-);
+import FollowHeathyScreen from "../screens/FollowHeathyScreen";
+import BMIComponent from "../components/follow-healthy/BMIComponent";
 
-const MyDoctorNavBottom = createBottomTabNavigator(
-  {
-    Home: {
-      screen: MyDoctorNavigator,
-      navigationOptions: {
-        tabBarLabel: "Trang chủ",
-        // tabBarVisible: getTabBarVisibility(),
-        tabBarIcon: (tabInfo) => {
-          return (
-            <Ionicons name="md-home" size={24} color={tabInfo.tintColor} />
-          );
-        },
-      },
-    },
-    Contact: {
-      screen: ContactScreen,
-      navigationOptions: {
-        tabBarLabel: "Liên lạc BS",
-        tabBarIcon: (tabInfo) => {
-          return (
-            <MaterialIcons
-              name="contact-mail"
-              size={24}
-              color={tabInfo.tintColor}
-            />
-          );
-        },
-      },
-    },
-    Schedule: {
-      screen: ScheduleScreen,
-      navigationOptions: {
-        tabBarLabel: "Đặt lịch khám",
-        tabBarIcon: (tabInfo) => {
-          return (
-            <FontAwesome5
-              name="calendar-alt"
-              size={24}
-              color={tabInfo.tintColor}
-            />
-          );
-        },
-      },
-    },
-    FollowHealthy: {
-      screen: FollowHeathyScreen,
-      navigationOptions: {
-        tabBarLabel: "Theo dõi SK",
-        tabBarIcon: (tabInfo) => {
-          return (
-            <Ionicons
-              name="shield-checkmark"
-              size={24}
-              color={tabInfo.tintColor}
-            />
-          );
-        },
-      },
-    },
-    Profile: {
-      screen: Profile,
-      navigationOptions: {
-        tabBarLabel: "Cá nhân",
-        tabBarIcon: (tabInfo) => {
-          return (
-            <FontAwesome name="user" size={24} color={tabInfo.tintColor} />
-          );
-        },
-      },
-    },
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: COLORS.TeaGreen,
-    },
-  }
-);
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-MyDoctorNavigator.navigationOptions = ({ navigation }) => {
-  let tabBarVisible = true;
-
-  let routeName = navigation.state.routes[navigation.state.index].routeName;
-
-  if (checkHideBottomTab(routeName)) {
-    tabBarVisible = false;
-  }
-
-  return {
-    tabBarVisible,
-  };
-};
-
-function checkHideBottomTab(routeName) {
-  let aName = ["Signin", "Signup", "OTPAuth", "ForgotPass", "BMIHistory"];
-  if (aName.includes(routeName)) return true;
-  return false;
+function HomeNavigation() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerMode: "none",
+      }}
+    >
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="OnlinePayment" component={OnlinePaymentScreen} />
+      <Stack.Screen name="Guide" component={MedicalGuideScreen} />
+      <Stack.Screen name="OnlineMedical" component={OnlineMedicalScreen} />
+      <Stack.Screen name="Position" component={PositionScreen} />
+      <Stack.Screen name="Record" component={RecordScreen} />
+    </Stack.Navigator>
+  );
 }
 
-export default createAppContainer(MyDoctorNavBottom);
+function ContactNavigation() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerMode: "none",
+      }}
+    >
+      <Stack.Screen name="Contact" component={ContactScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function BookingNavigation() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerMode: "none",
+      }}
+    >
+      <Stack.Screen name="Schedule" component={ScheduleScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function HealthyNavigation() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerMode: "none",
+      }}
+    >
+      <Stack.Screen name="FollowHeathy" component={FollowHeathyScreen} />
+      <Stack.Screen name="BMIHistory" component={HistoryBMIComponent} />
+      <Stack.Screen name="BMI" component={BMIComponent} />
+      <Stack.Screen name="ListBMI" component={ListBMIComponent} />
+    </Stack.Navigator>
+  );
+}
+
+function PersonalNavigation() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerMode: "none",
+      }}
+    >
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="ChangePass" component={ChangePassScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function BottomTabNavigation() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Tab.Screen
+        name="HomeNavigation"
+        component={HomeNavigation}
+        options={{
+          tabBarLabel: "Trang chủ",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="home" color={color} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ContactNavigation"
+        component={ContactNavigation}
+        options={{
+          tabBarLabel: "Tư vấn",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="forum" color={color} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="BookingNavigation"
+        component={BookingNavigation}
+        options={{
+          tabBarLabel: "Đặt lịch khám",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="calendar" color={color} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="HealthyNavigation"
+        component={HealthyNavigation}
+        options={{
+          tabBarLabel: "Sức khỏe",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="heart" color={color} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="PersonalNavigation"
+        component={PersonalNavigation}
+        options={{
+          tabBarLabel: "Cá nhân",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="account" color={color} size={24} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+export default function MyDoctorNavigation() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerMode: "none",
+      }}
+    >
+      <Stack.Screen name="BottomTab" component={BottomTabNavigation} />
+      <Stack.Screen name="Signin" component={SigninScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+      <Stack.Screen name="ForgotPass" component={ForgotPassScreen} />
+      <Stack.Screen name="OTPAuth" component={OtpAuthScreen} />
+    </Stack.Navigator>
+  );
+}

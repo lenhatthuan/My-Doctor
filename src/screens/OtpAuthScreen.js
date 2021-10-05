@@ -30,15 +30,20 @@ export default function OTPAuth(props) {
   const data = props.navigation.getParam("data", "");
   const action = props.navigation.getParam("action", "");
 
-  const showMessage = (screen) => {
+  const showMessage = (id = null) => {
     Alert.alert("Xác thực thành công", "", [
       {
         text: "OK",
-        onPress: () =>
-          getPatientById(id).then((result) => {
-            props.navigation.pop(3);
-            if (screen !== null) props.navigation.navigate(screen);
-          }),
+        onPress: () => {
+          props.navigation.popToTop();
+          if (id === null) {
+            props.navigation.navigate("Signin");
+          } else {
+            getPatientById(id).then((result) => {
+              props.navigation.navigate("Profile");
+            });
+          }
+        },
       },
     ]);
   };
@@ -53,7 +58,7 @@ export default function OTPAuth(props) {
       switch (action) {
         case "signup":
           signup(data).then((result) => {
-            showMessage("Profile");
+            showMessage(result.account.id);
           });
           break;
         case "forgot-pass":
@@ -65,7 +70,7 @@ export default function OTPAuth(props) {
           break;
       }
     } catch (err) {
-      //Alert.alert("Xác thực không thành công");
+      Alert.alert("Xác thực không thành công");
       console.error(err);
     }
   };
@@ -79,7 +84,7 @@ export default function OTPAuth(props) {
       );
       setVerificationId(verificationId);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
