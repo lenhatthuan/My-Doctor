@@ -3,7 +3,7 @@ import { View, Text, Button } from "react-native";
 import { Icon } from "react-native-elements";
 import { styles } from "../theme/style";
 
-function Department({ name, color, department, booking }) {
+function Department({ name, color, department, onPress }) {
   return (
     <View style={{ alignItems: "center" }}>
       <Icon
@@ -12,14 +12,14 @@ function Department({ name, color, department, booking }) {
         color={color}
         raised
         size={34}
-        onPress={booking}
+        onPress={onPress}
       />
       <Text>{department}</Text>
     </View>
   );
 }
 
-export default function DepartmentList({ booking }) {
+export default function DepartmentList({ onPress }) {
   return (
     <View>
       <View style={styles.table}>
@@ -27,19 +27,19 @@ export default function DepartmentList({ booking }) {
           name="lungs"
           color="cornflowerblue"
           department="Hô hấp"
-          booking={booking}
+          onPress={onPress}
         />
         <Department
           name="assistive-listening-systems"
           color="navajowhite"
           department="Tai-Mũi-Họng"
-          booking={booking}
+          onPress={onPress}
         />
         <Department
           name="eye"
           color="dodgerblue"
           department="Mắt"
-          booking={booking}
+          onPress={onPress}
         />
       </View>
       <View style={styles.table}>
@@ -47,19 +47,20 @@ export default function DepartmentList({ booking }) {
           name="brain"
           color="coral"
           department="Thần kinh"
-          booking={booking}
+          onPress={onPress}
         />
         <Department
           name="tooth"
           color="whitesmoke"
           department="Răng-Hàm Mặt"
-          booking={booking}
+          onPress={onPress}
         />
         <Department
-          name="kidney"
+          //name="kidney"
+          name="question"
           color="indianred"
           department="Thận"
-          booking={booking}
+          onPress={onPress}
         />
       </View>
       <View style={styles.table}>
@@ -67,39 +68,40 @@ export default function DepartmentList({ booking }) {
           name="baby"
           color="navajowhite"
           department="Phụ sản"
-          booking={booking}
+          onPress={onPress}
         />
         <Department
           name="heartbeat"
           color="red"
           department="Tim mạch"
-          booking={booking}
+          onPress={onPress}
         />
         <Department
           name="child"
           color="royalblue"
           department="Nhi"
-          booking={booking}
+          onPress={onPress}
         />
       </View>
       <View style={styles.table}>
         <Department
-          name="stomach"
+          //name="stomach"
+          name="question"
           color="orangered"
           department="Tiêu hóa"
-          booking={booking}
+          onPress={onPress}
         />
         <Department
           name="bone"
           color="whitesmoke"
-          department="Co-Xuong-khop"
-          booking={booking}
+          department="Cơ-Xương-Khớp"
+          onPress={onPress}
         />
         <Department
           name="allergies"
           color="navajowhite"
           department="Da liễu"
-          booking={booking}
+          onPress={onPress}
         />
       </View>
     </View>

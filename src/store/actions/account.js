@@ -101,21 +101,18 @@ export const forgotpass = async (data) => {
     .catch((err) => console.error(err));
 };
 
-export const changePass = async (password) => {
-  await AsyncStorage.getItem("accountData").then((res) => {
-    result = JSON.parse(res);
-    return fetch(BASE_URL + `/accounts/${result.id}/changePass`, {
-      method: "PUT",
-      headers: header,
-      body: JSON.stringify({
-        oldPass: password.old,
-        newPass: password.new,
-        username: result.username,
-      }),
-    })
-      .then((response) => response.json())
-      .catch((err) => console.error(err));
-  });
+export const changePass = async (id, username, oldPass, newPass) => {
+  await fetch(BASE_URL + `/accounts/${id}}/changePassword`, {
+    method: "PUT",
+    headers: header,
+    body: JSON.stringify({
+      oldPass: oldPass,
+      newPass: newPass,
+      username: username,
+    }),
+  })
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
 };
 
 export const logout = () => {

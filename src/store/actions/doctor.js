@@ -10,22 +10,23 @@ export const getAll = async () => {
   try {
     const response = await fetch(BASE_URL + "/doctor");
     const json = await response.json();
-    return json;
+    return json.doctor;
   } catch (err) {
     console.error(err);
   }
 };
 
+//utf-8
 export const findDoctorByName = async (name) => {
   try {
     if (name) {
       const response = await fetch(BASE_URL + "/doctor/find/" + name);
       const json = await response.json();
-      return json;
+      return json.doctor;
     } else {
       const response = await fetch(BASE_URL + "/doctor");
       const json = await response.json();
-      return json;
+      return json.doctor;
     }
   } catch (err) {
     console.error(err);

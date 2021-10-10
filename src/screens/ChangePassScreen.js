@@ -7,6 +7,7 @@ import {
   Button,
   Alert,
   ImageBackground,
+  AsyncStorage,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import { styles, image } from "../theme/style";
@@ -37,16 +38,34 @@ export default function ChangePassScreen(props) {
 
   const showMessage = () => {
     if (newPass === confirmPass && code === captcha) {
-      changePass({ oldPass, newPass })
-        .then((result) => {
-          Alert.alert("Đổi mật khẩu thành công");
-        })
-        .catch((err) => {
-          Alert.alert("Đổi mật khẩu không thành công");
-        });
+      AsyncStorage.getItem("accountData").then((res) => {
+        const account = JSON.parse(res);
+        changePass(account.accountId, account.username, oldPass, newPass)
+          .then((result) => {
+            Alert.alert("Đổi mật khẩu thành công", "", [
+              {
+                text: "OK",
+                onPress: () => props.navigation.goBack(),
+              },
+            ]);
+          })
+          .catch((err) => {
+            Alert.alert("Đổi mật khẩu không thành công");
+            clear();
+          });
+      });
     } else {
-      Alert.alert("Đổi mật khẩu không thành công");
+      Alert.alert("Mật khẩu mới hoặc mã xác nhận không đúng");
+      clear();
     }
+  };
+
+  const clear = () => {
+    setOldPass();
+    setNewPass();
+    setConfirmPass();
+    setCode();
+    randomCaptcha();
   };
 
   return (

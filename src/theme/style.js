@@ -24,34 +24,19 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  label: {
-    marginHorizontal: 24,
-    marginTop: 20,
-    fontSize: 15,
-  },
-  input: {
-    height: 50,
-    padding: 15,
-    backgroundColor: COLORS.Whisper,
-  },
-  button: {
-    marginTop: 30,
-    marginHorizontal: 70,
-  },
-  space: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    margin: 20,
-  },
-  table: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    margin: 10,
-  },
+  label: { marginHorizontal: 24, marginTop: 20, fontSize: 15 },
+  input: { height: 50, padding: 15, backgroundColor: COLORS.Whisper },
+  button: { marginVertical: 30, marginHorizontal: 70 },
+  space: { flexDirection: "row", justifyContent: "space-between", margin: 20 },
+  table: { flexDirection: "row", justifyContent: "space-around", margin: 10 },
   list: {
     flexDirection: "row",
     alignItems: "center",
     margin: 10,
+    padding: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
+    elevation: 3,
   },
   underlineStyleBase: {
     width: 30,
@@ -59,17 +44,23 @@ export const styles = StyleSheet.create({
     borderWidth: 0,
     borderBottomWidth: 1,
   },
-  underlineStyleHighLighted: {
-    borderColor: "#03DAC6",
+  underlineStyleHighLighted: { borderColor: "#03DAC6" },
+  gender: { flexDirection: "row", justifyContent: "flex-end" },
+  captcha: { fontSize: 30, letterSpacing: -5 },
+  captcha_background: { width: 120, alignItems: "center", marginLeft: 20 },
+  bookingView: {
+    flex: 1,
+    backgroundColor: "#ecf0f1",
+    paddingHorizontal: 35,
+    borderTopEndRadius: 20,
+    borderTopStartRadius: 20,
   },
-  gender: { flexDirection: "row", marginHorizontal: 70 },
-  captcha: {
-    fontSize: 30,
-    letterSpacing: -5,
+  bookingTitle: { fontSize: 20, fontWeight: "bold", textAlign: "center" },
+  date: {
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    paddingStart: 15,
+    alignSelf: "flex-end",
   },
-  captcha_background: {
-    width: 120,
-    alignItems: "center",
-    marginLeft: 20,
-  },
+  inputBottom: { paddingStart: 15, borderBottomWidth: 1 },
 });
