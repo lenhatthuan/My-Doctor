@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   Switch,
   View,
@@ -7,30 +7,32 @@ import {
   Button,
   TextInput,
   Alert,
-  ImageBackground,
   AsyncStorage,
 } from "react-native";
-import { DatePicker } from "react-native-woodpicker";
-import TYPES from "../models/types";
-import { Avatar } from "react-native-elements";
+import { Avatar, Icon } from "react-native-elements";
 import * as ImagePicker from "expo-image-picker";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { GENDER } from "../models/types";
 import { updateProfile } from "../store/actions/patient";
 import { isLogin } from "../store/actions/account";
 import { styles, image } from "../theme/style";
 import { useFocusEffect } from "@react-navigation/native";
 
 export default function ProfileScreen(props) {
-  const [avatar, setAvatar] = React.useState(image.avatar);
-  const [fullname, setFullname] = React.useState();
-  const [birthdate, setBirthdate] = React.useState(new Date());
-  const [gender, setGender] = React.useState();
-  const [address, setAddress] = React.useState();
+  const [avatar, setAvatar] = useState(image.avatar);
+  const [fullname, setFullname] = useState();
+  const [birthdate, setBirthdate] = useState(new Date());
+  const [gender, setGender] = useState();
+  const [address, setAddress] = useState();
+  const [show, setShow] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       isLogin().then((res) => {
         if (!res) {
           setProfile();
+          setDisabled(true);
         } else {
           AsyncStorage.getItem("patientData").then((res) => {
             const patient = JSON.parse(res);
@@ -42,52 +44,30 @@ export default function ProfileScreen(props) {
               patient.gender,
               patient.address
             );
+            setDisabled(false);
           });
         }
       });
-      //alert("Screen was focused");
-      // Do something when the screen is focused
     }, [])
   );
-
-  //useEffect ko load trong bottom tab
-  // useEffect(() => {
-  //   isLogin().then((res) => {
-  //     if (!res) {
-  //       setProfile();
-  //     } else {
-  //       AsyncStorage.getItem("patientData").then((res) => {
-  //         const patient = JSON.parse(res);
-  //         console.log(patient);
-  //         setProfile(
-  //           patient.avatar,
-  //           patient.fullName,
-  //           patient.birthDate,
-  //           patient.gender,
-  //           patient.address
-  //         );
-  //       });
-  //     }
-  //   });
-  // }, []);
 
   const setProfile = (
     avatar = image.avatar,
     fullName = "",
     birthDate = new Date(),
-    gender = TYPES.GENDER.MALE,
+    gender = GENDER.MALE,
     address = ""
   ) => {
     setAvatar(avatar ? avatar : image.avatar);
     setFullname(fullName);
     setBirthdate(new Date(birthdate));
-    gender === TYPES.GENDER.FEMALE ? setGender(true) : setGender(false);
+    gender === GENDER.FEMALE ? setGender(true) : setGender(false);
     setAddress(address);
   };
 
   //api updateProfile thực hiện ko đúng
   const showMessage = () => {
-    const sex = gender ? TYPES.GENDER.FEMALE : TYPES.GENDER.MALE;
+    const sex = gender ? GENDER.FEMALE : GENDER.MALE;
     AsyncStorage.getItem("accountData").then((res) => {
       const id = JSON.parse(res).accountId;
       updateProfile(id, avatar, fullname, birthdate, sex, address)
@@ -109,60 +89,76 @@ export default function ProfileScreen(props) {
     }
   };
 
+  const onChange = (event, selectedDate) => {
+    setShow(false);
+    setBirthdate(selectedDate || birthdate);
+  };
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ImageBackground
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Thông tin cá nhân</Text>
+      <Avatar
+        containerStyle={{ alignSelf: "center" }}
+        size="large"
+        rounded
         source={{
-          uri: image.background,
+          uri: avatar,
         }}
-        style={styles.container}
-      >
-        <Text style={styles.title}>Thông tin cá nhân</Text>
-        <Avatar
-          containerStyle={{ alignSelf: "center" }}
-          size="large"
-          rounded
-          source={{
-            uri: avatar,
+        onPress={pickImage}
+      />
+      <Text style={styles.label}>Họ và tên</Text>
+      <TextInput
+        style={[styles.date, { width: 160 }]}
+        onChangeText={(text) => setFullname(text)}
+        value={fullname}
+        autoCapitalize="words"
+      />
+      <Text style={styles.label}>Ngày sinh</Text>
+      <View style={styles.date}>
+        <Text style={{ width: 120 }}>{birthdate.toLocaleDateString()}</Text>
+        <Icon
+          name="today"
+          onPress={() => {
+            setShow(true);
           }}
-          onPress={pickImage}
         />
-        <Text style={styles.label}>Họ và tên</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setFullname(text)}
-          value={fullname}
+      </View>
+      {show && (
+        <DateTimePicker
+          value={new Date()}
+          maximumDate={new Date()}
+          mode="date"
+          display="spinner"
+          onChange={onChange}
         />
-        <Text style={styles.label}>Ngày sinh</Text>
-        <DatePicker
-          style={styles.input}
-          value={birthdate}
-          onDateChange={(text) => setBirthdate(text)}
-          text={birthdate.toLocaleDateString()}
-          iosDisplay="inline"
+      )}
+      <Text style={styles.label}>Giới tính</Text>
+      <View style={styles.gender}>
+        <Switch
+          onValueChange={() => setGender((previousState) => !previousState)}
+          value={gender}
         />
-        <Text style={styles.label}>Giới tính</Text>
-        <View style={styles.gender}>
-          <Switch
-            onValueChange={() => setGender((previousState) => !previousState)}
-            value={gender}
-          />
-          <Text>{gender ? TYPES.GENDER.FEMALE : TYPES.GENDER.MALE}</Text>
-        </View>
-        <Text style={styles.label}>Địa chỉ</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setAddress(text)}
-          value={address}
+        <Text>{gender ? GENDER.FEMALE : GENDER.MALE}</Text>
+      </View>
+      <Text style={styles.label}>Địa chỉ</Text>
+      <TextInput
+        multiline
+        style={styles.inputBottom}
+        onChangeText={(text) => setAddress(text)}
+        value={address}
+      />
+      <View style={styles.space}>
+        <Button
+          disabled={disabled || !fullname}
+          title="Cập nhật"
+          onPress={showMessage}
         />
-        <View style={styles.space}>
-          <Button title="Cập nhật" onPress={showMessage} />
-          <Button
-            title="Đổi mật khẩu"
-            onPress={() => props.navigation.navigate("ChangePass")}
-          />
-        </View>
-      </ImageBackground>
+        <Button
+          disabled={disabled}
+          title="Đổi mật khẩu"
+          onPress={() => props.navigation.navigate("ChangePass")}
+        />
+      </View>
     </SafeAreaView>
   );
 }

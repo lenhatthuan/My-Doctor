@@ -41,7 +41,6 @@ function HomeNavigation() {
       <Stack.Screen name="OnlinePayment" component={OnlinePaymentScreen} />
       <Stack.Screen name="Guide" component={MedicalGuideScreen} />
       <Stack.Screen name="OnlineMedical" component={OnlineMedicalScreen} />
-      <Stack.Screen name="Position" component={PositionScreen} />
       <Stack.Screen name="Record" component={RecordScreen} />
     </Stack.Navigator>
   );
@@ -67,6 +66,7 @@ function BookingNavigation() {
       }}
     >
       <Stack.Screen name="Schedule" component={ScheduleScreen} />
+      <Stack.Screen name="Position" component={PositionScreen} />
     </Stack.Navigator>
   );
 }
