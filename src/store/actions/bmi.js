@@ -3,17 +3,25 @@ import { environment } from "../../../environment/enviroment";
 const BASE_URL = environment.baseURL + "/bmi";
 
 // no await
-const token = AsyncStorage.getItem("accountData").then((account) => {
-  return JSON.parse(account).token;
-});
+// const token = await AsyncStorage.getItem("accountData").then((account) => {
+//   return JSON.parse(account).token;
+// });
 
-const header = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  Authorization: "Bearer " + token,
-};
+// const header = {
+//   Accept: "application/json",
+//   "Content-Type": "application/json",
+//   Authorization: "Bearer " + token,
+// };
 
 export const createBMI = async (id, tall, weigh) => {
+    const token =  await AsyncStorage.getItem("accountData").then((account) => {
+        return JSON.parse(account).token;
+      });
+      const header = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      };
   return await fetch(BASE_URL, {
     method: "POST",
     headers: header,
@@ -34,13 +42,21 @@ export const createBMI = async (id, tall, weigh) => {
     });
 };
 export const getAllBMI = async (patientId) => {
+    const token =  await AsyncStorage.getItem("accountData").then((account) => {
+        return JSON.parse(account).token;
+      });
+      const header = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      };
+
   return await fetch(BASE_URL + "/" + patientId + "/patient", {
     method: "GET",
     headers: header,
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
       return res.bmi;
     });
 };

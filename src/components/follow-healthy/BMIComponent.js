@@ -12,12 +12,11 @@ const BMIComponent = (props) => {
     const [isAddModel, setIsAddModel] = useState(false);
     const cancelGoalApplicationHandler = () => {
       setIsAddModel(false);
+
     };
 
     const goToHistory = () =>{
-      console.log("goto history")
       props.goToHistory();
-     // props.navigation.push("BMIHistory")
      
     }
   

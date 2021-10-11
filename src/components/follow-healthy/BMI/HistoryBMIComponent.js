@@ -14,7 +14,6 @@ const HistoryBMIComponent = (props) => {
     setIsAddModel(false);
   };
   const onBack = () => {
-    console.log("Back to follow !!");
     props.navigation.navigate("FollowHeathy");
   };
 

@@ -1,22 +1,53 @@
-import React, {useState} from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, Text, StyleSheet, Button, AsyncStorage } from 'react-native';
 import COLORS from '../../assets/colors';
 import BMIComponent from '../components/follow-healthy/BMIComponent';
 import EmotionComponent from '../components/follow-healthy/EmotionComponent';
 import HeartComponent from '../components/follow-healthy/HeartComponent';
 import MainComponent from '../components/follow-healthy/MainComponent';
-
+import { getAllBMI } from '../store/actions/bmi';
+import { useFocusEffect } from "@react-navigation/native";
 const FollowHeathyScreen = props =>{
     const [goToHistoryBMI, setGotoHistoryBMI]=  useState(false);
+    const [tall, setTall]=  useState("");
+    const [weigh, setWeigh]=  useState("");
     const redirectedToBMI = () =>{
         console.log("flow BMI")
         props.navigation.navigate("BMIHistory");
     }
 
+
+    useFocusEffect(
+        React.useCallback(() => {
+            getAllListBMI();
+        })
+      );
+    
+
+    const getAllListBMI = async() => {
+        let id = await AsyncStorage.getItem("id");
+        let arrBMI = "";
+        getAllBMI(id).then(bmi => {
+            console.log("bmi 31: " + bmi);
+            if(bmi) {
+                arrBMI = JSON.parse(bmi);
+            console.log("bmi: " + arrBMI);
+            setTall(arrBMI[arrBMI.length-1].tall);
+            setWeigh(arrBMI[arrBMI.length-1].weigh);
+            } else {
+                setTall(0);
+            setWeigh(0);
+            }
+        })
+    }
+
     return (
         <View style = {styles.screen}>
            <View style = {styles.main}>
-               <View style = {styles.mainCmp}><View style = {styles.mainComponent}><MainComponent/></View></View>
+               <View style = {styles.mainCmp}><View style = {styles.mainComponent}><MainComponent
+               tall = {tall}
+               weigh = {weigh}
+               /></View></View>
                <View style = {styles.component}><EmotionComponent/></View>
                <View style = {styles.component}><HeartComponent/></View>
                <View style = {styles.component}><BMIComponent

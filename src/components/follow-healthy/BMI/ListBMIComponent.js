@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet,  FlatList} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet,  FlatList, AsyncStorage, Pressable} from 'react-native';
 import HeaderFilterByDate from "../../common/HeaderFilterByDate";
 import STRING from '../../../utils/string';
 import COLORS from "../../../../assets/colors";
 import DateHistory from './DateHistoryBMI';
 import AddFitlerComponent from '../../common/AddFitlerComponent';
+import { getAllBMI } from '../../../store/actions/bmi';
+import Moment from 'moment';
+import { HoldMenuProvider } from 'react-native-hold-menu';
 const ListBMIComponent = (props) =>{
 
     const [filter, setFilter] =  useState(false);
-    
+    const [listBMI, setListBMI] =  useState(false);
     const openCalendar = () =>{
         setFilter(true);
     }
@@ -19,33 +22,41 @@ const ListBMIComponent = (props) =>{
     const getFilter = () =>{
         console.log("Get filter !!")
     }
-    const DATA = [
-        {
-          date: "20/10/2021",
-          title: "153/47",
-          data:"20.8"
-        },
-        {
-            date: "20/10/2021",
-            title: "153/47",
-            data:"20.8"
-          },
-          {
-            date: "20/10/2021",
-            title: "153/47",
-            data:"20.8"
-          },
-      ];
 
+    useEffect(() => {
+        getAllListBMI();
+    }, [])
+
+    const convertTitle = (tall, weigh) =>{
+        return tall + "/" + weigh;
+    }
+
+    const formatDate = (date) =>{
+        Moment.locale('en');
+        return Moment.format('d MMM');
+    }
+
+    const getAllListBMI = async() => {
+        let id = await AsyncStorage.getItem("id");
+        await getAllBMI(id).then(bmi => {
+            if(bmi) {
+                setListBMI(bmi);
+            }
+        })
+    }
       const renderDate = ({item}) =>{
           return (
-             <View style = {styles.dateComponent}>
+             <Pressable style = {styles.dateComponent} onPress = {() =>{
+                <HoldMenuProvider theme="light">
+                {/* Your app components */}
+              </HoldMenuProvider>
+             }}>
                   <DateHistory
-              date = {item.date}
-              title = {item.title}
-              data = {item.data}
+              date = {item.createdAt}
+              title = {convertTitle(item.tall, item.weigh)}
+              data = {item.bmi}
               />
-             </View>
+             </Pressable>
           )
       }
 
@@ -81,7 +92,7 @@ const ListBMIComponent = (props) =>{
             <View style = {styles.main}>
             <DateHistoryHeader/>
             <FlatList
-            data = {DATA}
+            data = {listBMI}
             renderItem = {renderDate}
             >
 

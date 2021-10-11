@@ -1,17 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text, Pressable } from "react-native";
+import { View, StyleSheet, Text, Pressable, AsyncStorage } from "react-native";
 import STRING from "../../utils/string";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useFocusEffect } from "@react-navigation/native";
+import { getAllBMI } from "../../store/actions/bmi";
 const MainComponent = props =>{
     const [heigh, setHeigh] = useState("0");
     const [weight, setWeight] = useState("0");
    
     useEffect(() => {
-      // setHeigh(props.heigh);
-      // setWeight(props.weight);
+      // setHeigh(props.tall);
+      // setWeight(props.weigh);
       });
-    
+
+      
+    useFocusEffect(
+      React.useCallback(() => {
+          getAllListBMI();
+      })
+    );
+  
+      const getAllListBMI = async() => {
+        let id = await AsyncStorage.getItem("id");
+        let arrBMI = null;
+        getAllBMI(id).then(bmi => {
+            if(bmi) {
+                arrBMI = bmi;
+                arrBMI.sort(date_sort)
+            setHeigh(arrBMI[arrBMI.length-1].tall);
+            setWeight(arrBMI[arrBMI.length-1].weigh);
+            } else {
+                setTall(0);
+                setWeigh(0);
+            }
+        })
+    }
+
+    function date_sort(a, b) {
+      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+  }
+
   return (
     <View style = {styles.main}>
         <View style = {styles.component}>
