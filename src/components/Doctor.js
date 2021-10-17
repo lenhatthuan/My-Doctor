@@ -12,10 +12,9 @@ import { Avatar, SearchBar } from "react-native-elements";
 import { styles } from "../theme/style";
 import { getAll, findDoctorByName } from "../store/actions/doctor";
 
-export default function DoctorList({ booking }) {
+export default function DoctorList({ onPress }) {
   const [name, setName] = useState();
   const [data, setData] = useState();
-  const [id, setId] = useState();
 
   useEffect(() => {
     getAll()
@@ -27,8 +26,7 @@ export default function DoctorList({ booking }) {
     return (
       <TouchableOpacity
         onPress={() => {
-          setId(item.id);
-          booking();
+          onPress(item.id);
         }}
         style={styles.list}
       >
@@ -62,7 +60,6 @@ export default function DoctorList({ booking }) {
         data={data}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        extraData={id}
       />
     </View>
   );

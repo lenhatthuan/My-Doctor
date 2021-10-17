@@ -13,7 +13,7 @@ import { Avatar, Icon } from "react-native-elements";
 import * as ImagePicker from "expo-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { GENDER } from "../models/types";
-import { updateProfile } from "../store/actions/patient";
+import { getPatientById, updateProfile } from "../store/actions/patient";
 import { isLogin } from "../store/actions/account";
 import { styles, image } from "../theme/style";
 import { useFocusEffect } from "@react-navigation/native";
@@ -60,12 +60,11 @@ export default function ProfileScreen(props) {
   ) => {
     setAvatar(avatar ? avatar : image.avatar);
     setFullname(fullName);
-    setBirthdate(new Date(birthdate));
+    setBirthdate(birthDate);
     gender === GENDER.FEMALE ? setGender(true) : setGender(false);
     setAddress(address);
   };
 
-  //api updateProfile thực hiện ko đúng
   const showMessage = () => {
     const sex = gender ? GENDER.FEMALE : GENDER.MALE;
     AsyncStorage.getItem("accountData").then((res) => {
@@ -73,6 +72,9 @@ export default function ProfileScreen(props) {
       updateProfile(id, avatar, fullname, birthdate, sex, address)
         .then((result) => {
           Alert.alert("Cập nhật thông tin cá nhân thành công");
+          getPatientById(id)
+            .then((result) => null)
+            .catch((err) => console.error(err));
         })
         .catch((err) => {
           Alert.alert("Cập nhật thông tin cá nhân không thành công");
@@ -115,7 +117,9 @@ export default function ProfileScreen(props) {
       />
       <Text style={styles.label}>Ngày sinh</Text>
       <View style={styles.date}>
-        <Text style={{ width: 120 }}>{birthdate.toLocaleDateString()}</Text>
+        <Text style={{ width: 120 }}>
+          {new Date(birthdate).toLocaleDateString()}
+        </Text>
         <Icon
           name="today"
           onPress={() => {

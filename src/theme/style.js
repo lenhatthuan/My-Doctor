@@ -17,6 +17,13 @@ export const styles = StyleSheet.create({
     backgroundColor: "#ecf0f1",
     paddingHorizontal: 35,
   },
+  centerContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ecf0f1",
+    paddingHorizontal: 35,
+  },
   title: {
     margin: 30,
     marginBottom: 15,
