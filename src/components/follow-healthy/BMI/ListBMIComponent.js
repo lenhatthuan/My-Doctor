@@ -7,7 +7,7 @@ import DateHistory from './DateHistoryBMI';
 import AddFitlerComponent from '../../common/AddFitlerComponent';
 import { getAllBMI } from '../../../store/actions/bmi';
 import Moment from 'moment';
-import { HoldMenuProvider } from 'react-native-hold-menu';
+import { HoldMenuProvider, HoldItem  } from 'react-native-hold-menu';
 const ListBMIComponent = (props) =>{
 
     const [filter, setFilter] =  useState(false);
@@ -33,7 +33,7 @@ const ListBMIComponent = (props) =>{
 
     const formatDate = (date) =>{
         Moment.locale('en');
-        return Moment.format('d MMM');
+        return Moment(date).format('DD-MM-YYYY');
     }
 
     const getAllListBMI = async() => {
@@ -44,21 +44,30 @@ const ListBMIComponent = (props) =>{
             }
         })
     }
-      const renderDate = ({item}) =>{
-          return (
-             <Pressable style = {styles.dateComponent} onPress = {() =>{
-                <HoldMenuProvider theme="light">
-                {/* Your app components */}
-              </HoldMenuProvider>
-             }}>
-                  <DateHistory
-              date = {item.createdAt}
-              title = {convertTitle(item.tall, item.weigh)}
-              data = {item.bmi}
-              />
-             </Pressable>
-          )
-      }
+
+    const menuItems = [
+        {text: 'Edit', icon: 'edit', onPress: () =>{}},
+        {text: 'Delete', icon: 'trash', onPress: ()=>{}}
+    ]
+
+    const renderDate = ({item}) =>{
+        return (
+            <Pressable style = {styles.dateComponent} onPress = {() =>{
+        //     <HoldMenuProvider theme="light">
+        //     {/* Your app components */}
+        //   </HoldMenuProvider>
+        console.log("menu items");
+        return (<HoldItem items = {menuItems} menuAnchorPosition="bottom-right">
+        </HoldItem>);
+            }}>
+                <DateHistory
+            date = {formatDate(item.createdAt)}
+            title = {convertTitle(item.tall, item.weigh)}
+            data = {item.bmi}
+            />
+            </Pressable>
+        )
+    }
 
     const DateHistoryHeader = () =>{
         return (
