@@ -16,6 +16,17 @@ export const getPositionsByPatient = async (patientId) => {
   }
 };
 
+export const getPositionsByState = async (patientId, state) => {
+  return await fetch(BASE_URL + `/position/state`, {
+    method: "POST",
+    headers: header,
+    body: JSON.stringify({ patientId: patientId, state: state }),
+  })
+    .then((response) => response.json())
+    .then((result) => result.position)
+    .catch((err) => console.error(err));
+};
+
 export const getMaxPosition = async (department, date) => {
   return await fetch(BASE_URL + `/position/max`, {
     method: "POST",
@@ -44,11 +55,33 @@ export const createPosition = async (patientId, room, date, number) => {
 };
 
 export const cancel = async (id) => {
-  return await fetch(BASE_URL + `/accounts/${id}}/cancel`, {
+  return await fetch(BASE_URL + `/position/${id}/cancel`, {
     method: "PUT",
     headers: header,
   })
     .then((response) => response.json())
-    .then((result) => console.log(result.message))
+    .catch((err) => console.error(err));
+};
+
+export const expired = async () => {
+  return await fetch(BASE_URL + `/position/expired`, {
+    method: "PUT",
+    headers: header,
+  })
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
+};
+
+export const currentPosition = async (room, date) => {
+  return await fetch(BASE_URL + "/position/current", {
+    method: "POST",
+    headers: header,
+    body: JSON.stringify({
+      room: room,
+      date: date,
+    }),
+  })
+    .then((response) => response.json())
+    .then((result) => result.current)
     .catch((err) => console.error(err));
 };

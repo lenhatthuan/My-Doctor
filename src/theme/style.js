@@ -3,10 +3,14 @@ import { StyleSheet } from "react-native";
 import COLORS from "../../assets/colors";
 
 export const image = {
-  background:
-    "https://png.pngtree.com/thumb_back/fh260/background/20210115/pngtree-blue-gradient-web-ui-background-image_518658.jpg",
+  password:
+    "https://png.pngtree.com/thumb_back/fh260/back_our/20190625/ourmid/pngtree-network-information-security-information-encryption-image_260398.jpg",
+  profile:
+    "https://png.pngtree.com/thumb_back/fh260/back_pic/03/55/88/80579d8ca104ece.jpg",
   avatar:
     "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
+  background:
+    "https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-medical-clinic-poster-background-image_154455.jpg",
 };
 
 export const styles = StyleSheet.create({
@@ -17,6 +21,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#ecf0f1",
     paddingHorizontal: 35,
   },
+  containerList: { flex: 1, paddingTop: Constants.statusBarHeight },
   centerContainer: {
     flex: 1,
     justifyContent: "center",
@@ -70,4 +75,14 @@ export const styles = StyleSheet.create({
     alignSelf: "flex-end",
   },
   inputBottom: { paddingStart: 15, borderBottomWidth: 1 },
+  record: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    elevation: 10,
+    padding: 10,
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderRadius: 10,
+    backgroundColor: "darkseagreen",
+  },
 });

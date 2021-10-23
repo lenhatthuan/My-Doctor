@@ -4,7 +4,7 @@ const BASE_URL = environment.baseURL;
 
 export const getRecordByPatient = async (patientId) => {
   try {
-    const response = await fetch(BASE_URL + `/record/${patientId}`);
+    const response = await fetch(BASE_URL + `/medical-record/${patientId}`);
     const json = await response.json();
     return json.record;
   } catch (err) {
@@ -14,7 +14,7 @@ export const getRecordByPatient = async (patientId) => {
 
 export const getRecordById = async (id) => {
   try {
-    const response = await fetch(BASE_URL + `/record/${id}`);
+    const response = await fetch(BASE_URL + `/medical-record/${id}`);
     const json = await response.json();
     return json.record;
   } catch (err) {

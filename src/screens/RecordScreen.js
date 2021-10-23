@@ -1,43 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  AsyncStorage,
+  ImageBackground,
+} from "react-native";
 import { styles } from "../theme/style";
 import { getRecordByPatient } from "../store/actions/record";
+import { Icon } from "react-native-elements";
+import { getDoctor } from "../store/actions/doctor";
+import Record from "../components/Record";
 
 export default function RecordScreen(props) {
   const [data, setData] = useState();
+
   useEffect(() => {
-    getRecordByPatient()
-      .then((result) => setData(result))
-      .catch((err) => console.error(err));
+    AsyncStorage.getItem("patientData").then((res) => {
+      getRecordByPatient(JSON.parse(res).patientId)
+        .then((result) => setData(result))
+        .catch((err) => console.error(err));
+    });
   }, []);
 
-  const renderItem = ({ item }) => {
-    return (
-      <TouchableOpacity
-        onPress={() => props.navigation.push("RecordDetail")}
-        style={styles.table}
-      >
-        <View>
-          <Text>{item.department}</Text>
-          <Text>{item.disease}</Text>
-        </View>
-        <Text>{item.date}</Text>
-      </TouchableOpacity>
-    );
-  };
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hồ sơ bệnh án</Text>
-      <FlatList
-        ListEmptyComponent={
-          <Text style={{ justifyContent: "center" }}>Trống</Text>
-        }
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        extraData={id}
-      />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ImageBackground
+        source={require("../../assets/imgs/record.png")}
+        style={styles.containerList}
+      >
+        <Text style={styles.title}>Hồ sơ bệnh án</Text>
+        <FlatList
+          ListEmptyComponent={
+            <Text
+              style={{
+                alignSelf: "center",
+                color: "white",
+              }}
+            >
+              Trống
+            </Text>
+          }
+          data={data}
+          renderItem={({ item }) => <Record item={item} />}
+          keyExtractor={(item) => item.id}
+        />
+      </ImageBackground>
+    </SafeAreaView>
   );
 }

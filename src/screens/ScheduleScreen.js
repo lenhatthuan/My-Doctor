@@ -15,7 +15,7 @@ export default function ScheduleScreen(props) {
   const [doctorId, setDoctorId] = useState();
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={styles.containerList}>
       <Text style={styles.title}>Đặt lịch khám</Text>
       <Tab value={option} onChange={(e) => setOption(e)} variant="primary">
         <Tab.Item title="Bác sĩ" />

@@ -1,51 +1,81 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Button, FlatList, AsyncStorage } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Button,
+  FlatList,
+  AsyncStorage,
+  ImageBackground,
+  Picker,
+} from "react-native";
 import { styles } from "../theme/style";
-import { getPositionsByPatient } from "../store/actions/position";
+import { NUMBER_STATE } from "../models/types";
+import {
+  getPositionsByPatient,
+  cancel,
+  expired,
+  currentPosition,
+  getPositionsByState,
+} from "../store/actions/position";
+import Position from "../components/Position";
 
 export default function PositionScreen(props) {
   const [data, setData] = useState();
+  const [selectedValue, setSelectedValue] = useState("all");
 
   useEffect(() => {
-    getPositionsByPatient()
-      .then((result) => setData(result))
-      .catch((err) => console.error(err));
+    // expired()
+    //   .then((res) => console.log(res.message))
+    //   .catch((err) => console.error(err));
+    pickState();
   }, []);
 
-  const renderItem = ({ item }) => {
-    return (
-      <View>
-        <Text>Phòng {item.room}</Text>
-        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-          <View style={{ alignItems: "center" }}>
-            <Text>STT của bạn</Text>
-            <Text>{item.number}</Text>
-          </View>
-          <View style={{ alignItems: "center" }}>
-            <Text>STT đang khám</Text>
-            <Text>jhdfja</Text>
-          </View>
-        </View>
-        <Text>Thời gian dự kiến: {item.date}</Text>
-        <View style={{ justifyContent: "flex-end" }}>
-          <Button title="Hủy" />
-        </View>
-      </View>
-    );
+  const pickState = (state = selectedValue) => {
+    AsyncStorage.getItem("patientData").then((res) => {
+      if (state !== "all") {
+        getPositionsByState(JSON.parse(res).patientId, state)
+          .then((data) => setData(data))
+          .catch((err) => console.error(err));
+      } else {
+        getPositionsByPatient(JSON.parse(res).patientId)
+          .then((result) => setData(result))
+          .catch((err) => console.error(err));
+      }
+    });
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Lịch khám</Text>
-      <FlatList
-        ListEmptyComponent={
-          <Text style={{ justifyContent: "center" }}>Trống</Text>
-        }
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        extraData={id}
-      />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ImageBackground
+        source={require("../../assets/imgs/h2.png")}
+        style={styles.containerList}
+      >
+        <Text style={styles.title}>Lịch khám</Text>
+        <Picker
+          style={{ width: 200, color: "white" }}
+          selectedValue={selectedValue}
+          onValueChange={(itemValue, itemIndex) => {
+            setSelectedValue(itemValue);
+            pickState(itemValue);
+          }}
+          mode="dropdown"
+        >
+          <Picker.Item label="Tất cả" value="all" />
+          <Picker.Item label="Chưa sử dụng" value={NUMBER_STATE.NOT_USE} />
+          <Picker.Item label="Quá hạn" value={NUMBER_STATE.EXPIRED} />
+          <Picker.Item label="Đã sử dụng" value={NUMBER_STATE.USED} />
+          <Picker.Item label="Đã hủy" value={NUMBER_STATE.CANCEL} />
+        </Picker>
+        <FlatList
+          ListEmptyComponent={
+            <Text style={{ alignSelf: "center" }}>Trống</Text>
+          }
+          data={data}
+          renderItem={({ item }) => <Position item={item} load={pickState} />}
+          keyExtractor={(item) => item.id}
+        />
+      </ImageBackground>
+    </SafeAreaView>
   );
 }
