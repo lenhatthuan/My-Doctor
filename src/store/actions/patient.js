@@ -60,5 +60,6 @@ export const updateProfile = async (
     }),
   })
     .then((response) => response.json())
+    .then((result) => console.log(result.message))
     .catch((err) => console.error(err));
 };

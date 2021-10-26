@@ -72,7 +72,7 @@ export default function ChangePassScreen(props) {
     <SafeAreaView style={{ flex: 1 }}>
       <ImageBackground
         source={{
-          uri: image.background,
+          uri: image.password,
         }}
         style={styles.container}
       >

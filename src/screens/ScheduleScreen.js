@@ -11,8 +11,11 @@ import { Icon } from "react-native-elements";
 export default function ScheduleScreen(props) {
   const [option, setOption] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [department, setDepartment] = useState();
+  const [doctorId, setDoctorId] = useState();
+
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={styles.containerList}>
       <Text style={styles.title}>Đặt lịch khám</Text>
       <Tab value={option} onChange={(e) => setOption(e)} variant="primary">
         <Tab.Item title="Bác sĩ" />
@@ -20,18 +23,31 @@ export default function ScheduleScreen(props) {
       </Tab>
       <TabView value={option} onChange={setOption}>
         <TabView.Item style={{ width: "100%" }}>
-          <DoctorList booking={() => setIsVisible(true)} />
+          <DoctorList
+            onPress={(doctorId) => {
+              setDoctorId(doctorId);
+              setIsVisible(true);
+            }}
+          />
         </TabView.Item>
         <TabView.Item style={{ width: "100%" }}>
-          <DepartmentList onPress={() => setIsVisible(true)} />
+          <DepartmentList
+            onPress={(department) => {
+              setDepartment(department);
+              setIsVisible(true);
+            }}
+          />
         </TabView.Item>
       </TabView>
       <BottomSheet isVisible={isVisible}>
         <Booking
+          option={option}
+          department={department}
+          doctorId={doctorId}
           exit={() => setIsVisible(false)}
           booking={() => {
             setIsVisible(false);
-            props.navigation.push("Position");
+            //props.navigation.push("Position");
           }}
         />
       </BottomSheet>

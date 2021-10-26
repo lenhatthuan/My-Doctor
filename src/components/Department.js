@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Button } from "react-native";
 import { Icon } from "react-native-elements";
 import { styles } from "../theme/style";
@@ -12,7 +12,9 @@ function Department({ name, color, department, onPress }) {
         color={color}
         raised
         size={34}
-        onPress={onPress}
+        onPress={() => {
+          onPress(department);
+        }}
       />
       <Text>{department}</Text>
     </View>
@@ -52,7 +54,7 @@ export default function DepartmentList({ onPress }) {
         <Department
           name="tooth"
           color="whitesmoke"
-          department="Răng-Hàm Mặt"
+          department="Răng-Hàm-Mặt"
           onPress={onPress}
         />
         <Department

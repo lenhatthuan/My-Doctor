@@ -96,7 +96,7 @@ export default function OTPAuth(props) {
     <SafeAreaView style={{ flex: 1 }}>
       <ImageBackground
         source={{
-          uri: image.background,
+          uri: image.password,
         }}
         style={styles.container}
       >

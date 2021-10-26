@@ -16,7 +16,16 @@ export const getAll = async () => {
   }
 };
 
-//utf-8
+export const getDoctor = async (id) => {
+  try {
+    const response = await fetch(BASE_URL + `/doctor/${id}`);
+    const json = await response.json();
+    return json.doctor;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const findDoctorByName = async (name) => {
   try {
     if (name) {

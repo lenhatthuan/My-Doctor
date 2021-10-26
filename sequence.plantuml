@@ -212,3 +212,25 @@ BookingController -> BookingScreen: Gửi thông báo
 BookingScreen -> Patient: Hiển thị thông báo
 deactivate
 @enduml
+
+@startuml FollowPosition
+actor Patient 
+boundary PositionScreen 
+control PositionController
+entity Position 
+
+activate Patient
+Patient -> PositionScreen: Xem lịch khám
+activate PositionScreen
+
+PositionScreen -> PositionController: Gửi yêu cầu
+activate PositionController
+
+PositionController -> Position: getPositionsByPatient(patientId)
+activate Position
+
+PositionController -> PositionScreen: Hiển thị
+deactivate
+PositionScreen -> Patient: Hiển thị trang lịch khám
+deactivate
+@enduml

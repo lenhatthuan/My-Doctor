@@ -1,23 +1,53 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-const RecordScreen = props =>{
-    return (
-        <View style = {styles.screen}>
-           <View>
-           <Text>
-               RECORD SCREEN
+import React, { useEffect, useState } from "react";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  AsyncStorage,
+  ImageBackground,
+} from "react-native";
+import { styles } from "../theme/style";
+import { getRecordByPatient } from "../store/actions/record";
+import { Icon } from "react-native-elements";
+import { getDoctor } from "../store/actions/doctor";
+import Record from "../components/Record";
+
+export default function RecordScreen(props) {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    AsyncStorage.getItem("patientData").then((res) => {
+      getRecordByPatient(JSON.parse(res).patientId)
+        .then((result) => setData(result))
+        .catch((err) => console.error(err));
+    });
+  }, []);
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <ImageBackground
+        source={require("../../assets/imgs/record.png")}
+        style={styles.containerList}
+      >
+        <Text style={styles.title}>Hồ sơ bệnh án</Text>
+        <FlatList
+          ListEmptyComponent={
+            <Text
+              style={{
+                alignSelf: "center",
+                color: "white",
+              }}
+            >
+              Trống
             </Text>
-           </View>
-        </View>
-    )
+          }
+          data={data}
+          renderItem={({ item }) => <Record item={item} />}
+          keyExtractor={(item) => item.id}
+        />
+      </ImageBackground>
+    </SafeAreaView>
+  );
 }
-
-const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
-    }
-})
-
-export default RecordScreen;

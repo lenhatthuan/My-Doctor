@@ -80,7 +80,7 @@ export const signup = async (data) => {
         result.token,
         result.account.id,
         expirationDate,
-        data.phone
+        result.account.username
       );
       return result;
     })
@@ -97,12 +97,12 @@ export const forgotpass = async (data) => {
     }),
   })
     .then((response) => response.json())
-    .then((result) => console.log(result))
+    .then((result) => console.log(result.message))
     .catch((err) => console.error(err));
 };
 
 export const changePass = async (id, username, oldPass, newPass) => {
-  await fetch(BASE_URL + `/accounts/${id}}/changePassword`, {
+  return await fetch(BASE_URL + `/accounts/${id}/changePass`, {
     method: "PUT",
     headers: header,
     body: JSON.stringify({
@@ -112,6 +112,7 @@ export const changePass = async (id, username, oldPass, newPass) => {
     }),
   })
     .then((response) => response.json())
+    .then((result) => console.log(result.message))
     .catch((err) => console.error(err));
 };
 
