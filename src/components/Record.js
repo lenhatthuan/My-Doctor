@@ -4,7 +4,7 @@ import { styles } from "../theme/style";
 import { Icon } from "react-native-elements";
 import { getDoctor } from "../store/actions/doctor";
 
-export default function Record({ item }) {
+export default function Record({ item, onPress }) {
   const [doctorName, setDoctorName] = useState();
 
   useEffect(() => {
@@ -29,8 +29,14 @@ export default function Record({ item }) {
             name="file-medical"
             type="font-awesome-5"
             color="white"
+            onPress={() => onPress(item.fileStore)}
           />
-          <Icon name="capsules" type="font-awesome-5" color="white" />
+          <Icon
+            name="capsules"
+            type="font-awesome-5"
+            color="white"
+            onPress={() => onPress(item.precription)}
+          />
         </View>
       </View>
     </View>

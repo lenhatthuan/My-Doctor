@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   AsyncStorage,
   ImageBackground,
+  Linking,
 } from "react-native";
 import { styles } from "../theme/style";
 import { getRecordByPatient } from "../store/actions/record";
@@ -44,7 +45,9 @@ export default function RecordScreen(props) {
             </Text>
           }
           data={data}
-          renderItem={({ item }) => <Record item={item} />}
+          renderItem={({ item }) => (
+            <Record item={item} onPress={(uri) => Linking.openURL(uri)} />
+          )}
           keyExtractor={(item) => item.id}
         />
       </ImageBackground>

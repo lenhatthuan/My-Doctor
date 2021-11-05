@@ -234,3 +234,25 @@ deactivate
 PositionScreen -> Patient: Hiển thị trang lịch khám
 deactivate
 @enduml
+
+@startuml MedicalRecord
+actor Patient 
+boundary RecordScreen 
+control RecordController
+entity Position 
+
+activate Patient
+Patient -> RecordScreen: Xem bệnh án
+activate RecordScreen
+
+RecordScreen -> RecordController: Gửi yêu cầu
+activate RecordController
+
+RecordController -> Position: getRecordByPatient(patientId)
+activate Position
+
+RecordController -> RecordScreen: Hiển thị
+deactivate
+RecordScreen -> Patient: Hiển thị trang bệnh án
+deactivate
+@enduml
