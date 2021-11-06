@@ -76,7 +76,7 @@ const ListHeartComponent = (props) =>{
         </HoldItem>);
             }}>
                 <DateHistoryHeart
-            time = {formatTime(item.createdAt)}
+            time = {item.createdAt}
             heartBeat = {item.heartBeat}
             title = {convertTitle(item.systole, item.diastole)}
             status = {statusHA(item.diastole, item.systole)}

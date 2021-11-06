@@ -75,12 +75,9 @@ function BookingNavigation() {
       }}
     >
       <Stack.Screen name="Schedule" component={ScheduleScreen} />
-<<<<<<< HEAD
-=======
       <Stack.Screen name="Position" component={PositionScreen} />
       <Stack.Screen name="Doctor" component={DoctorList}/>
       <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen}/>
->>>>>>> 7605e84 (change bmi)
     </Stack.Navigator>
   );
 }

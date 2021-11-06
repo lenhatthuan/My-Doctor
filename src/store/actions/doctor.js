@@ -16,16 +16,7 @@ export const getAll = async () => {
   }
 };
 
-export const getDoctor = async (id) => {
-  try {
-    const response = await fetch(BASE_URL + `/doctor/${id}`);
-    const json = await response.json();
-    return json.doctor;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
+//utf-8
 export const findDoctorByName = async (name) => {
   try {
     if (name) {
@@ -41,3 +32,7 @@ export const findDoctorByName = async (name) => {
     console.error(err);
   }
 };
+
+export const getDoctor = () => {
+  
+}
