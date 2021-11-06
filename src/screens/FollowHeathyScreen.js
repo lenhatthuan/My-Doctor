@@ -16,6 +16,11 @@ const FollowHeathyScreen = props =>{
         props.navigation.navigate("BMIHistory");
     }
 
+    const redirectedToHeart = () =>{
+        console.log("flow Heart")
+        props.navigation.navigate("HeartHistory");
+    }
+
 
     useFocusEffect(
         React.useCallback(() => {
@@ -28,10 +33,8 @@ const FollowHeathyScreen = props =>{
         let id = await AsyncStorage.getItem("id");
         let arrBMI = "";
         getAllBMI(id).then(bmi => {
-            console.log("bmi 31: " + bmi);
             if(bmi) {
                 arrBMI = JSON.parse(bmi);
-            console.log("bmi: " + arrBMI);
             setTall(arrBMI[arrBMI.length-1].tall);
             setWeigh(arrBMI[arrBMI.length-1].weigh);
             } else {
@@ -49,7 +52,7 @@ const FollowHeathyScreen = props =>{
                weigh = {weigh}
                /></View></View>
                <View style = {styles.component}><EmotionComponent/></View>
-               <View style = {styles.component}><HeartComponent/></View>
+               <View style = {styles.component}><HeartComponent goToHistory = {redirectedToHeart}/></View>
                <View style = {styles.component}><BMIComponent
                 goToHistory = {redirectedToBMI}
                /></View>

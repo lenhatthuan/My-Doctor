@@ -13,7 +13,8 @@ const COLORS = {
     DoublePearlLusta: '#FCF5C7',
     alert:'#B0B0B0',
     btnSave:'#0ED3EE',
-    blueMint:'#0E4DEE'
+    blueMint:'#0E4DEE',
+    backround: '#F4F5F9'
     
 }
 

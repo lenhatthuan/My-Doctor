@@ -7,8 +7,8 @@ import DateTimePicker  from "@react-native-community/datetimepicker";
 const AddFitlerComponent = props =>{
     const [modalVisible, setModalVisible] = useState(false);
     const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
     const isDatePickerVisible = true;
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -21,12 +21,18 @@ const AddFitlerComponent = props =>{
     })
 
     const onPress = () =>{
+        props.setDateFilter(date);
         props.onPress();
     }
 
     const onCanCel = () =>{
         props.onCancel();
     }
+
+    const onCanCelFilter = () =>{
+        props.onCancelFilter();
+    }
+    
     return(
         <Modal
         animationType="fade"
@@ -47,9 +53,12 @@ const AddFitlerComponent = props =>{
         }}>
               <FontAwesome name="remove" size={24} color="black" />
             </Pressable>
-            <View style = {styles.viewTxtHeader}>
+            <Pressable style = {styles.viewTxtHeader}
+              onPress = {() =>{
+                onCanCelFilter();
+            }}>
               <Text style={styles.txtHeader}>Bỏ lọc</Text>
-            </View>
+            </Pressable>
         </View>
         <View style = {styles.body}>
         <DateTimePicker 

@@ -8,13 +8,17 @@ const HeaderBackComponent = (props) =>{
     }
     return (
         <Pressable style = {styles.header} onPress = {() => onBack()}>
-           <AntDesign name="arrowleft" size={24} color="black" />
+           <AntDesign name="arrowleft" size={24} color="black" style = {styles.icon} />
             <Text style = {styles.headerTitle}>{props.title}</Text>
         </Pressable>
     );
 }
 
 const styles = StyleSheet.create({
+    icon: {
+        paddingLeft: 5
+    },
+
     header:{
         width: '100%',
         height: 70,

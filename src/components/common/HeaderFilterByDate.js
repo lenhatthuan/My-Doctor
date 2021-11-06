@@ -9,11 +9,11 @@ const HeaderFilterByDate = (props) =>{
     return (
         <View style = {styles.header} >
           <Pressable style = {styles.AntDesign} onPress = {() => onBack()} >
-              <AntDesign name="arrowleft" size={24} color="black" />
+              <AntDesign name="arrowleft" size={24} color="black" style = {{marginLeft: 5}}/>
               </Pressable>
                 <View  style = {styles.textCmp}><Text style = {styles.headerTitle}>{props.title}</Text></View>
            <Pressable style = {styles.AntDesignCa} onPress = {() => props.openCalendar()} >
-           <AntDesign name="calendar" size={24} color="black" />
+           <AntDesign name="calendar" size={24} color="black" style = {{marginRight: 5}}/>
            </Pressable>
         </View>
     );
@@ -26,11 +26,13 @@ const styles = StyleSheet.create({
         paddingTop: 36,
         backgroundColor: '#fff',
         flexDirection:'row',
+        alignItems:'center'
     },
     headerTitle:{
         color:'black',
         fontSize: 14,
         fontWeight:'bold',
+
     },
     AntDesign:{
         flex:1,

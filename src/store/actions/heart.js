@@ -1,6 +1,6 @@
 import { AsyncStorage } from "react-native";
 import { environment } from "../../../environment/enviroment";
-const BASE_URL = environment.baseURL + "/bmi";
+const BASE_URL = environment.baseURL + "/heartBeat";
 
 // no await
 // const token = await AsyncStorage.getItem("accountData").then((account) => {
@@ -13,7 +13,7 @@ const BASE_URL = environment.baseURL + "/bmi";
 //   Authorization: "Bearer " + token,
 // };
 
-export const createBMI = async (id, tall, weigh) => {
+export const createHeart = async (id, systole,  diastole, heartBeat) => {
     const token =  await AsyncStorage.getItem("accountData").then((account) => {
         return JSON.parse(account).token;
       });
@@ -27,8 +27,9 @@ export const createBMI = async (id, tall, weigh) => {
     headers: header,
     body: JSON.stringify({
       patientId: id,
-      tall: tall,
-      weigh: weigh,
+      diastole: diastole,
+      systole: systole,
+      heartBeat:heartBeat
     }),
   })
     .then((res) => res.json())
@@ -37,11 +38,11 @@ export const createBMI = async (id, tall, weigh) => {
       return json;
     })
     .catch((error) => {
-      console.log("create bmi false:" + error);
+      console.log("create heart false:" + error);
       return null;
     });
 };
-export const getAllBMI = async (patientId) => {
+export const getAllHeart= async (patientId) => {
     const token =  await AsyncStorage.getItem("accountData").then((account) => {
         return JSON.parse(account).token;
       });
@@ -57,7 +58,8 @@ export const getAllBMI = async (patientId) => {
   })
     .then((res) => res.json())
     .then((res) => {
-      return res.bmi;
+        console.log("heart: " + res.heartBeat)
+      return res.heartBeat;
     });
 };
 
