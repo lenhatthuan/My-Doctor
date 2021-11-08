@@ -9,15 +9,19 @@ const AddFitlerComponent = props =>{
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
+    const [platform, setPlatform] = useState('default')
     const isDatePickerVisible = true;
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
-        setShow(Platform.OS === 'ios');
+       // if(Platform.OS =='ios') 
+        ///setShow(Platform.OS ==='ios');
+        setShow(false);
         setDate(currentDate);
       };
 
      useEffect(() => {
        setModalVisible(props.visible);
+       if(Platform.OS =='ios') setPlatform('inline');
     })
 
     const onPress = () =>{
@@ -65,9 +69,8 @@ const AddFitlerComponent = props =>{
          testID="dateTimePicker"
          value={date}
          mode={mode}
-         display="inline"
+        display= {platform}
          onChange={onChange}
-         is24Hour={true}
       />
         </View>
             <BtnAddComponent

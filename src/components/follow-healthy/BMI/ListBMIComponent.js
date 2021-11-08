@@ -29,6 +29,7 @@ const ListBMIComponent = (props) =>{
 
     const callbackFunction  = (date) => {
         getAllListBMIByFilterDate(date);
+        cancelOpenCalendar();
     }
 
     const getFilter = () =>{

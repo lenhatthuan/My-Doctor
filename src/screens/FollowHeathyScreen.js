@@ -18,7 +18,8 @@ const FollowHeathyScreen = props =>{
 
     const redirectedToHeart = () =>{
         console.log("flow Heart")
-        props.navigation.navigate("HeartHistory");
+        // props.navigation.navigate("HeartHistory");
+        props.navigation.navigate("ListHeart");
     }
 
 

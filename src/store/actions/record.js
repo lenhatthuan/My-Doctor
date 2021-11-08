@@ -8,7 +8,7 @@ export const getRecordByPatient = async (patientId) => {
     const json = await response.json();
     return json.record;
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 
@@ -18,6 +18,6 @@ export const getRecordById = async (id) => {
     const json = await response.json();
     return json.record;
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };

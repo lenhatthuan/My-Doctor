@@ -45,7 +45,6 @@ const HistoryHeartComponent = (props) =>{
             style={{ height: 200, width: '100%', backgroundColor: '#eee' }}
             xDomain={{ min: -2, max: 10 }}
             yDomain={{ min: -2, max: 20 }}
-            zDomain = {{min: -2, max: 20}}
             padding={{ left: 20, top: 10, bottom: 10, right: 10 }}
             >
             <VerticalAxis tickValues={[0, 4, 8, 12, 16, 20]} />

@@ -58,6 +58,8 @@ export const getAllBMI = async (patientId) => {
     .then((res) => res.json())
     .then((res) => {
       return res.bmi;
+    }).catch((error) => {
+      return null;
     });
 };
 

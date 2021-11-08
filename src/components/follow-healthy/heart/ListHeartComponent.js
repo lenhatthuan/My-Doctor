@@ -10,7 +10,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { getAllHeart } from '../../../store/actions/heart';
 import DateHistoryHeart from './DateHistoryHeart';
 import { statusHA } from '../../../utils/value-status';
-import { convertTitle, formatTime } from '../../../utils/string-format';
+import { convertTitle, formatDate, formatDateTime, formatTime } from '../../../utils/string-format';
 
 const ListHeartComponent = (props) =>{
 
@@ -18,6 +18,7 @@ const ListHeartComponent = (props) =>{
     const [listHeart, setListHeart] =  useState(false);
     const [getListFilter, setGetListFilter] = useState(false);
     const [dateFilter, setDateFilter] = useState(new Date());
+    const [listHeartStatic, setListHeartStatic] = useState();
 
     const openCalendar = () =>{
         setFilter(true);
@@ -27,12 +28,19 @@ const ListHeartComponent = (props) =>{
         setFilter(false);
     }
 
+    const onCancelFitler = () => {
+        setListHeart(listHeartStatic);
+        setFilter(false);
+    }
+
+
     const callbackFunction  = (date) => {
         setDateFilter(date);
+        getAllListHeartByFilterDate(date);
+        cancelOpenCalendar();
     }
 
     const getFilter = () =>{
-        console.log("Get filter !!" + dateFilter)
         setGetListFilter(true);
        
     }
@@ -46,19 +54,19 @@ const ListHeartComponent = (props) =>{
         await getAllHeart(id).then(heart => {
             if(heart) {
                 setListHeart(heart);
+                setListHeartStatic(heart);
             }
         })
     }
 
-    // const getAllListHeartByFilterDate = async(date) => {
-    //     let heartFilter = listBMI;
-    //     let bmiFilterSuccess = [];
-    //     bmiFilter.forEach(bmiItem => {
-    //         if(formatDate(bmiItem.createdAt) == formatDate(date))
-    //             bmiFilterSuccess.push(bmiItem);
-    //     });
-    //     setListBMI(bmiFilterSuccess);
-    // }
+    const getAllListHeartByFilterDate = async(date) => {
+        let heartFilterSuccess = [];
+        listHeartStatic.forEach(bmiItem => {
+            if(formatDate(bmiItem.createdAt) == formatDate(date))
+            heartFilterSuccess.push(bmiItem);
+        });
+        setListHeart(heartFilterSuccess);
+    }
 
 
     const menuItems = [
@@ -76,7 +84,7 @@ const ListHeartComponent = (props) =>{
         </HoldItem>);
             }}>
                 <DateHistoryHeart
-            time = {item.createdAt}
+            time = {formatDateTime(item.createdAt)}
             heartBeat = {item.heartBeat}
             title = {convertTitle(item.systole, item.diastole)}
             status = {statusHA(item.diastole, item.systole)}
@@ -108,7 +116,9 @@ const ListHeartComponent = (props) =>{
     
 
     const onBack = () =>{
-        props.navigation.navigate("HeartHistory");
+        // props.navigation.navigate("HeartHistory"); tạm thời tắt
+        props.navigation.navigate("FollowHeathy");
+        
     }
     return (
         <View style = {styles.screen}>
@@ -131,6 +141,8 @@ const ListHeartComponent = (props) =>{
                     onCancel = {cancelOpenCalendar}
                     setDateFilter = {callbackFunction}
                     onPress = {getFilter}
+                    onCancelFilter  ={onCancelFitler}
+                    
             />
         </View>
     )

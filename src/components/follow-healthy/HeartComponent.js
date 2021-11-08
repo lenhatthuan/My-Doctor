@@ -23,7 +23,7 @@ const HeartComponent = (props) => {
       <View style={styles.header}>
         <Text style={styles.txtHeader}>{STRING.textHeaderHeartComponent}</Text>
         <View style={styles.date}>
-          <Text style={styles.txtDate}>{dateUpdate}</Text>
+          {/* <Text style={styles.txtDate}>{dateUpdate}</Text> */}
           <AntDesign name="rightcircleo" size={12} color="black" />
         </View>
       </View>

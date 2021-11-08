@@ -32,6 +32,7 @@ import DoctorList from "../components/Doctor";
 import AllDoctorScreen from "../screens/AllDoctorScreen";
 import ListHeartComponent from "../components/follow-healthy/heart/ListHeartComponent";
 import HistoryHeartComponent from "../components/follow-healthy/heart/HistoryHeartComponent";
+import DoctorScheduleScreen from "../screens/DoctorScheduleScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -62,7 +63,7 @@ function ContactNavigation() {
     >
        <Stack.Screen name="AllDoctor" component={AllDoctorScreen} />
        <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen}/>
-      <Stack.Screen name = "Chat" component = {ContactDetailScreen} />
+      <Stack.Screen name = "doctor-schedule" component = {DoctorScheduleScreen} /> 
     </Stack.Navigator>
   );
 }

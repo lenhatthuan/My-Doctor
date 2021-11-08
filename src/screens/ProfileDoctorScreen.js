@@ -15,21 +15,101 @@ import { Ionicons } from "@expo/vector-icons";
 import COLORS from "../../assets/colors";
 import { AntDesign } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
+import AddFitlerComponent from "../components/common/AddFitlerComponent";
+import { getAllScheduleByDoctorId } from "../store/actions/schedule";
+import { formatDate, getDay } from "../utils/string-format";
+import { getAll, getRoomByID } from "../store/actions/room";
 
  export default function ProfileDoctorScreen ({ route, navigation }) {
   const [visible, setVisible] = React.useState(true);
+  const [filter, setFilter] =  React.useState(false);
+  const [getListFilter, setGetListFilter] = React.useState(false);
+  const [listSchedule, setListSchedule] = React.useState([]);
+  const [listRoom, setListRoom] = React.useState([]);
   const {doctor} = route.params;
   const onBack = () => {
    navigation.navigate("AllDoctor");
   };
 
+  const openCalendar = () =>{
+    getAllScheduleByDoctorId(doctor.id).then(res => {
+      if(res) setListSchedule(res);
+      getAll().then(res => {
+        if(res) setListRoom(res);
+        setFilter(true);
+      })
+
+    })
+  }
+
+  const cancelOpenCalendar = () =>{
+      setFilter(false);
+  }
+
+  const callbackFunction  = async(date) => {
+   // await getListRoom();
+    getScheduleByDateAndDoctor(date);
+    cancelOpenCalendar();
+  }
+
+  const getAllListScheduleById = async() => {
+      
+      await getAllScheduleByDoctorId(doctor.id).then(res => {
+        if(res) setListSchedule(res);
+      })
+  }
+
+  const getListRoom = async() => {
+    await getAll().then(res => {
+      if(res) setListRoom(res);
+    })
+  }
+
+  const getScheduleByDateAndDoctor = async(date) => {
+    let lSchedule = [];
+    listSchedule.forEach(item => {
+      if (item.day == getDay(date)) {
+        lSchedule.push(item);
+      }
+    })
+
+    if (lSchedule.length > 0 && listRoom.length > 0) {
+      alert("Tiếp tục chọn lịch khám theo phòng!!");
+     // let lRoom = await getListRoom(lSchedule); 
+        navigation.navigate("doctor-schedule", {
+          schedule: lSchedule,
+          room: listRoom,
+          doctor: doctor,
+          date: formatDate(date)
+        });
+    } else {
+      alert("Hiện ngày chọn không có lịch khám của bác sĩ này!");
+    }
+
+  }
+
   React.useEffect(() => {
     // setDoctorProfile(props.navigation.getParam("doctor"));
+      // getAllListScheduleByDoctorId();
       })
 
   const setDoctorProfile = (item) => {
    // setDoctor(item);
   }
+
+  const [show, setShow] = React.useState(false);
+
+
+  const onCancelFitler = () => {
+    // setListBMI(listBMIStatic);
+    setFilter(false);
+}
+  
+  const getFilter = () =>{
+    // console.log("Get filter !!" + dateFilter)
+    setGetListFilter(true);
+   
+}
 
   const titleHeader = "Tư vấn bác sĩ";
   const imageBanner = require("../../assets/imgs/banner-profile.png");
@@ -124,7 +204,9 @@ import { EvilIcons } from "@expo/vector-icons";
           <View style={styles.btnContainer}>
             <TouchableOpacity
               key="2"
-              onPress={() => {}}
+              onPress={() => {
+                // navigation.navigate("Chat");
+              }}
               onPressIn={onPressInBtn}
               onPressOut={onPressOutBtn}
               //  style = {styles.btnAction}
@@ -148,7 +230,9 @@ import { EvilIcons } from "@expo/vector-icons";
 
             <TouchableOpacity
               key="1"
-              onPress={() => {}}
+              onPress={() => {
+                openCalendar();
+              }}
               onPressIn={onPressIn}
               onPressOut={onPressOut}
               //   style = {styles.btnAction}
@@ -170,6 +254,14 @@ import { EvilIcons } from "@expo/vector-icons";
           </View>
         </View>
       </View>
+
+      <AddFitlerComponent
+                    visible = {filter}
+                    onCancel = {cancelOpenCalendar}
+                    setDateFilter = {callbackFunction}
+                    onPress = {getFilter}
+                    onCancelFilter ={onCancelFitler}
+            />
     </View>
   );
 };
@@ -269,14 +361,14 @@ const styles = StyleSheet.create({
   body: {
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    elevation: 3,
+    // elevation: 3,
     padding: 20,
     top: "10%",
   },
 
   avatarContainer: {
-    height: "25%",
-    width: "30%",
+    height: 100,
+    width: 100,
     alignSelf: "center",
     position: "absolute",
     top: "25%",

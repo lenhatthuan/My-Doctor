@@ -12,7 +12,8 @@ export const getAll = async () => {
     const json = await response.json();
     return json.doctor;
   } catch (err) {
-    console.error(err);
+    console.log(err);
+    return null;
   }
 };
 
@@ -29,7 +30,8 @@ export const findDoctorByName = async (name) => {
       return json.doctor;
     }
   } catch (err) {
-    console.error(err);
+    console.log(err);
+    return null;
   }
 };
 

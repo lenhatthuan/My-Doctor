@@ -1,6 +1,8 @@
 import { environment } from "../../../environment/enviroment";
+import { formatDate } from "../../utils/string-format";
 
 const BASE_URL = environment.baseURL;
+const BASE_URL_NEW = "https://fast-cliffs-01542.herokuapp.com";
 const header = {
   Accept: "application/json",
   "Content-Type": "application/json",
@@ -8,34 +10,34 @@ const header = {
 
 export const getPositionsByPatient = async (patientId) => {
   try {
-    const response = await fetch(BASE_URL + `/position/${patientId}/all`);
+    const response = await fetch(BASE_URL_NEW + `/position/${patientId}/all`);
     const json = await response.json();
     return json.position;
   } catch (err) {
-    console.error(err);
+    console.lod("position by patient" + err);
   }
 };
 
 export const getPositionsByState = async (patientId, state) => {
-  return await fetch(BASE_URL + `/position/state`, {
+  return await fetch(BASE_URL_NEW + `/position/state`, {
     method: "POST",
     headers: header,
     body: JSON.stringify({ patientId: patientId, state: state }),
   })
     .then((response) => response.json())
     .then((result) => result.position)
-    .catch((err) => console.error(err));
+    .catch((err) => console.log("position state: " + err));
 };
 
 export const getMaxPosition = async (department, date) => {
-  return await fetch(BASE_URL + `/position/max`, {
+  return await fetch(BASE_URL_NEW + `/position/max`, {
     method: "POST",
     headers: header,
     body: JSON.stringify({ department: department, date: date }),
   })
     .then((response) => response.json())
     .then((result) => result.data)
-    .catch((err) => console.error(err));
+    .catch((err) => console.log("position max" + err));
 };
 
 export const createPosition = async (patientId, room, date, number) => {
@@ -50,8 +52,8 @@ export const createPosition = async (patientId, room, date, number) => {
     }),
   })
     .then((response) => response.json())
-    .then((result) => console.log(result.message))
-    .catch((err) => console.error(err));
+    .then((result) => {console.log(result.message); return result.position})
+    .catch((err) => {console.log("position create" + err); return null;});
 };
 
 export const cancel = async (id) => {
@@ -60,20 +62,20 @@ export const cancel = async (id) => {
     headers: header,
   })
     .then((response) => response.json())
-    .catch((err) => console.error(err));
+    .catch((err) => console.log("position cancel" + err));
 };
 
 export const expired = async () => {
-  return await fetch(BASE_URL + `/position/expired`, {
+  return await fetch(BASE_URL_NEW + `/position/expired`, {
     method: "PUT",
     headers: header,
   })
     .then((response) => response.json())
-    .catch((err) => console.error(err));
+    .catch((err) => console.log("position expired" + err));
 };
 
 export const currentPosition = async (room, date) => {
-  return await fetch(BASE_URL + "/position/current", {
+  return await fetch(BASE_URL_NEW + "/position/current", {
     method: "POST",
     headers: header,
     body: JSON.stringify({
@@ -83,5 +85,32 @@ export const currentPosition = async (room, date) => {
   })
     .then((response) => response.json())
     .then((result) => result.current)
-    .catch((err) => console.error(err));
+    .catch((err) => console.log("position current" + err));
 };
+
+export const getAll = async () => {
+  try {
+    const response = await fetch(BASE_URL + "/position");
+    const json = await response.json();
+    return json.position;
+  } catch (err) {
+    console.log("position getall" + err);
+    return null;
+  }
+};
+
+export const getMaxPositionByDateAndRoom = async(date, room) => {
+  getAll().then(res => {
+    let lPosition = res;
+    let number = 0;
+  for(let i = 0; i < lPosition.length; i++) {
+    if(lPosition[i].date) {
+        if(formatDate(lPosition[i].date) == date && lPosition[i].room == room)
+              number = number + 1;
+    }
+  }
+  return number;
+  })
+  
+}
+
