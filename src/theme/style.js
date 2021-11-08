@@ -48,7 +48,15 @@ export const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "white",
     borderRadius: 10,
-    elevation: 3,
+    shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+
+        elevation: 3,
   },
   underlineStyleBase: {
     width: 30,
@@ -85,4 +93,8 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "darkseagreen",
   },
+  searchBar: {
+    borderRadius: 8,
+    paddingLeft: 10,
+  }
 });

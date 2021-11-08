@@ -12,12 +12,11 @@ const BMIComponent = (props) => {
     const [isAddModel, setIsAddModel] = useState(false);
     const cancelGoalApplicationHandler = () => {
       setIsAddModel(false);
+
     };
 
     const goToHistory = () =>{
-      console.log("goto history")
       props.goToHistory();
-     // props.navigation.push("BMIHistory")
      
     }
   
@@ -28,7 +27,7 @@ const BMIComponent = (props) => {
           <View style={styles.header}>
             <Text style={styles.txtHeader}>{STRING.textHeaderBMIComponent}</Text>
             <Pressable style={styles.date} >
-              <Text style={styles.txtDate}  >{dateUpdate}</Text>
+              {/* <Text style={styles.txtDate}  >{dateUpdate}</Text> */}
               <AntDesign name="rightcircleo" size={12} color="black" />
             </Pressable>
           </View>

@@ -38,7 +38,10 @@ const saveDataToStorage = (token, accountId, expirationDate, username) => {
         expirationDate: expirationDate,
         username: username,
       })
+      
     );
+
+    AsyncStorage.setItem("id", accountId);
   } catch (error) {
     console.error("save error" + error);
   }
@@ -59,7 +62,7 @@ export const isAccount = async (phone) => {
     const json = await response.json();
     return json.count;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
@@ -113,11 +116,12 @@ export const changePass = async (id, username, oldPass, newPass) => {
   })
     .then((response) => response.json())
     .then((result) => console.log(result.message))
-    .catch((err) => console.error(err));
+    .catch((err) => console.log(err));
 };
 
 export const logout = () => {
   AsyncStorage.removeItem("accountData");
   AsyncStorage.removeItem("patientData");
+  AsyncStorage.removeItem("id");
   return true;
 };

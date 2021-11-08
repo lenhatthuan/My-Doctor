@@ -26,6 +26,13 @@ import HistoryBMIComponent from "../components/follow-healthy/BMI/HistoryBMIComp
 import ListBMIComponent from "../components/follow-healthy/BMI/ListBMIComponent";
 import FollowHeathyScreen from "../screens/FollowHeathyScreen";
 import BMIComponent from "../components/follow-healthy/BMIComponent";
+import ContactDetailScreen from "../screens/ContactDetailScreen";
+import ProfileDoctorScreen from "../screens/ProfileDoctorScreen";
+import DoctorList from "../components/Doctor";
+import AllDoctorScreen from "../screens/AllDoctorScreen";
+import ListHeartComponent from "../components/follow-healthy/heart/ListHeartComponent";
+import HistoryHeartComponent from "../components/follow-healthy/heart/HistoryHeartComponent";
+import DoctorScheduleScreen from "../screens/DoctorScheduleScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -54,7 +61,9 @@ function ContactNavigation() {
         headerMode: "none",
       }}
     >
-      <Stack.Screen name="Contact" component={ContactScreen} />
+       <Stack.Screen name="AllDoctor" component={AllDoctorScreen} />
+       <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen}/>
+      <Stack.Screen name = "doctor-schedule" component = {DoctorScheduleScreen} /> 
     </Stack.Navigator>
   );
 }
@@ -67,9 +76,22 @@ function BookingNavigation() {
       }}
     >
       <Stack.Screen name="Schedule" component={ScheduleScreen} />
+      <Stack.Screen name="Position" component={PositionScreen} />
+      <Stack.Screen name="Doctor" component={DoctorList}/>
+      <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen}/>
     </Stack.Navigator>
   );
 }
+
+// function HomeTabs() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Home" component={Home} />
+//       <Tab.Screen name="Feed" component={Feed} />
+//       <Tab.Screen name="Notifications" component={Notifications} />
+//     </Tab.Navigator>
+//   );
+// }
 
 function HealthyNavigation() {
   return (
@@ -82,6 +104,8 @@ function HealthyNavigation() {
       <Stack.Screen name="BMIHistory" component={HistoryBMIComponent} />
       <Stack.Screen name="BMI" component={BMIComponent} />
       <Stack.Screen name="ListBMI" component={ListBMIComponent} />
+      <Stack.Screen name = "ListHeart" component = {ListHeartComponent}/>
+      <Stack.Screen name="HeartHistory" component={HistoryHeartComponent} />
     </Stack.Navigator>
   );
 }
@@ -159,6 +183,7 @@ function BottomTabNavigation() {
     </Tab.Navigator>
   );
 }
+
 
 export default function MyDoctorNavigation() {
   return (

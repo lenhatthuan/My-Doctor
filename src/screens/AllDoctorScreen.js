@@ -6,18 +6,20 @@ import {
   Button,
   TouchableOpacity,
   ActivityIndicator,
-  TouchableHighlight,
-  Pressable,
+  Pressable 
 } from "react-native";
 import { Avatar, SearchBar } from "react-native-elements";
 import { styles } from "../theme/style";
 import { getAll } from "../store/actions/doctor";
+import { SafeAreaView } from "react-navigation";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
-export default function DoctorList(props) {
+export default function AllDoctorScreen({ navigation })  {
   const [name, setName] = useState();
   const [data, setData] = useState();
   const [id, setId] = useState();
   const [listSearchDoctor, setListSearchDoctor] = useState([]);
+  const [doctor, setDoctor] = useState();
 
   useEffect(() => {
     getAll()
@@ -38,19 +40,26 @@ export default function DoctorList(props) {
     } else setData(data);
   }
 
-  const navigateToProfile = () => {
-    console.log("navigation!!");
-    props.navigation.navigate("DoctorProfile");
+  const navigateToProfile = (item) => {
+    setDoctor(item);
+    
+    navigation.navigate("DoctorProfile", {
+        doctor: item
+
+    });
+  }
+
+  const setDoctorProfile = (item) => {
+    setDoctor(item);
   }
 
   const renderItem = ({ item }) => {
     return (
-      <Pressable
+      <TouchableWithoutFeedback 
         onPress={() => {
-          onPress(item.id);
-          // setId(item.id);
-          // navigateToProfile();
-          // booking();
+          setId(item.id);
+          // setDoctorProfile(item);
+          navigateToProfile(item);
         }}
         style={styles.list}
       >
@@ -59,12 +68,13 @@ export default function DoctorList(props) {
           <Text style={{ fontWeight: "bold" }}>{item.fullname}</Text>
           <Text>Chuyên khoa {item.department}</Text>
         </View>
-      </Pressable>
+      </TouchableWithoutFeedback >
     );
   };
 
   return (
-    <View style={{ flex: 1 }}>
+   <SafeAreaView style={{ flex: 1 }}>
+        <View style={{marginTop: 30 }}>
       <SearchBar
        round 
        inputContainerStyle={{backgroundColor: 'white'}}
@@ -78,6 +88,11 @@ export default function DoctorList(props) {
         searchIcon={{size:24}}
       style = {styles.searchBar}
         placeholder="Tên bác sĩ"
+        onClear={(text) => {
+            setName('');
+          // findDoctorByName(text).then((result) => setData(result));
+          findDoctorByName();
+        }}
         onChangeText={(text) => {
           setName(text);
           // findDoctorByName(text).then((result) => setData(result));
@@ -97,7 +112,10 @@ export default function DoctorList(props) {
         data={listSearchDoctor}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        extraData={id}
       />
     </View>
+   </SafeAreaView>
+
   );
 }

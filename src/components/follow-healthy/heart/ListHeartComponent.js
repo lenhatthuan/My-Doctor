@@ -3,21 +3,22 @@ import {View, Text, StyleSheet,  FlatList, AsyncStorage, Pressable} from 'react-
 import HeaderFilterByDate from "../../common/HeaderFilterByDate";
 import STRING from '../../../utils/string';
 import COLORS from "../../../../assets/colors";
-import DateHistory from './DateHistoryBMI';
 import AddFitlerComponent from '../../common/AddFitlerComponent';
-import { getAllBMI } from '../../../store/actions/bmi';
-import Moment from 'moment';
 import { HoldMenuProvider, HoldItem  } from 'react-native-hold-menu';
 import { compareDate } from '../../../utils/convert-date';
 import { useFocusEffect } from "@react-navigation/native";
+import { getAllHeart } from '../../../store/actions/heart';
+import DateHistoryHeart from './DateHistoryHeart';
+import { statusHA } from '../../../utils/value-status';
+import { convertTitle, formatDate, formatDateTime, formatTime } from '../../../utils/string-format';
 
-const ListBMIComponent = (props) =>{
+const ListHeartComponent = (props) =>{
 
     const [filter, setFilter] =  useState(false);
-    const [listBMIStatic, setListBMIStatic] = useState();
-    const [listBMI, setListBMI] =  useState(false);
+    const [listHeart, setListHeart] =  useState(false);
     const [getListFilter, setGetListFilter] = useState(false);
     const [dateFilter, setDateFilter] = useState(new Date());
+    const [listHeartStatic, setListHeartStatic] = useState();
 
     const openCalendar = () =>{
         setFilter(true);
@@ -27,54 +28,46 @@ const ListBMIComponent = (props) =>{
         setFilter(false);
     }
 
+    const onCancelFitler = () => {
+        setListHeart(listHeartStatic);
+        setFilter(false);
+    }
+
+
     const callbackFunction  = (date) => {
-        getAllListBMIByFilterDate(date);
+        setDateFilter(date);
+        getAllListHeartByFilterDate(date);
         cancelOpenCalendar();
     }
 
     const getFilter = () =>{
-        // console.log("Get filter !!" + dateFilter)
         setGetListFilter(true);
        
     }
     
     useEffect(() => {
-        getAllListBMI();
+        getAllListHeart();
     }, [])
 
-    const convertTitle = (tall, weigh) =>{
-        return tall + "/" + weigh;
-    }
-
-    const formatDate = (date) =>{
-        Moment.locale('en');
-        return Moment(date).format('DD-MM-YYYY');
-    }
-
-    const getAllListBMI = async() => {
+    const getAllListHeart= async() => {
         let id = await AsyncStorage.getItem("id");
-        await getAllBMI(id).then(bmi => {
-            if(bmi) {
-                setListBMI(bmi);
-                setListBMIStatic(bmi);
+        await getAllHeart(id).then(heart => {
+            if(heart) {
+                setListHeart(heart);
+                setListHeartStatic(heart);
             }
         })
     }
 
-    const onCancelFitler = () => {
-        setListBMI(listBMIStatic);
-        setFilter(false);
+    const getAllListHeartByFilterDate = async(date) => {
+        let heartFilterSuccess = [];
+        listHeartStatic.forEach(bmiItem => {
+            if(formatDate(bmiItem.createdAt) == formatDate(date))
+            heartFilterSuccess.push(bmiItem);
+        });
+        setListHeart(heartFilterSuccess);
     }
 
-    const getAllListBMIByFilterDate = async(date) => {
-        let bmiFilter = listBMIStatic;
-        let bmiFilterSuccess = [];
-        bmiFilter.forEach(bmiItem => {
-            if(formatDate(bmiItem.createdAt) == formatDate(date))
-                bmiFilterSuccess.push(bmiItem);
-        });
-        setListBMI(bmiFilterSuccess);
-    }
 
     const menuItems = [
         {text: 'Edit', icon: 'edit', onPress: () =>{}},
@@ -87,14 +80,14 @@ const ListBMIComponent = (props) =>{
         //     <HoldMenuProvider theme="light">
         //     {/* Your app components */}
         //   </HoldMenuProvider>
-        console.log("menu items");
         return (<HoldItem items = {menuItems} menuAnchorPosition="bottom-right">
         </HoldItem>);
             }}>
-                <DateHistory 
-            date = {formatDate(item.createdAt)}
-            title = {convertTitle(item.tall, item.weigh)}
-            data = {item.bmi}
+                <DateHistoryHeart
+            time = {formatDateTime(item.createdAt)}
+            heartBeat = {item.heartBeat}
+            title = {convertTitle(item.systole, item.diastole)}
+            status = {statusHA(item.diastole, item.systole)}
             />
             </Pressable>
         )
@@ -104,13 +97,16 @@ const ListBMIComponent = (props) =>{
         return (
             <View style = {styles.mainDate}> 
                 <View style = {styles.component}>
-                    <Text style = {styles.txtComponent}>Ngày cập nhập</Text>
+                    <Text style = {styles.txtComponent}>Ngày/giờ</Text>
                 </View>
                 <View style = {styles.component}>
-                    <Text style = {styles.txtComponent}>Chiều cao (cm)/ cân nặng (kg)</Text>
+                    <Text style = {styles.txtComponent}>Huyết áp</Text>
                 </View>
                 <View style = {styles.component}>
-                    <Text style = {styles.txtComponent}>BMI</Text>
+                    <Text style = {styles.txtComponent}>Nhịp tim</Text>
+                </View>
+                <View style = {styles.component}>
+                    <Text style = {styles.txtComponent}>Tình trạng</Text>
                 </View>
                
             </View>
@@ -120,7 +116,9 @@ const ListBMIComponent = (props) =>{
     
 
     const onBack = () =>{
-        props.navigation.navigate("BMIHistory");
+        // props.navigation.navigate("HeartHistory"); tạm thời tắt
+        props.navigation.navigate("FollowHeathy");
+        
     }
     return (
         <View style = {styles.screen}>
@@ -132,7 +130,7 @@ const ListBMIComponent = (props) =>{
             <View style = {styles.main}>
             <DateHistoryHeader />
             <FlatList
-            data = {listBMI}
+            data = {listHeart}
             renderItem = {renderDate}
             >
 
@@ -144,6 +142,7 @@ const ListBMIComponent = (props) =>{
                     setDateFilter = {callbackFunction}
                     onPress = {getFilter}
                     onCancelFilter  ={onCancelFitler}
+                    
             />
         </View>
     )
@@ -157,11 +156,9 @@ const styles = StyleSheet.create({
     screen:{
         flex:1
     },
-
     main:{
         flex:1
     },
-
     mainDate:{
         padding:5,
         justifyContent:'center',
@@ -169,18 +166,15 @@ const styles = StyleSheet.create({
         alignItems:'center',
         backgroundColor: COLORS.TeaGreen
     },
-
     component:{
         flex:1,
         justifyContent:'center',
         alignItems:'center'
     },
-
     txtComponent:{
         fontWeight:'bold',
         color:'white'
     },
-
     dateComponent:{
         marginTop: 10,
         marginBottom: 10,
@@ -193,4 +187,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ListBMIComponent;
+export default ListHeartComponent;

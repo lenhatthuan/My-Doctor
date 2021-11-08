@@ -8,6 +8,7 @@ export const getDepartment = async (name) => {
     const json = await response.json();
     return json.department;
   } catch (err) {
-    console.error(err);
+    console.log(err);
+    return null;
   }
 };

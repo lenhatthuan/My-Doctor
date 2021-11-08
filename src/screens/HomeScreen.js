@@ -34,7 +34,6 @@ const HomeScreen = (props) => {
           AsyncStorage.getItem("patientData").then((res) => {
             patient = JSON.parse(res);
             setPatientName(patient.fullName);
-            console.log("patientL " + patient);
             setCheckIsLogin(true);
           });
         }
