@@ -22,7 +22,7 @@ export const signin = async (username, pass) => {
         saveDataToStorage(json.token, json.account.id, expirationDate, username);
         return json;
       }
-      else return null;
+      else return json;
     })
     .catch((error) => {
       console.log("sigin fail *********************: " + error);
