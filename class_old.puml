@@ -1,89 +1,36 @@
 @startuml MobileApp
 
-class MainFollowHeathyComponent {
+class MainFollowHeathyScreen {
 
 }
 
-MainFollowHeathyComponent -- HomeScreen
-
-enum Enum{
-    APIUrl
-    Header
-    Role
-    Gender
-    PositionState
-    Emotion
-    FirebaseConfig
+class Schedule {
+    + id: String
+    + doctorId: String
+    + roomId: String
+    + day: String
+    + session: String
 }
 
-class NavOTPComponent{
-    # name : String
-    - username : String
-    - password : String
-    # check(username,password)
+class HeartBeat{ 
+    + id : String
+    + patientId : String
+    + createdAt : Date
+    + systole: float
+    + diastole : float
+    + heatBeat: float
 }
 
-class SigninScreen{
-
+class BMI{
+    + id : String
+    + patientId : String
+    + createdAt : Date
+    + tall: float
+    + weigh : float
+    + bmi: float
 }
 
-class AuthOTPScreen{
-    - action : String
-    - phone: String
-    - password: String
-    - verificationCode : String   
-    - sendOTP (phone)
-    - authOTP (action, phone, password, verificationCode) 
-}
-class HomeScreen{
 
-}
-class ChangPassScreen{
-    - oldPass : String
-    - newPass : String
-    - confirmPass : String
-    - captcha : String
-    - code : String
-    - randomCaptcha()
-    - changePass()
-    - clear()
-}
-class ProfileScreen{
-    - pickImage()
-    - selectDate()
-    - updateProfile()
-}
-
-class AccountController{
-    + isAccount(usename, password): boolean
-    + signin(username, password)
-    + saveAccountToStorage(account)
-    + signup(username, password)
-    + forgotPass(username,password)
-    + changePass(account, oldPass, newPass)
-    + isLogin(): boolean
-    + logout(): void
-}
-class PatientController{
-    + getProfile(id): patient
-    + saveProfiletoStorage(patient)
-    + setProfile(patient)
-}
-class DoctorController{
-    + getAll()
-}
-class RoomController{
-    + getRoomsByDepartment(department)
-}
-class PositionController{
-    + getPositionsByPatient(patientId)
-    + createPosition(position)
-    + cancelPosition(id)
-    + expiredPosition(patientId)
-}
-class RecordController{
-    + getPositionsByPatient(patientId)
-}
 
 class Account{
     + id : String
@@ -131,42 +78,6 @@ class Record{
     + precription : String
     + fileStore: String
 }
-NavOTPComponent <|-- SignupScreen
-NavOTPComponent <|-- ForgotPassScreen
-SignupScreen *-- AuthOTPScreen
-ForgotPassScreen *-- AuthOTPScreen
-
-DoctorComponent "many" -- "1" DoctorListComponent
-DoctorListComponent -- MedicalBookingScreen
-DepartmentComponent "many" -- "1" DepartmentListComponent
-DepartmentListComponent -- MedicalBookingScreen
-BookingConponent -- MedicalBookingScreen
-
-PositionComponent "many" -- "1" PositionScreen
-RecordComponent "many" -- "1" MedicalRecordScreen
-
-SigninScreen --- AccountController
-SignupScreen --- AccountController
-ForgotPassScreen --- AccountController
-AuthOTPScreen -- AccountController
-HomeScreen --- AccountController
-ChangPassScreen --- AccountController
-
-ProfileScreen --- PatientController
-DoctorListComponent --- DoctorController
-
-BookingConponent --- PositionController
-BookingConponent --- RoomController
-PositionScreen --- PositionController
-
-MedicalRecordScreen --- RecordController
-
-AccountController -- Account
-PatientController -- Patient
-RoomController -- Room
-DoctorController -- Doctor
-PositionController -- Position
-RecordController -- Record
 
 Patient "1" - "1" Account
 Account "1" - "1" Doctor
@@ -177,4 +88,8 @@ Room "1" - "many" Position
 Record "many" - "1" Patient
 Record "many" - "1" Doctor
 
+BMI "many" - "1" Patient
+HeartBeat "many" - "1" Patient
+Schedule "many" - "many" Doctor
+Schedule "many" - "many" Room
 @enduml

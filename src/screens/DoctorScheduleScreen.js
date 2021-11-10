@@ -11,6 +11,7 @@ import {
 import { FlatList } from "react-native-gesture-handler";
 import HeaderBackComponent from "../components/common/HeaderBackComponent";
 import { getRoomByID } from "../store/actions/room";
+// import {COLORS} from "../../assets/colors"
 import { formatDate, formatTime } from "../utils/string-format";
 import {
   getMaxPositionByDateAndRoom,
@@ -32,6 +33,13 @@ export default function DoctorScheduleScreen({ route, navigation }) {
     //     return "Không có phòng"
     // })
   };
+
+  const NUMBER_STATE = {
+    USED: "đã khám",
+    NOT_USE: "chưa khám",
+    CANCEL: "hủy",
+  };
+  
   React.useEffect(() => {}, []);
 
   const convertSession = (session) => {
@@ -41,17 +49,19 @@ export default function DoctorScheduleScreen({ route, navigation }) {
   };
 
   const isNotExitPosition = (id, roomName, datePosition, lPosition) => {
+    let not = true;
     lPosition.forEach((p) => {
       if (
         p.patientId == id &&
         p.room == roomName &&
         formatDate(p.date) == formatDate(datePosition)
+        && p.state == NUMBER_STATE.NOT_USE
       ) {
         console.log("flase:");
-        return false;
+        not = false;
       }
     });
-    return true;
+    return not;
   };
 
   const createPositionByAPI = (name, session, number, lPosition) => {
@@ -84,7 +94,7 @@ export default function DoctorScheduleScreen({ route, navigation }) {
         });
       } else {
         Alert.alert(
-          "Đã tồn tại lịch khám!!",
+          " Lịch khám của bạn đã được đặt từ trước!!",
           "Tại phòng: " +
             name +
             " vào buổi: " +
@@ -199,8 +209,9 @@ export default function DoctorScheduleScreen({ route, navigation }) {
       </View>
       <View
         style={{
+          marginTop: 10,
           width: "80%",
-          backgroundColor: COLORS.btnSave,
+          backgroundColor: "#0ED3EE",
           padding: 10,
           borderRadius: 10,
           alignItems: "center",

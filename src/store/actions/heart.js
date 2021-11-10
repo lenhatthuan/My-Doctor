@@ -58,9 +58,10 @@ export const getAllHeart= async (patientId) => {
   })
     .then((res) => res.json())
     .then((res) => {
-        console.log("heart: " + res.heartBeart)
-      return res.heartBeart;
+        console.log("heart: " + res.heartBeat)
+      return res.heartBeat;
     }) .catch((error) => {
+        console.log("null")
         return null;
       });
 };

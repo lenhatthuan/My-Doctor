@@ -33,6 +33,7 @@ import AllDoctorScreen from "../screens/AllDoctorScreen";
 import ListHeartComponent from "../components/follow-healthy/heart/ListHeartComponent";
 import HistoryHeartComponent from "../components/follow-healthy/heart/HistoryHeartComponent";
 import DoctorScheduleScreen from "../screens/DoctorScheduleScreen";
+import LoadingScreen from "../screens/LoadingScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -192,8 +193,9 @@ export default function MyDoctorNavigation() {
         headerMode: "none",
       }}
     >
-      <Stack.Screen name="BottomTab" component={BottomTabNavigation} />
+      <Stack.Screen name = "loading" component = {LoadingScreen}/>
       <Stack.Screen name="Signin" component={SigninScreen} />
+      <Stack.Screen name="BottomTab" component={BottomTabNavigation} />
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="ForgotPass" component={ForgotPassScreen} />
       <Stack.Screen name="OTPAuth" component={OtpAuthScreen} />

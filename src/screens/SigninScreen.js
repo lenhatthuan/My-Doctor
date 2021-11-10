@@ -1,161 +1,246 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  Button,
-  TextInput,
-  Alert,
-} from "react-native";
+import React, {useState} from 'react';
+import { 
+    View, 
+    Text, 
+    TouchableOpacity, 
+    TextInput,
+    Platform,
+    StyleSheet ,
+    StatusBar,
+    Alert,
+
+} from 'react-native';
+import * as Animatable from 'react-native-animatable';
+import LinearGradient from 'react-native-linear-gradient';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
 import PhoneInput from "react-native-phone-number-input";
 import COLORS from "../../assets/colors";
 import { signin } from "../store/actions/account";
 import { getPatientById } from "../store/actions/patient";
 
-const SigninScreen = (props) => {
-  const [titleAlert, setTitleAlert] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+const SignInScreen = (props) => {
 
-  function checkLogin() {
-    console.log("press login");
-    let username = phone;
-    let pass = password;
-    signin(username, pass).then((data) => {
-      if (data.count == 1) {
-        console.log("login hear");
-        sendOTP(data.account.id);
-      } else {
-        Alert.alert("Thông báo", "Đăng nhập không thành công!", [
-          {
-            text: "OK",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel",
-          },
-        ]);
-      }
-    });
-  }
+    
 
-  const sendError = () => {};
+const [titleAlert, setTitleAlert] = useState("");
+const [isLogin, setIsLogin] = useState(false);
+const [phone, setPhone] = useState("");
+const [password, setPassword] = useState("");
 
-  const setPasswordInput = (text) => {
-    setPassword(text);
-  };
+function checkLogin() {
+  console.log("press login");
+  let username = phone;
+  let pass = password;
+  signin(username, pass).then((data) => {
+    if (data.count == 1) {
+      console.log("login hear");
+      sendOTP(data.account.id);
+    } else {
+      Alert.alert("Thông báo", "Đăng nhập không thành công!", [
+        {
+          text: "OK",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+      ]);
+    }
+  });
+}
 
-  const setPhoneNumber = (phoneInput) => {
-    setPhone(phoneInput);
-  };
+const sendError = () => {};
 
-  const sendOTP = (id) => {
-    // props.navigation.navigate(
-    //    'OTPAuth', {phone: phone, pass: password, patientId: id}
-    // )
-    getPatientById(id).then((result) => {
-      props.navigation.navigate("Home");
-    });
-  };
+const setPasswordInput = (text) => {
+  setPassword(text);
+};
 
-  return (
-    <SafeAreaView style={styles.signinScreen}>
-      <View style={styles.signinComponent}>
-        <Text style={styles.titleText}> Xin chào, </Text>
-        <Text> Đăng nhập bằng số điện thoại và mật khẩu của bạn! </Text>
-        <View style={styles.phoneInput}>
-          <PhoneInput
-            international
-            countryCallingCodeEditable={false}
-            defaultCode="VN"
-            value={phone}
-            onChangeFormattedText={(phoneInput) => {
-              setPhoneNumber(phoneInput);
-            }}
-          />
-          <TextInput
-            placeholder="Nhập mật khẩu"
-            style={styles.textInput}
-            value={password}
-            onChangeText={(text) => setPasswordInput(text)}
-            secureTextEntry={true}
-          ></TextInput>
+const setPhoneNumber = (phoneInput) => {
+  setPhone(phoneInput);
+};
+
+const sendOTP = (id) => {
+  // props.navigation.navigate(
+  //    'OTPAuth', {phone: phone, pass: password, patientId: id}
+  // )
+  getPatientById(id).then((result) => {
+    props.navigation.navigate("BottomTab");
+  });
+};
+
+
+    const loginHandle = (userName, password) => {
+
+
+        if ( userName.length == 0 || password.length == 0 ) {
+            Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
+                {text: 'Okay'}
+            ]);
+            return;
+        }
+        checkLogin();
+    }
+
+    return (
+      <View style={styles.container}>
+          <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+        <View style={styles.header}>
+            <Text style={styles.text_header}>Welcome!</Text>
         </View>
-        <Button
-          title="Đăng nhập"
-          color={COLORS.TeaGreen}
-          onPress={() => checkLogin()}
-        />
-      </View>
-      <View style={styles.btnSignup}>
-        <Text
-          onPress={() => {
-            props.navigation.navigate("Signup");
-          }}
+        <Animatable.View 
+            animation="fadeInUpBig"
+            style={[styles.footer, {
+                backgroundColor: 'white'
+            }]}
         >
-          Đăng ký tài khoản
-        </Text>
-      </View>
-      <View style={styles.btnSignup}>
-        <Text
-          onPress={() => {
+            <Text style={[styles.text_footer, {
+                color: '#009387'
+            }]}>Phone</Text>
+            <View style={styles.action}>
+
+               <PhoneInput
+                style={[styles.textInput, {
+                  color: "#009387"
+              }]}
+                  international
+                  countryCallingCodeEditable={false}
+                  defaultCode="VN"
+                  value={phone}
+                  onChangeFormattedText={(phoneInput) => {
+                    setPhoneNumber(phoneInput);
+                  }}
+                />
+                  </View>
+            
+
+            <Text style={[styles.text_footer, {
+                color: '#009387',
+                marginTop: 35
+            }]}>Password</Text>
+            <View style={styles.action}>
+                <Feather 
+                    name="lock"
+                    color='#009387'
+                    size={20}
+                />
+                <TextInput 
+                    placeholder="Your Password"
+                    placeholderTextColor="#666666"
+                    style={[styles.textInput, {
+                        color: "#009387"
+                    }]}
+                    secureTextEntry={true}
+                    autoCapitalize="none"
+                    onChangeText={(text) => setPasswordInput(text)}
+                />
+            </View>
+           
+            <TouchableOpacity  onPress={() => {
             props.navigation.navigate("ForgotPass");
-          }}
-        >
-          Quên mật khẩu
-        </Text>
+          }}>
+                <Text style={{color: '#009387', marginTop:15}}>Forgot password?</Text>
+            </TouchableOpacity>
+            <View style={styles.button}>
+                <TouchableOpacity
+                    style={[styles.signIn, {
+                      borderColor: '#009387',
+                      borderWidth: 1,
+                      marginTop: 15,
+                      backgroundColor:'#009387'
+                    }]}
+                    onPress={() => {loginHandle( phone, password )}}
+                >
+              
+                    <Text style={[styles.textSign, {
+                        color:'#fff',
+                       
+                    }]}>Sign In</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={() => props.navigation.navigate('Signup')}
+                    style={[styles.signIn, {
+                        borderColor: '#009387',
+                        borderWidth: 1,
+                        marginTop: 15
+                    }]}
+                >
+                    <Text style={[styles.textSign, {
+                        color: '#009387'
+                    }]}>Sign Up</Text>
+                </TouchableOpacity>
+            </View>
+        </Animatable.View>
       </View>
-      <View style={styles.btnSignup}>
-        <Text
-          onPress={() => {
-            props.navigation.navigate("Home");
-          }}
-        >
-          Trang chủ
-        </Text>
-      </View>
-    </SafeAreaView>
-  );
+    );
 };
 
-SigninScreen.navigationOptions = {
-  headerTitle: "Sign in",
-  headerStyle: {
-    backgroundColor: COLORS.TeaGreen,
-  },
-};
+export default SignInScreen;
 
 const styles = StyleSheet.create({
-  signinScreen: {
-    flex: 1,
-    justifyContent: "center",
-  },
-
-  signinComponent: {
-    height: "60%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  titleText: {
-    color: COLORS.BayofMany,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  phoneInput: {
-    marginTop: 20,
-  },
-  textInput: {
-    marginBottom: 10,
-    marginTop: 10,
-    textAlign: "center",
-    backgroundColor: COLORS.Whisper,
-    padding: 15,
-  },
-  btnSignup: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-});
-export default SigninScreen;
+    container: {
+      flex: 1, 
+      backgroundColor: '#009387'
+    },
+    header: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingHorizontal: 20,
+        paddingBottom: 50
+    },
+    footer: {
+        flex: 3,
+        backgroundColor: '#fff',
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        paddingHorizontal: 20,
+        paddingVertical: 30
+    },
+    text_header: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 30
+    },
+    text_footer: {
+        color: '#05375a',
+        fontSize: 18
+    },
+    action: {
+        flexDirection: 'row',
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#f2f2f2',
+        paddingBottom: 5
+    },
+    actionError: {
+        flexDirection: 'row',
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#FF0000',
+        paddingBottom: 5
+    },
+    textInput: {
+        flex: 1,
+        marginTop: Platform.OS === 'ios' ? 0 : -12,
+        paddingLeft: 10,
+        color: '#05375a',
+    },
+    errorMsg: {
+        color: '#FF0000',
+        fontSize: 14,
+    },
+    button: {
+        alignItems: 'center',
+        marginTop: 50
+    },
+    signIn: {
+        width: '100%',
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10
+    },
+    textSign: {
+        fontSize: 18,
+        fontWeight: 'bold'
+    }
+  });
