@@ -12,7 +12,7 @@ import {
 import { styles } from "../theme/style";
 import { getRecordByPatient } from "../store/actions/record";
 import { Icon } from "react-native-elements";
-import { getDoctor } from "../store/actions/doctor";
+// import { getDoctor } from "../store/actions/doctor";
 import Record from "../components/Record";
 
 export default function RecordScreen(props) {

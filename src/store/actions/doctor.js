@@ -35,6 +35,13 @@ export const findDoctorByName = async (name) => {
   }
 };
 
-export const getDoctor = () => {
-  
+export const getDoctor = async(id) => {
+  try {
+    const response = await fetch(BASE_URL + "/doctor/" + id);
+    const json = await response.json();
+    return json.doctor;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 }

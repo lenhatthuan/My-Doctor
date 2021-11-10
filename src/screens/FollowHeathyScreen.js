@@ -40,7 +40,7 @@ const FollowHeathyScreen = props =>{
             setWeigh(arrBMI[arrBMI.length-1].weigh);
             } else {
                 setTall(0);
-            setWeigh(0);
+                setWeigh(0);
             }
         })
     }

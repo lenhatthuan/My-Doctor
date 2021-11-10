@@ -1,16 +1,21 @@
 import React from 'react';
-import { Modal, View, useState, StyleSheet, Button } from 'react-native';
+import { Modal, View, useState, StyleSheet, Button, Pressable } from 'react-native';
 
 const ErrorAlert = (props) =>{
-
     return (
         <Modal
         transparent={true}
-        visible = {props.visible}>
-            <View style = {styles.errorComponent}>
-                <Text>{props.title}</Text>
+        visible = {props.visible}
+        animationType="fade"
+        onRequestClose={() => {
+          Alert.alert("Bạn có chắc thoát.");
+          setModalVisible(!modalVisible);}}>
+            <Pressable style = {styles.errorComponent}>
+               <View>
+               <Text>{props.title}</Text>
                 <Button title = 'OK'/>
-            </View>
+               </View>
+            </Pressable>
         </Modal>
     )
 }

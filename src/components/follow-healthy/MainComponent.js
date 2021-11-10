@@ -31,8 +31,8 @@ const MainComponent = props =>{
             setHeigh(arrBMI[arrBMI.length-1].tall);
             setWeight(arrBMI[arrBMI.length-1].weigh);
             } else {
-                setTall(0);
-                setWeigh(0);
+                setHeigh(0);
+                setWeight(0);
             }
         })
     }

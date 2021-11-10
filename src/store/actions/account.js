@@ -17,10 +17,12 @@ export const signin = async (username, pass) => {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log("account: " + json.token + " username: " + username);
-      const expirationDate = new Date(new Date().getTime() + 1000000);
-      saveDataToStorage(json.token, json.account.id, expirationDate, username);
-      return json;
+      if(json.count > 0) {
+        const expirationDate = new Date(new Date().getTime() + 1000000);
+        saveDataToStorage(json.token, json.account.id, expirationDate, username);
+        return json;
+      }
+      else return null;
     })
     .catch((error) => {
       console.log("sigin fail *********************: " + error);
