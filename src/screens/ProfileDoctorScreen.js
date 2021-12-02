@@ -3,8 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
-  ImageBackground,
+  FlatList,
   Image,
   Animated,
 } from "react-native";
@@ -14,22 +13,71 @@ import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import COLORS from "../../assets/colors";
 import { AntDesign } from "@expo/vector-icons";
-import { EvilIcons } from "@expo/vector-icons";
 import AddFitlerComponent from "../components/common/AddFitlerComponent";
 import { getAllScheduleByDoctorId } from "../store/actions/schedule";
 import { formatDate, getDay } from "../utils/string-format";
 import { getAll, getRoomByID } from "../store/actions/room";
-
+import ServiceComponent from "../components/ServiceComponent";
+import {getAllByDoctorId} from "../store/actions/service"
  export default function ProfileDoctorScreen ({ route, navigation }) {
-  const [visible, setVisible] = React.useState(true);
   const [filter, setFilter] =  React.useState(false);
   const [getListFilter, setGetListFilter] = React.useState(false);
   const [listSchedule, setListSchedule] = React.useState([]);
   const [listRoom, setListRoom] = React.useState([]);
+  const [listService, setListService] =  React.useState([]);
   const {doctor} = route.params;
+  const [price, setPrice] = React.useState(0);
   const onBack = () => {
    navigation.navigate("AllDoctor");
   };
+
+  React.useEffect(() => {
+    getListService();
+    return () => {
+    };
+    },[]);
+
+    const getListService = () => {
+      getAllByDoctorId(doctor.id).then(res =>{
+        setListService(res);
+      })
+    }
+
+    let priceTemp = 0;
+    const setPriceService = (p) => {
+      setPrice(p);
+      priceTemp = p;
+    }
+
+    let registration = {};
+    const setRegistration = (res) => {
+      registration = res;
+    }
+    const gotoPayment = () =>{
+      navigation.navigate("payment", {
+        price: priceTemp,
+        registration: registration
+      });
+    }
+
+    const renderService = ({item}) =>{
+        return (
+          <ServiceComponent
+          name = {item.name}
+          description = {item.description}
+          price = {item.price}
+          serviceId = {item.id}
+          duration = {item.duration}
+          doctorId = {item.doctorId}
+          setPrice = {setPriceService}
+          setRegistration = {setRegistration}
+          gotoPayment = {gotoPayment}
+          nameDoctor = {doctor.fullname}
+         
+          />
+        )
+    }
+
 
   const openCalendar = () =>{
     getAllScheduleByDoctorId(doctor.id).then(res => {
@@ -50,19 +98,6 @@ import { getAll, getRoomByID } from "../store/actions/room";
    // await getListRoom();
     getScheduleByDateAndDoctor(date);
     cancelOpenCalendar();
-  }
-
-  const getAllListScheduleById = async() => {
-      
-      await getAllScheduleByDoctorId(doctor.id).then(res => {
-        if(res) setListSchedule(res);
-      })
-  }
-
-  const getListRoom = async() => {
-    await getAll().then(res => {
-      if(res) setListRoom(res);
-    })
   }
 
   const getScheduleByDateAndDoctor = async(date) => {
@@ -180,7 +215,8 @@ import { getAll, getRoomByID } from "../store/actions/room";
             <Text style={styles.txtPosition}>{doctor.department}</Text>
           </View>
           <View style={styles.body}>
-            <View
+           <View style = {{justifyContent:'center',  flexDirection: 'column'}}> 
+           <View
               style={{
                 justifyContent: "flex-start",
                 flexDirection: "row",
@@ -200,12 +236,12 @@ import { getAll, getRoomByID } from "../store/actions/room";
               <Ionicons name="school-outline" size={20} color="#FF5151" />
               <Text style={styles.txtBody}>{doctor.education}</Text>
             </View>
-          </View>
-          <View style={styles.btnContainer}>
+        </View>
+            <View style={styles.btnContainer}>
             <TouchableOpacity
               key="2"
               onPress={() => {
-                // navigation.navigate("Chat");
+                 alert("Hiện chức năng này chưa hoàn thiện!");
               }}
               onPressIn={onPressInBtn}
               onPressOut={onPressOutBtn}
@@ -252,6 +288,17 @@ import { getAll, getRoomByID } from "../store/actions/room";
               </Animated.View>
             </TouchableOpacity>
           </View>
+          </View>
+          <View style = {{marginTop: 50, padding: 10}}>
+            <Text style = {{fontWeight:'bold', marginLeft: 10}}>Dịch vụ</Text>
+            <View>
+            <FlatList
+            data = {listService}
+            renderItem = {renderService}
+            >
+            </FlatList>
+            </View>
+          </View>
         </View>
       </View>
 
@@ -270,7 +317,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     justifyContent: "center",
     flexDirection: "row",
-    top: "10%",
+    top: 20,
   },
 
   btnActionBtn: {
@@ -310,16 +357,16 @@ const styles = StyleSheet.create({
   profileBody: {
     borderRadius: 21,
     elevation: 3,
-    height: "60%",
-    width: "70%",
+    height: "100%",
+    width: "100%",
     backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 1,
+    // },
+    // shadowOpacity: 0.22,
+    // shadowRadius: 2.22,
   },
 
   txtBody: {
@@ -342,36 +389,38 @@ const styles = StyleSheet.create({
 
   txtName: {
     fontWeight: "600",
-    fontSize: 18,
+    fontSize: 17,
     lineHeight: 20,
   },
 
   txtPosition: {
     color: "#9597A1",
   },
+
   information: {
     // justifyContent:'flex-start',
     // flexDirection:'column',
     // position:'absolute',
-    top: "12%",
-    justifyContent: "center",
+    top: 10,
+    justifyContent: "flex-start",
+    marginLeft: 30,
     alignItems: "center",
   },
 
   body: {
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+
     // elevation: 3,
-    padding: 20,
-    top: "10%",
+    top: 20,
+    paddingLeft: 20
   },
 
   avatarContainer: {
     height: 100,
     width: 100,
-    alignSelf: "center",
+    // alignSelf: "center",
+    marginLeft: 15,
     position: "absolute",
-    top: "25%",
+    marginTop: 50,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -388,7 +437,7 @@ const styles = StyleSheet.create({
   },
 
   banner: {
-    height: "40%",
+    height: 100,
     width: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

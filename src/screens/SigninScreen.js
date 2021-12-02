@@ -11,30 +11,20 @@ import {
 
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import LinearGradient from 'react-native-linear-gradient';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import PhoneInput from "react-native-phone-number-input";
-import COLORS from "../../assets/colors";
 import { signin } from "../store/actions/account";
 import { getPatientById } from "../store/actions/patient";
 
 const SignInScreen = (props) => {
-
-    
-
-const [titleAlert, setTitleAlert] = useState("");
-const [isLogin, setIsLogin] = useState(false);
 const [phone, setPhone] = useState("");
 const [password, setPassword] = useState("");
 
 function checkLogin() {
-  console.log("press login");
   let username = phone;
   let pass = password;
   signin(username, pass).then((data) => {
     if (data.count == 1) {
-      console.log("login hear");
       sendOTP(data.account.id);
     } else {
       Alert.alert("Thông báo", "Đăng nhập không thành công!", [
@@ -72,7 +62,7 @@ const sendOTP = (id) => {
 
 
         if ( userName.length == 0 || password.length == 0 ) {
-            Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
+            Alert.alert('Lỗi đầu vào!', 'Số điện hoặc password không được để trống.', [
                 {text: 'Okay'}
             ]);
             return;

@@ -139,11 +139,11 @@ const HomeScreen = (props) => {
           <TouchableOpacity
             style={styles.bgBtnOnline}
             onPress={() => {
-              props.navigation.navigate("OnlineMedical");
+              props.navigation.navigate("DoctorOrder");
             }}
           >
             <View style={styles.viewTextPersonal}>
-              <Text style={styles.textPersonal}>Mua thuốc online</Text>
+              <Text style={styles.textPersonal}>Bác sĩ riêng</Text>
             </View>
             <Image
               style={styles.imgOption}

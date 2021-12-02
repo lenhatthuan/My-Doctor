@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet,  FlatList, AsyncStorage, Pressable} from 'react-native';
+import {View, Text, StyleSheet,  FlatList, AsyncStorage, Pressable, Image} from 'react-native';
 import HeaderFilterByDate from "../../common/HeaderFilterByDate";
 import STRING from '../../../utils/string';
 import COLORS from "../../../../assets/colors";
@@ -15,9 +15,9 @@ const ListBMIComponent = (props) =>{
 
     const [filter, setFilter] =  useState(false);
     const [listBMIStatic, setListBMIStatic] = useState();
-    const [listBMI, setListBMI] =  useState(false);
+    const [listBMI, setListBMI] =  useState([]);
     const [getListFilter, setGetListFilter] = useState(false);
-    const [dateFilter, setDateFilter] = useState(new Date());
+    const [isLoading, setIsloading] = useState(false);
 
     const openCalendar = () =>{
         setFilter(true);
@@ -37,6 +37,12 @@ const ListBMIComponent = (props) =>{
         setGetListFilter(true);
        
     }
+
+    useFocusEffect(
+        React.useCallback(() => {
+          setIsloading(checkList());
+        }, [])
+      );
     
     useEffect(() => {
         getAllListBMI();
@@ -55,6 +61,7 @@ const ListBMIComponent = (props) =>{
         let id = await AsyncStorage.getItem("id");
         await getAllBMI(id).then(bmi => {
             if(bmi) {
+                setIsloading(true);
                 setListBMI(bmi);
                 setListBMIStatic(bmi);
             }
@@ -62,6 +69,7 @@ const ListBMIComponent = (props) =>{
     }
 
     const onCancelFitler = () => {
+        setIsloading(true);
         setListBMI(listBMIStatic);
         setFilter(false);
     }
@@ -73,6 +81,7 @@ const ListBMIComponent = (props) =>{
             if(formatDate(bmiItem.createdAt) == formatDate(date))
                 bmiFilterSuccess.push(bmiItem);
         });
+        bmiFilterSuccess.length > 0 ? setIsloading(true): setIsloading(false);
         setListBMI(bmiFilterSuccess);
     }
 
@@ -118,6 +127,11 @@ const ListBMIComponent = (props) =>{
         )
     }
     
+    const checkList = () => {
+        if (listBMI.length == 0) 
+            return false;
+        return true;
+    }
 
     const onBack = () =>{
         props.navigation.navigate("BMIHistory");
@@ -131,12 +145,17 @@ const ListBMIComponent = (props) =>{
             />
             <View style = {styles.main}>
             <DateHistoryHeader />
-            <FlatList
-            data = {listBMI}
-            renderItem = {renderDate}
-            >
+            {isLoading ? (
+                <FlatList
+                data = {listBMI}
+                renderItem = {renderDate}
+                >
+                </FlatList>
+            ): null}
 
-            </FlatList>
+            {!isLoading ? (
+               <Image source = {require('../../../../assets/imgs/70780-no-result-found.gif')} style = {{height: '100%', width:'100%'}}/>
+            ): null}
             </View>
             <AddFitlerComponent
                     visible = {filter}

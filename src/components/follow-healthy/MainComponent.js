@@ -9,11 +9,6 @@ const MainComponent = props =>{
     const [heigh, setHeigh] = useState("0");
     const [weight, setWeight] = useState("0");
    
-    useEffect(() => {
-      // setHeigh(props.tall);
-      // setWeight(props.weigh);
-      });
-
       
     useFocusEffect(
       React.useCallback(() => {
