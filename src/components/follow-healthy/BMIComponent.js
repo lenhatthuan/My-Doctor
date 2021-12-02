@@ -14,7 +14,7 @@ const BMIComponent = (props) => {
       setIsAddModel(false);
 
     };
-
+    
     const goToHistory = () =>{
       props.goToHistory();
      

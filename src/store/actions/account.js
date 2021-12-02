@@ -49,6 +49,7 @@ const saveDataToStorage = (token, accountId, expirationDate, username) => {
   }
 };
 
+
 export const isLogin = () => {
   const accountData = AsyncStorage.getItem("accountData");
   if (!accountData) {

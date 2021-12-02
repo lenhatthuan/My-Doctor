@@ -11,14 +11,12 @@ const FollowHeathyScreen = props =>{
     const [goToHistoryBMI, setGotoHistoryBMI]=  useState(false);
     const [tall, setTall]=  useState("");
     const [weigh, setWeigh]=  useState("");
+    
     const redirectedToBMI = () =>{
-        console.log("flow BMI")
         props.navigation.navigate("BMIHistory");
     }
 
     const redirectedToHeart = () =>{
-        console.log("flow Heart")
-        // props.navigation.navigate("HeartHistory");
         props.navigation.navigate("ListHeart");
     }
 

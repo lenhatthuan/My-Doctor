@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet,  FlatList, AsyncStorage, Pressable} from 'react-native';
+import {View, Text, StyleSheet,  FlatList, AsyncStorage, Pressable, Image} from 'react-native';
 import HeaderFilterByDate from "../../common/HeaderFilterByDate";
 import STRING from '../../../utils/string';
 import COLORS from "../../../../assets/colors";
@@ -15,10 +15,23 @@ import { convertTitle, formatDate, formatDateTime, formatTime } from '../../../u
 const ListHeartComponent = (props) =>{
 
     const [filter, setFilter] =  useState(false);
-    const [listHeart, setListHeart] =  useState(false);
+    const [listHeart, setListHeart] =  useState([]);
     const [getListFilter, setGetListFilter] = useState(false);
     const [dateFilter, setDateFilter] = useState(new Date());
     const [listHeartStatic, setListHeartStatic] = useState();
+    const [isLoading, setIsloading] = useState(false);
+
+    useFocusEffect(
+        React.useCallback(() => {
+          setIsloading(checkList());
+        }, [])
+      );
+    
+      const checkList = () => {
+        if (listHeart.length == 0) 
+            return false;
+        return true;
+    }
 
     const openCalendar = () =>{
         setFilter(true);
@@ -29,6 +42,7 @@ const ListHeartComponent = (props) =>{
     }
 
     const onCancelFitler = () => {
+        setIsloading(true);
         setListHeart(listHeartStatic);
         setFilter(false);
     }
@@ -53,6 +67,7 @@ const ListHeartComponent = (props) =>{
         let id = await AsyncStorage.getItem("id");
         await getAllHeart(id).then(heart => {
             if(heart) {
+                setIsloading(true);
                 setListHeart(heart);
                 setListHeartStatic(heart);
             }
@@ -65,6 +80,7 @@ const ListHeartComponent = (props) =>{
             if(formatDate(bmiItem.createdAt) == formatDate(date))
             heartFilterSuccess.push(bmiItem);
         });
+        heartFilterSuccess.length > 0 ? setIsloading(true) : setIsloading(false);
         setListHeart(heartFilterSuccess);
     }
 
@@ -129,12 +145,14 @@ const ListHeartComponent = (props) =>{
             />
             <View style = {styles.main}>
             <DateHistoryHeader />
-            <FlatList
+           {isLoading ? ( <FlatList
             data = {listHeart}
             renderItem = {renderDate}
             >
 
-            </FlatList>
+            </FlatList>): null}
+
+            {!isLoading ? ( <Image source = {require('../../../../assets/imgs/not-found-heart.gif')} style = {{height: '100%', width: '100%'}}/>): null}
             </View>
             <AddFitlerComponent
                     visible = {filter}

@@ -17,9 +17,6 @@ import RecordScreen from "../screens/RecordScreen";
 
 import ProfileScreen from "../screens/ProfileScreen";
 import ChangePassScreen from "../screens/ChangePassScreen";
-
-import ContactScreen from "../screens/ContactScreen";
-
 import ScheduleScreen from "../screens/ScheduleScreen";
 
 import HistoryBMIComponent from "../components/follow-healthy/BMI/HistoryBMIComponent";
@@ -34,6 +31,8 @@ import ListHeartComponent from "../components/follow-healthy/heart/ListHeartComp
 import HistoryHeartComponent from "../components/follow-healthy/heart/HistoryHeartComponent";
 import DoctorScheduleScreen from "../screens/DoctorScheduleScreen";
 import LoadingScreen from "../screens/LoadingScreen";
+import PaymentScreen from "../screens/PaymentScreen";
+import DoctorOrderScreen from "../screens/DoctorOrderScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,9 +47,11 @@ function HomeNavigation() {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="OnlinePayment" component={OnlinePaymentScreen} />
       <Stack.Screen name="Guide" component={MedicalGuideScreen} />
-      <Stack.Screen name="OnlineMedical" component={OnlineMedicalScreen} />
+      {/* <Stack.Screen name="OnlineMedical" component={OnlineMedicalScreen} /> */}
+      <Stack.Screen name="DoctorOrder" component={DoctorOrderScreen}/>
       <Stack.Screen name="Record" component={RecordScreen} />
       <Stack.Screen name="Position" component={PositionScreen} />
+      <Stack.Screen name="FollowHeathy" component={FollowHeathyScreen} />
     </Stack.Navigator>
   );
 }
@@ -65,6 +66,7 @@ function ContactNavigation() {
        <Stack.Screen name="AllDoctor" component={AllDoctorScreen} />
        <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen}/>
       <Stack.Screen name = "doctor-schedule" component = {DoctorScheduleScreen} /> 
+      <Stack.Screen name="payment" component={PaymentScreen} />
     </Stack.Navigator>
   );
 }

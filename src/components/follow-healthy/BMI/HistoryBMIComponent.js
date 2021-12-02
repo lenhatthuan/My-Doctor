@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import {
-  Alert,
-  Modal,
   StyleSheet,
   Text,
   Pressable,
   View,
-  AsyncStorage,
+  AsyncStorage,Image
 } from "react-native";
 import STRING from "../../../utils/string";
 import HeaderBackComponent from "../../common/HeaderBackComponent";
@@ -36,7 +34,7 @@ const HistoryBMIComponent = (props) => {
 
   useEffect(() => {
     getAllListBMI();
-  });
+  }, []);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -80,7 +78,9 @@ const HistoryBMIComponent = (props) => {
         <View style={styles.mainComponent}>
           <MainComponent />
         </View>
-        <View style={styles.chartComponent}></View>
+        <View style={styles.chartComponent}>
+          <Image  source={require('../../../../assets/imgs/hi.gif')} style = {{height: '100%', width: '100%'}} />
+        </View>
 
         <View style={styles.historyComponent}>
           <View style={styles.detailDate}>
