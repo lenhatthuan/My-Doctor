@@ -15,18 +15,22 @@ import Feather from 'react-native-vector-icons/Feather';
 import PhoneInput from "react-native-phone-number-input";
 import { signin } from "../store/actions/account";
 import { getPatientById } from "../store/actions/patient";
+import LoadingComponent from '../components/common/LoadingComponent';
 
 const SignInScreen = (props) => {
 const [phone, setPhone] = useState("");
 const [password, setPassword] = useState("");
-
+const [isLoading, setIsLoading] = useState(false);
 function checkLogin() {
   let username = phone;
   let pass = password;
+  setIsLoading(true);
+  console.log("login")
   signin(username, pass).then((data) => {
     if (data.count == 1) {
       sendOTP(data.account.id);
     } else {
+        setIsLoading(false);
       Alert.alert("Thông báo", "Đăng nhập không thành công!", [
         {
           text: "OK",
@@ -53,6 +57,7 @@ const sendOTP = (id) => {
   //    'OTPAuth', {phone: phone, pass: password, patientId: id}
   // )
   getPatientById(id).then((result) => {
+       setIsLoading(false);
     props.navigation.navigate("BottomTab");
   });
 };
@@ -71,7 +76,9 @@ const sendOTP = (id) => {
     }
 
     return (
+      
       <View style={styles.container}>
+            <LoadingComponent visible = {isLoading} message = "Login..."/>
           <StatusBar backgroundColor='#009387' barStyle="light-content"/>
         <View style={styles.header}>
             <Text style={styles.text_header}>Welcome!</Text>
