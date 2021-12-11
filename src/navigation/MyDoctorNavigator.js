@@ -17,7 +17,7 @@ import RecordScreen from "../screens/RecordScreen";
 
 import ProfileScreen from "../screens/ProfileScreen";
 import ChangePassScreen from "../screens/ChangePassScreen";
-import ScheduleScreen from "../screens/ScheduleScreen";
+import ScheduleDepartmentScreen from "../screens/ScheduleDepartmentScreen";
 
 import HistoryBMIComponent from "../components/follow-healthy/BMI/HistoryBMIComponent";
 import ListBMIComponent from "../components/follow-healthy/BMI/ListBMIComponent";
@@ -33,6 +33,7 @@ import DoctorScheduleScreen from "../screens/DoctorScheduleScreen";
 import LoadingScreen from "../screens/LoadingScreen";
 import PaymentScreen from "../screens/PaymentScreen";
 import DoctorOrderScreen from "../screens/DoctorOrderScreen";
+import BookingDepartmentScreen from "../screens/BookingDepartmentScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -78,7 +79,8 @@ function BookingNavigation() {
         headerMode: "none",
       }}
     >
-      <Stack.Screen name="Schedule" component={ScheduleScreen} />
+      <Stack.Screen name="Schedule" component={ScheduleDepartmentScreen} />
+      <Stack.Screen name="BookingDepartment" component={BookingDepartmentScreen} />
       <Stack.Screen name="Position" component={PositionScreen} />
       <Stack.Screen name="Doctor" component={DoctorList}/>
       <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen}/>

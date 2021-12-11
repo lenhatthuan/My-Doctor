@@ -15,12 +15,12 @@ const DoctorServiceComponent = (props) => {
   const [duration, setDuration] = React.useState(0);
   React.useEffect(() => {
     getNameDoctor();
-  }, []);
+  });
 
 
   React.useEffect(() => {
     getDuration();
-  },[]);
+  });
 
   const updateExpired = () => {
     updateRegistration(props.id, props.name, "EXPIRED").then(res => {
