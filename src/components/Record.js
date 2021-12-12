@@ -23,21 +23,21 @@ export default function Record({ item, onPress }) {
         <Text style={{ color: "white" }}>
           {new Date(item.date).toLocaleDateString()}
         </Text>
-        <View style={{ flexDirection: "row-reverse" }}>
+        {/* <View style={{ flexDirection: "row-reverse" }}>
           <Icon
             containerStyle={{ marginLeft: 5 }}
             name="file-medical"
             type="font-awesome-5"
             color="white"
             onPress={() => onPress(item.fileStore)}
-          />
-          <Icon
-            name="capsules"
-            type="font-awesome-5"
-            color="white"
-            onPress={() => onPress(item.precription)}
-          />
-        </View>
+          /> */}
+        <Icon
+          name="capsules"
+          type="font-awesome-5"
+          color="white"
+          onPress={() => onPress(item.id)}
+        />
+        {/* </View> */}
       </View>
     </View>
   );

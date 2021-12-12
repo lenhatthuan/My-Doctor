@@ -46,7 +46,12 @@ export default function RecordScreen(props) {
           }
           data={data}
           renderItem={({ item }) => (
-            <Record item={item} onPress={(uri) => Linking.openURL(uri)} />
+            <Record
+              item={item}
+              onPress={(id) =>
+                props.navigation.navigate("RecordDetail", { recordId: id })
+              }
+            />
           )}
           keyExtractor={(item) => item.id}
         />

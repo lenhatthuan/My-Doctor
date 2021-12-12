@@ -14,6 +14,7 @@ import OnlineMedicalScreen from "../screens/OnlineMedicalScreen";
 import OnlinePaymentScreen from "../screens/OnlinePaymentScreen";
 import PositionScreen from "../screens/PositionScreen";
 import RecordScreen from "../screens/RecordScreen";
+import RecordDetailScreen from "../screens/RecordDetailScreen";
 
 import ProfileScreen from "../screens/ProfileScreen";
 import ChangePassScreen from "../screens/ChangePassScreen";
@@ -48,8 +49,9 @@ function HomeNavigation() {
       <Stack.Screen name="OnlinePayment" component={OnlinePaymentScreen} />
       <Stack.Screen name="Guide" component={MedicalGuideScreen} />
       {/* <Stack.Screen name="OnlineMedical" component={OnlineMedicalScreen} /> */}
-      <Stack.Screen name="DoctorOrder" component={DoctorOrderScreen}/>
+      <Stack.Screen name="DoctorOrder" component={DoctorOrderScreen} />
       <Stack.Screen name="Record" component={RecordScreen} />
+      <Stack.Screen name="RecordDetail" component={RecordDetailScreen} />
       <Stack.Screen name="Position" component={PositionScreen} />
       <Stack.Screen name="FollowHeathy" component={FollowHeathyScreen} />
     </Stack.Navigator>
@@ -63,9 +65,9 @@ function ContactNavigation() {
         headerMode: "none",
       }}
     >
-       <Stack.Screen name="AllDoctor" component={AllDoctorScreen} />
-       <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen}/>
-      <Stack.Screen name = "doctor-schedule" component = {DoctorScheduleScreen} /> 
+      <Stack.Screen name="AllDoctor" component={AllDoctorScreen} />
+      <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen} />
+      <Stack.Screen name="doctor-schedule" component={DoctorScheduleScreen} />
       <Stack.Screen name="payment" component={PaymentScreen} />
     </Stack.Navigator>
   );
@@ -80,8 +82,8 @@ function BookingNavigation() {
     >
       <Stack.Screen name="Schedule" component={ScheduleScreen} />
       <Stack.Screen name="Position" component={PositionScreen} />
-      <Stack.Screen name="Doctor" component={DoctorList}/>
-      <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen}/>
+      <Stack.Screen name="Doctor" component={DoctorList} />
+      <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen} />
     </Stack.Navigator>
   );
 }
@@ -107,7 +109,7 @@ function HealthyNavigation() {
       <Stack.Screen name="BMIHistory" component={HistoryBMIComponent} />
       <Stack.Screen name="BMI" component={BMIComponent} />
       <Stack.Screen name="ListBMI" component={ListBMIComponent} />
-      <Stack.Screen name = "ListHeart" component = {ListHeartComponent}/>
+      <Stack.Screen name="ListHeart" component={ListHeartComponent} />
       <Stack.Screen name="HeartHistory" component={HistoryHeartComponent} />
     </Stack.Navigator>
   );
@@ -187,7 +189,6 @@ function BottomTabNavigation() {
   );
 }
 
-
 export default function MyDoctorNavigation() {
   return (
     <Stack.Navigator
@@ -195,7 +196,7 @@ export default function MyDoctorNavigation() {
         headerMode: "none",
       }}
     >
-      <Stack.Screen name = "loading" component = {LoadingScreen}/>
+      <Stack.Screen name="loading" component={LoadingScreen} />
       <Stack.Screen name="Signin" component={SigninScreen} />
       <Stack.Screen name="BottomTab" component={BottomTabNavigation} />
       <Stack.Screen name="Signup" component={SignupScreen} />
