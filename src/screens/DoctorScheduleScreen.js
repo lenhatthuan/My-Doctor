@@ -43,7 +43,6 @@ export default function DoctorScheduleScreen({ route, navigation }) {
   React.useEffect(() => {}, []);
 
   const convertSession = (session) => {
-    console.log("session" + session);
     if (session == "AM") return "SÁNG";
     return "CHIỀU";
   };
@@ -57,7 +56,6 @@ export default function DoctorScheduleScreen({ route, navigation }) {
         formatDate(p.date) == formatDate(datePosition)
         && p.state == NUMBER_STATE.NOT_USE
       ) {
-        console.log("flase:");
         not = false;
       }
     });
@@ -67,9 +65,7 @@ export default function DoctorScheduleScreen({ route, navigation }) {
   const createPositionByAPI = (name, session, number, lPosition) => {
     AsyncStorage.getItem("patientData").then((res) => {
       const id = JSON.parse(res).patientId;
-      console.log("number new: " + number);
       let dateConvert = convertStringToDate(date);
-      console.log("date convrert: " + dateConvert);
       if (isNotExitPosition(id, name, dateConvert, lPosition)) {
         createPosition(id, name, dateConvert, number).then((res) => {
           if (res)
@@ -132,7 +128,6 @@ export default function DoctorScheduleScreen({ route, navigation }) {
   };
 
   const alertAddPosition = (roomId, sesstion) => {
-    console.log("schedule doctor: " + schedule);
     const name = getNameByIdRoom(roomId);
     Alert.alert(
       "Đặt lịch khám bác sĩ " + doctor.fullname,

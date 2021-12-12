@@ -1,173 +1,183 @@
-import React from 'react';
-import {  Image,View, Text, StyleSheet, FlatList, AsyncStorage } from 'react-native';
-import { getAllByPatientId } from '../store/actions/doctor-registration';
-import DoctorServiceComponent from '../components/DoctorServiceComponent'
-import { SafeAreaView } from 'react-navigation';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
+import React from "react";
+import {
+  Image,
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  AsyncStorage,
+} from "react-native";
+import { getAllByPatientId } from "../store/actions/doctor-registration";
+import DoctorServiceComponent from "../components/DoctorServiceComponent";
+import { SafeAreaView } from "react-navigation";
+import ScrollableTabView from "react-native-scrollable-tab-view";
 import TabBar from "react-native-underline-tabbar";
+import { getDoctor } from "../store/actions/doctor";
+import DoctorRegistrationComponent from "../components/common/DoctorRegistrationComponent";
 
-const DoctorOrderScreen = props =>{
+const DoctorOrderScreen = (props) => {
+  const [option, setOption] = React.useState(0);
+  const [isVisible, setIsVisible] = React.useState(false);
+  const [namePatient, setNamePatient] = React.useState("name");
+  const [list, setList] = React.useState([]);
+  const [doctors, setDoctors] = React.useState([]); // id doctor
+  React.useEffect(() => {
+    getListService();
+    getNameUser();
+  }, []);
 
-    const [option, setOption] = React.useState(0);
-    const [isVisible, setIsVisible] = React.useState(false);
-    const [namePatient, setNamePatient] = React.useState("name");
-    const [list, setList] = React.useState([]);
+  const getListService = () => {
+    AsyncStorage.getItem("id").then((res) => {
+      getAllByPatientId(res).then((res) => {
+        setList(res);
+      });
+    });
+  };
 
-    React.useEffect(() => {
-        getListService();
-        getNameUser();
-      },[list]);
+  React.useEffect(() => {
+    getDoctorByRegistration();
+  }, []);
 
+  const getNameUser = () => {
+    let patient = null;
+    AsyncStorage.getItem("patientData").then((res) => {
+      patient = JSON.parse(res);
+      setNamePatient(patient.fullName);
+    });
+  };
 
+  const getDoctorByRegistration = () => {
+    let lDoctor = [];
+    AsyncStorage.getItem("id").then((res) => {
+     getAllByPatientId(res).then(res => {
+        let resDoctors = res;
+        resDoctors.forEach(resD => {
+          if(resD.status == "CONFIRMED") lDoctor.push(resD);
+        });
+        setDoctors(lDoctor);
+     })
+    });
+  }
 
-    const getListService = () => {
-        AsyncStorage.getItem("id").then(res => {
-            getAllByPatientId(res).then(res => {
-                setList(res);
-            })
-        })
-    }
-
-    const getNameUser = () => {
-        let patient = null;
-          AsyncStorage.getItem("patientData").then((res) => {
-            patient = JSON.parse(res);
-            setNamePatient(patient.fullName);
-          });
-
-    }
-
-    const renderData = ({item}) => {
-        return (
-           <View style = {{marginTop: 10, width: '80%', marginLeft:'10%', marginRight:'10%', flex:1}}>
-              <DoctorServiceComponent
-            name = {item.name}
-            doctorId = {item.doctorId}
-            namePatient = {namePatient}
-            status = {item.status}
-            serviceId = {item.serviceId}
-            updatedAt = {item.updatedAt}
-            id = {item.id}
-            />
-           </View>
-        )
-    }
-
-    const Page1 = ({label}) => (
-        <View style={styles.container}>
-          <Text style={styles.welcome}>
-            {label}
-          </Text>
-          <Text style={styles.instructions}>
-            To get started, edit index.ios.js
-          </Text>
-          <Text style={styles.instructions}>
-            Press Cmd+R to reload,{'\n'}
-            Cmd+D or shake for dev menu
-          </Text>
-        </View>
-    );
-
-    const Page2 = ({label}) => {
-      return (
-        <View style={styles.container}>
-          <Text style={styles.welcome}>
-            {label}
-          </Text>
-         
-        <FlatList
-            data = {list}
-            renderItem = {renderData}
-            
-            >
-            </FlatList>
-     
-        </View>
-    );}
-
-
+  const renderDoctor = ({item}) =>{
     return (
+      <View
+        style={{
+          marginTop: 10,
+          width: "80%",
+          marginLeft: "10%",
+          marginRight: "10%",
+          flex: 1,
+        }}
+      >
+       <DoctorRegistrationComponent
+        doctorId = {item.doctorId}
+       />
+      </View>
+    );
+  }
 
+  const renderData = ({ item }) => {
+    return (
+      <View
+        style={{
+          marginTop: 10,
+          width: "80%",
+          marginLeft: "10%",
+          marginRight: "10%",
+          flex: 1,
+        }}
+      >
+        <DoctorServiceComponent
+          name={item.name}
+          doctorId={item.doctorId}
+          namePatient={namePatient}
+          status={item.status}
+          serviceId={item.serviceId}
+          updatedAt={item.updatedAt}
+          id={item.id}
+        />
+      </View>
+    );
+  };
 
-        <SafeAreaView style = {styles.screen}>
-         
-           {/* <Text>
-             Doctor order screen 
-            </Text>
-           <View style = {{width: "100%"}}>
-           <FlatList
-            data = {list}
-            renderItem = {renderData}
-            >
-            </FlatList>
-           </View>
-         */}
+  const Page1 = ({ label }) => (
+    <View style={styles.container}>
+      <Text style={styles.welcome}>{label}</Text>
+      {doctors.length > 0 ? (<FlatList data = {doctors} renderItem = {renderDoctor}></FlatList>):
+       null
+      }
+      {doctors.length == 0 ?  (<Image source = {require('../../assets/imgs/68395-data-not-found.gif')} style = {{width: '90%', height: '100%'}}/>):null}
+    </View>
+  );
 
-{/* <Tab value={option} onChange={(e) => setOption(e)} style = {{height: 20}}>
-        <Tab.Item title="Bác sĩ riêng" />
-        <Tab.Item title="Dịch vụ của tôi" />
-      </Tab>
-      <TabView value={option} onChange={setOption}>
-        <TabView.Item style={{ width: "100%" }}>
-         <View  style={{ width: "100%" }}>
-             <Text>Test</Text>
-         </View>
-        </TabView.Item>
-        <TabView.Item style={{ width: "100%", flex: 1}}>
-        <View  style={{ width: "100%" , flex: 1}}>
-        <FlatList
-            data = {list}
-            renderItem = {renderData}
-            >
-            </FlatList>
-        </View>
-        </TabView.Item>
-      </TabView> */}
+  const Page2 = ({ label }) => {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>{label}</Text>
 
-  
-    <View style={[styles.container, {paddingTop: 20}]}>
-          <ScrollableTabView
-              tabBarActiveTextColor="#53ac49"
-              renderTabBar={() => <TabBar underlineColor="#53ac49" />}>
-            <Page1 tabLabel={{label: "Bác sĩ riêng"}}/>
-            <View tabLabel = {{label: "Dịch vụ"}} style={{width: '100%', justifyContent: 'center',  flex: 1, flexDirection:'column'}}>
-         {list != null ?  <FlatList
-            data = {list}
-            renderItem = {renderData}
-            >
-            </FlatList>: null}
-            {list == null ?  <Image style = {{height: '100%', width: '90%'}} source = {require('../../assets/imgs/70780-no-result-found.gif')}/>: null}
-        </View>
-          </ScrollableTabView>
+        <FlatList data={list} renderItem={renderData}></FlatList>
+      </View>
+    );
+  };
 
-        </View>
-
-        </SafeAreaView>
-    )
-}
+  return (
+    <SafeAreaView style={styles.screen}>
+      <View style={[styles.container, { paddingTop: 20, width: "100%" }]}>
+        <ScrollableTabView
+          tabBarActiveTextColor="#53ac49"
+          renderTabBar={() => <TabBar underlineColor="#53ac49" />}
+        >
+          <Page1 tabLabel={{ label: "Bác sĩ riêng" }} />
+          <View
+            tabLabel={{ label: "Dịch vụ" }}
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              flex: 1,
+              flexDirection: "column",
+            }}
+          >
+            {list != null ? (
+              <FlatList data={list} renderItem={renderData}></FlatList>
+            ) : null}
+            {list == null ? (
+              <Image
+                style={{ height: "100%", width: "90%" }}
+                source={require("../../assets/imgs/70780-no-result-found.gif")}
+              />
+            ) : null}
+          </View>
+        </ScrollableTabView>
+      </View>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        width: '100%'
-    }, container: {
-        flex: 1,
-        width: '100%',
-        // justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-      },
-      welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-      },
-      instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-        fontSize: 28,
-      },
-})
+  screen: {
+    flex: 1,
+    width: "100%",
+    backgroundColor:'red'
+  },
+  container: {
+    flex: 1,
+    width: "100%",
+    // justifyContent: 'center',
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10,
+  },
+  instructions: {
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5,
+    fontSize: 28,
+  },
+});
 
 export default DoctorOrderScreen;

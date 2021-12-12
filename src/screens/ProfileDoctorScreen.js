@@ -19,6 +19,7 @@ import { formatDate, getDay } from "../utils/string-format";
 import { getAll, getRoomByID } from "../store/actions/room";
 import ServiceComponent from "../components/ServiceComponent";
 import {getAllByDoctorId} from "../store/actions/service"
+import AddCanlandarComponent from "../components/common/AddCanlandarComponent";
  export default function ProfileDoctorScreen ({ route, navigation }) {
   const [filter, setFilter] =  React.useState(false);
   const [getListFilter, setGetListFilter] = React.useState(false);
@@ -78,12 +79,34 @@ import {getAllByDoctorId} from "../store/actions/service"
         )
     }
 
+  const getMonth = () => {
+    return new Date().getMonth() + 1;
+  }
+
+  const getYear = () => {
+    return new Date().getFullYear();
+  }
+
+  const getDate = (date) => {
+    return getYear() + "-" + getMonth() + "-" + date;
+  }
+
+  const setListDate = (schedule) => {
+    let list = [];
+    schedule.forEach(date => {
+      if(date.day <= 31) list.push(getDate(date.day));
+    })
+    return list;
+  }
+
 
   const openCalendar = () =>{
     getAllScheduleByDoctorId(doctor.id).then(res => {
-      if(res) setListSchedule(res);
+      if(res) {setListSchedule(res); setListDate(res);}
+      
       getAll().then(res => {
         if(res) setListRoom(res);
+       
         setFilter(true);
       })
 
@@ -100,10 +123,14 @@ import {getAllByDoctorId} from "../store/actions/service"
     cancelOpenCalendar();
   }
 
+  const getDayCalandar = (date) => {
+    return date.substring(8, 10);
+  }
+
   const getScheduleByDateAndDoctor = async(date) => {
     let lSchedule = [];
     listSchedule.forEach(item => {
-      if (item.day == getDay(date)) {
+      if (item.day == getDayCalandar(date)) {
         lSchedule.push(item);
       }
     })
@@ -123,10 +150,6 @@ import {getAllByDoctorId} from "../store/actions/service"
 
   }
 
-  React.useEffect(() => {
-    // setDoctorProfile(props.navigation.getParam("doctor"));
-      // getAllListScheduleByDoctorId();
-      })
 
   const setDoctorProfile = (item) => {
    // setDoctor(item);
@@ -212,7 +235,7 @@ import {getAllByDoctorId} from "../store/actions/service"
           </View>
           <View style={styles.information}>
             <Text style={styles.txtName}>{doctor.fullname}</Text>
-            <Text style={styles.txtPosition}>{doctor.department}</Text>
+            <Text style={styles.txtPosition}>Chuyên khoa {doctor.department}</Text>
           </View>
           <View style={styles.body}>
            <View style = {{justifyContent:'center',  flexDirection: 'column'}}> 
@@ -302,13 +325,21 @@ import {getAllByDoctorId} from "../store/actions/service"
         </View>
       </View>
 
-      <AddFitlerComponent
+      {/* <AddFitlerComponent
                     visible = {filter}
                     onCancel = {cancelOpenCalendar}
                     setDateFilter = {callbackFunction}
                     onPress = {getFilter}
                     onCancelFilter ={onCancelFitler}
-            />
+            /> */}
+          <AddCanlandarComponent
+          visible = {filter}
+          onCancel = {cancelOpenCalendar}
+          setDateFilter = {callbackFunction}
+          onPress = {getFilter}
+          onCancelFilter ={onCancelFitler}
+          listDate = {setListDate(listSchedule)}
+          />
     </View>
   );
 };

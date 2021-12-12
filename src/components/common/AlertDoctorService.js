@@ -18,7 +18,7 @@ const AlertDoctorService = (props) => {
   };
 
   const getDateEnd = () => {
-    return addDays(currentDate, 30);
+    return addDays(currentDate, props.duration);
   }
   //const {service} = props.service;
   const addRegistration = () => {

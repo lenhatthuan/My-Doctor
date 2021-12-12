@@ -10,11 +10,13 @@ import {
   TouchableOpacity,
   AsyncStorage,
   Pressable,
+  ScrollView
 } from "react-native";
 import COLORS from "../../assets/colors";
 import { isLogin, logout } from "../store/actions/account";
 import { AntDesign } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
+import LoadingComponent from "../components/common/LoadingComponent";
 
 const HomeScreen = (props) => {
   function gotoLogin() {
@@ -23,6 +25,11 @@ const HomeScreen = (props) => {
 
   const [checkIsLogin, setCheckIsLogin] = useState(false);
   const [patientName, setPatientName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  setTimeout(() => {
+    
+  }, 1000);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -45,10 +52,12 @@ const HomeScreen = (props) => {
     logout();
     setCheckIsLogin(false);
     setPatientName("");
+    props.navigation.navigate("Signin");
   }
 
   return (
     <SafeAreaView style={styles.screen}>
+      {/* <LoadingComponent visible = {isLoading} message = "Logout..."/> */}
       <View style={styles.background}>
         <ImageBackground
           style={styles.imgBg}
@@ -104,6 +113,7 @@ const HomeScreen = (props) => {
           </View>
         </TouchableOpacity>
       </View>
+     
       <View style={styles.mainOption} disabled={!checkIsLogin}>
         <View style={styles.viewMainOption}>
           <TouchableOpacity

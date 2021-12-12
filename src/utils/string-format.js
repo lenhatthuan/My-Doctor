@@ -9,6 +9,11 @@ export const formatDate = (date) =>{
     return Moment(date).format('DD/MM/YYYY');
 }
 
+export const formatDateCalandar = (date) =>{
+  Moment.locale('en');
+  return Moment(date).format('YYYY-MM-DD');
+}
+
 export const formatDateTime = (date) => {
     Moment.locale('en');
     return Moment(date).format('DD/MM/YYYY, h:mm:ss a');
@@ -67,11 +72,15 @@ export const changeColorDoctorRegistration = (status) => {
   
 
  export const getTime = (dateRegistration, duration) => {
-   let timeDuration = duration*30*24*60*60;
    let currentDate = new Date();
    let date = new Date(dateRegistration);
     date.setDate(date.getDate() + duration);
     let time = date.getTime()/1000 - currentDate.getTime()/1000;
     return time;
-   console.log("duration: " + time + " date new:" + date + " ,datecurrent: " + new Date(currentDate));
+ }
+
+
+ export const convertTimeSelected = (time) => {
+   if (time == "Sáng") return "7:00 AM";
+   return "2:00 PM"; //Chiều
  }
