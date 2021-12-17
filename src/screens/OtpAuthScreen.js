@@ -1,16 +1,18 @@
 import * as React from "react";
 import {
   View,
-  SafeAreaView,
   Text,
-  Button,
+  TouchableOpacity,
+  TextInput,
+  StatusBar,
   Alert,
-  ImageBackground,
 } from "react-native";
 import OTPInputView from "react-native-otp-input";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import { FIREBASE_CONFIG } from "../../environment/enviroment";
-import { styles, image } from "../theme/style";
+import * as Animatable from "react-native-animatable";
+import Feather from "react-native-vector-icons/Feather";
+import { styles } from "../theme/nonLogin";
 import * as firebase from "firebase";
 import { signup, forgotpass } from "../store/actions/account";
 import { getPatientById } from "../store/actions/patient";
@@ -93,32 +95,82 @@ export default function OTPAuth(props) {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ImageBackground
-        source={{
-          uri: image.password,
-        }}
-        style={styles.container}
+    <View style={styles.container}>
+      <FirebaseRecaptchaVerifierModal
+        ref={recaptchaVerifier}
+        firebaseConfig={FIREBASE_CONFIG}
+        //attemptInvisibleVerification={true}
+      />
+      <StatusBar backgroundColor="#009387" barStyle="light-content" />
+      <View style={styles.header}>
+        <Text style={styles.text_header}>Xác thực bằng mã OTP!</Text>
+      </View>
+      <Animatable.View
+        animation="fadeInUpBig"
+        useNativeDriver={false}
+        style={[
+          styles.footer,
+          {
+            backgroundColor: "white",
+          },
+        ]}
       >
-        <FirebaseRecaptchaVerifierModal
-          ref={recaptchaVerifier}
-          firebaseConfig={FIREBASE_CONFIG}
-          //attemptInvisibleVerification={true}
-        />
-        <Text style={styles.title}>Xác thực bằng mã OTP</Text>
         <OTPInputView
           style={{ height: 100 }}
           pinCount={6}
           code={verificationCode}
           onCodeFilled={(text) => setVerificationCode(text)}
-          codeInputFieldStyle={styles.underlineStyleBase}
-          codeInputHighlightStyle={styles.underlineStyleHighLighted}
         />
-        <View style={styles.space}>
-          <Button title="Xác thực" onPress={authOTP} />
-          <Button title="Gửi lại mã" onPress={sendOTP} />
+
+        <View style={styles.button}>
+          <TouchableOpacity
+            style={[
+              styles.signIn,
+              {
+                borderColor: "#009387",
+                borderWidth: 1,
+                marginTop: 15,
+                backgroundColor: "#009387",
+              },
+            ]}
+            onPress={authOTP}
+          >
+            <Text
+              style={[
+                styles.textSign,
+                {
+                  color: "#fff",
+                },
+              ]}
+            >
+              Xác thực
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={sendOTP}
+            style={[
+              styles.signIn,
+              {
+                borderColor: "#009387",
+                borderWidth: 1,
+                marginTop: 15,
+              },
+            ]}
+          >
+            <Text
+              style={[
+                styles.textSign,
+                {
+                  color: "#009387",
+                },
+              ]}
+            >
+              Gửi lại mã
+            </Text>
+          </TouchableOpacity>
         </View>
-      </ImageBackground>
-    </SafeAreaView>
+      </Animatable.View>
+    </View>
   );
 }
