@@ -63,3 +63,17 @@ export const updateProfile = async (
     .then((result) => console.log(result.message))
     .catch((err) => console.log(err));
 };
+
+export const updateToken = async (id, token) => {
+  return await fetch(BASE_URL + "/patient/token/notification", {
+    method: "PUT",
+    headers: header,
+    body: JSON.stringify({
+      id: id,
+      token: token,
+    }),
+  })
+    .then((response) => response.json())
+    .then((result) => console.log(result.message))
+    .catch((err) => console.log(err));
+};

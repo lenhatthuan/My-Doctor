@@ -27,8 +27,8 @@ export default function OTPAuth(props) {
   const recaptchaVerifier = React.useRef();
   const [verificationCode, setVerificationCode] = React.useState();
   const [verificationId, setVerificationId] = React.useState();
-  const data = props.navigation.getParam("data", "");
-  const action = props.navigation.getParam("action", "");
+  const data = props.route.params.data;
+  const action = props.route.params.action;
 
   const showMessage = (id = null) => {
     Alert.alert("Xác thực thành công", "", [
