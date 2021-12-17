@@ -8,19 +8,19 @@ export default function SignupScreen(props) {
     isAccount(data.phone)
       .then((result) => {
         result === 0
-          ? Alert.alert(" thành công", "", [
-              {
-                text: "OK",
-                onPress: () =>
-                  props.navigation.navigate("OTPAuth", {
-                    data: data,
-                    action: "signup",
-                  }),
-              },
-            ])
+          ? props.navigation.navigate("OTPAuth", {
+              data: data,
+              action: "signup",
+            })
           : Alert.alert("Tài khoản đã được đăng ký");
       })
       .catch((err) => console.error(err));
   };
-  return <NavOTP check={check} name="Đăng ký" />;
+  return (
+    <NavOTP
+      check={check}
+      name="Đăng ký"
+      back={() => props.navigation.goBack()}
+    />
+  );
 }

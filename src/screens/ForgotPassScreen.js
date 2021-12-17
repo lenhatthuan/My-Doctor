@@ -8,19 +8,19 @@ export default function ForgotPass(props) {
     isAccount(data.phone)
       .then((result) => {
         result !== 0
-          ? Alert.alert(" thành công", "", [
-              {
-                text: "OK",
-                onPress: () =>
-                  props.navigation.navigate("OTPAuth", {
-                    data: data,
-                    action: "forgot-pass",
-                  }),
-              },
-            ])
+          ? props.navigation.navigate("OTPAuth", {
+              data: data,
+              action: "forgot-pass",
+            })
           : Alert.alert("Không tồn tại tài khoản này");
       })
       .catch((err) => console.error(err));
   };
-  return <NavOTP check={check} name="Quên mật khẩu" />;
+  return (
+    <NavOTP
+      check={check}
+      name="Quên mật khẩu"
+      back={() => props.navigation.goBack()}
+    />
+  );
 }
