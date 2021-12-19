@@ -12,11 +12,11 @@ import {
   Pressable,
   ScrollView
 } from "react-native";
-import COLORS from "../../assets/colors";
-import { isLogin, logout } from "../store/actions/account";
+import COLORS from "../../../assets/colors";
+import { isLogin, logout } from "../../store/actions/account";
 import { AntDesign } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
-import LoadingComponent from "../components/common/LoadingComponent";
+import LoadingComponent from "../../components/common/LoadingComponent";
 
 const HomeScreen = (props) => {
   function gotoLogin() {
@@ -61,7 +61,7 @@ const HomeScreen = (props) => {
       <View style={styles.background}>
         <ImageBackground
           style={styles.imgBg}
-          source={require("../../assets/imgs/bg.jpg")}
+          source={require("../../../assets/imgs/bg.jpg")}
         >
           <View style={styles.viewTextName}>
             <Text style={styles.txtHello}>Xin chào !</Text>
@@ -92,7 +92,7 @@ const HomeScreen = (props) => {
         >
           <Image
             style={styles.imgPersonal}
-            source={require("../../assets/imgs/h3.png")}
+            source={require("../../../assets/imgs/h3.png")}
           />
           <View style={styles.viewTextPersonal}>
             <Text style={styles.textPersonal}>Theo dõi sức khỏe</Text>
@@ -106,7 +106,7 @@ const HomeScreen = (props) => {
         >
           <Image
             style={styles.imgPersonal}
-            source={require("../../assets/imgs/record.png")}
+            source={require("../../../assets/imgs/record.png")}
           />
           <View style={styles.viewTextPersonal}>
             <Text style={styles.textPersonal}>Hồ sơ bệnh án</Text>
@@ -127,7 +127,7 @@ const HomeScreen = (props) => {
             </View>
             <Image
               style={styles.imgOption}
-              source={require("../../assets/imgs/h1.png")}
+              source={require("../../../assets/imgs/h1.png")}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -138,7 +138,7 @@ const HomeScreen = (props) => {
           >
             <Image
               style={styles.imgOption}
-              source={require("../../assets/imgs/h2.png")}
+              source={require("../../../assets/imgs/h2.png")}
             />
             <View style={styles.viewTextPersonal}>
               <Text style={styles.textPersonal}>Theo dõi STT khám bệnh</Text>
@@ -157,7 +157,7 @@ const HomeScreen = (props) => {
             </View>
             <Image
               style={styles.imgOption}
-              source={require("../../assets/imgs/online.png")}
+              source={require("../../../assets/imgs/online.png")}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -168,7 +168,7 @@ const HomeScreen = (props) => {
           >
             <Image
               style={styles.imgOption}
-              source={require("../../assets/imgs/payment.png")}
+              source={require("../../../assets/imgs/payment.png")}
             />
             <View style={styles.viewTextPersonal}>
               <Text style={styles.textPersonal}>Thanh toán online</Text>

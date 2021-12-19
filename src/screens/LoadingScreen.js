@@ -28,7 +28,7 @@ class LoadingScreen extends Component {
                 duration: 1200,
                 useNativeDriver: true,
                 
-            })
+            }),
         ]).start(() => {
             loadingSpinner:true
         })

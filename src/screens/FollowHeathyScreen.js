@@ -33,7 +33,7 @@ const FollowHeathyScreen = props =>{
         let arrBMI = "";
         getAllBMI(id).then(bmi => {
             if(bmi) {
-                arrBMI = JSON.parse(bmi);
+                arrBMI = bmi;
             setTall(arrBMI[arrBMI.length-1].tall);
             setWeigh(arrBMI[arrBMI.length-1].weigh);
             } else {

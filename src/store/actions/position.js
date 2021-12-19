@@ -47,7 +47,7 @@ export const createPosition = async (patientId, room, date, number) => {
     body: JSON.stringify({
       patientId: patientId,
       room: room,
-      date: date,
+      date: new Date(date),
       number: number,
     }),
   })

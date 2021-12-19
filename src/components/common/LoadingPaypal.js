@@ -1,11 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, Modal } from 'react-native';
-const LoadingComponent = props => {
+const LoadingPaypal = props => {
     const [modalVisible, setModalVisible] = React.useState(false);
 
     React.useEffect(() => {
         setModalVisible(props.visible);
     })
+
+    setTimeout(() => {
+        setModalVisible(false);
+        props.setPageVisible(false);
+    }, 3000)
 
     return (
         <Modal
@@ -14,7 +19,7 @@ const LoadingComponent = props => {
         visible={modalVisible}>
            <View style = {styles.screen}>
            <View style = {{justifyContent:'center'}}>
-           <Image source={require('../../../assets/imgs/loadingColor.gif')} style = {{width: 100, height: 100}}/>
+           <Image source={require('../../../assets/imgs/loadingHeathy.gif')} style = {{width: 200, height: 200}}/>
            <Text style = {{color: 'white', fontWeight:'bold', fontSize: 18, textAlign:'center', letterSpacing: 1, lineHeight: 40}}>{props.message}</Text>
            </View>
            </View>
@@ -28,8 +33,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         //backgroundColor: "rgba(52, 52, 52, 0.5)",
-        backgroundColor: "#009387",
+        // backgroundColor: "#009387",
+        backgroundColor: 'white'
     }
 })
 
-export default LoadingComponent;
+export default LoadingPaypal;

@@ -82,5 +82,11 @@ export const changeColorDoctorRegistration = (status) => {
 
  export const convertTimeSelected = (time) => {
    if (time == "Sáng") return "7:00 AM";
-   return "2:00 PM"; //Chiều
+   return "14:00"; //Chiều
  }
+
+export const convertMoneyFromVNToUS = (money) => {
+  console.log("money: " + money*0.000043);
+  return money*0.000043;
+
+}

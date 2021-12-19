@@ -31,6 +31,26 @@ const SignInScreen = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState();
 
+  function checkLogin() {
+    let username = phone;
+    let pass = password;
+    setIsLoading(true);
+    signin(username, pass).then((data) => {
+      if (data.count == 1) {
+        sendOTP(data.account.id);
+      } else {
+          setIsLoading(false);
+        Alert.alert("Thông báo", "Đăng nhập không thành công!", [
+          {
+            text: "OK",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
+        ]);
+      }
+    });
+  }
+
   useEffect(() => {
     Permissions.getAsync(Permissions.NOTIFICATIONS)
       .then((statusObj) => {

@@ -40,6 +40,7 @@ const BMIComponent = (props) => {
             <View style = {styles.btnBody}>
               <Pressable style = {styles.buttonBody} 
                onPress={() => {
+                 console.log("add")
                 setIsAddModel(true);
               }}
               ><Text style = {styles.txtBtnBody}>{STRING.buttonUpdate}</Text></Pressable>

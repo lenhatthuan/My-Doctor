@@ -7,19 +7,18 @@ import {
   Image,
   Animated,
 } from "react-native";
-import HeaderBackComponent from "../components/common/HeaderBackComponent";
+import HeaderBackComponent from "../../../components/common/HeaderBackComponent";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import COLORS from "../../assets/colors";
+import COLORS from "../../../../assets/colors";
 import { AntDesign } from "@expo/vector-icons";
-import AddFitlerComponent from "../components/common/AddFitlerComponent";
-import { getAllScheduleByDoctorId } from "../store/actions/schedule";
-import { formatDate, getDay } from "../utils/string-format";
-import { getAll, getRoomByID } from "../store/actions/room";
-import ServiceComponent from "../components/ServiceComponent";
-import {getAllByDoctorId} from "../store/actions/service"
-import AddCanlandarComponent from "../components/common/AddCanlandarComponent";
+import { getAllScheduleByDoctorId } from "../../../store/actions/schedule";
+import { formatDate, getDay } from "../../../utils/string-format";
+import { getAll, getRoomByID } from "../../../store/actions/room";
+import ServiceComponent from "../../../components/ServiceComponent";
+import {getAllByDoctorId} from "../../../store/actions/service"
+import AddCanlandarComponent from "../../../components/common/AddCanlandarComponent";
  export default function ProfileDoctorScreen ({ route, navigation }) {
   const [filter, setFilter] =  React.useState(false);
   const [getListFilter, setGetListFilter] = React.useState(false);
@@ -28,6 +27,7 @@ import AddCanlandarComponent from "../components/common/AddCanlandarComponent";
   const [listService, setListService] =  React.useState([]);
   const {doctor} = route.params;
   const [price, setPrice] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(false);
   const onBack = () => {
    navigation.navigate("AllDoctor");
   };
@@ -39,8 +39,10 @@ import AddCanlandarComponent from "../components/common/AddCanlandarComponent";
     },[]);
 
     const getListService = () => {
+      setIsLoading(true);
       getAllByDoctorId(doctor.id).then(res =>{
-        setListService(res);
+        setIsLoading(false);
+        if(res) setListService(res);
       })
     }
 
@@ -170,7 +172,7 @@ import AddCanlandarComponent from "../components/common/AddCanlandarComponent";
 }
 
   const titleHeader = "Tư vấn bác sĩ";
-  const imageBanner = require("../../assets/imgs/banner-profile.png");
+  const imageBanner = require("../../../../assets/imgs/banner-profile.png");
 //   const name = props.doctor.fullname;
 
   // Initial scale value of 1 means no scale applied initially.
@@ -315,6 +317,34 @@ import AddCanlandarComponent from "../components/common/AddCanlandarComponent";
           <View style = {{marginTop: 50, padding: 10}}>
             <Text style = {{fontWeight:'bold', marginLeft: 10}}>Dịch vụ</Text>
             <View>
+
+            {isLoading == true ? (
+              <View
+                style={{
+                  justifyContent: "center",
+                  width: "100%",
+                  alignContent: "center",
+                  alignItems: "center",
+                  padding: 10
+                }}
+              >
+                <Image
+                  source={require("../../../../assets/imgs/loadComponent.gif")}
+                  style={{ width: 50, height: 50 }}
+                />
+              </View>
+            ) : null}
+            {listService.length == 0 && isLoading == false ? (
+              <View
+                style={{
+                  justifyContent: "center",
+                  width: "100%",
+                  alignContent: "center",
+                  alignItems: "center",
+                  padding: 20
+                }}
+              ><Text style = {{textAlign: 'center', fontWeight:'bold', color: '#000957'}}>Không có dịch vụ cho bác sĩ này</Text></View>
+            ) : null}
             <FlatList
             data = {listService}
             renderItem = {renderService}

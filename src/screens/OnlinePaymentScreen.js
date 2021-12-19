@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Pressable } from 'react-native';
 const OnlinePaymentScreen = props =>{
     return (
         <View style = {styles.screen}>
@@ -7,6 +7,7 @@ const OnlinePaymentScreen = props =>{
            <Text>
                ONLINE PAYMENT SCREEN
             </Text>
+          
            </View>
         </View>
     )
@@ -21,3 +22,4 @@ const styles = StyleSheet.create({
 })
 
 export default OnlinePaymentScreen;
+

@@ -10,33 +10,50 @@ import {
 } from "../utils/string-format";
 import { getServiceById } from "../store/actions/service";
 import { updateRegistration } from "../store/actions/doctor-registration";
+import { LogBox } from 'react-native';
+
 const DoctorServiceComponent = (props) => {
   const [doctorName, setDoctorName] = React.useState("Name");
-  const [duration, setDuration] = React.useState(0);
+  const [duration, setDuration] = React.useState(100);
+  const durationP = props.duration;
+
+
+  // React.useEffect(() => {
+  //   getDuration();
+  //   console.log("duration 1")
+  //   // return () => {
+  //   //   setDuration(0); // This worked for me
+  //   // };
+    
+  // },[]);
+
+  LogBox.ignoreLogs([
+    'ReactNativeFiberHostComponent: Calling getNode() on the ref of an Animated component is no longer necessary. You can now directly use the ref instead. This method will be removed in a future release.',
+  ]);
+  
   React.useEffect(() => {
+    setDuration(props.duration);
     getNameDoctor();
+    //setDoctorName(props.nameDoctor);
   });
 
-
-  React.useEffect(() => {
-    getDuration();
-  });
 
   const updateExpired = () => {
     updateRegistration(props.id, props.name, "EXPIRED").then(res => {
-        // push notification
       })
   }
 
   const getDuration = () => {
     getServiceById(props.serviceId).then(res => {
         setDuration(res.duration);
+        console.log("duration: ew")
     })
   }
 
   const getNameDoctor = () => {
     getDoctor(props.doctorId).then((res) => {
       if (res) setDoctorName(res.fullname);
+      console.log("name")
     });
   };
 
@@ -45,6 +62,7 @@ const DoctorServiceComponent = (props) => {
   }
 
   return (
+    
     <View style={styles.screen}>
       <View style={{ width: "100%" }}>
         <Text style={{ fontWeight: "bold" }}>{props.name}</Text>
@@ -75,8 +93,8 @@ const DoctorServiceComponent = (props) => {
       </View>
      {props.status == 'CONFIRMED' ?  <CountDown
         until={getTimeSeconds()}
-        onFinish={() => alert('finished')}
-        onPress={() => getTimeSeconds()}
+        onFinish={() => updateExpired()}
+        // onPress={() => getTimeSeconds()}
         digitStyle={{backgroundColor: '#FFF'}}
         digitTxtStyle={{color: '#1CC625'}}
         digitStyle={{backgroundColor: '#FFF', borderWidth: 2, borderColor: '#1CC625'}}

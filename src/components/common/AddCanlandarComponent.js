@@ -8,31 +8,33 @@ import DateTimePicker  from "@react-native-community/datetimepicker";
 import { formatDateCalandar } from '../../utils/string-format';
 const AddCanlandarComponent = props =>{
     const [modalVisible, setModalVisible] = useState(false);
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(formatDateCalandar(new Date()));
     const [show, setShow] = useState(false);
     const [platform, setPlatform] = useState('default')
     const isDatePickerVisible = true;
-    const [listSelectedDate, setListSelectedDate] = useState();
-
+    const [listSelectedDate, setListSelectedDate] = useState([{}]);
+    // const current  = {}
       const [listSelectedDateStatic, setListSelectedDateStatic] = useState();
     const [dateSelected, setDateSelected] = useState({
         dateSelected: ''
         });
     
     const listSatic = () => {
+        let currentDate = formatDateCalandar(new Date());
         let list = [{}];
+        list[currentDate] = {selected: true, marked: true, dotColor: '#FF9300'};
         let date = props.listDate;
         date.forEach(day => {
             list[day]={selected: true, marked: true, dotColor: '#FF9300'};
         })
-        return list;
+       setListSelectedDate(list);
+       return list;
     }
 
     useEffect(() => {
         listSatic();
         // setListSelectedDate(listSatic);
         // setListSelectedDateStatic(listSatic);
-        console.log("date: " + props.listDate);
     })
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -65,11 +67,11 @@ const AddCanlandarComponent = props =>{
         console.log("change date" + day.dateString)
         setDate(day.dateString);
     //    setCurrentDate(date.dateString);
-        setDateSelected({
-        dateSelected:{[day.dateString]:{selected: true}}
-        });
+        // setDateSelected({
+        // dateSelected:{[day.dateString]:{selected: true}}
+        // });
 
-        setListSelectedDate({[day.dateString]:{selected: true}, ...listSelectedDateStatic})
+        // setListSelectedDate({[day.dateString]:{selected: true}, ...listSelectedDateStatic})
     }
 
 

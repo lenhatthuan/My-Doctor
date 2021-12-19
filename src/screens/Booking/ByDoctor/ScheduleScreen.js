@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Tab, TabView, BottomSheet } from "react-native-elements";
-import DoctorList from "../components/Doctor";
-import DepartmentList from "../components/Department";
-import Booking from "../components/Booking";
-import { styles } from "../theme/style";
-import { Icon } from "react-native-elements";
+import DoctorList from "../../../components/Doctor";
+import DepartmentList from "../../../components/Department";
+import Booking from "../../../components/Booking";
+import { styles } from "../../../theme/style";
 
 export default function ScheduleScreen(props) {
   const [option, setOption] = useState(0);

@@ -1,8 +1,17 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, Pressable} from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons'; 
 const DateHistoryHeart = (props) =>{
     return (
-        <View style = {styles.main}> 
+        <View>
+            <View style = {{justifyContent: 'flex-end', flexDirection:'row', margin: 5}}>
+               <Pressable style = {{marginRight: 10}} onPress={() => {
+                   console.log("send")
+               }}>
+               <MaterialIcons name="send" size={24} color="black" />
+               </Pressable>
+            </View>
+            <View style = {styles.main}> 
             <View style = {styles.component}>
                 <Text style = {styles.txtComponent}>{props.time}</Text>
             </View>
@@ -15,6 +24,7 @@ const DateHistoryHeart = (props) =>{
             <View style = {styles.component}>
                 <Text style = {styles.txtStatus}>{props.status}</Text>
             </View>
+        </View>
         </View>
     )
 }
