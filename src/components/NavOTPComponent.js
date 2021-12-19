@@ -7,15 +7,16 @@ import {
   StatusBar,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import Feather from "react-native-vector-icons/Feather";
+import { Icon } from "react-native-elements";
 import PhoneInput, { isValidNumber } from "react-native-phone-number-input";
-import { styles } from "../theme/nonLogin";
+import { styles } from "../theme/basic";
 import LoadingComponent from "./common/LoadingComponent";
 
 export default function NavOTPSreen({ check, name, back }) {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [secure, setSecure] = useState(true);
 
   return (
     <View style={styles.container}>
@@ -26,7 +27,6 @@ export default function NavOTPSreen({ check, name, back }) {
       </View>
       <Animatable.View
         animation="fadeInUpBig"
-        useNativeDriver={false}
         style={[
           styles.footer,
           {
@@ -72,19 +72,19 @@ export default function NavOTPSreen({ check, name, back }) {
           Mật khẩu {name === "Quên mật khẩu" && "mới"}
         </Text>
         <View style={styles.action}>
-          <Feather name="lock" color="#009387" size={20} />
           <TextInput
             placeholder="Password"
             placeholderTextColor="#666666"
-            style={[
-              styles.textInput,
-              {
-                color: "#009387",
-              },
-            ]}
-            secureTextEntry={true}
+            style={styles.textInput}
+            secureTextEntry={secure}
             autoCapitalize="none"
             onChangeText={(text) => setPassword(text)}
+          />
+          <Icon
+            name={secure ? "eye-with-line" : "eye"}
+            type="entypo"
+            color="#009387"
+            onPress={() => setSecure(!secure)}
           />
         </View>
 
@@ -96,7 +96,6 @@ export default function NavOTPSreen({ check, name, back }) {
               {
                 borderColor: "#009387",
                 borderWidth: 1,
-                marginTop: 15,
                 backgroundColor: "#009387",
               },
             ]}

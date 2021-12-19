@@ -9,13 +9,12 @@ import {
 } from "react-native";
 import OTPInputView from "react-native-otp-input";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
-import { FIREBASE_CONFIG } from "../../environment/enviroment";
+import { FIREBASE_CONFIG } from "../../../environment/enviroment";
 import * as Animatable from "react-native-animatable";
-import Feather from "react-native-vector-icons/Feather";
-import { styles } from "../theme/nonLogin";
+import { styles } from "../../theme/basic";
 import * as firebase from "firebase";
-import { signup, forgotpass } from "../store/actions/account";
-import { getPatientById } from "../store/actions/patient";
+import { signup, forgotpass } from "../../store/actions/account";
+import { getPatientById } from "../../store/actions/patient";
 
 try {
   if (FIREBASE_CONFIG.apiKey) {
@@ -25,7 +24,7 @@ try {
   firebase.app();
 }
 
-export default function OTPAuth(props) {
+export default function OTPAuthScreen(props) {
   const recaptchaVerifier = React.useRef();
   const [verificationCode, setVerificationCode] = React.useState();
   const [verificationId, setVerificationId] = React.useState();
@@ -107,7 +106,6 @@ export default function OTPAuth(props) {
       </View>
       <Animatable.View
         animation="fadeInUpBig"
-        useNativeDriver={false}
         style={[
           styles.footer,
           {
@@ -116,7 +114,7 @@ export default function OTPAuth(props) {
         ]}
       >
         <OTPInputView
-          style={{ height: 100 }}
+          style={{ height: 150 }}
           pinCount={6}
           code={verificationCode}
           onCodeFilled={(text) => setVerificationCode(text)}
@@ -129,7 +127,6 @@ export default function OTPAuth(props) {
               {
                 borderColor: "#009387",
                 borderWidth: 1,
-                marginTop: 15,
                 backgroundColor: "#009387",
               },
             ]}

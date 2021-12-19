@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Alert } from "react-native";
-import NavOTP from "../components/NavOTPComponent";
-import { isAccount } from "../store/actions/account";
+import NavOTP from "../../components/NavOTPComponent";
+import { isAccount } from "../../store/actions/account";
 
 export default function SignupScreen(props) {
   const check = (data) => {

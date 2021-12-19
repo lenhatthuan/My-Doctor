@@ -57,4 +57,6 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
+  captcha: { fontSize: 30, letterSpacing: -5 },
+  captcha_background: { width: 120, alignItems: "center" },
 });

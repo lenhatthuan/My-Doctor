@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Alert } from "react-native";
-import NavOTP from "../components/NavOTPComponent";
-import { isAccount } from "../store/actions/account";
+import NavOTP from "../../components/NavOTPComponent";
+import { isAccount } from "../../store/actions/account";
 
-export default function ForgotPass(props) {
+export default function ForgotPassScreen(props) {
   const check = (data) => {
     isAccount(data.phone)
       .then((result) => {

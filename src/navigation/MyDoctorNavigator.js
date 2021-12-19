@@ -1,12 +1,13 @@
 import React from "react";
+import { Icon } from "react-native-elements";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import SignupScreen from "../screens/SignupScreen";
-import ForgotPassScreen from "../screens/ForgotPassScreen";
-import OtpAuthScreen from "../screens/OtpAuthScreen";
-import SigninScreen from "../screens/SigninScreen";
+import SignupScreen from "../screens/nonLogin/SignupScreen";
+import ForgotPassScreen from "../screens/nonLogin/ForgotPassScreen";
+import OtpAuthScreen from "../screens/nonLogin/OtpAuthScreen";
+import SigninScreen from "../screens/nonLogin/SigninScreen";
 
 import HomeScreen from "../screens/HomeScreen";
 import MedicalGuideScreen from "../screens/MedicalGuideScreen";
@@ -16,8 +17,10 @@ import PositionScreen from "../screens/PositionScreen";
 import RecordScreen from "../screens/RecordScreen";
 import RecordDetailScreen from "../screens/RecordDetailScreen";
 
-import ProfileScreen from "../screens/ProfileScreen";
-import ChangePassScreen from "../screens/ChangePassScreen";
+import ProfileScreen from "../screens/personal/ProfileScreen";
+import ChangeProfileScreen from "../screens/personal/ChangeProfileScreen";
+import ChangePassScreen from "../screens/personal/ChangePassScreen";
+
 import ScheduleDepartmentScreen from "../screens/ScheduleDepartmentScreen";
 
 import HistoryBMIComponent from "../components/follow-healthy/BMI/HistoryBMIComponent";
@@ -82,7 +85,10 @@ function BookingNavigation() {
       }}
     >
       <Stack.Screen name="Schedule" component={ScheduleDepartmentScreen} />
-      <Stack.Screen name="BookingDepartment" component={BookingDepartmentScreen} />
+      <Stack.Screen
+        name="BookingDepartment"
+        component={BookingDepartmentScreen}
+      />
       <Stack.Screen name="Position" component={PositionScreen} />
       <Stack.Screen name="Doctor" component={DoctorList} />
       <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen} />
@@ -117,18 +123,18 @@ function HealthyNavigation() {
   );
 }
 
-function PersonalNavigation() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerMode: "none",
-      }}
-    >
-      <Stack.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="ChangePass" component={ChangePassScreen} />
-    </Stack.Navigator>
-  );
-}
+// function PersonalNavigation() {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerMode: "none",
+//       }}
+//     >
+//       <Stack.Screen name="ChangeProfile" component={ChangeProfileScreen} />
+//       <Stack.Screen name="ChangePass" component={ChangePassScreen} />
+//     </Stack.Navigator>
+//   );
+// }
 
 function BottomTabNavigation() {
   return (
@@ -178,8 +184,8 @@ function BottomTabNavigation() {
         }}
       />
       <Tab.Screen
-        name="PersonalNavigation"
-        component={PersonalNavigation}
+        name="Profile"
+        component={ProfileScreen}
         options={{
           tabBarLabel: "Cá nhân",
           tabBarIcon: ({ color }) => (
@@ -200,10 +206,12 @@ export default function MyDoctorNavigation() {
     >
       <Stack.Screen name="loading" component={LoadingScreen} />
       <Stack.Screen name="Signin" component={SigninScreen} />
-      <Stack.Screen name="BottomTab" component={BottomTabNavigation} />
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="ForgotPass" component={ForgotPassScreen} />
       <Stack.Screen name="OTPAuth" component={OtpAuthScreen} />
+      <Stack.Screen name="BottomTab" component={BottomTabNavigation} />
+      <Stack.Screen name="ChangeProfile" component={ChangeProfileScreen} />
+      <Stack.Screen name="ChangePass" component={ChangePassScreen} />
     </Stack.Navigator>
   );
 }

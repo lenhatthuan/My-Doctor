@@ -10,12 +10,12 @@ import {
 import * as Animatable from "react-native-animatable";
 import Feather from "react-native-vector-icons/Feather";
 import PhoneInput from "react-native-phone-number-input";
-import { signin } from "../store/actions/account";
-import { getPatientById, updateToken } from "../store/actions/patient";
-import LoadingComponent from "../components/common/LoadingComponent";
+import { signin } from "../../store/actions/account";
+import { getPatientById, updateToken } from "../../store/actions/patient";
+import LoadingComponent from "../../components/common/LoadingComponent";
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
-import { styles } from "../theme/nonLogin";
+import { styles } from "../../theme/basic";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => {
@@ -133,7 +133,6 @@ const SignInScreen = (props) => {
       </View>
       <Animatable.View
         animation="fadeInUpBig"
-        useNativeDriver={false}
         style={[
           styles.footer,
           {
