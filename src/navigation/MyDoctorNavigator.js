@@ -21,7 +21,7 @@ import ProfileScreen from "../screens/personal/ProfileScreen";
 import ChangeProfileScreen from "../screens/personal/ChangeProfileScreen";
 import ChangePassScreen from "../screens/personal/ChangePassScreen";
 
-import ScheduleDepartmentScreen from "../screens/ScheduleDepartmentScreen";
+import ScheduleDepartmentScreen from "../screens/Booking/ByDepartment/ScheduleDepartmentScreen";
 
 import HistoryBMIComponent from "../components/follow-healthy/BMI/HistoryBMIComponent";
 import ListBMIComponent from "../components/follow-healthy/BMI/ListBMIComponent";

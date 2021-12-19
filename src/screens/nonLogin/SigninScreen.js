@@ -14,7 +14,6 @@ import { signin } from "../../store/actions/account";
 import { getPatientById, updateToken } from "../../store/actions/patient";
 import LoadingComponent from "../../components/common/LoadingComponent";
 import * as Notifications from "expo-notifications";
-import * as Permissions from "expo-permissions";
 import { styles } from "../../theme/basic";
 
 Notifications.setNotificationHandler({
@@ -39,7 +38,7 @@ const SignInScreen = (props) => {
       if (data.count == 1) {
         sendOTP(data.account.id);
       } else {
-          setIsLoading(false);
+        setIsLoading(false);
         Alert.alert("Thông báo", "Đăng nhập không thành công!", [
           {
             text: "OK",
@@ -50,24 +49,29 @@ const SignInScreen = (props) => {
       }
     });
   }
+  const registerForPushNotificationsAsync = async () => {
+    let token;
+    if (Constants.isDevice) {
+      const { status: existingStatus } =
+        await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if (existingStatus !== "granted") {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== "granted") {
+        console.log("Failed to get push token for push notification!");
+        return;
+      }
+      token = (await Notifications.getExpoPushTokenAsync()).data;
+    } else {
+      console.log("Must use physical device for Push Notifications");
+    }
+    return token;
+  };
 
   useEffect(() => {
-    Permissions.getAsync(Permissions.NOTIFICATIONS)
-      .then((statusObj) => {
-        if (statusObj.status !== "granted")
-          return Permissions.askAsync(Permissions.NOTIFICATIONS);
-        return statusObj;
-      })
-      .then((statusObj) => {
-        if (statusObj.status !== "granted")
-          throw new Error("Permission not granted");
-      })
-      .then(() => Notifications.getExpoPushTokenAsync())
-      .then((response) => setToken(response.data))
-      .catch((err) => null);
-  }, []);
-
-  useEffect(() => {
+    registerForPushNotificationsAsync().then((token) => setToken(token));
     const receivedSubscription = Notifications.addNotificationReceivedListener(
       (notification) => {
         console.log("Notification Received!");
