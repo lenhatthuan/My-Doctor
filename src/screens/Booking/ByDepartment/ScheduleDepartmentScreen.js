@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import DepartmentList from '../components/Department';
+import DepartmentList from '../../../components/Department';
 const ScheduleDepartmentScreen = props =>{
     return (
         <View style = {styles.screen}>

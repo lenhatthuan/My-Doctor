@@ -15,3 +15,8 @@ export const convertStringToDate = (date) => {
     return new Date(from[2], from[1] - 1, from[0])
 }
 
+
+export const compareDateBookingByDepartment = (date1, date2) => {
+    
+}
+

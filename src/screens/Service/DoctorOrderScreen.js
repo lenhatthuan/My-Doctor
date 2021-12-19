@@ -7,32 +7,68 @@ import {
   FlatList,
   AsyncStorage,
 } from "react-native";
-import { getAllByPatientId } from "../store/actions/doctor-registration";
-import DoctorServiceComponent from "../components/DoctorServiceComponent";
+import { getAllByPatientId } from "../../store/actions/doctor-registration";
+import DoctorServiceComponent from "../../components/DoctorServiceComponent";
 import { SafeAreaView } from "react-navigation";
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import TabBar from "react-native-underline-tabbar";
-import { getDoctor } from "../store/actions/doctor";
-import DoctorRegistrationComponent from "../components/common/DoctorRegistrationComponent";
+import DoctorRegistrationComponent from "../../components/common/DoctorRegistrationComponent";
+import { getAllService } from "../../store/actions/service";
+import { getAll } from "../../store/actions/doctor";
+import { LogBox } from 'react-native';
 
 const DoctorOrderScreen = (props) => {
   const [option, setOption] = React.useState(0);
   const [isVisible, setIsVisible] = React.useState(false);
   const [namePatient, setNamePatient] = React.useState("name");
   const [list, setList] = React.useState([]);
+  const [services, setServices] = React.useState([]);
   const [doctors, setDoctors] = React.useState([]); // id doctor
+  const [doctorsAll, setDoctorsAll] = React.useState([]); // id doctor
   React.useEffect(() => {
-    getListService();
+    // getListReg();
     getNameUser();
   }, []);
 
-  const getListService = () => {
-    AsyncStorage.getItem("id").then((res) => {
-      getAllByPatientId(res).then((res) => {
-        setList(res);
+
+  LogBox.ignoreLogs([
+    "ReactNativeFiberHostComponent: Calling getNode() on the ref of an Animated component is no longer necessary. You can now directly use the ref instead. This method will be removed in a future release.",
+  ]);
+  
+  const getListReg = () => {
+  
+    getAllService().then(res => {
+      setServices(res);
+      AsyncStorage.getItem("id").then((res) => {
+        getAllByPatientId(res).then((res) => {
+          setList(res);
+        });
       });
-    });
+    })
+   
   };
+
+  const getDuration = (id) => {
+    let duration = 0;
+    services.forEach(res => {
+      if(res.id == id) {
+        duration = res.duration;
+      }
+    })
+    console.log("duration: " + duration);
+    return duration;
+  }
+
+  const getNameDoctor = (id) => {
+    let name = "";
+    doctorsAll.forEach(res => {
+      if(res.id == id) {
+        name = res.fullname;
+        console.log("doctorId: " + id);
+      }
+    })
+    return name;
+  }
 
   React.useEffect(() => {
     getDoctorByRegistration();
@@ -48,15 +84,20 @@ const DoctorOrderScreen = (props) => {
 
   const getDoctorByRegistration = () => {
     let lDoctor = [];
-    AsyncStorage.getItem("id").then((res) => {
-     getAllByPatientId(res).then(res => {
-        let resDoctors = res;
-        resDoctors.forEach(resD => {
-          if(resD.status == "CONFIRMED") lDoctor.push(resD);
-        });
-        setDoctors(lDoctor);
-     })
-    });
+    getAll().then(res => {
+      setDoctorsAll(res);
+      AsyncStorage.getItem("id").then((res) => {
+        getAllByPatientId(res).then(res => {
+           let resDoctors = res;
+           resDoctors.forEach(resD => {
+             if(resD.status == "CONFIRMED") lDoctor.push(resD);
+           });
+           setDoctors(lDoctor);
+           getListReg();
+        })
+       });
+    })
+   
   }
 
   const renderDoctor = ({item}) =>{
@@ -91,11 +132,13 @@ const DoctorOrderScreen = (props) => {
         <DoctorServiceComponent
           name={item.name}
           doctorId={item.doctorId}
+          nameDoctor = {getNameDoctor(item.doctorId)}
           namePatient={namePatient}
           status={item.status}
           serviceId={item.serviceId}
           updatedAt={item.updatedAt}
           id={item.id}
+          duration = {getDuration(item.serviceId)}
         />
       </View>
     );
@@ -107,7 +150,7 @@ const DoctorOrderScreen = (props) => {
       {doctors.length > 0 ? (<FlatList data = {doctors} renderItem = {renderDoctor}></FlatList>):
        null
       }
-      {doctors.length == 0 ?  (<Image source = {require('../../assets/imgs/68395-data-not-found.gif')} style = {{width: '90%', height: '100%'}}/>):null}
+      {doctors.length == 0 ?  (<Image source = {require('../../../assets/imgs/68395-data-not-found.gif')} style = {{width: '90%', height: '100%'}}/>):null}
     </View>
   );
 
@@ -120,6 +163,14 @@ const DoctorOrderScreen = (props) => {
       </View>
     );
   };
+
+  const listConfirmed = (list) => {
+    let listcom = [];
+    list.forEach(l => {
+      if(l.status == "CONFIRMED") listcom.push(l);
+    })
+    return listcom;
+  }
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -139,12 +190,12 @@ const DoctorOrderScreen = (props) => {
             }}
           >
             {list != null ? (
-              <FlatList data={list} renderItem={renderData}></FlatList>
+              <FlatList data={listConfirmed(list)} renderItem={renderData}></FlatList>
             ) : null}
             {list == null ? (
               <Image
                 style={{ height: "100%", width: "90%" }}
-                source={require("../../assets/imgs/70780-no-result-found.gif")}
+                source={require("../../../assets/imgs/70780-no-result-found.gif")}
               />
             ) : null}
           </View>

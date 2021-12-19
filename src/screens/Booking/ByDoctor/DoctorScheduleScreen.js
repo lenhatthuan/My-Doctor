@@ -9,16 +9,15 @@ import {
   AsyncStorage,
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import HeaderBackComponent from "../components/common/HeaderBackComponent";
-import { getRoomByID } from "../store/actions/room";
+import HeaderBackComponent from "../../../components/common/HeaderBackComponent";
 // import {COLORS} from "../../assets/colors"
-import { formatDate, formatTime } from "../utils/string-format";
+import { formatDate, formatDateTime, formatTime } from "../../../utils/string-format";
 import {
   getMaxPositionByDateAndRoom,
   createPosition,
   getAll,
-} from "../store/actions/position";
-import { convertStringToDate } from "../utils/convert-date";
+} from "../../../store/actions/position";
+import { convertStringToDate } from "../../../utils/convert-date";
 export default function DoctorScheduleScreen({ route, navigation }) {
   const { schedule, room, doctor, date } = route.params;
   const [lAllPosition, setLAllposition] = React.useState([]);
@@ -47,13 +46,26 @@ export default function DoctorScheduleScreen({ route, navigation }) {
     return "CHIỀU";
   };
 
+  const convertTimeSelected = (session) => {
+    if (session == "AM") return "7:00 AM";
+    return "14:00"; //Chiều
+  }
+
+  const dateBooking = (dateP, session) => {
+    let dateConvert = convertStringToDate(dateP);
+    const time = convertTimeSelected(session);
+    dateConvert.setHours(time.split(" ")[0].split(":")[0]);
+    dateConvert.setMinutes(time.split(" ")[0].split(":")[1]);
+    return dateConvert;
+  };
+
   const isNotExitPosition = (id, roomName, datePosition, lPosition) => {
     let not = true;
     lPosition.forEach((p) => {
       if (
         p.patientId == id &&
         p.room == roomName &&
-        formatDate(p.date) == formatDate(datePosition)
+        formatDateTime(p.date) == formatDateTime(datePosition)
         && p.state == NUMBER_STATE.NOT_USE
       ) {
         not = false;
@@ -65,7 +77,7 @@ export default function DoctorScheduleScreen({ route, navigation }) {
   const createPositionByAPI = (name, session, number, lPosition) => {
     AsyncStorage.getItem("patientData").then((res) => {
       const id = JSON.parse(res).patientId;
-      let dateConvert = convertStringToDate(date);
+      let dateConvert = dateBooking(date, session);
       if (isNotExitPosition(id, name, dateConvert, lPosition)) {
         createPosition(id, name, dateConvert, number).then((res) => {
           if (res)

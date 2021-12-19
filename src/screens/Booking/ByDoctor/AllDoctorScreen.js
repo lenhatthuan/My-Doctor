@@ -9,8 +9,8 @@ import {
   Pressable 
 } from "react-native";
 import { Avatar, SearchBar } from "react-native-elements";
-import { styles } from "../theme/style";
-import { getAll } from "../store/actions/doctor";
+import { styles } from "../../../theme/style";
+import { getAll } from "../../../store/actions/doctor";
 import { SafeAreaView } from "react-navigation";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 

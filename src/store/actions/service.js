@@ -33,3 +33,15 @@ export const getServiceById = async(id) => {
     return null;
   }
 }
+
+
+export const getAllService = async(id) => {
+  try {
+    const response = await fetch(BASE_URL );
+    const json = await response.json();
+    return json.service;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+}

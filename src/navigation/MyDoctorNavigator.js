@@ -9,7 +9,7 @@ import ForgotPassScreen from "../screens/nonLogin/ForgotPassScreen";
 import OtpAuthScreen from "../screens/nonLogin/OtpAuthScreen";
 import SigninScreen from "../screens/nonLogin/SigninScreen";
 
-import HomeScreen from "../screens/HomeScreen";
+import HomeScreen from "../screens/Home/HomeScreen";
 import MedicalGuideScreen from "../screens/MedicalGuideScreen";
 import OnlineMedicalScreen from "../screens/OnlineMedicalScreen";
 import OnlinePaymentScreen from "../screens/OnlinePaymentScreen";
@@ -27,17 +27,17 @@ import HistoryBMIComponent from "../components/follow-healthy/BMI/HistoryBMIComp
 import ListBMIComponent from "../components/follow-healthy/BMI/ListBMIComponent";
 import FollowHeathyScreen from "../screens/FollowHeathyScreen";
 import BMIComponent from "../components/follow-healthy/BMIComponent";
-import ContactDetailScreen from "../screens/ContactDetailScreen";
-import ProfileDoctorScreen from "../screens/ProfileDoctorScreen";
+import ContactDetailScreen from "../screens/Contact/ContactDetailScreen";
+import ProfileDoctorScreen from "../screens/Booking/ByDoctor/ProfileDoctorScreen";
 import DoctorList from "../components/Doctor";
-import AllDoctorScreen from "../screens/AllDoctorScreen";
+import AllDoctorScreen from "../screens/Booking/ByDoctor/AllDoctorScreen";
 import ListHeartComponent from "../components/follow-healthy/heart/ListHeartComponent";
 import HistoryHeartComponent from "../components/follow-healthy/heart/HistoryHeartComponent";
-import DoctorScheduleScreen from "../screens/DoctorScheduleScreen";
+import DoctorScheduleScreen from "../screens/Booking/ByDoctor/DoctorScheduleScreen";
 import LoadingScreen from "../screens/LoadingScreen";
-import PaymentScreen from "../screens/PaymentScreen";
-import DoctorOrderScreen from "../screens/DoctorOrderScreen";
-import BookingDepartmentScreen from "../screens/BookingDepartmentScreen";
+import PaymentScreen from "../screens/Service/PaymentScreen";
+import DoctorOrderScreen from "../screens/Service/DoctorOrderScreen";
+import BookingDepartmentScreen from "../screens/Booking/ByDepartment/BookingDepartmentScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

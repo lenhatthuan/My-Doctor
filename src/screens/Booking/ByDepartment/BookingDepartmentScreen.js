@@ -11,14 +11,17 @@ import {
   Image,
 } from "react-native";
 import { Calendar } from "react-native-calendars";
-import { getRoomByDepartment } from "../store/actions/room";
-import { createPosition, getAll } from "../store/actions/position";
+import { getRoomByDepartment } from "../../../store/actions/room";
+import { createPosition, getAll } from "../../../store/actions/position";
 import {
   convertTimeSelected,
   formatDateTime,
   formatDateCalandar,
-} from "../utils/string-format";
-import ErrorAlert from "../components/common/ErrorAlertComponent";
+} from "../../../utils/string-format";
+import ErrorAlert from "../../../components/common/ErrorAlertComponent";
+import SuccessAlert from "../../../components/common/SuccessAlertComponent";
+import HeaderReloadComponent from "../../../components/common/HeaderReloadComponent";
+import LoadingPageComponent from "../../../components/common/LoadingPageComponent";
 
 const BookingDepartmentScreen = (props) => {
   const [department, setDepartment] = React.useState("");
@@ -31,8 +34,9 @@ const BookingDepartmentScreen = (props) => {
   const [lAllPosition, setLAllposition] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isErrorAlert, setIsErrorAlert] = React.useState(false);
+  const [isSuccessAlert, setIsSuccessAlert] = React.useState(false);
   const [messageAlert, setMessageAlert] = React.useState("");
-
+  const [isPageLoading, setIsPageLoading] = React.useState(true);
   React.useEffect(() => {
     let { department } = props.route.params;
     setDepartment(department);
@@ -40,6 +44,25 @@ const BookingDepartmentScreen = (props) => {
 
   const onHandleErorrAlertPress = () => {
     setIsErrorAlert(false);
+    setIsSuccessAlert(false);
+  }
+
+  const onReload = () => {
+    setIsPageLoading(true);
+    let { department } = props.route.params;
+    console.log("navigate reload")
+    props.navigation.navigate("BookingDepartment", {
+      department: department
+  })
+  }
+
+
+  const setPageVisible = (visible) => {
+    setIsPageLoading(visible);
+  }
+
+  const onBack = () => {
+   props.navigation.navigate("Schedule")
   }
 
   React.useEffect(() => {
@@ -47,7 +70,7 @@ const BookingDepartmentScreen = (props) => {
     setIsLoading(true);
     getRoomByDepartment(department).then((res) => {
       setIsLoading(false);
-      if (res.count > 0) {
+      if (res.length > 0) {
         setRoom(res);
         setRoomSelected(res[0].name);
       }
@@ -71,6 +94,8 @@ const BookingDepartmentScreen = (props) => {
   const isNotExitPosition = (id, roomName, datePosition, lPosition) => {
     let not = true;
     lPosition.forEach((p) => {
+
+      console.log("compare: " + formatDateTime(p.date) + " with day: " + formatDateTime(datePosition))
       if (
         p.patientId == id &&
         p.room == roomName &&
@@ -89,11 +114,19 @@ const BookingDepartmentScreen = (props) => {
       let date = dateBooking();
       if (isNotExitPosition(id, name, date, lPosition)) {
         createPosition(id, name, date, number).then((res) => {
-          if (res) console.log("suscess!");
-          else console.log("looix");
+          if (res) {
+            setMessageAlert("Đăng kí thành công, kiểm tra lại STT!");
+            setIsSuccessAlert(true);
+         }
+          else {
+            setMessageAlert("Lỗi đăng kí!");
+            setIsErrorAlert(true);
+            
+          }
         });
       } else {
-        console.log("Da ton tai");
+        setMessageAlert("Bạn đã đăng kí lịch này rồi, kiểm tra lại STT!");
+        setIsErrorAlert(true);
       }
     });
   };
@@ -101,7 +134,7 @@ const BookingDepartmentScreen = (props) => {
 
   const isValidateBooking = () => {
       if(room.length == 0) return false;
-      else return false;
+      else return true;
   }
 
   const createBooking = () => {
@@ -138,7 +171,6 @@ const BookingDepartmentScreen = (props) => {
   const TIMES = ["Sáng", "Chiều"];
 
   const selectedDate = () => {
-    console.log("date: " + dateSelected);
     return {
       dateSelected: { selected: true, marked: true, selectedColor: "blue" },
     };
@@ -232,9 +264,8 @@ const BookingDepartmentScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      <ScrollView>
-        <ErrorAlert visible = {isErrorAlert} message = {messageAlert} onPress = {onHandleErorrAlertPress}/>
-        <View style={{ marginTop: 10 }}>
+      <HeaderReloadComponent title = "Đăng kí khám bệnh" onBack = {onBack} onReload  ={onReload}/>
+      <View style={{ marginTop: 10, marginBottom: 5, borderBottomLeftRadius: 8, borderBottomRightRadius: 8 }}>
           <Text
             style={{
               fontWeight: "bold",
@@ -257,6 +288,33 @@ const BookingDepartmentScreen = (props) => {
             Chuyên khoa {department}
           </Text>
         </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <LoadingPageComponent setPageVisible = {setPageVisible} visible = {isPageLoading}/>
+        <ErrorAlert visible = {isErrorAlert} message = {messageAlert} onPress = {onHandleErorrAlertPress}/>
+        <SuccessAlert visible = {isSuccessAlert} message = {messageAlert} onPress = {onHandleErorrAlertPress}/>
+        {/* <View style={{ marginTop: 10 }}>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 18,
+              textTransform: "uppercase",
+              color: "#009DAE",
+              textAlign: "center",
+            }}
+          >
+            Đặt lịch khám theo
+          </Text>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 15,
+              color: "#FF5403",
+              fontWeight: "bold",
+            }}
+          >
+            Chuyên khoa {department}
+          </Text>
+        </View> */}
         <View
           style={{
             marginTop: 10,
@@ -353,7 +411,7 @@ const BookingDepartmentScreen = (props) => {
                 }}
               >
                 <Image
-                  source={require("../../assets/imgs/loadComponent.gif")}
+                  source={require("../../../../assets/imgs/loadComponent.gif")}
                   style={{ width: 50, height: 50 }}
                 />
               </View>
@@ -431,31 +489,37 @@ const BookingDepartmentScreen = (props) => {
             alignItems: "center",
             flexDirection: "row",
             textAlign: "center",
+            height: 30
           }}
         >
-          <Pressable style={styles.btnSave} onPress={() => createBooking()}>
-            <Text style={styles.txtSave}>Đặt lịch</Text>
-          </Pressable>
+         
         </View>
       </ScrollView>
+     <View style = {{justifyContent: 'center', alignItems:'center', paddingTop: 5}}>
+     <Pressable style={styles.btnSave} onPress={() => createBooking()}>
+            <Text style={styles.txtSave}>Đặt lịch</Text>
+          </Pressable>
+     </View>
+     
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   screen: {
-    // flex: 1,
+    flex: 1,
     marginTop: 10,
   },
   contentContainer: {
     paddingVertical: 20,
   },
   btnSave: {
-    width: "90%",
+    width: "95%",
     backgroundColor: "#F90716",
     padding: 10,
     borderRadius: 10,
     alignItems: "center",
+    justifyContent:'center'
   },
   txtSave: {
     fontWeight: "bold",

@@ -13,7 +13,7 @@ const AddBMIComponent = (props) => {
   const [weigh, setWeigh] = useState("");
   useEffect(() => {
     setModalVisible(props.visible);
-  },[]);
+  });
 
   const cancelGoalHandler = () => {
     props.onCancel();
