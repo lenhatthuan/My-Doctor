@@ -222,6 +222,7 @@ import AddCanlandarComponent from "../../../components/common/AddCanlandarCompon
   };
 
   return (
+    <>
     <View style={styles.screen}>
       <View>
         <HeaderBackComponent title={titleHeader} onBack={onBack} />
@@ -362,15 +363,17 @@ import AddCanlandarComponent from "../../../components/common/AddCanlandarCompon
                     onPress = {getFilter}
                     onCancelFilter ={onCancelFitler}
             /> */}
-          <AddCanlandarComponent
-          visible = {filter}
-          onCancel = {cancelOpenCalendar}
-          setDateFilter = {callbackFunction}
-          onPress = {getFilter}
-          onCancelFilter ={onCancelFitler}
-          listDate = {setListDate(listSchedule)}
-          />
+          
     </View>
+    <AddCanlandarComponent
+    visible = {filter}
+    onCancel = {cancelOpenCalendar}
+    setDateFilter = {callbackFunction}
+    onPress = {getFilter}
+    onCancelFilter ={onCancelFitler}
+    listDate = {setListDate(listSchedule)}
+    />
+</>
   );
 };
 

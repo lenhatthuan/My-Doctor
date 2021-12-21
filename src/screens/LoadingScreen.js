@@ -22,6 +22,7 @@ class LoadingScreen extends Component {
                 tension: 10,
                 friction: 2,
                 duration: 1000,
+                useNativeDriver:false
             }).start(),
             Animated.timing(LogoText, {
                 toValue: 1,
@@ -52,7 +53,7 @@ class LoadingScreen extends Component {
             <Image style = {styles.image} source = {{uri:'https://res.cloudinary.com/yenltn/image/upload/v1636559561/my-doctor/mdoctor_hsubsd.png'}}/>
             </Animated.View>
             <Animated.View style= {{opacity: this.state.LogoText}}>
-            <Text style = {styles.text_header}>Wellcome!</Text>
+            <Text style = {styles.text_header}>We will help if neccessary!</Text>
             </Animated.View>
         </View>
        )
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     text_header: {
         color: '#009387',
         fontWeight: 'bold',
-        fontSize: 30
+        fontSize: 14
     },
 
     image: {

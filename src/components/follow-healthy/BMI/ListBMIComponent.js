@@ -10,6 +10,7 @@ import Moment from 'moment';
 import { HoldMenuProvider, HoldItem  } from 'react-native-hold-menu';
 import { compareDate } from '../../../utils/convert-date';
 import { useFocusEffect } from "@react-navigation/native";
+import FillterCalandar from '../../common/FillterCalandar';
 
 const ListBMIComponent = (props) =>{
 
@@ -157,12 +158,19 @@ const ListBMIComponent = (props) =>{
                <Image source = {require('../../../../assets/imgs/70780-no-result-found.gif')} style = {{height: '100%', width:'100%'}}/>
             ): null}
             </View>
-            <AddFitlerComponent
+            {/* <AddFitlerComponent
                     visible = {filter}
                     onCancel = {cancelOpenCalendar}
                     setDateFilter = {callbackFunction}
                     onPress = {getFilter}
                     onCancelFilter  ={onCancelFitler}
+            /> */}
+            <FillterCalandar
+                 visible = {filter}
+                 onCancel = {cancelOpenCalendar}
+                 setDateFilter = {callbackFunction}
+                 onPress = {getFilter}
+                 onCancelFilter  ={onCancelFitler}
             />
         </View>
     )
