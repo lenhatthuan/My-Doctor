@@ -11,6 +11,7 @@ import { getAllHeart } from '../../../store/actions/heart';
 import DateHistoryHeart from './DateHistoryHeart';
 import { statusHA } from '../../../utils/value-status';
 import { convertTitle, formatDate, formatDateTime, formatTime } from '../../../utils/string-format';
+import FillterCalandar from '../../common/FillterCalandar';
 
 const ListHeartComponent = (props) =>{
 
@@ -154,13 +155,20 @@ const ListHeartComponent = (props) =>{
 
             {!isLoading ? ( <Image source = {require('../../../../assets/imgs/not-found-heart.gif')} style = {{height: '100%', width: '100%'}}/>): null}
             </View>
-            <AddFitlerComponent
+            {/* <AddFitlerComponent
                     visible = {filter}
                     onCancel = {cancelOpenCalendar}
                     setDateFilter = {callbackFunction}
                     onPress = {getFilter}
                     onCancelFilter  ={onCancelFitler}
                     
+            /> */}
+            <FillterCalandar
+                 visible = {filter}
+                 onCancel = {cancelOpenCalendar}
+                 setDateFilter = {callbackFunction}
+                 onPress = {getFilter}
+                 onCancelFilter  ={onCancelFitler}
             />
         </View>
     )

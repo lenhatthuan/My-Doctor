@@ -164,10 +164,10 @@ const DoctorOrderScreen = (props) => {
     );
   };
 
-  const listConfirmed = (list) => {
+  const listConfirmed = (list, status) => {
     let listcom = [];
     list.forEach(l => {
-      if(l.status == "CONFIRMED") listcom.push(l);
+      if(l.status == status) listcom.push(l);
     })
     return listcom;
   }
@@ -179,7 +179,17 @@ const DoctorOrderScreen = (props) => {
           tabBarActiveTextColor="#53ac49"
           renderTabBar={() => <TabBar underlineColor="#53ac49" />}
         >
-          <Page1 tabLabel={{ label: "Bác sĩ riêng" }} />
+          {/* <Page1 tabLabel={{ label: "Bác sĩ riêng" }} /> */}
+
+          <View
+           tabLabel={{ label: "Bác sĩ riêng" }}
+          style={styles.container}>
+      {/* <Text style={styles.welcome}>{label}</Text> */}
+      {doctors.length > 0 ? (<FlatList data = {doctors} renderItem = {renderDoctor}></FlatList>):
+       null
+      }
+      {doctors.length == 0 ?  (<Image source = {require('../../../assets/imgs/68395-data-not-found.gif')} style = {{width: '90%', height: '100%'}}/>):null}
+    </View>
           <View
             tabLabel={{ label: "Dịch vụ" }}
             style={{
@@ -190,7 +200,67 @@ const DoctorOrderScreen = (props) => {
             }}
           >
             {list != null ? (
-              <FlatList data={listConfirmed(list)} renderItem={renderData}></FlatList>
+              <FlatList data={listConfirmed(list, "CONFIRMED")} renderItem={renderData}></FlatList>
+            ) : null}
+            {list == null ? (
+              <Image
+                style={{ height: "100%", width: "90%" }}
+                source={require("../../../assets/imgs/70780-no-result-found.gif")}
+              />
+            ) : null}
+          </View>
+
+          <View
+            tabLabel={{ label: "Chưa xác nhận" }}
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              flex: 1,
+              flexDirection: "column",
+            }}
+          >
+            {list != null ? (
+              <FlatList data={listConfirmed(list, "PENDDING")} renderItem={renderData}></FlatList>
+            ) : null}
+            {list == null ? (
+              <Image
+                style={{ height: "100%", width: "90%" }}
+                source={require("../../../assets/imgs/70780-no-result-found.gif")}
+              />
+            ) : null}
+          </View>
+
+          <View
+            tabLabel={{ label: "Đã hủy" }}
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              flex: 1,
+              flexDirection: "column",
+            }}
+          >
+            {list != null ? (
+              <FlatList data={listConfirmed(list, "CANCEL")} renderItem={renderData}></FlatList>
+            ) : null}
+            {list == null ? (
+              <Image
+                style={{ height: "100%", width: "90%" }}
+                source={require("../../../assets/imgs/70780-no-result-found.gif")}
+              />
+            ) : null}
+          </View>
+
+          <View
+            tabLabel={{ label: "Hết hạn" }}
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              flex: 1,
+              flexDirection: "column",
+            }}
+          >
+            {list != null ? (
+              <FlatList data={listConfirmed(list, "EXPIRED")} renderItem={renderData}></FlatList>
             ) : null}
             {list == null ? (
               <Image

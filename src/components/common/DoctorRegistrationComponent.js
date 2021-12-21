@@ -1,21 +1,17 @@
 import React from 'react';
-import ContentLoader, {Rect, Circle } from 'react-content-loader/native';
 import { Facebook } from 'react-content-loader/native';
-import { View, Text, StyleSheet, Image, LogBox } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { Avatar } from "react-native-elements";
 import { getDoctor } from '../../store/actions/doctor';
 const DoctorRegistrationComponent = props =>{
 
     const MyFacebookLoader = () => <Facebook />
-    const [doctor, setDoctor] = React.useState();
-    LogBox.ignoreLogs([
-        'ReactNativeFiberHostComponent: Calling getNode() on the ref of an Animated component is no longer necessary. You can now directly use the ref instead. This method will be removed in a future release.',
-      ]);
+    const [doctor, setDoctor] = React.useState(null);
 
     React.useEffect(() =>{
         getDoctor(props.doctorId).then(res => {
             setDoctor(res);
-       
+        console.log("load doctor")
     })}, [])
     return (
         <>

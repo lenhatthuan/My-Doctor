@@ -18,6 +18,7 @@ import BtnAddComponent from "../../components/common/BtnAddComponent";
 import BtnCancelComponent from "../../components/common/BtnCancelComponent";
 import { updateRegistration } from "../../store/actions/doctor-registration";
 import WebView from "react-native-webview";
+import SnackBar from 'react-native-snackbar-component'
 import LoadingPageComponent from "../../components/common/LoadingPageComponent";
 // import Clipboard from "@react-native-community/clipboard";
 function PaymentScreen({ route, navigation }) {
@@ -58,7 +59,18 @@ function PaymentScreen({ route, navigation }) {
     );
   };
 
-  
+  const successSnackbar = () => {
+    console.log("snackbar")
+    return (<SnackBar
+      visible={true}
+      message="Hello There!"
+      actionHandler={() => {
+        console.log("snackbar button clicked!")
+        navigation.navigate("DoctorOrder");
+      }}
+      action="let's go"
+    />)
+  }
 
   const handleResponsePaypal = (data) => {
     if (data.url.includes("success")) {
@@ -66,7 +78,8 @@ function PaymentScreen({ route, navigation }) {
       updateRegistration(registration.id, registration.name, "CONFIRMED").then(
         (res) => {
           console.log("ok nha");
-          navigation.navigate("DoctorOrder");
+          successSnackbar();
+          // navigation.navigate("DoctorOrder");
         }
       );
     } else if (data.url.includes("cancel")) {

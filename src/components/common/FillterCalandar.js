@@ -3,52 +3,18 @@ import {View, Pressable, Text, StyleSheet, Modal, Platform} from 'react-native';
 import STRING from '../../utils/string';
 import BtnAddComponent from './BtnAddComponent';
 import { FontAwesome } from "@expo/vector-icons";
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
-import DateTimePicker  from "@react-native-community/datetimepicker";
+import {Calendar} from 'react-native-calendars';
 import { formatDateCalandar } from '../../utils/string-format';
-const AddCanlandarComponent = props =>{
+const FillterCalandar = props =>{
     const [modalVisible, setModalVisible] = useState(false);
     const [date, setDate] = useState(formatDateCalandar(new Date()));
-    const [show, setShow] = useState(false);
-    const [platform, setPlatform] = useState('default')
-    const isDatePickerVisible = true;
-    const [listSelectedDate, setListSelectedDate] = useState({});
-
-      const [listSelectedDateStatic, setListSelectedDateStatic] = useState({});
-    const [dateSelected, setDateSelected] = useState({
-        dateSelected: ''
-        });
+    const [listSelectedDate, setListSelectedDate] = useState({[date]:{selected:true}});
     
-    const listSatic = () => {
-        let list = {};
-        let date = props.listDate;
-        date.forEach(day => {
-            list[day]={selected: true, marked: true, dotColor: '#FF9300'};
-        })
-        return list;
-    }
-
-    useEffect(() => {
-        listSatic();
-        // setListSelectedDate(listSatic);
-        // setListSelectedDateStatic(listSatic);
-        console.log("date: " + props.listDate);
-    },[])
-    const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
-       // if(Platform.OS =='ios') 
-        ///setShow(Platform.OS ==='ios');
-        setShow(false);
-        setDate(currentDate);
-      };
-
      useEffect(() => {
        setModalVisible(props.visible);
-       if(Platform.OS =='ios') setPlatform('inline');
     })
 
     const onPress = () =>{
-        console.log("date: 53 - addcalandarcomponent: " +date);
         props.setDateFilter(date);
         props.onPress();
     }
@@ -64,12 +30,7 @@ const AddCanlandarComponent = props =>{
     const getSelectedDayEvents = day => {
         console.log("change date" + day.dateString)
         setDate(day.dateString);
-    //    setCurrentDate(date.dateString);
-        setDateSelected({
-        dateSelected:{[day.dateString]:{selected: true}}
-        });
-
-        setListSelectedDate({[day.dateString]:{selected: true}, ...listSelectedDateStatic})
+        setListSelectedDate({[day.dateString]: {selected:true}})
     }
 
 
@@ -109,7 +70,6 @@ const AddCanlandarComponent = props =>{
           }}
 //   markingType={'period'}
 //   current={currentDate}
-  minDate={formatDateCalandar(new Date())}
 
 
   scrollEnabled={true}
@@ -119,9 +79,8 @@ const AddCanlandarComponent = props =>{
   onDayPress={(day) => {
     getSelectedDayEvents(day);
 }}
-//markedDates = {dateSelected.dateSelected, listSatic()}
-// markedDates = { listSatic()}
-markedDates={ listSatic()}
+
+markedDates={listSelectedDate}
   theme={{
     backgroundColor: "#ffffff",
     calendarBackground: "#ffffff",
@@ -141,15 +100,6 @@ markedDates={ listSatic()}
     textDayHeaderFontSize: 8
   }}
 />
-<View style = {{flexDirection:'row', marginTop: 5}}>
-    
-<View style = {{padding: 10, marginLeft: 10}}><Text style = {{fontWeight:'bold'}}>Ngày đã chọn</Text></View>
-
-<View style = {{width:120, padding: 10, borderColor: '#FF9300', borderWidth:1, marginLeft: 10}}><Text style = {{fontWeight:'bold', textAlign:'center'}}>{date}</Text></View>
-
-
-   
-</View>
      {/* </View> */}
             <BtnAddComponent
                 onPress = {onPress}
@@ -205,4 +155,4 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
     }
 })
-export default AddCanlandarComponent;
+export default FillterCalandar;

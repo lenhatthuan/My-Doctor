@@ -31,6 +31,9 @@ const BookingDepartmentScreen = (props) => {
   const [dateSelected, setDateSelected] = React.useState(
     formatDateCalandar(new Date())
   );
+  const [calandarSelected, setCanlandarSelected] = React.useState({
+    [dateSelected]:{selected:true}
+  });
   const [lAllPosition, setLAllposition] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isErrorAlert, setIsErrorAlert] = React.useState(false);
@@ -341,7 +344,6 @@ const BookingDepartmentScreen = (props) => {
               theme={{
                 textSectionTitleDisabledColor: "#d9e1e8",
               }}
-              markingType={"period"}
               //   current={currentDate}
               minDate={formatDateCalandar(new Date())}
               pastScrollRange={50}
@@ -352,8 +354,11 @@ const BookingDepartmentScreen = (props) => {
               disableMonthChange={true}
               onDayPress={(day) => {
                 setDateSelected(day.dateString);
+                setCanlandarSelected({[day.dateString]: {selected: true}})
+                console.log("change date hehe")
               }}
-              markedDates={selectedDate()}
+              // markedDates={selectedDate()}
+              markedDates={calandarSelected}
               theme={{
                 backgroundColor: "#ffffff",
                 calendarBackground: "#ffffff",
@@ -368,7 +373,7 @@ const BookingDepartmentScreen = (props) => {
                 textDayFontSize: 16,
                 textMonthFontSize: 18,
                 selectedDayBackgroundColor: "#57B9BB",
-                selectedDayTextColor: "#00A19D",
+                selectedDayTextColor: "#ffffff",
                 textDayHeaderFontSize: 8,
               }}
             />
@@ -379,16 +384,18 @@ const BookingDepartmentScreen = (props) => {
                 padding: 5,
                 borderColor: "#FF5403",
                 backgroundColor: "white",
-                borderWidth: 1,
+                borderWidth: 2,
+                marginTop: 5,
+                marginBottom: 5
               }}
             >
-              <Text style={{ textAlign: "center" }}>
+              <Text style={{ textAlign: "center", fontWeight: 'bold' }}>
                 Ngày đã chọn: {dateSelected}
               </Text>
             </View>
           </View>
         </View>
-        <View style={{ padding: 5 }}>
+        <View style={{   marginBottom: 5,   marginTop: 20,padding: 5 }}>
           <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
             Chọn phòng khám
           </Text>
@@ -440,10 +447,12 @@ const BookingDepartmentScreen = (props) => {
               padding: 5,
               borderColor: "#FF5403",
               backgroundColor: "white",
-              borderWidth: 1,
+              borderWidth: 2,
+              marginTop: 5,
+              marginBottom: 5
             }}
           >
-            <Text style={{ textAlign: "center" }}>
+            <Text style={{ textAlign: "center" , fontWeight: 'bold'}}>
               Phòng khám đã chọn: {roomSelected}
             </Text>
           </View>
@@ -474,10 +483,12 @@ const BookingDepartmentScreen = (props) => {
               padding: 5,
               borderColor: "#FF5403",
               backgroundColor: "white",
-              borderWidth: 1,
+              borderWidth: 2,
+              marginTop: 5,
+              marginBottom: 5
             }}
           >
-            <Text style={{ textAlign: "center" }}>
+            <Text style={{ textAlign: "center", fontWeight:'bold' }}>
               Thời gian đã chọn: {timeSelected}
             </Text>
           </View>
@@ -515,7 +526,7 @@ const styles = StyleSheet.create({
   },
   btnSave: {
     width: "95%",
-    backgroundColor: "#F90716",
+    backgroundColor: "#57B9BB",
     padding: 10,
     borderRadius: 10,
     alignItems: "center",

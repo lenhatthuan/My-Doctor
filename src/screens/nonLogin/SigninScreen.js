@@ -80,7 +80,7 @@ const sendOTP = (id) => {
             <LoadingComponent visible = {isLoading} message = "..."/>
           <StatusBar backgroundColor='#009387' barStyle="light-content"/>
         <View style={styles.header}>
-            <Text style={styles.text_header}>Welcome!</Text>
+            <Text style={styles.text_header}>my-doctor!</Text>
         </View>
         <Animatable.View 
             animation="fadeInUpBig"
