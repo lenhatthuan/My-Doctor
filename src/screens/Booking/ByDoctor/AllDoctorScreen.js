@@ -30,13 +30,13 @@ export default function AllDoctorScreen({ navigation })  {
       .catch((err) => console.error(err));
   }, []);
 
-  const findDoctorByName = async() =>{
+  const findDoctorByName = async(text) =>{
     if(data) {
       let listDoctor = [];
-      listDoctor = await data.filter(doctor => doctor.fullname.includes(name));
+      listDoctor = await data.filter(doctor => doctor.fullname.includes(text));
       if(Object.keys(listDoctor).length > 0) {
         setListSearchDoctor(listDoctor);
-      }
+      }else setListSearchDoctor([]);
     } else setData(data);
   }
 
@@ -81,7 +81,7 @@ export default function AllDoctorScreen({ navigation })  {
        leftIconContainerStyle={{backgroundColor: 'white'}}
        inputStyle={{backgroundColor: 'white'}}
        containerStyle={{
-       backgroundColor: '#1e3d52',
+       backgroundColor: '#009DAE',
        justifyContent: 'space-around',
        borderTopWidth:0,
        borderBottomWidth:0,}}
@@ -91,12 +91,12 @@ export default function AllDoctorScreen({ navigation })  {
         onClear={(text) => {
             setName('');
           // findDoctorByName(text).then((result) => setData(result));
-          findDoctorByName();
+          findDoctorByName('');
         }}
         onChangeText={(text) => {
           setName(text);
           // findDoctorByName(text).then((result) => setData(result));
-          findDoctorByName();
+          findDoctorByName(text);
         }}
         value={name}
       />

@@ -396,6 +396,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 3,
+},
+shadowOpacity: 0.29,
+shadowRadius: 4.65,
+
+elevation: 7,
   },
 
   btnAction: {
@@ -410,12 +419,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 3,
+},
+shadowOpacity: 0.29,
+shadowRadius: 4.65,
+
+elevation: 7,
   },
 
   bodyScreen: {
     justifyContent: "center",
     flex: 1,
     alignItems: "center",
+    backgroundColor: 'white'
   },
 
   profileBody: {
@@ -459,6 +478,7 @@ const styles = StyleSheet.create({
 
   txtPosition: {
     color: "#9597A1",
+    marginTop: 5
   },
 
   information: {
@@ -488,16 +508,19 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 6,
     },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+    
+    elevation: 12,
   },
 
   imgProfile: {
     height: "100%",
     width: "100%",
     borderRadius: 50,
+    
   },
 
   banner: {

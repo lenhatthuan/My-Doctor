@@ -506,7 +506,7 @@ const BookingDepartmentScreen = (props) => {
          
         </View>
       </ScrollView>
-     <View style = {{justifyContent: 'center', alignItems:'center', paddingTop: 5}}>
+     <View style = {{justifyContent: 'center', alignItems:'center', paddingTop: 5, paddingBottom: 5}}>
      <Pressable style={styles.btnSave} onPress={() => createBooking()}>
             <Text style={styles.txtSave}>Đặt lịch</Text>
           </Pressable>
@@ -530,7 +530,16 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     alignItems: "center",
-    justifyContent:'center'
+    justifyContent:'center',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
+    
+    elevation: 11,
   },
   txtSave: {
     fontWeight: "bold",

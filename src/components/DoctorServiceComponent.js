@@ -105,7 +105,7 @@ const DoctorServiceComponent = (props) => {
         timeLabels={{d:'Ngày',h: 'Giờ',m: 'Phút',s: 'Giây'}}
         size={20}
       />: null}
-    </View>
+    </View> 
   );
 };
 

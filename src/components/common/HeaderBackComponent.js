@@ -10,13 +10,15 @@ const HeaderBackComponent = (props) =>{
         <Pressable style = {styles.header} onPress = {() => onBack()}>
            <AntDesign name="arrowleft" size={24} color="black" style = {styles.icon} />
             <Text style = {styles.headerTitle}>{props.title}</Text>
+            <AntDesign name="arrowleft" size={24} color="white" style = {styles.icon} />
         </Pressable>
     );
 }
 
 const styles = StyleSheet.create({
     icon: {
-        paddingLeft: 5
+        paddingLeft: 5,
+        paddingRight: 5
     },
 
     header:{
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
         height: 70,
         paddingTop: 36,
         backgroundColor: '#fff',
-        justifyContent: 'flex-start',
+        // justifyContent: 'flex-start',
         flexDirection:'row',
         alignItems:'center'
     },
@@ -32,7 +34,8 @@ const styles = StyleSheet.create({
         color:'black',
         fontSize: 14,
         fontWeight:'bold',
-        marginLeft:'35%'
+       flex:1,
+       textAlign:'center'
     }
 })
 export default HeaderBackComponent;

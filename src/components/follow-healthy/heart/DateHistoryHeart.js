@@ -1,12 +1,27 @@
-import React from 'react';
+import React , {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'; 
+import AlertDoctorSend from '../../message/AlertDoctorSend';
 const DateHistoryHeart = (props) =>{
+
+    const [isGetSend, setIsGetSend] = useState(false);
+    const [message, setMessage] = useState("");
+    const [doctors, setDoctors] = useState([]);
+
+    useEffect(() => {
+        setDoctors(props.doctors);
+    })
+
+    const onCancel = () => {
+        setIsGetSend(false);
+    }
+
     return (
         <View>
+            <AlertDoctorSend visible = {isGetSend} doctors = {doctors} onCancel = {onCancel}/>
             <View style = {{justifyContent: 'flex-end', flexDirection:'row', margin: 5}}>
                <Pressable style = {{marginRight: 10}} onPress={() => {
-                   console.log("send")
+                   setIsGetSend(true);
                }}>
                <MaterialIcons name="send" size={24} color="black" />
                </Pressable>
