@@ -12,6 +12,7 @@ import DateHistoryHeart from './DateHistoryHeart';
 import { statusHA } from '../../../utils/value-status';
 import { convertTitle, formatDate, formatDateTime, formatTime } from '../../../utils/string-format';
 import FillterCalandar from '../../common/FillterCalandar';
+import { getListDoctorService } from '../../../store/actions/doctor';
 
 const ListHeartComponent = (props) =>{
 
@@ -21,12 +22,25 @@ const ListHeartComponent = (props) =>{
     const [dateFilter, setDateFilter] = useState(new Date());
     const [listHeartStatic, setListHeartStatic] = useState();
     const [isLoading, setIsloading] = useState(false);
+    const [doctors, setDoctors] = useState([]);
 
     useFocusEffect(
         React.useCallback(() => {
           setIsloading(checkList());
         }, [])
       );
+
+    useEffect(() =>{
+        getListDoctor();
+    },[])
+
+    const getListDoctor = () => {
+        AsyncStorage.getItem("id").then(id => {
+            getListDoctorService(id, "CONFIRMED").then(res => {
+                setDoctors(res);
+            })
+        })
+    }
     
       const checkList = () => {
         if (listHeart.length == 0) 
@@ -105,6 +119,7 @@ const ListHeartComponent = (props) =>{
             heartBeat = {item.heartBeat}
             title = {convertTitle(item.systole, item.diastole)}
             status = {statusHA(item.diastole, item.systole)}
+            doctors = {doctors}
             />
             </Pressable>
         )

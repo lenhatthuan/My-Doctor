@@ -1,4 +1,6 @@
+import { AsyncStorage } from "react-native";
 import { environment } from "../../../environment/enviroment";
+import { getAllByPatientId } from "./doctor-registration";
 
 const BASE_URL = environment.baseURL;
 const header = {
@@ -40,6 +42,25 @@ export const getDoctor = async(id) => {
     const response = await fetch(BASE_URL + "/doctor/" + id);
     const json = await response.json();
     return json.doctor;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+}
+
+export const getListDoctorService = async(id, status) => {
+  try {
+    const registration = await getAllByPatientId(id);
+    let doctors = [];
+    await registration.forEach(res => {
+     if(res.status == status){
+      getDoctor(res.doctorId).then(res => {
+        doctors.push(res);
+        console.log("doctor action 59: " + res.id);
+      })
+     }
+    })
+    return doctors;
   } catch (err) {
     console.log(err);
     return null;

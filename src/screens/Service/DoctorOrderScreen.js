@@ -123,9 +123,10 @@ const DoctorOrderScreen = (props) => {
       <View
         style={{
           marginTop: 10,
-          width: "80%",
-          marginLeft: "10%",
-          marginRight: "10%",
+          width: "90%",
+          marginLeft: "5%",
+          marginRight: "5%",
+
           flex: 1,
         }}
       >
@@ -185,7 +186,7 @@ const DoctorOrderScreen = (props) => {
            tabLabel={{ label: "Bác sĩ riêng" }}
           style={styles.container}>
       {/* <Text style={styles.welcome}>{label}</Text> */}
-      {doctors.length > 0 ? (<FlatList data = {doctors} renderItem = {renderDoctor}></FlatList>):
+      {doctors.length > 0 ? (<FlatList data = {doctors} renderItem = {renderDoctor} style = {{width: '100%'}}></FlatList>):
        null
       }
       {doctors.length == 0 ?  (<Image source = {require('../../../assets/imgs/68395-data-not-found.gif')} style = {{width: '90%', height: '100%'}}/>):null}
@@ -229,7 +230,25 @@ const DoctorOrderScreen = (props) => {
               />
             ) : null}
           </View>
-
+          <View
+            tabLabel={{ label: "Chưa thanh toán" }}
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              flex: 1,
+              flexDirection: "column",
+            }}
+          >
+            {list != null ? (
+              <FlatList data={listConfirmed(list, "CREATED")} renderItem={renderData}></FlatList>
+            ) : null}
+            {list == null ? (
+              <Image
+                style={{ height: "100%", width: "90%" }}
+                source={require("../../../assets/imgs/70780-no-result-found.gif")}
+              />
+            ) : null}
+          </View>
           <View
             tabLabel={{ label: "Đã hủy" }}
             style={{

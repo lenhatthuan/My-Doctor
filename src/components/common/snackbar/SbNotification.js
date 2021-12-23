@@ -13,6 +13,12 @@ const SbNotification = (props) => {
     props.onPress();
   };
 
+  setTimeout(() => {
+    setModalVisible(false);
+    props.onPress();
+}, 10000)
+
+
   return (
     <Modal
       transparent={true}
@@ -25,17 +31,15 @@ const SbNotification = (props) => {
     >
       <View style={styles.view}>
         <Pressable style={styles.errorComponent}>
-          <View style={{ width: "90%" }}>
-            <View>
-              <Text>{props.message}</Text>
-            </View>
-          </View>
-          <Pressable onPress={() => onHandlePress()} style={{}}>
-            <View>
-              {" "}
-              <Text>{props.action}</Text>
-            </View>
+
+              <Text style = {{fontWeight:'bold', color:'white', marginLeft: 20, marginRight: 20}}>{props.message}</Text>
+       
+            <Pressable onPress={() => onHandlePress()} style={{marginRight: 20, marginLeft:20}}>
+
+              <Text style = {{color: '#FF9300', fontSize: 20, fontWeight:'bold'}}>{props.action}</Text>
+
           </Pressable>
+          
         </Pressable>
       </View>
     </Modal>
@@ -44,17 +48,32 @@ const SbNotification = (props) => {
 
 const styles = StyleSheet.create({
   errorComponent: {
-    justifyContent: "center",
+    justifyContent: 'space-between',
     alignItems: "center",
-    borderRadius: 8,
-    backgroundColor: "#003638",
+    // backgroundColor: "#003638",
+    backgroundColor: "rgba(0, 54, 56, 0.95)",
+    height: 55,
+    width: '95%',
+    borderRadius: 3,
+    flexDirection:'row',
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 9,
+},
+shadowOpacity: 0.50,
+shadowRadius: 12.35,
+
+elevation: 19,
   },
   view: {
     flex: 1,
     justifyContent: "flex-end",
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(52, 52, 52, 0.5)",
+    paddingBottom: 50,
+    alignItems:'center'
+    // backgroundColor: "rgba(52, 52, 52, 0.5)",
   },
 });
 
