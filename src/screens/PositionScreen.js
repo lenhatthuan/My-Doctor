@@ -25,9 +25,9 @@ export default function PositionScreen(props) {
   const [selectedValue, setSelectedValue] = useState("all");
 
   useEffect(() => {
-    // expired()
-    //   .then((res) => console.log(res.message))
-    //   .catch((err) => console.error(err));
+    expired()
+      .then((res) => console.log(res.message))
+      .catch((err) => console.error(err));
     pickState();
   }, []);
 

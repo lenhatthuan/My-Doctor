@@ -11,6 +11,7 @@ import {
   AsyncStorage,
   Pressable,
   ScrollView,
+  Linking,
 } from "react-native";
 import COLORS from "../../../assets/colors";
 import { isLogin, logout } from "../../store/actions/account";
@@ -141,9 +142,11 @@ const HomeScreen = (props) => {
         <View style={styles.viewMainOption}>
           <TouchableOpacity
             style={styles.bgBtnGuide}
-            onPress={() => {
-              props.navigation.navigate("Guide");
-            }}
+            onPress={() =>
+              Linking.openURL(
+                "https://docs.google.com/document/d/1t4UoxC5OWkSfWRKGtPw3aV3-Au9rexTLPhdTbydI_GA/edit"
+              )
+            }
           >
             <View style={styles.viewTextPersonal}>
               <Text style={styles.textPersonal}>Hướng dẫn khám bệnh</Text>

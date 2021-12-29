@@ -10,17 +10,14 @@ import * as Animatable from "react-native-animatable";
 import { Icon } from "react-native-elements";
 import PhoneInput, { isValidNumber } from "react-native-phone-number-input";
 import { styles } from "../theme/basic";
-import LoadingComponent from "./common/LoadingComponent";
 
 export default function NavOTPSreen({ check, name, back }) {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [secure, setSecure] = useState(true);
 
   return (
     <View style={styles.container}>
-      <LoadingComponent visible={isLoading} message={name + "..."} />
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.text_header}>{name}!</Text>
@@ -99,11 +96,7 @@ export default function NavOTPSreen({ check, name, back }) {
                 backgroundColor: "#009387",
               },
             ]}
-            onPress={async () => {
-              setIsLoading(true);
-              await check({ phone, password });
-              await setIsLoading(false);
-            }}
+            onPress={() => check({ phone, password })}
           >
             <Text
               style={[

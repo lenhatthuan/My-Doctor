@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import { styles } from "../theme/style";
 import { Icon } from "react-native-elements";
 import { getDoctor } from "../store/actions/doctor";
+import { formatDate } from "../utils/string-format";
 
 export default function Record({ item, onPress }) {
   const [doctorName, setDoctorName] = useState();
@@ -20,24 +21,13 @@ export default function Record({ item, onPress }) {
         <Text style={{ color: "white" }}>BS. {doctorName}</Text>
       </View>
       <View>
-        <Text style={{ color: "white" }}>
-          {new Date(item.date).toLocaleDateString()}
-        </Text>
-        {/* <View style={{ flexDirection: "row-reverse" }}>
-          <Icon
-            containerStyle={{ marginLeft: 5 }}
-            name="file-medical"
-            type="font-awesome-5"
-            color="white"
-            onPress={() => onPress(item.fileStore)}
-          /> */}
+        <Text style={{ color: "white" }}>{formatDate(item.date)}</Text>
         <Icon
           name="capsules"
           type="font-awesome-5"
           color="white"
           onPress={() => onPress(item.id)}
         />
-        {/* </View> */}
       </View>
     </View>
   );

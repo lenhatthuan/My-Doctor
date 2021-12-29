@@ -3,6 +3,11 @@ import { View, Text, Button } from "react-native";
 import { styles } from "../theme/style";
 import { NUMBER_STATE } from "../models/types";
 import { currentPosition, cancel } from "../store/actions/position";
+import {
+  formatDate,
+  formatDateTime,
+  formatSession,
+} from "../utils/string-format";
 
 export default function Position({ item, load }) {
   const [current, setCurrent] = useState(0);
@@ -40,7 +45,7 @@ export default function Position({ item, load }) {
         )}
       </View>
       <Text style={{ fontStyle: "italic" }}>
-        Ngày khám: {new Date(item.date).toLocaleDateString()}
+        Ngày khám: {formatSession(item.date)}
       </Text>
       <View style={{ flexDirection: "row-reverse" }}>
         {item.state === NUMBER_STATE.NOT_USE && (
