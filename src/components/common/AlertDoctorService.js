@@ -22,7 +22,9 @@ const AlertDoctorService = (props) => {
   };
   //const {service} = props.service;
   const addRegistration = () => {
+    console.log("registration");
     AsyncStorage.getItem("id").then((res) => {
+    if(res) {
       let id = res;
       let registration = {
         name: props.name,
@@ -41,6 +43,7 @@ const AlertDoctorService = (props) => {
           Alert.alert("Đăng ký không thành công, lỗi hệ thống!");
         }
       });
+    } else console.log("null id");
     });
   };
 
@@ -60,9 +63,9 @@ const AlertDoctorService = (props) => {
           cancelGoalHandler();
         }}
       >
-        <View style={styles.modalView}>
-          <View style={{ flexDirection: "colunm", alignItems: "center" }}>
-            {/* <Entypo name="dots-three-horizontal" size={24} color="#FF7800" /> */}
+        <Pressable style={styles.modalView}>
+          <Pressable style={{ flexDirection: "column", alignItems: "center" }}>
+         
             <View style = {{backgroundColor: '#FF7800', height: 5, width: 45, borderRadius: 10}}></View>
             <Text style={{ fontWeight: "bold", fontSize: 18, marginTop: 20}}>
               {props.name}
@@ -76,20 +79,20 @@ const AlertDoctorService = (props) => {
                 marginTop: 5,
               }}
             />
-          </View>
-          <View
+          </Pressable>
+          <Pressable
             style={{
               padding: 10,
               flexDirection: "column",
               justifyContent: "flex-start",
-              alignItems: "left",
+              // alignItems: "left",
               flex: 1,
               paddingLeft: 30,
               paddingRight: 30,
               marginTop: 10
             }}
           >
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Pressable style={{ flexDirection: "row", alignItems: "center" }}>
               <Text
                 style={{ fontSize: 15, fontWeight: "500", color: "#FF5403" }}
               >
@@ -100,13 +103,13 @@ const AlertDoctorService = (props) => {
               >
                 {props.nameDoctor}
               </Text>
-            </View>
-            <View style={{ marginTop: 5, flexDirection: 'row' }}>
+            </Pressable>
+            <Pressable style={{ marginTop: 5, flexDirection: 'row' }}>
               <Text style = {{padding: 5, fontWeight: 'bold', paddingLeft: 0}}>Thời hạn đăng kí:</Text>
               <Text style = {{padding: 5, fontWeight: 'bold'}}>{props.duration}</Text>
               <Text style = {{padding: 5, paddingLeft: 1, fontWeight: 'bold'}}>ngày</Text>
-            </View>
-            <View
+            </Pressable>
+            <Pressable
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
@@ -125,8 +128,8 @@ const AlertDoctorService = (props) => {
               >
                 {balanceFormat(props.price)}
               </Text>
-            </View>
-            <View
+            </Pressable>
+            <Pressable
               style={{
                 marginTop: 10,
                 alignItems: "center",
@@ -149,10 +152,10 @@ const AlertDoctorService = (props) => {
               >
                 {formatDate(getDateEnd())}
               </Text>
-            </View>
-          </View>
-          <BtnAddComponent onPress={addRegistration} title="Đăng ký bác sĩ" />
-        </View>
+            </Pressable>
+          </Pressable>
+          <BtnAddComponent onPress={addRegistration} title={"Đăng ký bác sĩ"} />
+        </Pressable>
       </Pressable>
     </Modal>
   );

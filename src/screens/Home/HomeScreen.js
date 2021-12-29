@@ -26,6 +26,7 @@ const HomeScreen = (props) => {
   const [checkIsLogin, setCheckIsLogin] = useState(false);
   const [patientName, setPatientName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
 
   setTimeout(() => {
     
@@ -55,9 +56,19 @@ const HomeScreen = (props) => {
     props.navigation.navigate("Signin");
   }
 
+ 
+
+  // componentDidMount() {
+  //   let scrollValue = 0;
+  //   setInterval(function(){
+  //     scrollValue = scrollValue + width;   // width = screen width 
+  //     _scrollView.scrollTo({x: scrollValue}) 
+  //   }, 3000);
+  // }
+
   return (
     <SafeAreaView style={styles.screen}>
-      {/* <LoadingComponent visible = {isLoading} message = "Logout..."/> */}
+      {/* <LoadingComponent visible = {isLogout} message = "Logout..."/> */}
       <View style={styles.background}>
         <ImageBackground
           style={styles.imgBg}
@@ -75,9 +86,17 @@ const HomeScreen = (props) => {
               </Pressable>
             ) : null}
             {checkIsLogin ? (
-              <Pressable style={styles.btnLogin} onPress={() => signup()}>
+              <Pressable style={{padding: 10, backgroundColor: '#333',borderRadius: '50%', shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 6,
+              },
+              shadowOpacity: 0.39,
+              shadowRadius: 8.30,
+              
+              elevation: 13 }} onPress={() => signup()}>
                 <AntDesign name="logout" size={16} color="white" />
-                <Text style={styles.txtLogin}>Đăng xuất</Text>
+                {/* <Text style={styles.txtLogin}>Đăng xuất</Text> */}
               </Pressable>
             ) : null}
           </View>
@@ -196,9 +215,11 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   viewBtnLogin: {
-    flex: 1,
+    // flex: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
+    margin: 10,
+    marginRight: 15
   },
   txtLogin: {
     color: "white",

@@ -93,7 +93,6 @@ function PaymentScreen({ route, navigation }) {
       // this.setState({ showModal: false, status: "Cancelled" });
     } else if (data.title === "ERROR") {
       setMessageSb("Lỗi thanh toán hệ thống!");
-      console.log("error nha");
       setIsPaypal(false);
       // this.setState({ showModal: false, status: "Cancelled" });
     } else {
@@ -145,12 +144,12 @@ function PaymentScreen({ route, navigation }) {
               Tài khoản ngân hàng của My Doctor
             </Text>
             <View style={{ flexDirection: "row" }}>
-              <View style={{ flexDirection: "colunm", padding: 5 }}>
+              <View style={{ flexDirection: "column", padding: 5 }}>
                 <Text style={{ fontSize: 15, padding: 5 }}>Ngân hàng</Text>
                 <Text style={{ fontSize: 15, padding: 5 }}>Tên tài khoản</Text>
                 <Text style={{ fontSize: 15, padding: 5 }}>Số tài khoản</Text>
               </View>
-              <View style={{ flexDirection: "colunm", padding: 5 }}>
+              <View style={{ flexDirection: "column", padding: 5 }}>
                 <Text style={{ fontSize: 15, padding: 5, fontWeight: "500" }}>
                   BIDV
                 </Text>

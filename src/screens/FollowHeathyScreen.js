@@ -97,10 +97,11 @@ const styles = StyleSheet.create({
     },
     screen: {
         flex: 1,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         width: '100%',
-        height: '100%'
+        height: '100%',
+        marginTop: 36
     },
     main: {
         justifyContent:'center',

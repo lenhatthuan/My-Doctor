@@ -48,7 +48,7 @@ const AddCanlandarComponent = props =>{
     })
 
     const onPress = () =>{
-        console.log("date: 53 - addcalandarcomponent: " +date);
+
         props.setDateFilter(date);
         props.onPress();
     }
@@ -62,7 +62,6 @@ const AddCanlandarComponent = props =>{
     }
 
     const getSelectedDayEvents = day => {
-        console.log("change date" + day.dateString)
         setDate(day.dateString);
     //    setCurrentDate(date.dateString);
         setDateSelected({
@@ -170,7 +169,7 @@ const styles = StyleSheet.create({
     },
     main:{
         width: "100%",
-        height: "70%",
+        height: 500,
         backgroundColor: "white",
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,

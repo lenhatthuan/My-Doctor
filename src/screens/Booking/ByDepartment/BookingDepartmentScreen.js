@@ -322,7 +322,7 @@ const BookingDepartmentScreen = (props) => {
           style={{
             marginTop: 10,
             width: "100%",
-            height: 400,
+            height: 420,
             boxShadow:
               "0 2px 5px 0 rgb(0 0 0 /20%), 0 2px 10px 0 rgb(0 0 0 /10%)",
           }}
@@ -382,7 +382,7 @@ const BookingDepartmentScreen = (props) => {
               style={{
                 width: "100%",
                 padding: 5,
-                borderColor: "#FF5403",
+                borderColor: "#01C5C4",
                 backgroundColor: "white",
                 borderWidth: 2,
                 marginTop: 5,
@@ -395,7 +395,7 @@ const BookingDepartmentScreen = (props) => {
             </View>
           </View>
         </View>
-        <View style={{   marginBottom: 5,   marginTop: 20,padding: 5 }}>
+        <View style={{   marginBottom: 5, marginTop: 5,padding: 5 }}>
           <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
             Chọn phòng khám
           </Text>
@@ -445,7 +445,7 @@ const BookingDepartmentScreen = (props) => {
             style={{
               width: "100%",
               padding: 5,
-              borderColor: "#FF5403",
+              borderColor: "#01C5C4",
               backgroundColor: "white",
               borderWidth: 2,
               marginTop: 5,
@@ -481,7 +481,7 @@ const BookingDepartmentScreen = (props) => {
             style={{
               width: "100%",
               padding: 5,
-              borderColor: "#FF5403",
+              borderColor: "#01C5C4",
               backgroundColor: "white",
               borderWidth: 2,
               marginTop: 5,
