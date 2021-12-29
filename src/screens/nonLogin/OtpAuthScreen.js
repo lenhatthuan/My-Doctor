@@ -31,19 +31,13 @@ export default function OTPAuthScreen(props) {
   const data = props.route.params.data;
   const action = props.route.params.action;
 
-  const showMessage = (id = null) => {
+  const showMessage = () => {
     Alert.alert("Thông báo", "Xác thực thành công", [
       {
         text: "OK",
         onPress: () => {
           props.navigation.popToTop();
-          if (!id) {
-            getPatientById(id).then((result) =>
-              props.navigation.navigate("Signin")
-            );
-          } else {
-            props.navigation.navigate("ChangeProfile");
-          }
+          props.navigation.replace("Signin");
         },
       },
     ]);
@@ -58,7 +52,7 @@ export default function OTPAuthScreen(props) {
       const authResult = await firebase.auth().signInWithCredential(credential);
       switch (action) {
         case "signup":
-          signup(data).then((result) => showMessage(result.account.id));
+          signup(data).then(() => showMessage());
           break;
         case "forgot-pass":
           forgotpass(data).then(() => showMessage());
