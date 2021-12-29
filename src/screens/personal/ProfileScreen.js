@@ -14,9 +14,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { formatDate } from "../../utils/string-format";
 
 export default function ProfileScreen(props) {
-  const [avatar, setAvatar] = useState(
-    "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
-  );
+  const [avatar, setAvatar] = useState("");
   const [fullname, setFullname] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [gender, setGender] = useState("");
@@ -26,7 +24,11 @@ export default function ProfileScreen(props) {
     useCallback(() => {
       AsyncStorage.getItem("patientData").then((res) => {
         const patient = JSON.parse(res);
-        setAvatar(patient.avatar);
+        if (!patient.avatar)
+          setAvatar(
+            "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+          );
+        else setAvatar(patient.avatar);
         setFullname(patient.fullName);
         setBirthdate(patient.birthDate);
         setGender(patient.gender);
@@ -79,7 +81,7 @@ export default function ProfileScreen(props) {
             </DataTable.Cell>
             <DataTable.Cell style={{ flex: 3 }}>Ngày sinh</DataTable.Cell>
             <DataTable.Cell style={{ flex: 5 }}>
-              {formatDate(birthdate)}
+              {birthdate ? formatDate(birthdate) : null}
             </DataTable.Cell>
           </DataTable.Row>
           <DataTable.Row>

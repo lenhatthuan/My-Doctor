@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   AsyncStorage,
   Pressable,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import COLORS from "../../../assets/colors";
 import { isLogin, logout } from "../../store/actions/account";
@@ -28,9 +28,7 @@ const HomeScreen = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLogout, setIsLogout] = useState(false);
 
-  setTimeout(() => {
-    
-  }, 1000);
+  setTimeout(() => {}, 1000);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -56,13 +54,11 @@ const HomeScreen = (props) => {
     props.navigation.navigate("Signin");
   }
 
- 
-
   // componentDidMount() {
   //   let scrollValue = 0;
   //   setInterval(function(){
-  //     scrollValue = scrollValue + width;   // width = screen width 
-  //     _scrollView.scrollTo({x: scrollValue}) 
+  //     scrollValue = scrollValue + width;   // width = screen width
+  //     _scrollView.scrollTo({x: scrollValue})
   //   }, 3000);
   // }
 
@@ -86,15 +82,23 @@ const HomeScreen = (props) => {
               </Pressable>
             ) : null}
             {checkIsLogin ? (
-              <Pressable style={{padding: 10, backgroundColor: '#333',borderRadius: '50%', shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 6,
-              },
-              shadowOpacity: 0.39,
-              shadowRadius: 8.30,
-              
-              elevation: 13 }} onPress={() => signup()}>
+              <Pressable
+                style={{
+                  padding: 10,
+                  backgroundColor: "#333",
+                  borderRadius: 50,
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 6,
+                  },
+                  shadowOpacity: 0.39,
+                  shadowRadius: 8.3,
+
+                  elevation: 13,
+                }}
+                onPress={() => signup()}
+              >
                 <AntDesign name="logout" size={16} color="white" />
                 {/* <Text style={styles.txtLogin}>Đăng xuất</Text> */}
               </Pressable>
@@ -132,7 +136,7 @@ const HomeScreen = (props) => {
           </View>
         </TouchableOpacity>
       </View>
-     
+
       <View style={styles.mainOption} disabled={!checkIsLogin}>
         <View style={styles.viewMainOption}>
           <TouchableOpacity
@@ -219,7 +223,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     margin: 10,
-    marginRight: 15
+    marginRight: 15,
   },
   txtLogin: {
     color: "white",

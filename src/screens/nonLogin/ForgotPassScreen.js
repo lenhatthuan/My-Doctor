@@ -12,7 +12,7 @@ export default function ForgotPassScreen(props) {
               data: data,
               action: "forgot-pass",
             })
-          : Alert.alert("Không tồn tại tài khoản này");
+          : Alert.alert("Thông báo", "Tài khoản chưa được đăng ký");
       })
       .catch((err) => console.error(err));
   };

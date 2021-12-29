@@ -16,6 +16,7 @@ import LoadingComponent from "../../components/common/LoadingComponent";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { getPatientById, updateProfile } from "../../store/actions/patient";
 import { GENDER } from "../../models/types";
+import { add } from "react-native-reanimated";
 
 export default function ChangeProfileScreen(props) {
   const [avatar, setAvatar] = useState(props.route.params.avatar);
@@ -158,7 +159,7 @@ export default function ChangeProfileScreen(props) {
         <View style={styles.action}>
           <Icon name="today" color="#009387" onPress={() => setShow(true)} />
           <TextInput
-            value={formatDate(birthdate)}
+            value={birthdate ? formatDate(birthdate) : null}
             placeholder="dd/MM/yyyy"
             placeholderTextColor="#666666"
             style={styles.textInput}
@@ -200,6 +201,7 @@ export default function ChangeProfileScreen(props) {
               },
             ]}
             onPress={save}
+            disabled={!(fullname && birthdate && gender && address)}
           >
             <Text
               style={[

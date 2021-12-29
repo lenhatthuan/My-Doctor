@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useRef } from "react";
 import {
   View,
   Text,
@@ -25,24 +25,24 @@ try {
 }
 
 export default function OTPAuthScreen(props) {
-  const recaptchaVerifier = React.useRef();
-  const [verificationCode, setVerificationCode] = React.useState();
-  const [verificationId, setVerificationId] = React.useState();
+  const recaptchaVerifier = useRef();
+  const [verificationCode, setVerificationCode] = useState("");
+  const [verificationId, setVerificationId] = useState();
   const data = props.route.params.data;
   const action = props.route.params.action;
 
   const showMessage = (id = null) => {
-    Alert.alert("Xác thực thành công", "", [
+    Alert.alert("Thông báo", "Xác thực thành công", [
       {
         text: "OK",
         onPress: () => {
           props.navigation.popToTop();
-          if (id === null) {
-            props.navigation.navigate("Signin");
+          if (!id) {
+            getPatientById(id).then((result) =>
+              props.navigation.navigate("Signin")
+            );
           } else {
-            getPatientById(id).then((result) => {
-              props.navigation.navigate("Profile");
-            });
+            props.navigation.navigate("ChangeProfile");
           }
         },
       },
@@ -58,21 +58,16 @@ export default function OTPAuthScreen(props) {
       const authResult = await firebase.auth().signInWithCredential(credential);
       switch (action) {
         case "signup":
-          signup(data).then((result) => {
-            showMessage(result.account.id);
-          });
+          signup(data).then((result) => showMessage(result.account.id));
           break;
         case "forgot-pass":
-          forgotpass(data).then((result) => {
-            showMessage();
-          });
+          forgotpass(data).then(() => showMessage());
           break;
         default:
           break;
       }
     } catch (err) {
-      Alert.alert("Xác thực không thành công");
-      console.error(err);
+      Alert.alert("Thông báo", "Xác thực không thành công");
     }
   };
 
@@ -85,7 +80,7 @@ export default function OTPAuthScreen(props) {
       );
       setVerificationId(verificationId);
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   };
 
@@ -131,6 +126,7 @@ export default function OTPAuthScreen(props) {
               },
             ]}
             onPress={authOTP}
+            disabled={!verificationCode}
           >
             <Text
               style={[

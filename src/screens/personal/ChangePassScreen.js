@@ -60,7 +60,7 @@ export default function ChangePassScreen(props) {
         changePass(account.accountId, account.username, oldPass, newPass)
           .then((result) => {
             setIsLoading(false);
-            Alert.alert("Đổi mật khẩu thành công", "", [
+            Alert.alert("Thông báo", "Đổi mật khẩu thành công", [
               {
                 text: "OK",
                 onPress: () => props.navigation.goBack(),
@@ -69,12 +69,12 @@ export default function ChangePassScreen(props) {
           })
           .catch((err) => {
             setIsLoading(false);
-            Alert.alert("Đổi mật khẩu không thành công");
+            Alert.alert("Thông báo", "Mật khẩu không đúng");
             clear();
           });
       });
     } else {
-      Alert.alert("Mật khẩu mới hoặc mã xác nhận không đúng");
+      Alert.alert("Thông báo", "Mật khẩu mới hoặc mã xác nhận không đúng");
       clear();
     }
   };
@@ -207,7 +207,7 @@ export default function ChangePassScreen(props) {
 
         <View style={styles.button}>
           <TouchableOpacity
-            disabled={!(newPass && confirmPass && oldPass)}
+            disabled={!(newPass && confirmPass && oldPass && code)}
             style={[
               styles.signIn,
               {

@@ -12,7 +12,7 @@ export default function SignupScreen(props) {
               data: data,
               action: "signup",
             })
-          : Alert.alert("Tài khoản đã được đăng ký");
+          : Alert.alert("Thông báo", "Tài khoản đã được đăng ký");
       })
       .catch((err) => console.error(err));
   };
