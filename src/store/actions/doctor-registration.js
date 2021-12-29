@@ -64,3 +64,18 @@ return await fetch(BASE_URL + "/patient/" + patientId, {
 };
 
 
+export const getAllByPatientIdAndDoctorId = async (patientId, doctorId) => {
+  return await fetch(BASE_URL + "/patient/" + patientId + "/doctor/" + doctorId ,{
+      method: "GET",
+      headers: header,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        return res.doctorRegistration;
+      }).catch((error) => {
+          console.log( error);
+          return null;
+        });
+  };
+  
+

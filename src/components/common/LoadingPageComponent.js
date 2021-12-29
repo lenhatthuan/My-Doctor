@@ -10,7 +10,7 @@ const LoadingPageComponent = props => {
     setTimeout(() => {
         setModalVisible(false);
         props.setPageVisible(false);
-    }, 3000)
+    }, 1000)
 
     return (
         <Modal

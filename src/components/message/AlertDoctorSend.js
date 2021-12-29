@@ -8,6 +8,7 @@ import {
   Image,
   Text,
   AsyncStorage,
+  Alert
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { getListDoctorService } from "../../store/actions/doctor";
@@ -15,7 +16,6 @@ import uuid from "react-native-uuid";
 import { CheckBox, SearchBar, Input, Icon } from "react-native-elements";
 import { Avatar } from "react-native-elements";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import BtnAddComponent from "../common/BtnAddComponent";
 import COLORS from'../../../assets/colors'
 
 const AlertDoctorSend = (props) => {
@@ -25,6 +25,8 @@ const AlertDoctorSend = (props) => {
   const [name, setName] = useState("");
   const [listSearchDoctor, setListSearchDoctor] = useState([]);
   const [listCheck, setListCheck] = useState([]);
+  const [message, setMessage] = useState("");
+  const [txtBtnSend, setTxtBtnSend] = useState("Gửi");
 
   useEffect(() => {
     setModalVisible(props.visible);
@@ -35,8 +37,15 @@ const AlertDoctorSend = (props) => {
   getListDoctor();  
   },[]);
 
+  const sendToDoctor = () => {
+    if(listCheck.length == 0) {
+      Alert.alert("Bạn chưa chọn bác sĩ!", "OK");
+    } else {
+      //send message
+    }
+  }  
+
   const listItemCheck = (id) => {
-      console.log("vao check")
       if (listCheck.length > 0) {
         let list = listCheck;
         const isCheck = list.includes(id);
@@ -56,7 +65,6 @@ const AlertDoctorSend = (props) => {
       getListDoctorService(id, "CONFIRMED").then((res) => {
         setDoctors(res);
         setListSearchDoctor(res);
-        console.log("doctors: " + res.length)
       });
     });
   };
@@ -232,16 +240,16 @@ const AlertDoctorSend = (props) => {
       style = {{fontSize: 14}}
         placeholder="Nhập tin nhắn muốn gửi..."
         leftIcon={ <MaterialCommunityIcons name="message-processing-outline" size={16} color="#aaa" />}
-        onChangeText={value => {}}
+        onChangeText={value => {setMessage(value)}}
         />
       </View>
        <View style = {{justifyContent:'center', alignItems:'center', width:'100%', marginTop: 5}}>
        <Pressable style = {styles.btnSave}
         onPress={() => {
-
+          sendToDoctor();
         }}
        >
-            <Text style = {styles.txtSave}>Gửi</Text>
+            <Text style = {styles.txtSave}>{txtBtnSend}</Text>
         </Pressable>
        </View>
           </View>
@@ -270,8 +278,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 500,
     backgroundColor: "white",
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     width: "100%",
   },
   view: {

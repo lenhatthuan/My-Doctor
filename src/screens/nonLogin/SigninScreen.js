@@ -112,8 +112,6 @@ const SignInScreen = (props) => {
     });
   }
 
-  const sendError = () => {};
-
   const setPasswordInput = (text) => {
     setPassword(text);
   };
@@ -140,8 +138,8 @@ const SignInScreen = (props) => {
     if (userName.length == 0 || password.length == 0) {
       Alert.alert(
         "Lỗi đầu vào!",
-        "Số điện hoặc password không được để trống.",
-        [{ text: "Okay" }]
+        "Số điện thoại hoặc password không được để trống.",
+        [{ text: "OK" }]
       );
       return;
     }

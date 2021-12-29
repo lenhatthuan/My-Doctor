@@ -85,6 +85,10 @@ import AddCanlandarComponent from "../../../components/common/AddCanlandarCompon
     return new Date().getMonth() + 1;
   }
 
+  const getNextMonth = () => {
+    return new Date().getMonth() + 1;
+  }
+
   const getYear = () => {
     return new Date().getFullYear();
   }

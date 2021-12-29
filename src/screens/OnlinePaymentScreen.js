@@ -8,7 +8,6 @@ const OnlinePaymentScreen = props =>{
     const [messageSb, setMessageSb] = useState("Thành công");
 
     const onHandleSnackbar = () => {
-        console.log("snackbar ne");
         setIsSnackbar(false);
     }
     return (

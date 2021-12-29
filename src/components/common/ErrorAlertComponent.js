@@ -10,7 +10,7 @@ const ErrorAlert = (props) =>{
     })
 
     const onHandlePress = () => {
-        props.onPress();
+        props.onCancel();
     }
 
     return (
@@ -23,16 +23,16 @@ const ErrorAlert = (props) =>{
           setModalVisible(!modalVisible);}}>
             <View style = {styles.view}>
             <Pressable style = {styles.errorComponent}>
-               <View style = {{backgroundColor: 'white', height: 200, width: "90%", borderRadius: 8, alignItems:'center'}}>
+               <View style = {{backgroundColor: 'white', height: 150, width: "90%", borderRadius: 8, alignItems:'center'}}>
                    <Image source={require('../../../assets/imgs/error.gif')} style = {{width: 50, height: 50}}/>
                    <View style = {{borderWidth: 1, width: "100%",borderColor: '#04293A'}}/>
               <View style = {{justifyContent: 'center', alignItems: 'center', flex: 1}}>
               <View style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                   <Text style = {{fontWeight: 'bold', color: 'black', fontSize: 18}}>{props.message}</Text>
+                   <Text style = {{fontWeight: 'bold', color: 'black', fontSize: 15, paddingLeft: 10, paddingRight: 10}}>{props.message}</Text>
                </View>
-               <Pressable style = {{ justifyContent: 'flex-end', flex: 1, marginBottom: 20}} onPress={() => {
+               <Pressable style = {{ justifyContent: 'flex-end', flex: 1, marginBottom: 10}} onPress={() => {
                 onHandlePress();
-               }}><View style = {{padding: 10, width: 50, borderRadius: 8, backgroundColor: '#FF5403', alignItems: 'center'}}>
+               }}><View style = {{padding: 10, paddingTop: 5, paddingBottom: 5, width: 50, borderRadius: 8, backgroundColor: '#00AF91', alignItems: 'center'}}>
                    <Text style = {{fontWeight: 'bold', color: 'white'}}>OK</Text>
                    </View> 
                </Pressable>

@@ -3,11 +3,19 @@ import { AsyncStorage } from 'react-native';
 import { View, Text, StyleSheet, Pressable} from 'react-native';
 import {balanceFormat} from '../utils/string-format';
 import AlertDoctorService from '../components/common/AlertDoctorService';
+import {getAllByPatientId, getAllByPatientIdAndDoctorId} from '../store/actions/doctor-registration';
+import ErrorAlert from './common/ErrorAlertComponent';
 const ServiceComponent = props =>{
 
     const [isAddModel, setIsAddModel] = React.useState(false);
+    const [isExist, setIsExist] = React.useState(false);
+
     const cancelGoalApplicationHandler = () => {
         setIsAddModel(false);
+      };
+
+      const cancelExistAlert = () => {
+        setIsExist(false);
       };
 
     const changeFormat = () => {
@@ -26,8 +34,20 @@ const ServiceComponent = props =>{
       props.setPrice(price);
     }
 
+    const IsExistService = () => {
+      AsyncStorage.getItem("id").then(res => {
+        getAllByPatientIdAndDoctorId(res, props.doctorId).then(res => {
+          if (res){
+            setIsExist(true);
+          } else setIsAddModel(true);
+        })
+      })
+    
+    }
+
     return (
         <View style = {styles.screen}>
+          <ErrorAlert visible = {isExist} message = "Bác sĩ này, bạn đã đăng kí, vui lòng kiểm tra lại!" onCancel = {cancelExistAlert}/>
            <View style = {styles.header}>
            <Text style = {{fontSize: 15, fontWeight: "bold"}}>
              {props.name}
@@ -42,7 +62,8 @@ const ServiceComponent = props =>{
               </Text>
               <Pressable style = {{backgroundColor: '#FF5403', padding: 5, borderRadius: 5}}
               onPress = {() => {
-                setIsAddModel(true);
+                // setIsAddModel(true);
+                IsExistService();
               }}>
                    <Text style = {{color: 'white', fontWeight: 'bold', letterSpacing: 0.5}}>Đăng ký</Text></Pressable>
            </View>

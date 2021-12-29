@@ -67,7 +67,6 @@ const HistoryBMIComponent = (props) => {
   };
 
   const addData = () => {
-    console.log("add bmi")
     setIsAddModel(true);
   };
 
