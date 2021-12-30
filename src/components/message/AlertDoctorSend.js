@@ -12,11 +12,11 @@ import {
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { getListDoctorService } from "../../store/actions/doctor";
-import uuid from "react-native-uuid";
 import { CheckBox, SearchBar, Input, Icon } from "react-native-elements";
 import { Avatar } from "react-native-elements";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import COLORS from'../../../assets/colors'
+import { createMessage } from "../../store/actions/message";
 
 const AlertDoctorSend = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -41,7 +41,28 @@ const AlertDoctorSend = (props) => {
     if(listCheck.length == 0) {
       Alert.alert("Bạn chưa chọn bác sĩ!", "OK");
     } else {
+      AsyncStorage.getItem("id").then((id) => {
+        setTxtBtnSend("Đang gửi ......");
+        let done = 0;
+        listCheck.forEach(doctorId => {
+          let messages = {
+            senderId: id,
+            recieverId: doctorId,
+            content: message
+          };
+  
+          createMessage(messages).then (res => {
+            setTxtBtnSend("Gửi");
+            setModalVisible(false);
+            cancelGoalHandler();
+            props.onSend();
+            Alert.alert("Thông báo", "Đã gửi thông tin đến bác sĩ!");
+          })
+        })
+        
+      });
       //send message
+      
     }
   }  
 
@@ -130,10 +151,6 @@ const AlertDoctorSend = (props) => {
         </View>
       </View>
     );
-  };
-
-  const renderId = (id) => {
-    return uuid.v4() + id;
   };
 
   const cancelGoalHandler = () => {
