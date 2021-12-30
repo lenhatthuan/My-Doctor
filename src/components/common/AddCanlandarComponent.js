@@ -3,15 +3,11 @@ import {View, Pressable, Text, StyleSheet, Modal, Platform} from 'react-native';
 import STRING from '../../utils/string';
 import BtnAddComponent from './BtnAddComponent';
 import { FontAwesome } from "@expo/vector-icons";
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
-import DateTimePicker  from "@react-native-community/datetimepicker";
+import {Calendar} from 'react-native-calendars';
 import { formatDateCalandar } from '../../utils/string-format';
 const AddCanlandarComponent = props =>{
     const [modalVisible, setModalVisible] = useState(false);
     const [date, setDate] = useState(formatDateCalandar(new Date()));
-    const [show, setShow] = useState(false);
-    const [platform, setPlatform] = useState('default')
-    const isDatePickerVisible = true;
     const [listSelectedDate, setListSelectedDate] = useState({});
 
       const [listSelectedDateStatic, setListSelectedDateStatic] = useState({});
@@ -30,21 +26,10 @@ const AddCanlandarComponent = props =>{
 
     useEffect(() => {
         listSatic();
-        // setListSelectedDate(listSatic);
-        // setListSelectedDateStatic(listSatic);
-        console.log("date: " + props.listDate);
     },[])
-    const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
-       // if(Platform.OS =='ios') 
-        ///setShow(Platform.OS ==='ios');
-        setShow(false);
-        setDate(currentDate);
-      };
-
+    
      useEffect(() => {
        setModalVisible(props.visible);
-       if(Platform.OS =='ios') setPlatform('inline');
     })
 
     const onPress = () =>{
@@ -106,10 +91,7 @@ const AddCanlandarComponent = props =>{
          theme={{
             textSectionTitleDisabledColor: '#d9e1e8'
           }}
-//   markingType={'period'}
-//   current={currentDate}
-  minDate={formatDateCalandar(new Date())}
-
+         minDate={formatDateCalandar(new Date())}
 
   scrollEnabled={true}
   horizontal={true}
@@ -118,8 +100,6 @@ const AddCanlandarComponent = props =>{
   onDayPress={(day) => {
     getSelectedDayEvents(day);
 }}
-//markedDates = {dateSelected.dateSelected, listSatic()}
-// markedDates = { listSatic()}
 markedDates={ listSatic()}
   theme={{
     backgroundColor: "#ffffff",

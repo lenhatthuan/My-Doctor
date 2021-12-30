@@ -85,8 +85,14 @@ import AddCanlandarComponent from "../../../components/common/AddCanlandarCompon
     return new Date().getMonth() + 1;
   }
 
-  const getNextMonth = () => {
-    return new Date().getMonth() + 1;
+  const getNextMonth = (date) => {
+    let year = getYear();
+    let month = getMonth();
+    if (month == 12) {
+      year = year + 1;
+      month = 1;
+    } else month = month + 1;
+    return year + "-" + "01" + "-" + date;
   }
 
   const getYear = () => {
@@ -94,7 +100,10 @@ import AddCanlandarComponent from "../../../components/common/AddCanlandarCompon
   }
 
   const getDate = (date) => {
-    return getYear() + "-" + getMonth() + "-" + date;
+    let month = getMonth();
+    if (month >= 10)
+      return getYear() + "-" + getMonth() + "-" + date;
+    else  return getYear() + "-" + "0" + getMonth() + "-" + date;
   }
 
   const setListDate = (schedule) => {
@@ -102,6 +111,12 @@ import AddCanlandarComponent from "../../../components/common/AddCanlandarCompon
     schedule.forEach(date => {
       if(date.day <= 31) list.push(getDate(date.day));
     })
+
+    if(new Date().getDate() > 15) {
+      schedule.forEach(date => {
+        if(date.day <= 31) list.push(getNextMonth(date.day));
+      })
+    }
     return list;
   }
 

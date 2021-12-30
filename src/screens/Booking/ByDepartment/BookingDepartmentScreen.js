@@ -53,7 +53,6 @@ const BookingDepartmentScreen = (props) => {
   const onReload = () => {
     setIsPageLoading(true);
     let { department } = props.route.params;
-    console.log("navigate reload")
     props.navigation.navigate("BookingDepartment", {
       department: department
   })
@@ -144,7 +143,6 @@ const BookingDepartmentScreen = (props) => {
     if(isValidateBooking()) {
       getAll().then((res) => {
         let lPosition = res;
-        console.log("res: " + res);
         setLAllposition(lAllPosition);
         let number = 0;
         let date = dateBooking();
@@ -293,7 +291,7 @@ const BookingDepartmentScreen = (props) => {
         </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <LoadingPageComponent setPageVisible = {setPageVisible} visible = {isPageLoading}/>
-        <ErrorAlert visible = {isErrorAlert} message = {messageAlert} onPress = {onHandleErorrAlertPress}/>
+        <ErrorAlert visible = {isErrorAlert} message = {messageAlert} onCancel = {onHandleErorrAlertPress}/>
         <SuccessAlert visible = {isSuccessAlert} message = {messageAlert} onPress = {onHandleErorrAlertPress}/>
         {/* <View style={{ marginTop: 10 }}>
           <Text
