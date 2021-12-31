@@ -10,7 +10,7 @@ const DateHistoryHeart = (props) => {
   const [isSnackbar, setIsSnackbar] = useState(false);
 
   useEffect(() => {
-      let send = "Ngày " + props.time + ", ";
+      let send = "Ngày: " + props.time + ", số đo huyết áp: " + props.title + ", Nhịp tim: " + props.heartBeat + ".";
       setMessage(send);
   })
 
@@ -31,7 +31,6 @@ const DateHistoryHeart = (props) => {
   };
 
   const onSend = () => {
-    console.log("da sen!");
     setIsSnackbar(true);
   };
 
@@ -48,6 +47,7 @@ const DateHistoryHeart = (props) => {
         doctors={doctors}
         onCancel={onCancel}
         onSend={onSend}
+        content = {message}
       />
       <View
         style={{ justifyContent: "flex-end", flexDirection: "row", margin: 5 }}

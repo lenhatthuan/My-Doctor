@@ -43,12 +43,12 @@ const AlertDoctorSend = (props) => {
     } else {
       AsyncStorage.getItem("id").then((id) => {
         setTxtBtnSend("Đang gửi ......");
-        let done = 0;
+        let content = "Tin nhắn: " +  message + props.content; 
         listCheck.forEach(doctorId => {
           let messages = {
             senderId: id,
             recieverId: doctorId,
-            content: message
+            content: content
           };
   
           createMessage(messages).then (res => {
@@ -61,8 +61,6 @@ const AlertDoctorSend = (props) => {
         })
         
       });
-      //send message
-      
     }
   }  
 
