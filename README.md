@@ -28,3 +28,6 @@ Các bước thực hiện:
 - Clone project từ github: https://github.com/yenlee38/my-doctor-web
 - Sau khi clone project từ github, thực hiện câu lệnh npm install
 - Sau đó run bằng câu lệnh npm start
+##### Deploy:
+- Hệ điều hành Android: Thực hiện câu lệnh expo build:android và chọn loại build là apk
+- Hệ điều hành iOS: Thực hiện câu lệnh expo build:ios và chọn loại build là simular
