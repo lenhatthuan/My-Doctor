@@ -41,6 +41,9 @@ npm install
 ```sh
 npm start
 ```
+##### API
+Link API: http://still-wave-21655.herokuapp.com/
+Link gitHub: https://github.com/yenlee38/my-doctor-api
 #### Cách Deploy cho app
 - Hệ điều hành Android: Thực hiện câu lệnh ```expo build:android```và chọn loại build là ```apk```
 - Hệ điều hành iOS: Thực hiện câu lệnh ```expo build:ios``` và chọn loại build là ```simular```
