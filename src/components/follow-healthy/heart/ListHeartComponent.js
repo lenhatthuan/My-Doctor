@@ -41,6 +41,10 @@ const ListHeartComponent = (props) =>{
             })
         })
     }
+
+    const reloadListHeartBeat = () => {
+        getAllListHeart();
+    }
     
       const checkList = () => {
         if (listHeart.length == 0) 
@@ -108,9 +112,6 @@ const ListHeartComponent = (props) =>{
     const renderDate = ({item}) =>{
         return (
             <Pressable style = {styles.dateComponent} onPress = {() =>{
-        //     <HoldMenuProvider theme="light">
-        //     {/* Your app components */}
-        //   </HoldMenuProvider>
         return (<HoldItem items = {menuItems} menuAnchorPosition="bottom-right">
         </HoldItem>);
             }}>
@@ -120,6 +121,10 @@ const ListHeartComponent = (props) =>{
             title = {convertTitle(item.systole, item.diastole)}
             status = {statusHA(item.diastole, item.systole)}
             doctors = {doctors}
+            diastole = {item.diastole}
+            systole = {item.systole}
+            id = {item.id}
+            reloadListHeartBeat = {reloadListHeartBeat}
             />
             </Pressable>
         )

@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
 
     header:{
         width: '100%',
-        height: 70,
-        paddingTop: 36,
+        height: 50,
         backgroundColor: '#fff',
         // justifyContent: 'flex-start',
         flexDirection:'row',

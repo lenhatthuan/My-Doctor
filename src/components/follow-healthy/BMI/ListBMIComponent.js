@@ -69,6 +69,11 @@ const ListBMIComponent = (props) =>{
         })
     }
 
+
+    const reloadListBMI = () => {
+        getAllListBMI();
+    }
+
     const onCancelFitler = () => {
         setIsloading(true);
         setListBMI(listBMIStatic);
@@ -97,7 +102,6 @@ const ListBMIComponent = (props) =>{
         //     <HoldMenuProvider theme="light">
         //     {/* Your app components */}
         //   </HoldMenuProvider>
-        console.log("menu items");
         return (<HoldItem items = {menuItems} menuAnchorPosition="bottom-right">
         </HoldItem>);
             }}>
@@ -105,6 +109,10 @@ const ListBMIComponent = (props) =>{
             date = {formatDate(item.createdAt)}
             title = {convertTitle(item.tall, item.weigh)}
             data = {item.bmi}
+            id = {item.id}
+            tall = {item.tall}
+            weigh = {item.weigh}
+            reloadListBMI = {reloadListBMI}
             />
             </Pressable>
         )
@@ -158,13 +166,6 @@ const ListBMIComponent = (props) =>{
                <Image source = {require('../../../../assets/imgs/70780-no-result-found.gif')} style = {{height: '100%', width:'100%'}}/>
             ): null}
             </View>
-            {/* <AddFitlerComponent
-                    visible = {filter}
-                    onCancel = {cancelOpenCalendar}
-                    setDateFilter = {callbackFunction}
-                    onPress = {getFilter}
-                    onCancelFilter  ={onCancelFitler}
-            /> */}
             <FillterCalandar
                  visible = {filter}
                  onCancel = {cancelOpenCalendar}

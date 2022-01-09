@@ -78,4 +78,31 @@ export const getAllByPatientIdAndDoctorId = async (patientId, doctorId) => {
         });
   };
   
+  export const deleteRegistration = async (id) => {
+    return await fetch(BASE_URL + "/" + id + "/delete", {
+        method: "PUT",
+        headers: header
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          return res.message;
+        }).catch((error) => {
+            console.log(error);
+            return null;
+          });
+    };
+
+    export const getById = async (id) => {
+      return await fetch(BASE_URL + "/" + id, {
+          method: "GET",
+          headers: header,
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            return res.doctorRegistration;
+          }).catch((error) => {
+              console.log( error);
+              return null;
+            });
+      };
 

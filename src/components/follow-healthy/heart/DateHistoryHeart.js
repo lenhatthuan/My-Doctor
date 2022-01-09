@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import AlertDoctorSend from "../../message/AlertDoctorSend";
 import SbNotification from "../../common/snackbar/SbNotification";
+import { deleteHeartBeat, updateHeartBeat } from "../../../store/actions/heart";
+import EditHeartBeat from "./EditHeartBeat";
 const DateHistoryHeart = (props) => {
   const [isGetSend, setIsGetSend] = useState(false);
   const [message, setMessage] = useState("");
@@ -34,6 +36,35 @@ const DateHistoryHeart = (props) => {
     setIsSnackbar(true);
   };
 
+  const onCancelEdit = () => {
+    setIsEdit(false);
+  }
+  const [isEdit, setIsEdit] = useState(false);
+    
+
+
+  const update = (dis, sys, beat) => {
+      updateHeartBeat(props.id,  dis, sys, beat).then(res => {
+          if(res) {
+              setIsEdit(false);
+              props.reloadListHeartBeat();
+          }
+      })
+  }
+
+  let HeartBeat = {id: props.id, diastole: props.diastole, systole: props.systole, heartBeat: props.heartBeat, updatedAt: props.time};
+
+  const onDelete = () => {
+
+      deleteHeartBeat(props.id).then(res => {
+          if(res) {
+              setIsEdit(false);
+              props.reloadListHeartBeat();
+          }
+      })
+     
+  }
+
   return (
     <View>
       <SbNotification
@@ -61,7 +92,7 @@ const DateHistoryHeart = (props) => {
           <MaterialIcons name="send" size={24} color="black" />
         </Pressable>
       </View>
-      <View style={styles.main}>
+      <Pressable style={styles.main} onPress={() => setIsEdit(true)}>
         <View style={styles.component}>
           <Text style={styles.txtComponent}>{props.time}</Text>
         </View>
@@ -74,7 +105,8 @@ const DateHistoryHeart = (props) => {
         <View style={styles.component}>
           <Text style={styles.txtStatus}>{props.status}</Text>
         </View>
-      </View>
+      </Pressable>
+      <EditHeartBeat visible = {isEdit} onCancel = {onCancelEdit} onDelete = {onDelete} HeartBeat = {HeartBeat} update = {update}/>
     </View>
   );
 };
