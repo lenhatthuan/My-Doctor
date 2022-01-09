@@ -95,7 +95,6 @@ const SignInScreen = (props) => {
     let username = phone;
     let pass = password;
     setIsLoading(true);
-    console.log("login");
     signin(username, pass).then((data) => {
       if (data.count == 1) {
         sendOTP(data.account.id);
@@ -121,9 +120,6 @@ const SignInScreen = (props) => {
   };
 
   const sendOTP = (id) => {
-    // props.navigation.navigate(
-    //    'OTPAuth', {phone: phone, pass: password, patientId: id}
-    // )
     updateToken(id, token)
       .then(() =>
         getPatientById(id).then((result) => {

@@ -6,20 +6,20 @@ import {
   StyleSheet,
   FlatList,
   AsyncStorage,
+  Pressable,
 } from "react-native";
 import { getAllByPatientId } from "../../store/actions/doctor-registration";
 import DoctorServiceComponent from "../../components/DoctorServiceComponent";
 import { SafeAreaView } from "react-navigation";
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import TabBar from "react-native-underline-tabbar";
+import { useFocusEffect } from "@react-navigation/native";
 import DoctorRegistrationComponent from "../../components/common/DoctorRegistrationComponent";
 import { getAllService } from "../../store/actions/service";
 import { getAll } from "../../store/actions/doctor";
 import { LogBox } from 'react-native';
 
 const DoctorOrderScreen = (props) => {
-  const [option, setOption] = React.useState(0);
-  const [isVisible, setIsVisible] = React.useState(false);
   const [namePatient, setNamePatient] = React.useState("name");
   const [list, setList] = React.useState([]);
   const [services, setServices] = React.useState([]);
@@ -29,6 +29,13 @@ const DoctorOrderScreen = (props) => {
     // getListReg();
     getNameUser();
   }, []);
+
+  useFocusEffect(
+  React.useCallback(() => {
+    getNameUser();
+    getListReg();
+    getDoctorByRegistration();
+  },[]))
 
 
   LogBox.ignoreLogs([
@@ -55,7 +62,6 @@ const DoctorOrderScreen = (props) => {
         duration = res.duration;
       }
     })
-    console.log("duration: " + duration);
     return duration;
   }
 
@@ -64,7 +70,6 @@ const DoctorOrderScreen = (props) => {
     doctorsAll.forEach(res => {
       if(res.id == id) {
         name = res.fullname;
-        console.log("doctorId: " + id);
       }
     })
     return name;
@@ -118,9 +123,15 @@ const DoctorOrderScreen = (props) => {
     );
   }
 
+  const gotoDetail = (res) => {
+
+    props.navigation.navigate("ServiceDetail", {
+      registration: res});
+  }
+
   const renderData = ({ item }) => {
     return (
-      <View
+      <Pressable onPress={() => {gotoDetail()}}
         style={{
           marginTop: 10,
           width: "90%",
@@ -131,6 +142,7 @@ const DoctorOrderScreen = (props) => {
         }}
       >
         <DoctorServiceComponent
+          gotoDetail = {gotoDetail}
           name={item.name}
           doctorId={item.doctorId}
           nameDoctor = {getNameDoctor(item.doctorId)}
@@ -141,7 +153,7 @@ const DoctorOrderScreen = (props) => {
           id={item.id}
           duration = {getDuration(item.serviceId)}
         />
-      </View>
+      </Pressable>
     );
   };
 
@@ -180,12 +192,9 @@ const DoctorOrderScreen = (props) => {
           tabBarActiveTextColor="#53ac49"
           renderTabBar={() => <TabBar underlineColor="#53ac49" />}
         >
-          {/* <Page1 tabLabel={{ label: "Bác sĩ riêng" }} /> */}
-
           <View
            tabLabel={{ label: "Bác sĩ riêng" }}
           style={styles.container}>
-      {/* <Text style={styles.welcome}>{label}</Text> */}
       {doctors.length > 0 ? (<FlatList data = {doctors} renderItem = {renderDoctor} style = {{width: '100%'}}></FlatList>):
        null
       }
@@ -223,11 +232,20 @@ const DoctorOrderScreen = (props) => {
             {list != null ? (
               <FlatList data={listConfirmed(list, "PENDDING")} renderItem={renderData}></FlatList>
             ) : null}
-            {list == null ? (
-              <Image
-                style={{ height: "100%", width: "90%" }}
-                source={require("../../../assets/imgs/70780-no-result-found.gif")}
-              />
+            {list == null || listConfirmed(list, "PENDDING").length === 0? (
+              <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: "100%"
+              }}
+            >
+              <Text style={{ color: "#aaa" }}>
+                Hiện bạn chưa có dịch vụ nào.
+              </Text>
+            </View>
             ) : null}
           </View>
           <View
@@ -242,11 +260,20 @@ const DoctorOrderScreen = (props) => {
             {list != null ? (
               <FlatList data={listConfirmed(list, "CREATED")} renderItem={renderData}></FlatList>
             ) : null}
-            {list == null ? (
-              <Image
-                style={{ height: "100%", width: "90%" }}
-                source={require("../../../assets/imgs/70780-no-result-found.gif")}
-              />
+            {list == null || listConfirmed(list, "CREATED").length === 0? (
+              <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: "100%"
+              }}
+            >
+              <Text style={{ color: "#aaa" }}>
+                Hiện bạn chưa có dịch vụ nào.
+              </Text>
+            </View>
             ) : null}
           </View>
           <View
@@ -261,11 +288,20 @@ const DoctorOrderScreen = (props) => {
             {list != null ? (
               <FlatList data={listConfirmed(list, "CANCEL")} renderItem={renderData}></FlatList>
             ) : null}
-            {list == null ? (
-              <Image
-                style={{ height: "100%", width: "90%" }}
-                source={require("../../../assets/imgs/70780-no-result-found.gif")}
-              />
+            {list == null || listConfirmed(list, "CANCEL").length === 0? (
+              <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: "100%"
+              }}
+            >
+              <Text style={{ color: "#aaa" }}>
+                Hiện bạn chưa có dịch vụ nào.
+              </Text>
+            </View>
             ) : null}
           </View>
 
@@ -281,11 +317,20 @@ const DoctorOrderScreen = (props) => {
             {list != null ? (
               <FlatList data={listConfirmed(list, "EXPIRED")} renderItem={renderData}></FlatList>
             ) : null}
-            {list == null ? (
-              <Image
-                style={{ height: "100%", width: "90%" }}
-                source={require("../../../assets/imgs/70780-no-result-found.gif")}
-              />
+            {list == null || listConfirmed(list, "EXPIRED").length === 0? (
+              <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: "100%"
+              }}
+            >
+              <Text style={{ color: "#aaa" }}>
+                Hiện bạn chưa có dịch vụ nào.
+              </Text>
+            </View>
             ) : null}
           </View>
         </ScrollableTabView>

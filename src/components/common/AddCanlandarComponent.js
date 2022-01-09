@@ -82,11 +82,9 @@ const AddCanlandarComponent = props =>{
               onPress = {() =>{
                 onCanCelFilter();
             }}>
-              <Text style={styles.txtHeader}>Bỏ lọc</Text>
+              {/* <Text style={styles.txtHeader}>Bỏ lọc</Text> */}
             </Pressable>
         </View>
-        {/* <View style = {styles.body}> */}
-        {/* cho nay */}
         <Calendar
          theme={{
             textSectionTitleDisabledColor: '#d9e1e8'

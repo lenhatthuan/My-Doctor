@@ -38,7 +38,7 @@ import LoadingScreen from "../screens/LoadingScreen";
 import PaymentScreen from "../screens/Service/PaymentScreen";
 import DoctorOrderScreen from "../screens/Service/DoctorOrderScreen";
 import BookingDepartmentScreen from "../screens/Booking/ByDepartment/BookingDepartmentScreen";
-
+import ServiceDetail from "../screens/Service/ServiceDetail";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -58,6 +58,10 @@ function HomeNavigation() {
       <Stack.Screen name="RecordDetail" component={RecordDetailScreen} />
       <Stack.Screen name="Position" component={PositionScreen} />
       <Stack.Screen name="FollowHeathy" component={FollowHeathyScreen} />
+      <Stack.Screen name="ServiceDetail" component={ServiceDetail}/>
+      <Stack.Screen name="payment" component={PaymentScreen} />
+      <Stack.Screen name="AllDoctor" component={AllDoctorScreen} />
+      <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen} />
     </Stack.Navigator>
   );
 }
@@ -73,6 +77,7 @@ function ContactNavigation() {
       <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen} />
       <Stack.Screen name="doctor-schedule" component={DoctorScheduleScreen} />
       <Stack.Screen name="payment" component={PaymentScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
   );
 }

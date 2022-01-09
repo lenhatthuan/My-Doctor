@@ -374,14 +374,6 @@ import AddCanlandarComponent from "../../../components/common/AddCanlandarCompon
           </View>
         </View>
       </View>
-
-      {/* <AddFitlerComponent
-                    visible = {filter}
-                    onCancel = {cancelOpenCalendar}
-                    setDateFilter = {callbackFunction}
-                    onPress = {getFilter}
-                    onCancelFilter ={onCancelFitler}
-            /> */}
           
     </View>
     <AddCanlandarComponent

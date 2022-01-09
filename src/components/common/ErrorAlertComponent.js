@@ -28,7 +28,7 @@ const ErrorAlert = (props) =>{
                    <View style = {{borderWidth: 1, width: "100%",borderColor: '#04293A'}}/>
               <View style = {{justifyContent: 'center', alignItems: 'center', flex: 1}}>
               <View style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                   <Text style = {{fontWeight: 'bold', color: 'black', fontSize: 15, paddingLeft: 10, paddingRight: 10}}>{props.message}</Text>
+                   <Text style = {{fontWeight: 'bold', color: 'black', fontSize: 15, paddingLeft: 10, paddingRight: 10, alignItems:'center', textAlign: 'center'}}>{props.message}</Text>
                </View>
                <Pressable style = {{ justifyContent: 'flex-end', flex: 1, marginBottom: 10}} onPress={() => {
                 onHandlePress();

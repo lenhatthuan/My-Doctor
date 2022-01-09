@@ -97,3 +97,14 @@ export const convertMoneyFromVNToUS = (money) => {
   console.log("money: " + money * 0.000043);
   return money * 0.000043;
 };
+
+
+export const discription = (status) => {
+  if (status == "CONFIRMED") return "Bạn đã và đang sử dụng dịch vụ này!";
+  if (status == "CREATED") return "Bạn vừa tạo dịch vụ và chưa tiến hành thanh toán!";
+  if (status == "PENDDING") return "Bạn đã chuyển khoảng, đợi admin duyệt đơn thanh toán của bạn, đừng lo lắng!";
+  if (status == "EXPIRED") return "Thời hạn đăng ký của bạn đã hết!";
+  if (status == "CANCEL") return "Bạn đã hủy đăng ký!";
+
+  return "#fff";
+};

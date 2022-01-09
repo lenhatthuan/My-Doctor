@@ -39,7 +39,6 @@ function PaymentScreen({ route, navigation }) {
     convertMoneyFromVNToUS(price) +
     "/" +
     registration.name;
-  // const urlPaypal = "http://localhost:3000/payment";
   React.useEffect(() => {
     AsyncStorage.getItem("accountData").then((res) => {
       let account = JSON.parse(res);
@@ -54,7 +53,7 @@ function PaymentScreen({ route, navigation }) {
   const btnPressRegister = () => {
     updateRegistration(registration.id, registration.name, "PENDDING").then(
       (res) => {
-        navigation.navigate("DoctorOrder");
+        navigation.navigate("Home");
       }
     );
   };
@@ -80,14 +79,11 @@ function PaymentScreen({ route, navigation }) {
       setIsPaypal(false);
       setMessageSb("Thanh toán thành công!");
       updateRegistration(registration.id, registration.name, "CONFIRMED").then(
-        (res) => {
-          console.log("ok nha");
+        (res) => {    
           successSnackbar();
-          // navigation.navigate("DoctorOrder");
         }
       );
     } else if (data.url.includes("cancel")) {
-      console.log("cancel nha");
       setMessageSb("Lỗi thanh toán!");
       setIsPaypal(false);
       // this.setState({ showModal: false, status: "Cancelled" });
@@ -270,23 +266,6 @@ function PaymentScreen({ route, navigation }) {
             title="Hủy đăng ký"
           />
 
-          {/* <View style = {{flexDirection: 'row', alignItems:'center', justifyContent:'center', width: '100%', marginBottom: 30}}>
-      <View style = {{flexDirection: 'row', alignItems:'center', justifyContent:'center', width: '90%', backgroundColor:'white', borderRadius: 8}}>
-          
-          <Pressable
-            onPress={() => {
-              setIsPageLoading(true)
-              setIsPaypal(true);
-            }}
-          >
-            <Image
-              source={require("../../../assets/imgs/paypalText.png")}
-              style={{ width: 70, height: 70 }}
-            />
-          </Pressable>
-          <Text style = {{fontWeight:'bold'}}>Thanh toán bằng paypal</Text>
-        </View>
-      </View> */}
 
           <View
             style={{
@@ -299,10 +278,6 @@ function PaymentScreen({ route, navigation }) {
           ></View>
         </ScrollView>
         <View style={{ paddingTop: 10 }}>
-          {/* <BtnCancelComponent
-          onPress={() => btnPressCancel()}
-          title="Hủy đăng ký"
-        /> */}
           <View
             style={{
               flexDirection: "row",

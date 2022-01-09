@@ -63,6 +63,54 @@ export const getAllBMI = async (patientId) => {
     });
 };
 
+export const deleteBMI = async (id) => {
+  const token =  await AsyncStorage.getItem("accountData").then((account) => {
+      return JSON.parse(account).token;
+    });
+    const header = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    };
+
+return await fetch(BASE_URL + "/" + id + "/delete", {
+  method: "PUT",
+  headers: header,
+})
+  .then((res) => res.json())
+  .then((res) => {
+    return res.message;
+  }).catch((error) => {
+    return null;
+  });
+};
+
+export const updateBMI = async (id, tall, weigh) => {
+  const token =  await AsyncStorage.getItem("accountData").then((account) => {
+      return JSON.parse(account).token;
+    });
+    const header = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    };
+
+return await fetch(BASE_URL + "/" + id , {
+  method: "PUT",
+  headers: header,
+  body: JSON.stringify({
+    tall: tall,
+    weigh: weigh
+  }),
+})
+  .then((res) => res.json())
+  .then((res) => {
+    return res.bmi;
+  }).catch((error) => {
+    return null;
+  });
+};
+
 
 
 
