@@ -77,3 +77,13 @@ export const updateToken = async (id, token) => {
     .then((result) => console.log(result.message))
     .catch((err) => console.log(err));
 };
+
+export const getAge = async () => {
+  try {
+    const response = AsyncStorage.getItem("patientData");
+    const patient = JSON.parse(response);
+    return new Date().getFullYear - new Date(patient.birthDate).getFullYear();
+  } catch (error) {
+    console.log(error);
+  }
+};

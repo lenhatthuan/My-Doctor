@@ -39,6 +39,51 @@ import PaymentScreen from "../screens/Service/PaymentScreen";
 import DoctorOrderScreen from "../screens/Service/DoctorOrderScreen";
 import BookingDepartmentScreen from "../screens/Booking/ByDepartment/BookingDepartmentScreen";
 import ServiceDetail from "../screens/Service/ServiceDetail";
+
+// healthy
+// import HealthyNavigation from "./HealthyNavigation";
+import HealthyScreen from "../screens/healthy/HealthyScreen";
+import BMIScreen from "../screens/healthy/BMIScreen";
+import HeartBeatScreen from "../screens/healthy/HeartBeatScreen";
+import HeartBeatChartScreen from "../screens/healthy/HeartBeatChartScreen";
+import EmotionScreen from "../screens/healthy/EmotionScreen";
+
+function HealthyNavigation() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: "#009387",
+      }}
+    >
+      <Stack.Screen
+        name="Heathy"
+        component={HealthyScreen}
+        options={{ headerMode: "none" }}
+      />
+      <Stack.Screen
+        name="Emotion"
+        component={EmotionScreen}
+        options={{ title: "Tâm trạng" }}
+      />
+      <Stack.Screen
+        name="BMI"
+        component={BMIScreen}
+        options={{ title: "Chỉ số BMI" }}
+      />
+      <Stack.Screen
+        name="HeartBeatChart"
+        component={HeartBeatChartScreen}
+        options={{ title: "Biểu đồ" }}
+      />
+      <Stack.Screen
+        name="HeartBeat"
+        component={HeartBeatScreen}
+        options={{ title: "Huyết áp & nhịp tim" }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -58,7 +103,7 @@ function HomeNavigation() {
       <Stack.Screen name="RecordDetail" component={RecordDetailScreen} />
       <Stack.Screen name="Position" component={PositionScreen} />
       <Stack.Screen name="FollowHeathy" component={FollowHeathyScreen} />
-      <Stack.Screen name="ServiceDetail" component={ServiceDetail}/>
+      <Stack.Screen name="ServiceDetail" component={ServiceDetail} />
       <Stack.Screen name="payment" component={PaymentScreen} />
       <Stack.Screen name="AllDoctor" component={AllDoctorScreen} />
       <Stack.Screen name="DoctorProfile" component={ProfileDoctorScreen} />
@@ -111,22 +156,22 @@ function BookingNavigation() {
 //   );
 // }
 
-function HealthyNavigation() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerMode: "none",
-      }}
-    >
-      <Stack.Screen name="FollowHeathy" component={FollowHeathyScreen} />
-      <Stack.Screen name="BMIHistory" component={HistoryBMIComponent} />
-      <Stack.Screen name="BMI" component={BMIComponent} />
-      <Stack.Screen name="ListBMI" component={ListBMIComponent} />
-      <Stack.Screen name="ListHeart" component={ListHeartComponent} />
-      <Stack.Screen name="HeartHistory" component={HistoryHeartComponent} />
-    </Stack.Navigator>
-  );
-}
+// function HealthyNavigation() {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerMode: "none",
+//       }}
+//     >
+//       <Stack.Screen name="FollowHeathy" component={FollowHeathyScreen} />
+//       <Stack.Screen name="BMIHistory" component={HistoryBMIComponent} />
+//       <Stack.Screen name="BMI" component={BMIComponent} />
+//       <Stack.Screen name="ListBMI" component={ListBMIComponent} />
+//       <Stack.Screen name="ListHeart" component={ListHeartComponent} />
+//       <Stack.Screen name="HeartHistory" component={HistoryHeartComponent} />
+//     </Stack.Navigator>
+//   );
+// }
 
 // function PersonalNavigation() {
 //   return (
