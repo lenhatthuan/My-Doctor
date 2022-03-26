@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import {styles} from '../../../theme/basic';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const BmiDialog = ({id, initTall, initWeight, action = 'add', close}) => {
   const [tall, setTall] = useState(initTall);
   const [weight, setWeight] = useState(initWeight);

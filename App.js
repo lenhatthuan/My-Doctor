@@ -123,8 +123,11 @@ import ForgotPass from './src/screens/auth/ForgotPass';
 import OtpAuth from './src/screens/auth/OtpAuth';
 
 import Dashboard from './src/naviagation/Dashboard';
-
+import { LogBox } from 'react-native';
 const App = () => {
+
+LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
