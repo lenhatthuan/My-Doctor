@@ -73,7 +73,6 @@ export default function AllDoctorScreen({ navigation })  {
 
   return (
    <SafeAreaView style={{ flex: 1 }}>
-        <View style={{marginTop: 30 }}>
       <SearchBar
        round 
        inputContainerStyle={{backgroundColor: 'white'}}
@@ -111,7 +110,6 @@ export default function AllDoctorScreen({ navigation })  {
         keyExtractor={(item) => item.id}
         extraData={id}
       />
-    </View>
    </SafeAreaView>
 
   );
