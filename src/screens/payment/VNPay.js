@@ -43,7 +43,7 @@ const VNPay = () => {
 
                   //resultCode == 99
                   //vi: Người dùng nhấn back từ trang thanh toán thành công khi thanh toán qua thẻ khi gọi đến http://sdk.merchantbackVNPay
-                  //en: back from button (button: done, ...) in the webview when payment success. (incase payment with card, atm card, visa ...)
+                  //en: back from button (button: done, ) in the webview when payment success. (incase payment with card, atm card, visa ...)
 
                   //resultCode == 98
                   //vi: giao dịch thanh toán bị failed
