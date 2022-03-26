@@ -1,7 +1,14 @@
-import React, {useState} from 'react';
-import {SafeAreaView, SectionList, Button, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  SafeAreaView,
+  SectionList,
+  Button,
+  Text,
+  View,
+} from 'react-native';
 import {Overlay, Icon} from 'react-native-elements';
 import Sysptom from '../../components/diagnose/Sysptom';
+import Diseases from '../../components/diagnose/Diseases';
 import MultiSelect from 'react-native-multiple-select';
 
 const Diagnose = props => {
@@ -9,21 +16,74 @@ const Diagnose = props => {
     question => question.IsPatientProvided === false,
   );
 
+  const diseases = require('../../config/DiseasesOutput.json');
+
   const url = 'http://api.endlessmedical.com/v1/dx/';
+
   const analyze = async () => {
-    const sessionId = (await fetch(url + 'InitSession')).json().SessionID;
-    await fetch(
+    try {
+      const response = await fetch(url + 'Analyze?SessionID=' + sessionId);
+      const json = await response.json();
+      setDiseasesDiagnose(json.Diseases);
+      setShow(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const updateSymptom = async (name, value) => {
+    return await fetch(
       url +
-        'AcceptTermsOfUse?passphrase=I have read, understood and I accept and agree to comply with the Terms of Use of EndlessMedicalAPI and Endless Medical services. The Terms of Use are available on endlessmedical.com&SessionID=' +
-        sessionId,
+        'UpdateFeature?SessionID=' +
+        sessionId +
+        '&name=' +
+        name +
+        '&value=' +
+        value,
       {method: 'POST'},
-    );
+    )
+      .then(response => response.json())
+      .then(json => console.log(json.status))
+      .catch(err => null);
+  };
+
+  const deleteSymptom = async name => {
+    return await fetch(
+      url + 'DeleteFeature?SessionID=' + sessionId + '&name=' + name,
+      {method: 'POST'},
+    )
+      .then(response => response.json())
+      .then(json => console.log(json.status))
+      .catch(err => null);
   };
 
   const [questionFilter, setQuestionFilter] = useState(questions);
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState({});
   const [visible, setVisible] = useState(false);
+  const [sessionId, setSessionId] = useState();
+  const [diseasesDiagnose, setDiseasesDiagnose] = useState([]);
+  const [show, setShow] = useState(false);
+
+  const connect = async () => {
+    try {
+      const response = await fetch(url + 'InitSession');
+      const json = await response.json();
+      await fetch(
+        url +
+          'AcceptTermsOfUse?passphrase=I have read, understood and I accept and agree to comply with the Terms of Use of EndlessMedicalAPI and Endless Medical services. The Terms of Use are available on endlessmedical.com&SessionID=' +
+          json.SessionID,
+        {method: 'POST'},
+      );
+      setSessionId(json.SessionID);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    connect();
+  }, []);
 
   let currentQuestions = () =>
     questions.filter(
@@ -43,6 +103,24 @@ const Diagnose = props => {
     return data;
   };
 
+  const formatDisease = () => {
+    let data = [];
+    diseasesDiagnose.forEach(diseaseDiagnose => {
+      console.log(diseaseDiagnose);
+      for (const key in diseaseDiagnose) {
+        const percent = parseFloat(diseaseDiagnose[key]).toFixed(2) * 100;
+        if (percent > 0 && percent <= 100) {
+          const disease = diseases.find(element => element.text === key);
+          data.push({
+            name: disease.text,
+            percent: percent + '%',
+          });
+        }
+      }
+    });
+    return data;
+  };
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <MultiSelect
@@ -52,6 +130,7 @@ const Diagnose = props => {
         onSelectedItemsChange={item => {
           setQuestion(questions.find(question => question.name == item));
           setVisible(true);
+          setQuestionFilter(currentQuestions());
         }}
         selectText="Triệu chứng"
         searchInputPlaceholderText="Triệu chứng"
@@ -62,15 +141,7 @@ const Diagnose = props => {
             ),
           )
         }
-        altFontFamily="ProximaNova-Light"
-        tagRemoveIconColor="#CCC"
-        tagBorderColor="#CCC"
-        tagTextColor="#CCC"
-        selectedItemTextColor="#CCC"
-        selectedItemIconColor="#CCC"
-        itemTextColor="#000"
         displayKey="text"
-        searchInputStyle={{color: '#CCC'}}
       />
       <Overlay isVisible={visible} onBackdropPress={() => setVisible(false)}>
         <Sysptom
@@ -82,6 +153,7 @@ const Diagnose = props => {
           }}
           question={question}
           submit={answer => {
+            updateSymptom(question.name, answer.value);
             let current = [...answers];
             const index = answers.findIndex(
               answer => answer.question === question,
@@ -120,6 +192,7 @@ const Diagnose = props => {
               <Icon
                 name="delete"
                 onPress={() => {
+                  deleteSymptom(item.question.name);
                   let current = [...answers];
                   current.splice(current.indexOf(item), 1);
                   setAnswers(current);
@@ -132,7 +205,17 @@ const Diagnose = props => {
           <Text style={{fontWeight: 'bold'}}>{category}</Text>
         )}
       />
-      <Button title="Chẩn đoán" />
+      <Button title="Chẩn đoán" onPress={analyze} />
+      <Overlay isVisible={show} onBackdropPress={() => setShow(false)}>
+        {formatDisease().length > 0 ? (
+          formatDisease().map(disease => (
+            <Diseases name={disease.name} percent={disease.percent} />
+          ))
+        ) : (
+          <Text>Khỏe mạnh</Text>
+        )}
+        <Button title="OK" />
+      </Overlay>
     </SafeAreaView>
   );
 };
