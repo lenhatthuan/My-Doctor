@@ -1,12 +1,21 @@
 import React, {useState} from 'react';
 import Form from '../../components/auth/Form';
 import message from '../../config/message';
+import {createUserWithEmailAndPassword  } from "@react-native-firebase/auth";
 
 const SignUp = props => {
   const [visible, setVisible] = useState(false);
   const [content, setContent] = useState('');
   const [type, setType] = useState(message.infomation);
   const [data, setData] = useState();
+
+  const onHandleSignup = () => {
+    if (email !== '' && password !== '') {
+  createUserWithEmailAndPassword(auth, email, password)
+        .then(() => console.log('Signup success'))
+        .catch((err) => Alert.alert("Login error", err.message));
+    }
+  };
 
   const signup = data => {
     try {

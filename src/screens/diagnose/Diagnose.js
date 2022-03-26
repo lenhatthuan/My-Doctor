@@ -11,8 +11,13 @@ const Diagnose = props => {
 
   const url = 'http://api.endlessmedical.com/v1/dx/';
   const analyze = async () => {
-    const sessionId = (await fetch(url + 'InitSession')).json();
-    await fetch(url+"AcceptTermsOfUse")
+    const sessionId = (await fetch(url + 'InitSession')).json().SessionID;
+    await fetch(
+      url +
+        'AcceptTermsOfUse?passphrase=I have read, understood and I accept and agree to comply with the Terms of Use of EndlessMedicalAPI and Endless Medical services. The Terms of Use are available on endlessmedical.com&SessionID=' +
+        sessionId,
+      {method: 'POST'},
+    );
   };
 
   const [questionFilter, setQuestionFilter] = useState(questions);

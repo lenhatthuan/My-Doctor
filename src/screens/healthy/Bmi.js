@@ -7,6 +7,8 @@ import BmiItem from '../../components/healthy/bmi/BmiItem';
 // import {getAllBMI, deleteBMI} from '../../store/actions/bmi';
 import {styles} from '../../theme/chart';
 
+// import {styles} from '../../theme/chart';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Bmi = props => {
   const [chart, setChart] = useState([]);
   const [list, setList] = useState({});

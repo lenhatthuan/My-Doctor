@@ -9,8 +9,9 @@ import EmotionItem from '../../components/healthy/emotion/EmtionItem';
 import {styles} from '../../theme/chart';
 import emotion from '../../config/emotion';
 import calendar from '../../config/calendar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Emotion = props => {
+const Emotion=(props)=> {
   const [chart, setChart] = useState([]);
   const [list, setList] = useState({});
 

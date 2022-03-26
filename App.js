@@ -126,7 +126,11 @@ import Dashboard from './src/naviagation/Dashboard';
 
 import Diagnose from './src/screens/diagnose/Diagnose';
 
+import { LogBox } from 'react-native';
 const App = () => {
+
+LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
