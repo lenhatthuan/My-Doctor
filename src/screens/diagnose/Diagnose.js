@@ -112,7 +112,7 @@ const Diagnose = props => {
         if (percent > 0 && percent <= 100) {
           const disease = diseases.find(element => element.text === key);
           data.push({
-            name: disease.text,
+            name: disease.laytext,
             percent: percent + '%',
           });
         }

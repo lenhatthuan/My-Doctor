@@ -2,7 +2,7 @@
   {
     "name": "DM2",
     "text": "Diabetes melltus type 2",
-    "laytext": "Diabetes melltus type 2",
+    "laytext": "Đái tháo đường",
     "category": "acute",
     "alias": "DM2",
     "wiki": "",
@@ -19,7 +19,7 @@
   {
     "name": "ANEMIAA",
     "text": "Anemia",
-    "laytext": "Anemia",
+    "laytext": "Thiếu máu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -36,7 +36,7 @@
   {
     "name": "Thrombocytopenia",
     "text": "Thrombocytopenia",
-    "laytext": "Low blood platelets level (thrombocytopenia)",
+    "laytext": "Giảm tiểu cầu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -53,7 +53,7 @@
   {
     "name": "GcCervicitis",
     "text": "Gonococcal cervicitis",
-    "laytext": "Gonococcal cervicitis",
+    "laytext": "Viêm cổ tử cung do lậu cầu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -70,7 +70,7 @@
   {
     "name": "PCaC",
     "text": "Prostate cancer",
-    "laytext": "Prostate cancer",
+    "laytext": "Ung thư tuyến tiền liệt",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -87,7 +87,7 @@
   {
     "name": "ProstatisA",
     "text": "Prostatitis",
-    "laytext": "Prostate inflamation and / or infection (prostatitis)",
+    "laytext": "Viêm tuyến tiền liệt",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -104,7 +104,7 @@
   {
     "name": "GcUA",
     "text": "Gonococcal urethritis",
-    "laytext": "Gonococcal urethritis",
+    "laytext": "Viêm niệu đạo do lậu cầu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -121,7 +121,7 @@
   {
     "name": "Covid19Test",
     "text": "COVID-19 virus identified",
-    "laytext": "COVID-19 virus identified",
+    "laytext": "COVID-19",
     "category": "acute",
     "alias": "Covid19, SARS-CoV-2",
     "gencount": 11,
@@ -139,7 +139,7 @@
   {
     "name": "CUC",
     "text": "Ulcerative colitis",
-    "laytext": "Ulcerative colitis",
+    "laytext": "Viêm loét đại tràng",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -156,7 +156,7 @@
   {
     "name": "CUA",
     "text": "Ulcerative colitis exacerbation",
-    "laytext": "Ulcerative colitis exacerbation",
+    "laytext": "Viêm loét đại tràng nghiêm trọng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -173,7 +173,7 @@
   {
     "name": "Covid19Contact",
     "text": "Contact with and (suspected) exposure to COVID-19",
-    "laytext": "Contact with and (suspected) exposure to COVID-19",
+    "laytext": "Tiếp xúc COVID-19",
     "category": "acute",
     "alias": "Covid19, SARS-CoV-2",
     "gencount": 11,
@@ -191,7 +191,7 @@
   {
     "name": "CAPPNA",
     "text": "Community acquired pneumonia (CAP)",
-    "laytext": "\"Walking\", \"common\" or lung infection (community acquired pneumonia)",
+    "laytext": "Viêm phổi",
     "category": "acute",
     "alias": "CAP, PNA",
     "gencount": 11,
@@ -209,7 +209,7 @@
   {
     "name": "Covid19URTI",
     "text": "Coronavirus disease 2019 (Covid-19) mostly upper respiratory tract infection with, or without bronchitis, but without significant pneumonia",
-    "laytext": "SARS-CoV-2 coronavirus disease 2019 (covid-19) mostly upper respiratory tract infection with, or without bronchitis, but without significant pneumonia",
+    "laytext": "SARS-CoV-2",
     "category": "acute",
     "alias": "Covid19, SARS-CoV-2",
     "gencount": 11,
@@ -227,7 +227,7 @@
   {
     "name": "Covid19PNA",
     "text": "Coronavirus disease 2019 (covid-19) with pneumonia",
-    "laytext": "SARS-CoV-2 coronavirus disease 2019 (covid-19) with pneumonia",
+    "laytext": "SARS-CoV-2 kèm viêm phổi",
     "category": "acute",
     "alias": "Covid19, SARS-CoV-2 pneumonia",
     "gencount": 11,
@@ -245,7 +245,7 @@
   {
     "name": "CommonCold",
     "text": "Common cold or viral upper respiratory tract infection (URTI)",
-    "laytext": "Common cold or viral upper respiratory tract infection (URTI)",
+    "laytext": "Cảm lạnh",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -262,7 +262,7 @@
   {
     "name": "PancreatitisETOH",
     "text": "Acute pancreatitis triggered by alcohol",
-    "laytext": "Acute pancreatitis triggered by alcohol",
+    "laytext": "Viêm tụy cấp tính do rượu gây ra",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -279,7 +279,7 @@
   {
     "name": "PancreatitisA",
     "text": "Idiopathic acute pancreatitis",
-    "laytext": "Idiopathic acute pancreatitis",
+    "laytext": "Viêm tụy cấp tính không rõ nguyên nhân",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -296,7 +296,7 @@
   {
     "name": "ClusterHeadache",
     "text": "Cluster headaches",
-    "laytext": "Cluster headaches",
+    "laytext": "Đau đầu theo cụm",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -313,7 +313,7 @@
   {
     "name": "UncontrolledHTN",
     "text": "Uncontrolled hypertension.",
-    "laytext": "Uncontrolled hypertension.",
+    "laytext": "Huyết áp tăng không kiểm soát",
     "category": "acute",
     "alias": "Uncontrolled hypertension.",
     "wiki": "",
@@ -330,7 +330,7 @@
   {
     "name": "DiabetesKACA",
     "text": "Diabetic ketoacidosis",
-    "laytext": "Diabetic ketoacidosis",
+    "laytext": "Nhiễm toan xeton do tiểu đường",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -347,7 +347,7 @@
   {
     "name": "FusobacteriumNecrophorumPharyngitisComplicatedWithLemierreSyndrome",
     "text": "Fusobacterium necrophorum pharyngitis complicated with Lemierre syndrome",
-    "laytext": "Severe throat infection (pharyngitis) caused by fusobacterium necrophorum complicated by Lemierre syndrome",
+    "laytext": "Viêm họng do vi khuẩn Fusobacterium hoại tử phức tạp với hội chứng Lemierre",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -364,7 +364,7 @@
   {
     "name": "PrimaryArterialHypertension",
     "text": "Primary systemic arterial hypertension",
-    "laytext": "New diagnosis of high blood pressure (hypertension)",
+    "laytext": "Tăng huyết áp nguyên phát",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -381,7 +381,7 @@
   {
     "name": "PrimaryArterialHypertensionByHx",
     "text": "History of systemic hypertension",
-    "laytext": "Past medical history of high blood pressure (hypertension)",
+    "laytext": "Tăng huyết áp động mạch nguyên phát",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -398,7 +398,7 @@
   {
     "name": "PancreatitisHyperTGL",
     "text": "Acute pancreatitis due to hyperglyceridemia",
-    "laytext": "Acute pancreatitis due to hyperglyceridemia",
+    "laytext": "Viêm tụy do tăng đường huyết",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -415,7 +415,7 @@
   {
     "name": "PancreatitisGAP",
     "text": "Acute pancreatitis due to gallstones",
-    "laytext": "Acute pancreatitis due to gallstones",
+    "laytext": "Viêm tụy do sỏi mật",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -432,7 +432,7 @@
   {
     "name": "PancreatitisHIV",
     "text": "Acute pancreatitis due to HIV",
-    "laytext": "Acute pancreatitis due to HIV",
+    "laytext": "Viêm tụy do HIV",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -449,7 +449,7 @@
   {
     "name": "HypertensiveEmergencyA",
     "text": "Hypertensive emergency",
-    "laytext": "Emergency caused by severly elevated hypertension",
+    "laytext": "Tăng huyết áp cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -466,7 +466,7 @@
   {
     "name": "PancreatitisPancreaticCa",
     "text": "Acute pancreatitis due to pancreatic cancer",
-    "laytext": "Acute pancreatitis due to pancreatic cancer",
+    "laytext": "Viêm tụy do ung thư tuyến tụy",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -483,7 +483,7 @@
   {
     "name": "SecondaryArterialHypertensionObesity",
     "text": "Arterial hypertension (chronic) secondary to obesity",
-    "laytext": "High blood pressure (hypertension) secondary to obesity",
+    "laytext": "Huyết áp cao thứ phát do béo phì",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -500,7 +500,7 @@
   {
     "name": "HeadacheAfterNitrates",
     "text": "Headache after use of nitroglycerin or nitrates.",
-    "laytext": "Headache after use of nitroglycerin or nitrates.",
+    "laytext": "Nhức đầu do sử dụng nitroglycerin hoặc nitrat",
     "category": "acute",
     "alias": "headache from nitrates",
     "wiki": "",
@@ -517,7 +517,7 @@
   {
     "name": "CoronaryArteryDiseaseCAD",
     "text": "Coronary artery disease, stable angina (CAD)",
-    "laytext": "Coronary artery disease, stable angina (CAD)",
+    "laytext": "Bệnh động mạch vành, đau thắt ngực ổn định (CAD)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -534,7 +534,7 @@
   {
     "name": "UnstableAngina",
     "text": "Unstable angina (CAD)",
-    "laytext": "Unstable angina (CAD)",
+    "laytext": "Đau thắt ngực không ổn định (CAD)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -551,7 +551,7 @@
   {
     "name": "HeadacheDueToHTN",
     "text": "Headache due to uncontrolled hypertension.",
-    "laytext": "Headache due to uncontrolled hypertension.",
+    "laytext": "Đau đầu do tăng huyết áp không kiểm soát",
     "category": "acute",
     "alias": "headache from hypertension",
     "wiki": "",
@@ -568,7 +568,7 @@
   {
     "name": "HypertensiveUrgencyA",
     "text": "Hypertensive urgency",
-    "laytext": "Urgency caused by severly elevated hypertension",
+    "laytext": "Tăng huyết áp khẩn cấp",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -585,7 +585,7 @@
   {
     "name": "HeadacheDueToCaffeineWithdrawal",
     "text": "Headache due to caffeine withdrawal",
-    "laytext": "Headache due to caffeine withdrawal",
+    "laytext": "Nhức đầu do cai coffee",
     "category": "acute",
     "alias": "Headache due to caffeine withdrawal",
     "wiki": "",
@@ -602,7 +602,7 @@
   {
     "name": "PancreatitisDueToMeds",
     "text": "Acute pancreatitis due to medications",
-    "laytext": "Acute pancreatitis due to medications",
+    "laytext": "Viêm tụy do thuốc",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -619,7 +619,7 @@
   {
     "name": "PancreatitisHyperCalcemia",
     "text": "Acute pancreatitis due to hypercalcemia",
-    "laytext": "Acute pancreatitis due to hypercalcemia",
+    "laytext": "Viêm tụy do tăng calci trong máu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -636,7 +636,7 @@
   {
     "name": "SecondaryArterialHypertensionCKD",
     "text": "Arterial hypertension (chronic) secondary to chronic kidney disease",
-    "laytext": "High blood pressure (hypertension) secondary to chronic kidney disease",
+    "laytext": "Huyết áp cao thứ phát do bệnh thận mãn tính",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -653,7 +653,7 @@
   {
     "name": "TensionHeadache",
     "text": "Tension headaches",
-    "laytext": "Tension headaches",
+    "laytext": "Đau đầu do căng thẳng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -670,7 +670,7 @@
   {
     "name": "PancreatitisOddis",
     "text": "Acute pancreatitis due to sphincter of Oddi dysfunction",
-    "laytext": "Acute pancreatitis due to sphincter of Oddi dysfunction",
+    "laytext": "Viêm tụy do rối loạn chức năng cơ vòng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -687,7 +687,7 @@
   {
     "name": "PancreatitisERCP",
     "text": "Acute pancreatitis due to recent endoscopic retrograde cholangiopancreatography (ERCP)",
-    "laytext": "Acute pancreatitis due to recent endoscopic retrograde cholangiopancreatography (ERCP)",
+    "laytext": "Viêm tụy do chụp mật tụy bằng ngược dòng nội soi (ERCP)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -704,7 +704,7 @@
   {
     "name": "GastrittisBleedingA",
     "text": "Gastritis related upper GI bleeding ",
-    "laytext": "Gastritis related upper GI bleeding ",
+    "laytext": "Chảy máu trên do viêm dạ dày ",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -721,7 +721,7 @@
   {
     "name": "MigraineHeadache",
     "text": "Migraine headaches",
-    "laytext": "Migraine headaches",
+    "laytext": "Đau nửa đầu",
     "category": "acute",
     "alias": "Migraines",
     "wiki": "",
@@ -738,7 +738,7 @@
   {
     "name": "FusobacteriumNecrophorumPharyngitis",
     "text": "Fusobacterium necrophorum pharyngitis",
-    "laytext": "Severe throat infection (pharyngitis) caused by fusobacterium necrophorum",
+    "laytext": "Viêm họng do vi khuẩn Fusobacterium hoại tử",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -755,7 +755,7 @@
   {
     "name": "Leukopenia",
     "text": "Leukopenia (leukocytopenia)",
-    "laytext": "Low white blood cells (leukopenia)",
+    "laytext": "Bạch cầu thấp",
     "category": "acute",
     "alias": "Leukopenia, leukocytopenia, low WBC",
     "wiki": "",
@@ -772,7 +772,7 @@
   {
     "name": "BRONCHITISA",
     "text": "Acute bronchitis",
-    "laytext": "Inflamation of lungs' airways (acute bronchitis)",
+    "laytext": "Viêm phế quản cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -789,7 +789,7 @@
   {
     "name": "FluA",
     "text": "Influenza",
-    "laytext": "Influenza",
+    "laytext": "Bệnh cúm",
     "category": "acute",
     "alias": "",
     "wiki": "https://www.ncbi.nlm.nih.gov/pubmed/11088084",
@@ -806,7 +806,7 @@
   {
     "name": "AorticDissectionThoracic",
     "text": "Thoracic aortic dissection",
-    "laytext": "Thoracic aortic dissection",
+    "laytext": "Bóc tách động mạch chủ ngực",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -823,7 +823,7 @@
   {
     "name": "PeritionitisA",
     "text": "Peritonitis",
-    "laytext": "Peritonitis",
+    "laytext": "Viêm phúc mạc",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -839,7 +839,7 @@
   {
     "name": "VaricealBleedingA",
     "text": "Variceal (esophagus) bleeding",
-    "laytext": "Variceal (esophagus) bleeding",
+    "laytext": "Chảy máu vùng kín",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -855,7 +855,7 @@
   {
     "name": "PancreatitisC",
     "text": "Chronic pancreatitis",
-    "laytext": "Chronic pancreatitis",
+    "laytext": "Viêm tụy mãn tính",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -872,7 +872,7 @@
   {
     "name": "SecondaryArterialHypertension",
     "text": "Secondary arterial hypertension (chronic)",
-    "laytext": "High blood pressure (hypertension) secondary to another cause",
+    "laytext": "Huyết áp cao thứ phát",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -889,7 +889,7 @@
   {
     "name": "PTXA",
     "text": "Acute pneumothorax",
-    "laytext": "Acute pneumothorax",
+    "laytext": "Tràn khí màng phổi cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -906,7 +906,7 @@
   {
     "name": "ChronsA",
     "text": "Crohn's disease exacerbation",
-    "laytext": "Crohn's disease exacerbation",
+    "laytext": "Bệnh Crohn nghiêm trọng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -923,7 +923,7 @@
   {
     "name": "TracheobronchitisA",
     "text": "Acute tracheobronchitis",
-    "laytext": "Acute tracheobronchitis",
+    "laytext": "Viêm khí quản cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -939,7 +939,7 @@
   {
     "name": "Ureterolithiasis",
     "text": "Ureterolithiasis (ureteral stones)",
-    "laytext": "Stone or stones in ureters",
+    "laytext": "Đá hoặc sỏi trong niệu quản",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -956,7 +956,7 @@
   {
     "name": "PericarditisA",
     "text": "Pericarditis",
-    "laytext": "Pericarditis",
+    "laytext": "Viêm màng ngoài của tim",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -972,7 +972,7 @@
   {
     "name": "ViralPharyngitis",
     "text": "Viral pharyngitis (etiology usually rhinovirus, coronavirus, adenovirus, parainfluenza)",
-    "laytext": "Throat infection (pharyngitis) caused by common viruses like rhinovirus, coronavirus, adenovirus or parainfluenza",
+    "laytext": "Viêm họng do vi rút",    
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -989,7 +989,7 @@
   {
     "name": "AllergicRhinitisToPollen",
     "text": "Allergic rhinitis to pollen",
-    "laytext": "Hay fever, allergic rhinitis to pollen",
+    "laytext": "Viêm mũi di ứng do phấn hoa",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1006,7 +1006,7 @@
   {
     "name": "AllergicRhinitisToDustMites",
     "text": "Allergic rhinitis to dust mites",
-    "laytext": "Allergic rhinitis to dust mites",
+    "laytext": "Viêm mũi dị ứng do bụi",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1023,7 +1023,7 @@
   {
     "name": "StrepThroatA",
     "text": "Streptococcal pharyngitis",
-    "laytext": "Strep-throat (streptococcal pharyngitis)",
+    "laytext": "Viêm họng do liên cầu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1040,7 +1040,7 @@
   {
     "name": "LVFA",
     "text": "Acute left ventricle heart failure",
-    "laytext": "Heart failure (specifically left ventricle failure, acute)",
+    "laytext": "Suy tâm thất trái cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1057,7 +1057,7 @@
   {
     "name": "GERDA",
     "text": "Gastroesophageal reflux without esophagitis",
-    "laytext": "Gastroesophageal reflux without esophagitis",
+    "laytext": "Trào ngược dạ dày không viêm thực quản",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1074,7 +1074,7 @@
   {
     "name": "SecondaryArterialHypertensionSecondaryRASAtherosclerotic",
     "text": "Secondary arterial hypertension secondary to renal artery stenosis secondary to atherosclerosis",
-    "laytext": "High blood pressure (hypertension) secondary to renal artery stenosis secondary to atherosclerosis",
+    "laytext": "Cao huyết áp thứ phát do hẹp động mạch thận thứ phát khi bị xơ vữa động mạch",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1091,7 +1091,7 @@
   {
     "name": "EsophagealSpasmA",
     "text": "Esophageal spasm",
-    "laytext": "Esophageal spasm",
+    "laytext": "Co thắt thực quản",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1107,7 +1107,7 @@
   {
     "name": "SecondaryArterialHypertensionHyperaldo",
     "text": "Arterial hypertension (chronic) secondary to hyperaldosteronism",
-    "laytext": "High blood pressure (hypertension) secondary to hyperactive adrenal gland in producing aldosterone (hyperaldosteronism)",
+    "laytext": "Huyết áp cao thứ phát do tuyến thượng thận hoạt động quá mức trong việc sản xuất aldosterone",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1124,7 +1124,7 @@
   {
     "name": "GERDAWEsophagitisWOBleed",
     "text": "Gastroesophageal reflux with esophagitis without bleed",
-    "laytext": "Gastroesophageal reflux with esophagitis without bleed",
+    "laytext": "Trào ngược dạ dày kèm theo viêm thực quản không chảy máu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1141,7 +1141,7 @@
   {
     "name": "SinusitisC",
     "text": "Chronic sinusitis",
-    "laytext": "Sinusitis - chronic",
+    "laytext": "Viêm xoang mãn tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1158,7 +1158,7 @@
   {
     "name": "CKD",
     "text": "Chronic kidney disease stages (III, IV and V)",
-    "laytext": "Chronic kidney disease (III, IV and V)",
+    "laytext": "Bệnh thận mãn tính (III, IV và V)",
     "category": "chronic",
     "alias": "CKD, chronic renal failure, ESRD",
     "wiki": "",
@@ -1175,7 +1175,7 @@
   {
     "name": "!CKD",
     "text": "Chronic kidney disease",
-    "laytext": "Chronic kidney disease",
+    "laytext": "Bệnh thận mãn tính",
     "category": "chronic",
     "alias": "CKD, chronic renal failure, ESRD",
     "wiki": "",
@@ -1192,7 +1192,7 @@
   {
     "name": "RVFA",
     "text": "Acute right ventricle heart failure",
-    "laytext": "Acute right ventricle heart failure",
+    "laytext": "Suy tâm thất phải cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1209,7 +1209,7 @@
   {
     "name": "PleuralEffusionA",
     "text": "Pleural effusion",
-    "laytext": "Pleural effusion",
+    "laytext": "Tràn dịch màng phổi",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1226,7 +1226,7 @@
   {
     "name": "FissureA",
     "text": "Perirectal fissure",
-    "laytext": "Perirectal fissure",
+    "laytext": "Rò hậu môn trực tràng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1243,7 +1243,7 @@
   {
     "name": "SinusitisA",
     "text": "Acute sinusitis",
-    "laytext": "Sinusitis - acute",
+    "laytext": "Viêm xoang cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1260,7 +1260,7 @@
   {
     "name": "GERDAWEsophagitisWBleed",
     "text": "Gastroesophageal reflux with esophagitis with bleed",
-    "laytext": "Gastroesophageal reflux with esophagitis with bleed",
+    "laytext": "Trào ngược dạ dày kèm viêm thực quản có chảy máu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1277,7 +1277,7 @@
   {
     "name": "LaryngitisA",
     "text": "Acute laryngitis",
-    "laytext": "Acute laryngitis",
+    "laytext": "Viêm thanh quản cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1294,7 +1294,7 @@
   {
     "name": "RespiratoryAcidosis",
     "text": "Respiratory acidosis",
-    "laytext": "Respiratory acidosis",
+    "laytext": "Nhiễm toan hô hấp",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1311,7 +1311,7 @@
   {
     "name": "ANEMIAAFromAcuteBloodLoss",
     "text": "Anemia from acute blood loss",
-    "laytext": "Anemia from acute blood loss",
+    "laytext": "Thiếu máu cấp tính do mất máu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1328,13 +1328,13 @@
   {
     "name": "ObesityHypeventA",
     "text": "Obesity hypoventilation syndrome",
-    "laytext": "Obesity hypoventilation syndrome",
+    "laytext": "Hội chứng khó thở do béo phì",
     "category": "acute"
   },
   {
     "name": "BRCA12Carier",
     "text": "BRCA1/2 (breast or ovarian gene carier) status",
-    "laytext": "BRCA1/2 (breast or ovarian gene carier) status",
+    "laytext": "Đột biến gen BRCA1/2 gây ung thư vú hoặc buồng trứng",
     "category": "chronic",
     "alias": "BRCA1, BRCA2",
     "wiki": "",
@@ -1351,7 +1351,7 @@
   {
     "name": "PE",
     "text": "Pulmonary embolus",
-    "laytext": "Blood clots in lungs - pulmonary embolus",
+    "laytext": "Thuyên tắt phổi",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1368,7 +1368,7 @@
   {
     "name": "HxOfPE",
     "text": "Past history of pulmonary embolus",
-    "laytext": "Past history of blood clots in lungs - pulmonary embolus",
+    "laytext": "Thuyên tắt phổi kéo dài",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1385,7 +1385,7 @@
   {
     "name": "HxOfDVT",
     "text": "Past history of deep vein thrombosis",
-    "laytext": "Past history of blood clots in deep veins",
+    "laytext": "Tắc tĩnh mạch sâu",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1402,7 +1402,7 @@
   {
     "name": "HxOfCHF",
     "text": "Past history of congestive heart failure (CHF)",
-    "laytext": "Past history of congestive heart failure (CHF)",
+    "laytext": "Suy tim sung huyết",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1419,7 +1419,7 @@
   {
     "name": "HxOfCAD",
     "text": "Past history of coronary artery disease (CAD)",
-    "laytext": "Past history of coronary artery disease (CAD)",
+    "laytext": "Bệnh động mạch vành",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1436,7 +1436,7 @@
   {
     "name": "HxOfAfibAflut",
     "text": "Past history of atrial fibrillation (Afib) or atrial flutter (Aflut)",
-    "laytext": "Past history of atrial fibrillation (Afib) or atrial flutter (Aflut)",
+    "laytext": "Loạn nhịp tim kéo dài",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1453,7 +1453,7 @@
   {
     "name": "HxOfCVA",
     "text": "Past history of cebrovascular accident (CVA)",
-    "laytext": "Past history of cebrovascular accident (CVA)",
+    "laytext": "Tai biến mạch máu kéo dài",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1470,7 +1470,7 @@
   {
     "name": "GastroenteritisViralA",
     "text": "Gastroenteritis likely viral",
-    "laytext": "Gastroenteritis likely viral",
+    "laytext": "Viêm dạ dày ruột do virus",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1486,7 +1486,7 @@
   {
     "name": "Transaminitis",
     "text": "Transaminitis",
-    "laytext": "Transaminitis",
+    "laytext": "Nhiễm trùng",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1503,7 +1503,7 @@
   {
     "name": "SecondaryArterialHypertensionOSA",
     "text": "Arterial hypertension (chronic) secondary to OSA",
-    "laytext": "High blood pressure (hypertension) secondary to obstructive sleep apnea (OSA)",
+    "laytext": "Huyết áp cao thứ phát sau chứng ngưng thở khi ngủ do tắc nghẽn (OSA)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1520,7 +1520,7 @@
   {
     "name": "DM1ByHx",
     "text": "Past medical history of diabetes melltus type 1 per history",
-    "laytext": "Past medical history of diabetes melltus type 1 per history (chronic condition)",
+    "laytext": "Bệnh đái tháo đường mãn tính loại 1",
     "category": "chronic",
     "alias": "DM1",
     "wiki": "",
@@ -1537,7 +1537,7 @@
   {
     "name": "DiabeticNephropathy",
     "text": "Diabetic Nephropathy",
-    "laytext": "Kidney disease secondary to diabetic damage (diabetic nephropathy)",
+    "laytext": "Bệnh thận thứ phát do tiểu đường",
     "category": "chronic",
     "alias": "Diabetic Nephropathy",
     "wiki": "",
@@ -1570,7 +1570,7 @@
   {
     "name": "PUDPerfA",
     "text": "Perforated peptic or duodenal ulcer",
-    "laytext": "Perforated peptic or duodenal ulcer",
+    "laytext": "Viêm loét dạ dày, tá tràng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1587,7 +1587,7 @@
   {
     "name": "SepsticShockA",
     "text": "Septic shock",
-    "laytext": "Septic shock",
+    "laytext": "Sốc nhiễm trùng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1604,7 +1604,7 @@
   {
     "name": "Shock",
     "text": "Shock",
-    "laytext": "Severly decreased blood pressure (shock)",
+    "laytext": "Sốc do giảm huyết áp nghiêm trọng",
     "category": "acute",
     "alias": "shock, hypotension",
     "wiki": "",
@@ -1621,7 +1621,7 @@
   {
     "name": "ShockLiver",
     "text": "Shock liver",
-    "laytext": "Liver damage caused by low pressure.",
+    "laytext": "Tổn thương gan do huyết áp thấp.",
     "category": "acute",
     "alias": "shocky liver",
     "wiki": "",
@@ -1638,7 +1638,7 @@
   {
     "name": "HypertensiveNephropathy",
     "text": "Hypertensive nephropathy",
-    "laytext": "Kidney disease due to damage from high blood pressure (hypertension)",
+    "laytext": "Bệnh thận do huyết áp cao",
     "category": "acute",
     "alias": "Hypertensive Nephropathy, HTN Nephropathy",
     "wiki": "",
@@ -1655,7 +1655,7 @@
   {
     "name": "AnaphylacticShock",
     "text": "Anaphylactic shock",
-    "laytext": "Anaphylaxis with shock",
+    "laytext": "Sốc phản vệ",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1672,7 +1672,7 @@
   {
     "name": "HCAP",
     "text": "Healthcare-associated pneumonia (HCAP)",
-    "laytext": "Lung infection (pneumonia) associated with healthcare (HCAP)",
+    "laytext": "Nhiễm trùng phổi bệnh viện",
     "category": "acute",
     "alias": "healthcare, PNA",
     "wiki": "https://emedicine.medscape.com/article/234753-overview",
@@ -1689,7 +1689,7 @@
   {
     "name": "SVT",
     "text": "Superficial vein thrombosis (SVT) of lower extremities",
-    "laytext": "Blood clots in superficial veins  (SVT) of lower extremities",
+    "laytext": "Cục máu đông trong tĩnh mạch nông (SVT) của chi dưới",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1706,7 +1706,7 @@
   {
     "name": "DVT",
     "text": "Deep vein thrombosis (DVT)",
-    "laytext": "Blood clots in deep veins (DVT)",
+    "laytext": "Cục máu đông trong tĩnh mạch sâu (DVT)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1723,7 +1723,7 @@
   {
     "name": "COPDA",
     "text": "COPD exacerbation",
-    "laytext": "Chronic obstructive pulmonary disease (COPD) exacerbation",
+    "laytext": "Phổi tắc nghẽn mãn tính (COPD)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1740,7 +1740,7 @@
   {
     "name": "ACEinhibitorRelatedCough",
     "text": "Cough caused by ACE (angiotensin converting enzyme) inhibitor, or ARB (angiotensin receptor blocker)",
-    "laytext": "Cough caused by ACE (angiotensin converting enzyme) inhibitor, or ARB (angiotensin receptor blocker)",
+    "laytext": "Ho do chất ức chế ACE (men chuyển đổi angiotensin) hoặc ARB (thuốc chẹn thụ thể angiotensin)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1757,7 +1757,7 @@
   {
     "name": "AsthmaA",
     "text": "Asthma exacerbation without acute respiratory failure",
-    "laytext": "Asthma exacerbation without acute respiratory failure",
+    "laytext": "Cơn hen kịch phát mà không có suy hô hấp cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1774,7 +1774,7 @@
   {
     "name": "AtopicDermatitis",
     "text": "Atopic dermatitis",
-    "laytext": "Atopic dermatitis",
+    "laytext": "Viêm da dị ứng",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1791,7 +1791,7 @@
   {
     "name": "BowelObstructionA",
     "text": "Bowel obstruction",
-    "laytext": "Bowel obstruction",
+    "laytext": "Tắt ruột",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1808,7 +1808,7 @@
   {
     "name": "AsthmaARFA",
     "text": "Asthma exacerbation with acute respiratory failure",
-    "laytext": "Asthma exacerbation with acute respiratory failure",
+    "laytext": "Cơn hen kịch phát với suy hô hấp cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1825,7 +1825,7 @@
   {
     "name": "OSA",
     "text": "Obstructive sleep apnea",
-    "laytext": "Obstructive sleep apnea",
+    "laytext": "Khó thở khi ngủ",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1842,7 +1842,7 @@
   {
     "name": "PulmTBA",
     "text": "Pulmonary tuberculosis",
-    "laytext": "Pulmonary tuberculosis",
+    "laytext": "Bệnh lao phổi",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1859,7 +1859,7 @@
   {
     "name": "NonTBMycobacteriaeA",
     "text": "Acute nontuberculous mycobacterial lung infection",
-    "laytext": "Acute nontuberculous mycobacterial lung infection",
+    "laytext": "Nhiễm trùng phổi cấp tính do vi khuẩn lao",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1876,7 +1876,7 @@
   {
     "name": "LungAbscessA",
     "text": "Lung abscess",
-    "laytext": "Lung abscess",
+    "laytext": "Áp xe phổi",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1893,7 +1893,7 @@
   {
     "name": "EmpyemaA",
     "text": "Empyema",
-    "laytext": "Empyema",
+    "laytext": "Viêm mủ",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1910,7 +1910,7 @@
   {
     "name": "OtitisMediaA",
     "text": "Otitis media",
-    "laytext": "Otitis media",
+    "laytext": "Viêm tai giữa",
     "category": "acute",
     "alias": "AOM",
     "wiki": "",
@@ -1927,7 +1927,7 @@
   {
     "name": "OtitisExternaA",
     "text": "Otitis externa",
-    "laytext": "Otitis externa",
+    "laytext": "Viêm tai ngoài",
     "category": "acute",
     "alias": "AOE",
     "wiki": "",
@@ -1944,13 +1944,13 @@
   {
     "name": "AcuteEyeEmergencyA",
     "text": "Acute eye emergency",
-    "laytext": "Acute eye emergency",
+    "laytext": "Cấp cứu cấp tính về mắt",
     "category": "acute"
   },
   {
     "name": "AnxietyA",
     "text": "Anxiety",
-    "laytext": "Anxiety",
+    "laytext": "Rối loạn lo âu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1965,7 +1965,7 @@
   {
     "name": "AorticStenosisA",
     "text": "Acute aortic stenosis (AS)",
-    "laytext": "Acute aortic stenosis (AS)",
+    "laytext": "Hẹp động mạch chủ cấp tính (AS)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -1981,7 +1981,7 @@
   {
     "name": "PCDiabetesC",
     "text": "Uncontrolled diabetes",
-    "laytext": "Uncontrolled diabetes",
+    "laytext": "Bệnh tiểu đường không kiểm soát",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -1997,7 +1997,7 @@
   {
     "name": "AorticRegurgitationA",
     "text": "Acute aortic regurgitation (AR or AI)",
-    "laytext": "Acute aortic regurgitation (AR or AI)",
+    "laytext": "Trào ngược động mạch chủ cấp tính (AR hoặc AI)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2013,7 +2013,7 @@
   {
     "name": "MitralRegurgitationA",
     "text": "Acute mitral regurgitation (MR)",
-    "laytext": "Acute mitral regurgitation (MR)",
+    "laytext": "Trào ngược hai lá cấp tính (MR)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2029,7 +2029,7 @@
   {
     "name": "PulmonaryRegurgitationA",
     "text": "Pulmonary regurgitation (PR)",
-    "laytext": "Pulmonary regurgitation (PR)",
+    "laytext": "Trào ngược phổi (PR)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2045,13 +2045,13 @@
   {
     "name": "ThyroidGoiterA",
     "text": "Acute thyroid goiter airway obstruction",
-    "laytext": "Acute thyroid goiter airway obstruction",
+    "laytext": "Bướu cổ tuyến giáp tắc nghẽn đường thở",
     "category": "acute"
   },
   {
     "name": "MIA",
     "text": "Myocardial infarction",
-    "laytext": "Heart attack (myocardial infarction)",
+    "laytext": "Nhồi máu cơ tim)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2068,7 +2068,7 @@
   {
     "name": "DiabetesHONKA",
     "text": "Diabetic hyperosmolar hyperglycemic state",
-    "laytext": "Diabetic hyperosmolar hyperglycemic state",
+    "laytext": "Trạng thái tăng đường huyết hyperosmolar của bệnh tiểu đường",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2085,7 +2085,7 @@
   {
     "name": "ACSA",
     "text": "Acute coronary syndrome",
-    "laytext": "Acute coronary syndrome",
+    "laytext": "Hội chứng mạch vành",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2101,13 +2101,13 @@
   {
     "name": "VSDA",
     "text": "Acute ventricular septal (rupture) defect",
-    "laytext": "Acute ventricular septal (rupture) defect",
+    "laytext": "Thông liên thất cấp tính",
     "category": "acute"
   },
   {
     "name": "CostochondritisAMSKChestPain",
     "text": "Costochondritis or otherwise musculoskeletal chest pain",
-    "laytext": "Costochondritis or otherwise musculoskeletal chest pain",
+    "laytext": "Viêm sụn chêm hoặc đau ngực do cơ xương khớp",
     "category": "acute",
     "alias": "msk, chest pain",
     "wiki": "Costochondritis or otherwise musculoskeletal chest pain",
@@ -2124,25 +2124,25 @@
   {
     "name": "SpinalfacetjointsCPA",
     "text": "Spinal facet joints related chest pain",
-    "laytext": "Spinal facet joints related chest pain",
+    "laytext": "Đau ngực liên quan đến các khớp cột sống",
     "category": "acute"
   },
   {
     "name": "TSpineCPA",
     "text": "Thoracic spine fracture related chest pain",
-    "laytext": "Thoracic spine fracture related chest pain",
+    "laytext": "Đau ngực do gãy cột sống ngực",
     "category": "acute"
   },
   {
     "name": "SpinalDiscopathyCPA",
     "text": "Spinal discopathy related chest pain",
-    "laytext": "Spinal discopathy related chest pain",
+    "laytext": "Đau ngực do đĩa đệm cột sống",
     "category": "acute"
   },
   {
     "name": "PleuritisA",
     "text": "Pleuritis",
-    "laytext": "Pleuritis",
+    "laytext": "Viêm màng phổi",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2158,7 +2158,7 @@
   {
     "name": "AtelectasisA",
     "text": "Atelectasis",
-    "laytext": "Atelectasis",
+    "laytext": "Xẹp phổi",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2174,31 +2174,31 @@
   {
     "name": "LobarObstructionA",
     "text": "Lobar obstruction",
-    "laytext": "Lobar obstruction",
+    "laytext": "Tắc nghẽn thùy",
     "category": "acute"
   },
   {
     "name": "HealthyA",
     "text": "Patient seems free from acute respiratory issues",
-    "laytext": "Patient seems free from acute respiratory issues",
+    "laytext": "Bệnh nhân dường như không bị các vấn đề về hô hấp cấp tính",
     "category": "acute"
   },
   {
     "name": "HealthyAllA",
     "text": "Patient seems free from acute issues",
-    "laytext": "Patient seems free from acute issues",
+    "laytext": "Bệnh nhân dường như không gặp các vấn đề cấp tính",
     "category": "acute"
   },
   {
     "name": "OvarianTorsionA",
     "text": "Ovarian torsion",
-    "laytext": "Ovarian torsion",
+    "laytext": "Xoắn buồng trứng",
     "category": "acute"
   },
   {
     "name": "MissedAA",
     "text": "Missed abortion",
-    "laytext": "Missed abortion",
+    "laytext": "Sảy thai",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2214,19 +2214,19 @@
   {
     "name": "DeathA",
     "text": "Risk of death within 24 hours",
-    "laytext": "Risk of death within 24 hours",
+    "laytext": "Nguy cơ tử vong trong vòng 24 giờ",
     "category": "acute"
   },
   {
     "name": "TesticularTorsionA",
     "text": "Testicular torsion",
-    "laytext": "Testicular torsion",
+    "laytext": "Xoắn tinh hoàn",
     "category": "acute"
   },
   {
     "name": "HemorrhoidsA",
     "text": "Hemorrhoids - acute thrombosis or infection",
-    "laytext": "Hemorrhoids - acute thrombosis or infection",
+    "laytext": "Bệnh trĩ - huyết khối cấp tính hoặc nhiễm trùng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2243,7 +2243,7 @@
   {
     "name": "PUDBleed",
     "text": "Bleeding peptic or duodenal ulcer",
-    "laytext": "Bleeding peptic or duodenal ulcer",
+    "laytext": "Chảy máu loét dạ dày tá tràng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2260,7 +2260,7 @@
   {
     "name": "PUDA",
     "text": "Peptic ulcer disease",
-    "laytext": "Peptic ulcer disease",
+    "laytext": "Bệnh viêm loét dạ dày",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -2277,7 +2277,7 @@
   {
     "name": "HPylor",
     "text": "Helicobacter pylory infection",
-    "laytext": "Helicobacter pylory infection",
+    "laytext": "Nhiễm vi khuẩn Helicobacter pylori",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -2294,7 +2294,7 @@
   {
     "name": "GastroenteritisBacterialA",
     "text": "Gastroenteritis likely bacterial (i.e. Shigella)",
-    "laytext": "Gastroenteritis likely bacterial (i.e. Shigella)",
+    "laytext": "Viêm dạ dày ruột do vi khuẩn",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2310,7 +2310,7 @@
   {
     "name": "PortalVeinThrombosisA",
     "text": "Portal vein thrombosis",
-    "laytext": "Portal vein thrombosis",
+    "laytext": "Huyết khối tĩnh mạch cửa",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2326,13 +2326,13 @@
   {
     "name": "BuddChiariA",
     "text": "Budd-Chiari syndrome",
-    "laytext": "Budd-Chiari syndrome",
+    "laytext": "Hội chứng Budd-Chiari",
     "category": "acute"
   },
   {
     "name": "DM1",
     "text": "Diabetes melltus type 1",
-    "laytext": "Diabetes melltus type 1",
+    "laytext": "Đái tháo đường loại 1",
     "category": "acute",
     "alias": "DM1",
     "wiki": "",
@@ -2366,7 +2366,7 @@
   {
     "name": "PancreaticCaA",
     "text": "Pancreatic cancer",
-    "laytext": "Pancreatic cancer",
+    "laytext": "Ung thư tuyến tụy",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2382,7 +2382,7 @@
   {
     "name": "CholecystitisA",
     "text": "Acute cholecystitis",
-    "laytext": "Acute cholecystitis",
+    "laytext": "Viêm túi mật cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2399,7 +2399,7 @@
   {
     "name": "GoutFlair",
     "text": "Gout flair",
-    "laytext": "Gout flair",
+    "laytext": "Gút",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2416,7 +2416,7 @@
   {
     "name": "ToeTraumaPain",
     "text": "Trauma to the toe",
-    "laytext": "Trauma to the toe",
+    "laytext": "Chấn thương ngón chân",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2433,7 +2433,7 @@
   {
     "name": "GoutFlairFromDiuretics",
     "text": "Gout flair related to diuretic use",
-    "laytext": "Gout flair related to diuretic use",
+    "laytext": "Gút do sử dụng thuốc lợi tiểu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2450,7 +2450,7 @@
   {
     "name": "GerdA",
     "text": "Esophageal rupture (rupture)",
-    "laytext": "Esophageal rupture (perforation)",
+    "laytext": "Thủng thực quản",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2467,7 +2467,7 @@
   {
     "name": "BIA",
     "text": "Bowel ischaemia",
-    "laytext": "Bowel ischaemia",
+    "laytext": "Thiếu máu cục bộ ở ruột",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2483,7 +2483,7 @@
   {
     "name": "CDCA",
     "text": "Clostridium difficile colitis",
-    "laytext": "Clostridium difficile colitis",
+    "laytext": "Viêm đại tràng do Clostridium difficile",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2500,7 +2500,7 @@
   {
     "name": "SepsisA",
     "text": "Sepsis",
-    "laytext": "Sepsis",
+    "laytext": "Nhiễm trùng máu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2517,7 +2517,7 @@
   {
     "name": "DM2ByHx",
     "text": "Past medical history of diabetes melltus type 2 per history (chronic)",
-    "laytext": "Past medical history of diabetes melltus type 2 per history (chronic condition)",
+    "laytext": "Tiền sử bệnh đái tháo đường mãn tính loại 2",
     "category": "chronic",
     "alias": "DM2",
     "wiki": "",
@@ -2534,7 +2534,7 @@
   {
     "name": "SuicidialOverdoseA",
     "text": "Suicidal or purposeful overdose",
-    "laytext": "Suicidal or purposeful overdose",
+    "laytext": "Tự tử hoặc dùng thuốc quá liều có mục đích",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2551,31 +2551,31 @@
   {
     "name": "BeerA",
     "text": "Beer potomania",
-    "laytext": "Beer potomania",
+    "laytext": "Nghiện rượu, bia",
     "category": "acute"
   },
   {
     "name": "HypoNaA",
     "text": "Hyponatremia acute",
-    "laytext": "Hyponatremia acute",
+    "laytext": "Hạ natri trong máu cấp tính",
     "category": "acute"
   },
   {
     "name": "HypoNaSIADHA",
     "text": "Hyponatremia SIADH",
-    "laytext": "Hyponatremia SIADH",
+    "laytext": "Hạ natri máu SIADH",
     "category": "acute"
   },
   {
     "name": "HyperKA",
     "text": "Hyperkalemia",
-    "laytext": "Hyperkalemia",
+    "laytext": "Hạ natri máu",
     "category": "acute"
   },
   {
     "name": "HyperCaA",
     "text": "Hypercalcemia",
-    "laytext": "Hypercalcemia",
+    "laytext": "Hạ natri máu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2591,7 +2591,7 @@
   {
     "name": "HyperParaCaA",
     "text": "Hyperparathyroidism",
-    "laytext": "Hyperparathyroidism",
+    "laytext": "Cường tuyến cận giáp",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2606,7 +2606,7 @@
   {
     "name": "MeningitisA",
     "text": "Bacgterial meningitis",
-    "laytext": "Bacgterial meningitis",
+    "laytext": "Viêm màng não do vi khuẩn",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2623,7 +2623,7 @@
   {
     "name": "EncephalitisA",
     "text": "Encephalitis",
-    "laytext": "Encephalitis",
+    "laytext": "Viêm não",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2639,7 +2639,7 @@
   {
     "name": "HypercapnicA",
     "text": "Hypercapnic coma",
-    "laytext": "Hypercapnic coma",
+    "laytext": "Tăng CO2 trong máu do hôn mê",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2656,7 +2656,7 @@
   {
     "name": "SSA",
     "text": "Serotoninergic syndrome",
-    "laytext": "Serotoninergic syndrome",
+    "laytext": "Hội chứng serotoninergic",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2673,7 +2673,7 @@
   {
     "name": "OpiatesA",
     "text": "Opiates overdose",
-    "laytext": "Opiates overdose",
+    "laytext": "Hút phiện quá liều",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2690,7 +2690,7 @@
   {
     "name": "TCAA",
     "text": "Tricyclic antidepressant overdose (TCA) overdose",
-    "laytext": "Tricyclic antidepressant overdose (TCA) overdose",
+    "laytext": "Quá liều thuốc chống trầm cảm",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2707,7 +2707,7 @@
   {
     "name": "StarvationKA",
     "text": "Starvation ketoacidosis",
-    "laytext": "Starvation ketoacidosis",
+    "laytext": "Nhiễm toan ceton do đói",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2724,7 +2724,7 @@
   {
     "name": "Starvation",
     "text": "Starvation",
-    "laytext": "Starvation",
+    "laytext": "Chết đói",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2741,7 +2741,7 @@
   {
     "name": "MetabolicGapAcidosis",
     "text": "Metabolic acidosis with elevated anion gap",
-    "laytext": "Metabolic acidosis with elevated anion gap",
+    "laytext": "Nhiễm toan chuyển hóa với tăng khoảng trống anion",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2758,7 +2758,7 @@
   {
     "name": "MetabolicNonGapAcidosis",
     "text": "Metabolic acidosis without elevated anion gap",
-    "laytext": "Metabolic acidosis without elevated anion gap",
+    "laytext": "Nhiễm toan chuyển hóa mà không tăng khoảng trống anion",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2775,7 +2775,7 @@
   {
     "name": "LacticAcidosis",
     "text": "Lactic acidosis",
-    "laytext": "Lactic acidosis",
+    "laytext": "Nhiễm toan lactic",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2791,7 +2791,7 @@
   {
     "name": "HypoA",
     "text": "Hypoglycemia",
-    "laytext": "Hypoglycemia",
+    "laytext": "Hạ đường huyết",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2808,7 +2808,7 @@
   {
     "name": "HypoThyroA",
     "text": "Hypothyroidism severe (myxedema coma or crisis)",
-    "laytext": "Hypothyroidism severe (myxedema coma or crisis)",
+    "laytext": "Suy giáp nghiêm trọng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2825,7 +2825,7 @@
   {
     "name": "HyperthyroidCrisisA",
     "text": "Hyperthyroidism acute (hyperthyroid crisis or thyrotoxic storm)",
-    "laytext": "Hyperthyroidism acute (hyperthyroid crisis or thyrotoxic storm)",
+    "laytext": "Cường giáp cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2842,7 +2842,7 @@
   {
     "name": "GastroparesisA",
     "text": "Gastroparesis",
-    "laytext": "Gastroparesis",
+    "laytext": "Chứng dạ dày",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2859,7 +2859,7 @@
   {
     "name": "SecondaryArterialHypertensionSecondaryRASFibromuscularDysplasia",
     "text": "Secondary arterial hypertension secondary to renal artery stenosis, secondary to fibromuscular dysplasia",
-    "laytext": "High blood pressure (hypertension) secondary to renal artery stenosis, secondary to fibromuscular dysplasia",
+    "laytext": "Huyết áp cao thứ phát do hẹp động mạch thận sau loạn sản cơ xơ",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -2876,7 +2876,7 @@
   {
     "name": "ARFA",
     "text": "Acute renal failure",
-    "laytext": "Acute renal failure",
+    "laytext": "Suy thận",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2910,13 +2910,13 @@
   {
     "name": "MNKD",
     "text": "Membranous nephropathy",
-    "laytext": "Membranous nephropathy",
+    "laytext": "Bệnh màng thận",
     "category": "chronic"
   },
   {
     "name": "PIDA",
     "text": "Pelvic inflammatory disease",
-    "laytext": "Pelvic inflammatory disease",
+    "laytext": "Bệnh viêm vùng chậu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2933,7 +2933,7 @@
   {
     "name": "EPA",
     "text": "Ectopic pregnancy",
-    "laytext": "Ectopic pregnancy",
+    "laytext": "Mang thai ngoài tử cung",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2950,7 +2950,7 @@
   {
     "name": "PastHxOfPregnancy",
     "text": "Past history of pregnancy",
-    "laytext": "Past history of pregnancy",
+    "laytext": "Từng mang thai",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -2967,7 +2967,7 @@
   {
     "name": "PastHxOfSpontaneousAbortion",
     "text": "Past history of spontaneous abortion",
-    "laytext": "Past history of spontaneous abortion",
+    "laytext": "Sảy thai tự nhiên",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -2984,7 +2984,7 @@
   {
     "name": "NeutropA",
     "text": "Neutropenia",
-    "laytext": "Neutropenia",
+    "laytext": "Giảm bạch cầu trung tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3001,7 +3001,7 @@
   {
     "name": "NeutroponicFeverA",
     "text": "Neutropenic fever",
-    "laytext": "Neutropenic fever",
+    "laytext": "Sốt gây giảm bạch cầu trung tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3018,7 +3018,7 @@
   {
     "name": "MSPregnancyA",
     "text": "Morning sickness (pregnancy)",
-    "laytext": "Morning sickness (pregnancy)",
+    "laytext": "Ốm nghén (mang thai)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3035,13 +3035,13 @@
   {
     "name": "OtherDxA",
     "text": "Other acute diagnoses",
-    "laytext": "Other acute diagnoses",
+    "laytext": "Các chẩn đoán cấp tính khác",
     "category": "acute"
   },
   {
     "name": "BacterialEndocarditisA",
     "text": "Acute bacterial endocarditis",
-    "laytext": "Acute bacterial endocarditis",
+    "laytext": "Viêm nội tâm mạc nhiễm khuẩn cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3058,7 +3058,7 @@
   {
     "name": "TVBacterialEndocarditisA",
     "text": "Tricuspid valve bacterial endocarditis",
-    "laytext": "Tricuspid valve bacterial endocarditis",
+    "laytext": "Viêm nội tâm mạc nhiễm khuẩn van ba lá",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3075,7 +3075,7 @@
   {
     "name": "MetastaticAbscessesA",
     "text": "Metastatic abscesses from endocarditis",
-    "laytext": "Metastatic abscesses from endocarditis",
+    "laytext": "Áp xe di căn do viêm nội tâm mạc",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3092,7 +3092,7 @@
   {
     "name": "PleurisyA",
     "text": "Acute pleurisy",
-    "laytext": "Acute pleurisy",
+    "laytext": "Viêm màng phổi cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3109,7 +3109,7 @@
   {
     "name": "HPTXA",
     "text": "Acute hemopneumothorax",
-    "laytext": "Acute hemopneumothorax",
+    "laytext": "Tràn máu màng phổi cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3126,7 +3126,7 @@
   {
     "name": "HTXA",
     "text": "Acute hemothorax",
-    "laytext": "Acute hemothorax",
+    "laytext": "Hemothorax cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3143,7 +3143,7 @@
   {
     "name": "SciaticaA",
     "text": "Sciatica (radicular low back pain)",
-    "laytext": "Sciatica (radicular low back pain)",
+    "laytext": "Đau thần kinh tọa",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3160,7 +3160,7 @@
   {
     "name": "MechanicalLBPA",
     "text": "Mechanical low back pain (muscle strain)",
-    "laytext": "Mechanical low back pain (muscle strain)",
+    "laytext": "Căng cơ",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3177,7 +3177,7 @@
   {
     "name": "CystitisUTIA",
     "text": "Cystitis (urinary tract infection)",
-    "laytext": "Cystitis (urinary tract infection)",
+    "laytext": "Viêm bàng quang",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3194,7 +3194,7 @@
   {
     "name": "PyelonephritisUTIA",
     "text": "Pyelonephritis",
-    "laytext": "Pyelonephritis",
+    "laytext": "Viêm bể thận",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3211,7 +3211,7 @@
   {
     "name": "SuicideA",
     "text": "Suicide attempt",
-    "laytext": "Suicide attempt",
+    "laytext": "Tự sát không thành",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3228,7 +3228,7 @@
   {
     "name": "AcetaminophenOverdoseA",
     "text": "Acetaminophen overdose",
-    "laytext": "Acetaminophen overdose",
+    "laytext": "Quá liều acetaminophen",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3245,7 +3245,7 @@
   {
     "name": "EthyleneGlycolOverdoseA",
     "text": "Ethylene glycol poisoning",
-    "laytext": "Ethylene glycol poisoning",
+    "laytext": "Ngộ độc ethylene glycol",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3262,7 +3262,7 @@
   {
     "name": "STATA",
     "text": "Patient in immediate life-threatening condition",
-    "laytext": "You may be in life-threatening condition, consider contacting healthcare provider as soon as possible.",
+    "laytext": "Tình trạng nguy cấp",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -3278,7 +3278,7 @@
   {
     "name": "CNeoMeningitisA",
     "text": "Cryptococcus neoformans meningoencephalitis",
-    "laytext": "Cryptococcus neoformans meningoencephalitis",
+    "laytext": "Viêm não do Cryptococcus neoformans",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3295,7 +3295,7 @@
   {
     "name": "FungoMeningitisA",
     "text": "Fungal meningitis",
-    "laytext": "Fungal meningitis",
+    "laytext": "Viêm màng não do nấm",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3312,7 +3312,7 @@
   {
     "name": "HSVEncephalitisA",
     "text": "HSV-1 encephalitis",
-    "laytext": "HSV-1 encephalitis",
+    "laytext": "Viêm não HSV-1",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3329,7 +3329,7 @@
   {
     "name": "BrainCaA",
     "text": "Intracranial (i.e. brain) primary neoplasm or metastatic disease to the brain",
-    "laytext": "Intracranial (i.e. brain) primary neoplasm or metastatic disease to the brain",
+    "laytext": "Ung thư não hoặc bệnh di căn đến não",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3346,7 +3346,7 @@
   {
     "name": "ICH",
     "text": "Intracranial hemorrhage.",
-    "laytext": "Intracranial hemorrhage.",
+    "laytext": "Xuất huyêt não",
     "category": "acute",
     "alias": "Intracranial bleed, brain bleed, brain hemorrhage.",
     "wiki": "",
@@ -3363,7 +3363,7 @@
   {
     "name": "ContusionA",
     "text": "Brain contusion",
-    "laytext": "Brain contusion",
+    "laytext": "Nhồi máu não",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3380,7 +3380,7 @@
   {
     "name": "SpineCaA",
     "text": "Lower spine vertebral or lower spinal tumor",
-    "laytext": "Lower spine vertebral or lower spinal tumor",
+    "laytext": "U đốt sống dưới cột sống",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3397,7 +3397,7 @@
   {
     "name": "SAHA",
     "text": "Subarachnoid hemorrhage (SAH)",
-    "laytext": "Subarachnoid hemorrhage (SAH)",
+    "laytext": "Xuất huyết dưới nhện (SAH)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3414,7 +3414,7 @@
   {
     "name": "IschemicCVADisease",
     "text": "Ischemic cerebrovascular accident (CVA)",
-    "laytext": "Ischemic cerebrovascular accident (CVA)",
+    "laytext": "Tai biến mạch máu não do thiếu máu cục bộ (CVA)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3431,7 +3431,7 @@
   {
     "name": "LEMSA",
     "text": "Lambert-Eaton Myasthenic Syndrome (LEMS)",
-    "laytext": "Lambert-Eaton Myasthenic Syndrome (LEMS)",
+    "laytext": "Hội chứng nhược cơ Lambert-Eaton (LEMS)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3448,7 +3448,7 @@
   {
     "name": "MyastheniaA",
     "text": "Myasthenia gravis",
-    "laytext": "Myasthenia gravis",
+    "laytext": "Bệnh nhược cơ",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3464,7 +3464,7 @@
   {
     "name": "BenzosA",
     "text": "Benzodiazepines overdose",
-    "laytext": "Benzodiazepines overdose",
+    "laytext": "Quá liều benzodiazepines",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3481,7 +3481,7 @@
   {
     "name": "StomachCa",
     "text": "Stomach cancer",
-    "laytext": "Stomach cancer",
+    "laytext": "Ung thư dạ dày",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3498,7 +3498,7 @@
   {
     "name": "MechanicalSmallBowelObstructionA",
     "text": "Mechanical small bowel obstruction",
-    "laytext": "Mechanical small bowel obstruction",
+    "laytext": "Tắc ruột cơ học",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3515,7 +3515,7 @@
   {
     "name": "AdynamicSmallBowelObstructionA",
     "text": "Adynamic (paralytic) ileus",
-    "laytext": "Adynamic (paralytic) ileus",
+    "laytext": "Tắc ruột",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3532,7 +3532,7 @@
   {
     "name": "LargeBowelObstructionA",
     "text": "Large bowel obstruction",
-    "laytext": "Large bowel obstruction",
+    "laytext": "Tắc ruột già",
     "category": "acute",
     "alias": "LBO",
     "wiki": "",
@@ -3549,7 +3549,7 @@
   {
     "name": "SmallBowelObstruction",
     "text": "Small bowel obstruction",
-    "laytext": "Small bowel obstruction",
+    "laytext": "Tắc nghẽn ruột non",
     "category": "acute",
     "alias": "SBO",
     "wiki": "",
@@ -3566,7 +3566,7 @@
   {
     "name": "MesentericIschemiaA",
     "text": "Acute mesenteric ischemia",
-    "laytext": "Acute mesenteric ischemia",
+    "laytext": "Thiếu máu cục bộ đường ruột",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3583,7 +3583,7 @@
   {
     "name": "MesentericIschemiaC",
     "text": "Chronic mesenteric ischemia (intestinal angina)",
-    "laytext": "Chronic mesenteric ischemia (intestinal angina)",
+    "laytext": "Thiếu máu cục bộ đường ruột gây đau thắt ngực",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3600,7 +3600,7 @@
   {
     "name": "EmbolicLowerLimbIschemiaA",
     "text": "Arterial embolism (embolization) caused lower extremity ischemia",
-    "laytext": "Arterial embolism (embolization) caused lower extremity ischemia",
+    "laytext": "Thuyên tắc động mạch gây ra thiếu máu cục bộ ở chi dưới",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3617,7 +3617,7 @@
   {
     "name": "Atheroscleroticlowerextremitiesischemia",
     "text": "Atherosclerotic lower extremities ischemia.",
-    "laytext": "Atherosclerotic lower extremities ischemia.",
+    "laytext": "Thiếu máu cục bộ do xơ vữa động mạch chi dưới.",
     "category": "acute",
     "alias": "Plaque",
     "wiki": "",
@@ -3634,7 +3634,7 @@
   {
     "name": "IschCoitisA",
     "text": "Acute ischemic colitis",
-    "laytext": "Acute ischemic colitis",
+    "laytext": "Viêm đại tràng do thiếu máu cục bộ cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3651,7 +3651,7 @@
   {
     "name": "AcuteDiverticulitisA",
     "text": "Acute diverticulitis",
-    "laytext": "Acute diverticulitis",
+    "laytext": "Viêm túi thừa cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3668,13 +3668,13 @@
   {
     "name": "DMKD",
     "text": "Diabetes mellitus related kidney disease",
-    "laytext": "Diabetes mellitus related kidney disease",
+    "laytext": "Bệnh thận do đái tháo đường",
     "category": "chronic"
   },
   {
     "name": "AcuteappendicitisA",
     "text": "Acute appendicitis",
-    "laytext": "Acute appendicitis",
+    "laytext": "Viêm ruột thừa",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3691,7 +3691,7 @@
   {
     "name": "ChlamydialUA",
     "text": "Chlamydia Trachomatis urethritis",
-    "laytext": "Chlamydia Trachomatis urethritis",
+    "laytext": "Viêm niệu đạo do Chlamydia Trachomatis",
     "category": "acute",
     "alias": "C. trachomatis",
     "wiki": "",
@@ -3708,7 +3708,7 @@
   {
     "name": "ChlamydialCervicitis",
     "text": "Chlamydia Trachomatis cervicitis",
-    "laytext": "Chlamydia Trachomatis cervicitis",
+    "laytext": "Viêm cổ tử cung do Chlamydia Trachomatis",
     "category": "acute",
     "alias": "C. trachomatis",
     "wiki": "",
@@ -3725,7 +3725,7 @@
   {
     "name": "Urethritis",
     "text": "Urethritis",
-    "laytext": "Urethritis",
+    "laytext": "Viêm niệu đạo",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3742,7 +3742,7 @@
   {
     "name": "BacterialvagA",
     "text": "Bacterial vaginosis",
-    "laytext": "Bacterial vaginosis",
+    "laytext": "Viêm âm đạo do vi khuẩn",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3759,7 +3759,7 @@
   {
     "name": "CandidalvagA",
     "text": "Candidal vaginitis",
-    "laytext": "Candidal vaginitis",
+    "laytext": "Viêm âm đạo do nấm Candida",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3776,7 +3776,7 @@
   {
     "name": "TrichomonasvagA",
     "text": "Trichomonas vaginitis",
-    "laytext": "Trichomonas vaginitis",
+    "laytext": "Viêm âm đạo do Trichomonas",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3793,7 +3793,7 @@
   {
     "name": "AtrophicVaginitis",
     "text": "Atrophic vaginitis",
-    "laytext": "Atrophic vaginitis",
+    "laytext": "Viêm teo âm đạo",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3810,7 +3810,7 @@
   {
     "name": "URetenA",
     "text": "Urinary retention",
-    "laytext": "Urinary retention",
+    "laytext": "Bí tiểu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3827,7 +3827,7 @@
   {
     "name": "OrchitisA",
     "text": "Acute orchitis",
-    "laytext": "Acute orchitis",
+    "laytext": "Viêm tinh hoàn cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3844,7 +3844,7 @@
   {
     "name": "MENPA",
     "text": "Menstrual pain",
-    "laytext": "Menstrual pain",
+    "laytext": "Đau bụng kinh",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3861,7 +3861,7 @@
   {
     "name": "Menstruation",
     "text": "Menstruation",
-    "laytext": "Menstruation",
+    "laytext": "Hành kinh",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3877,25 +3877,25 @@
   {
     "name": "PlaceHolderAcuteDiagnosisAlias1AcuteDxAlias",
     "text": "Acute aspiration",
-    "laytext": "Acute aspiration",
+    "laytext": "Nghiện hút cấp tính",
     "category": "acute"
   },
   {
     "name": "PlaceHolderAcuteDiagnosisAlias2AcuteDxAlias",
     "text": "Atrial fibrillation with rapid ventricular response (Afib with RVR)",
-    "laytext": "Atrial fibrillation with rapid ventricular response (Afib with RVR)",
+    "laytext": "Rung tâm nhĩ với phản ứng nhanh thất (Afib với RVR)",
     "category": "acute"
   },
   {
     "name": "PlaceHolderAcuteDiagnosisAlias3AcuteDxAlias",
     "text": "Atrial fibrillation episode (Afib)",
-    "laytext": "Atrial fibrillation episode (Afib)",
+    "laytext": "Rung nhĩ (Afib)",
     "category": "acute"
   },
   {
     "name": "FUO",
     "text": "Fever of unknown origin (FUO)",
-    "laytext": "Fever of unknown origin (FUO)",
+    "laytext": "Sốt không rõ nguồn gốc (FUO)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3911,7 +3911,7 @@
   {
     "name": "PulmonaryEdema",
     "text": "Pulmonary edema.",
-    "laytext": "Pulmonary edema.",
+    "laytext": "Phù phổi.",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3928,7 +3928,7 @@
   {
     "name": "Choledocholithiasis",
     "text": "Choledocholithiasis",
-    "laytext": "Choledocholithiasis",
+    "laytext": "Bệnh sỏi mật",
     "category": "acute",
     "alias": "Bile duct stone in (with obstruction of) common bile duct (choledocholithiasis)",
     "wiki": "",
@@ -3945,7 +3945,7 @@
   {
     "name": "AnticholinergicsOverdose",
     "text": "Anticholinergics overdose",
-    "laytext": "Anticholinergics overdose",
+    "laytext": "Quá liều thuốc kháng cholinergic",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3961,7 +3961,7 @@
   {
     "name": "EthanolOverdose",
     "text": "Ethanol overdose",
-    "laytext": "Ethanol overdose",
+    "laytext": "Quá liều ethanol",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -3977,7 +3977,7 @@
   {
     "name": "PulmonaryHypertensionC",
     "text": "Pulmonary hypertension (PulmHTN)",
-    "laytext": "Pulmonary hypertension (PulmHTN)",
+    "laytext": "Tăng áp động mạch phổi (PulmHTN)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -3993,25 +3993,25 @@
   {
     "name": "PlaceHolderAcuteDiagnosisAlias12AcuteDxAlias",
     "text": "Clonidine overdose",
-    "laytext": "Clonidine overdose",
+    "laytext": "Quá liều clonidine",
     "category": "acute"
   },
   {
     "name": "PlaceHolderAcuteDiagnosisAlias13AcuteDxAlias",
     "text": "Acute respiratory distress syndrome (ARDS)",
-    "laytext": "Acute respiratory distress syndrome (ARDS)",
+    "laytext": "Hội chứng suy hô hấp cấp (ARDS)",
     "category": "acute"
   },
   {
     "name": "PlaceHolderAcuteDiagnosisAlias14AcuteDxAlias",
     "text": "Hypersensitivity pneumonitis (HP)",
-    "laytext": "Hypersensitivity pneumonitis (HP)",
+    "laytext": "Viêm phổi quá mẫn (HP)",
     "category": "acute"
   },
   {
     "name": "HypoxicRespiratoryfailure",
     "text": "Hypoxic respiratory failure",
-    "laytext": "Respiratory failure with inadequate oxygen delivery to tissues",
+    "laytext": "Suy hô hấp do thiếu oxy",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4028,7 +4028,7 @@
   {
     "name": "HypercapnicRespiratoryfailure",
     "text": "Hypercapnic respiratory failure",
-    "laytext": "Respiratory failure with retention of Co2 ",
+    "laytext": "Suy hô hấp do giữ lại Co2",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4045,7 +4045,7 @@
   {
     "name": "PulmonaryArteryPressingOnLMCAAngina",
     "text": "Angina cause by pulmonary artery aneurysm causing left main coronary",
-    "laytext": "Angina cause by pulmonary artery aneurysm causing left main coronary",
+    "laytext": "Đau thắt ngực do phình động mạch phổi gây ra động mạch vành trái",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4062,7 +4062,7 @@
   {
     "name": "PulmonaryArteryAneurysm",
     "text": "Pulmonary artery aneurysm",
-    "laytext": "Pulmonary artery aneurysm",
+    "laytext": "Phình động mạch phổi",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4079,7 +4079,7 @@
   {
     "name": "AnginaCausedByLowCardiacOutput",
     "text": "Angina caused by low cardiac output",
-    "laytext": "Angina caused by low cardiac output",
+    "laytext": "Đau thắt ngực do cung lượng tim thấp",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4096,7 +4096,7 @@
   {
     "name": "LowCardiacOutputSyndrome",
     "text": "Low (cardiac) output syndrome",
-    "laytext": "Low (cardiac) output syndrome",
+    "laytext": "Hội chứng cung lượng tim thấp",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4113,7 +4113,7 @@
   {
     "name": "AnginaAS",
     "text": "Angina caused by aortic stenosis",
-    "laytext": "Angina caused by aortic valve narrowing",
+    "laytext": "Đau thắt ngực do hẹp van động mạch chủ",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4130,7 +4130,7 @@
   {
     "name": "DemandMyocardialIschaemia",
     "text": "Demand myocardial ischaemia",
-    "laytext": "Demand myocardial ischaemia",
+    "laytext": "Thiếu máu cục bộ cơ tim",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4147,7 +4147,7 @@
   {
     "name": "Graves",
     "text": "Graves' hyperthyroidism",
-    "laytext": "Graves' hyperthyroidism",
+    "laytext": "Cường giáp của Graves",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4164,7 +4164,7 @@
   {
     "name": "Painlessthyroiditis",
     "text": "Painless thyroiditis",
-    "laytext": "Painless thyroiditis",
+    "laytext": "Viêm tuyến giáp không đau",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4181,7 +4181,7 @@
   {
     "name": "NSTEMI",
     "text": "Non-ST-elevation myocardial infarction (NSTEMI)",
-    "laytext": "Heart attack (without the ST segement elevation on ECG)",
+    "laytext": "Nhồi máu cơ tim không có ST chênh lên (STEMI)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4198,7 +4198,7 @@
   {
     "name": "Myocarditis",
     "text": "Myocarditis",
-    "laytext": "Myocarditis, inflamation of the heart muscle",
+    "laytext": "Viêm cơ tim",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4215,7 +4215,7 @@
   {
     "name": "STEMI",
     "text": "ST-elevation myocardial infarction (STEMI)",
-    "laytext": "Heart attack (with ST segement elevation on ECG)",
+    "laytext": "Nhồi máu cơ tim có ST chênh lên (STEMI)",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4232,7 +4232,7 @@
   {
     "name": "Delirium",
     "text": "Delirium",
-    "laytext": "Delirium",
+    "laytext": "Mê sảng",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4249,7 +4249,7 @@
   {
     "name": "Gastritis",
     "text": "Gastritis",
-    "laytext": "Stomach lining inflammation",
+    "laytext": "Viêm niêm mạc dạ dày",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4266,7 +4266,7 @@
   {
     "name": "AcutUpperGIBleed",
     "text": "Acute upper gastrointestinal tract bleeding",
-    "laytext": "Bleeding from upper portion of digestive tract",
+    "laytext": "Xuất huyết đường tiêu hóa trên cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4282,8 +4282,8 @@
   },
   {
     "name": "AcuteLowerGIBleed",
-    "text": "Acute lower gastrointestinal tract bleeding",
-    "laytext": "Bleeding from lower portion of digestive tract",
+    "text": "Bleeding from lower portion of digestive tract",
+    "laytext": "Xuất huyết đường tiêu hóa trên cấp tính",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4300,7 +4300,7 @@
   {
     "name": "HemorrhaficShock",
     "text": "Hemorrhagic shock from gastrointestinal bleeding",
-    "laytext": "Severe life-threatening gastrointestinal bleeding with shock ",
+    "laytext": "Sốc do xuất huyết tiêu hóa",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4317,13 +4317,13 @@
   {
     "name": "PlaceHolderAcuteDiagnosisAlias32AcuteDxAlias",
     "text": "Metastatic diseases to the liver or primary neoplasm of the liver",
-    "laytext": "Metastatic diseases to the liver or primary neoplasm of the liver",
+    "laytext": "Các bệnh di căn đến gan hoặc ung thư nguyên phát của gan",
     "category": "acute"
   },
   {
     "name": "Anaphylaxis",
     "text": "Anaphylaxis",
-    "laytext": "Anaphylaxis",
+    "laytext": "Sốc phản vệ",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4340,19 +4340,19 @@
   {
     "name": "PlaceHolderAcuteDiagnosisAlias35AcuteDxAlias",
     "text": "Seasonal (pollen) allergies",
-    "laytext": "Seasonal (pollen) allergies",
+    "laytext": "Dị ứng theo mùa (phấn hoa)",
     "category": "acute"
   },
   {
     "name": "PlaceHolderAcuteDiagnosisAlias36AcuteDxAlias",
     "text": "Hepatic encephalopathy",
-    "laytext": "Hepatic encephalopathy",
+    "laytext": "Bệnh não gan",
     "category": "acute"
   },
   {
     "name": "COPDC",
     "text": "Chronic obstructive pulmonary disease without current exacerbation.",
-    "laytext": "Chronic obstructive pulmonary disease without current exacerbation.",
+    "laytext": "Tắc nghẽn phổi mãn tính",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4369,7 +4369,7 @@
   {
     "name": "AsthmaC",
     "text": "Chronic asthma",
-    "laytext": "Chronic asthma",
+    "laytext": "Hen suyễn mãn tính",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4386,7 +4386,7 @@
   {
     "name": "CSSC",
     "text": "Churg-Strauss syndrome",
-    "laytext": "Churg-Strauss syndrome",
+    "laytext": "Hội chứng Churg - Strauss",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4403,7 +4403,7 @@
   {
     "name": "LVFC",
     "text": "Chronic left ventricle heart failure (LVHF)",
-    "laytext": "Chronic left ventricle heart failure (LVHF)",
+    "laytext": "Suy tim thất trái mãn tính (LVHF)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4420,7 +4420,7 @@
   {
     "name": "HypertrophicCardiomyopathyC",
     "text": "Hypertrophic cardiomyopathy",
-    "laytext": "Hypertrophic cardiomyopathy",
+    "laytext": "Bệnh cơ tim phì đại",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4437,7 +4437,7 @@
   {
     "name": "DilatedCardiomyopathyC",
     "text": "Dilated cardiomyopathy",
-    "laytext": "Dilated cardiomyopathy",
+    "laytext": "Bệnh cơ tim giãn nở",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4454,7 +4454,7 @@
   {
     "name": "TricuspidRegurgitationC",
     "text": "Chronic tricuspid regurgitation (TR)",
-    "laytext": "Chronic tricuspid regurgitation (TR)",
+    "laytext": "Trào ngược van ba lá mãn tính (TR)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4471,7 +4471,7 @@
   {
     "name": "Hydronephrosis",
     "text": "Hydronephrosis.",
-    "laytext": "Hydronephrosis.",
+    "laytext": "Thận ứ nước.",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -4488,7 +4488,7 @@
   {
     "name": "InsulinomaC",
     "text": "Pancreatic insulinoma",
-    "laytext": "Pancreatic insulinoma",
+    "laytext": "U tụy gây thừa insulin",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4505,25 +4505,25 @@
   {
     "name": "ASDC",
     "text": "Atrial septal defect (ASD)",
-    "laytext": "Atrial septal defect (ASD)",
+    "laytext": "Thông liên nhĩ (ASD)",
     "category": "chronic"
   },
   {
     "name": "VSDC",
     "text": "Ventricular septal defect (VSD) (chronic)",
-    "laytext": "Ventricular septal defect (VSD) (chronic)",
+    "laytext": "Thông liên thất mãn tính (VSD)",
     "category": "chronic"
   },
   {
     "name": "PDAC",
     "text": "Patent ductus arteriosus (PTA)",
-    "laytext": "Patent ductus arteriosus (PTA)",
+    "laytext": "Còn ống động mạch (PTA)",
     "category": "chronic"
   },
   {
     "name": "MitralRegurgitationC",
     "text": "Chronic mitral regurgitation (MR)",
-    "laytext": "Chronic mitral regurgitation (MR)",
+    "laytext": "Trào ngược hai lá mãn tính (MR)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4539,7 +4539,7 @@
   {
     "name": "MitralStenosisC",
     "text": "Chronic mitral stenosis (MS)",
-    "laytext": "Chronic mitral stenosis (MS)",
+    "laytext": "Hẹp van hai lá mãn tính (MS)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4555,7 +4555,7 @@
   {
     "name": "RVFC",
     "text": "Chronic right ventricle heart failure (RVHF)",
-    "laytext": "Chronic right ventricle heart failure (RVHF)",
+    "laytext": "Suy tim thất phải mãn tính (RVHF)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4571,7 +4571,7 @@
   {
     "name": "NonConstrictivePericarditisC",
     "text": "Non constrictive pericarditis",
-    "laytext": "Non constrictive pericarditis",
+    "laytext": "Viêm màng ngoài tim không co thắt",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4587,7 +4587,7 @@
   {
     "name": "ConstrictivePericarditisC",
     "text": "Constrictive pericarditis",
-    "laytext": "Constrictive pericarditis",
+    "laytext": "Viêm màng ngoài tim co thắt",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4603,7 +4603,7 @@
   {
     "name": "Hyperaldosteronism",
     "text": "Hyperaldosteronism",
-    "laytext": "Hyperactivity of adrenal gland in producing aldosterone (hyperaldosteronism)",
+    "laytext": "Cường aldosteron",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4620,7 +4620,7 @@
   {
     "name": "BrainNeoC",
     "text": "Brain neoplasm",
-    "laytext": "Brain neoplasm",
+    "laytext": "Ung thư não",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4637,7 +4637,7 @@
   {
     "name": "MSC",
     "text": "Multiple sclerosis",
-    "laytext": "Multiple sclerosis",
+    "laytext": "Bệnh đa xơ cứng",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4654,7 +4654,7 @@
   {
     "name": "ANEMIAC",
     "text": "Chronic anemia",
-    "laytext": "Low hemoglobin level (anemia)",
+    "laytext": "Thiếu máu",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4670,7 +4670,7 @@
   {
     "name": "ObesityC",
     "text": "Obesity",
-    "laytext": "Obesity",
+    "laytext": "Béo phì",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4687,7 +4687,7 @@
   {
     "name": "NormalWeightC",
     "text": "Normal weight",
-    "laytext": "Normal weight",
+    "laytext": "Cân nặng bình thường",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4704,7 +4704,7 @@
   {
     "name": "OverweightC",
     "text": "Overweight",
-    "laytext": "Overweight",
+    "laytext": "Thừa cân",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4721,7 +4721,7 @@
   {
     "name": "ExtremeObesityC",
     "text": "Extreme obesity",
-    "laytext": "Extreme obesity",
+    "laytext": "Béo phì cực độ",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4738,7 +4738,7 @@
   {
     "name": "BRONCHITISC",
     "text": "Chronic bronchitis",
-    "laytext": "Chronic bronchitis",
+    "laytext": "Viêm phế quản mãn tính",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4754,7 +4754,7 @@
   {
     "name": "ILDC",
     "text": "Interstitial lung disease",
-    "laytext": "Interstitial lung disease",
+    "laytext": "Bệnh phổi kẽ",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4770,7 +4770,7 @@
   {
     "name": "LCC",
     "text": "Lung cancer",
-    "laytext": "Lung cancer",
+    "laytext": "Ung thư phổi",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4786,7 +4786,7 @@
   {
     "name": "PFC",
     "text": "Idiopathic pulmonary fibrosis",
-    "laytext": "Idiopathic pulmonary fibrosis",
+    "laytext": "Xơ hóa phổi tự phát",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4802,25 +4802,25 @@
   {
     "name": "ThyroidGoiterC",
     "text": "Chronic thyroid goiter airway obstruction",
-    "laytext": "Chronic thyroid goiter airway obstruction",
+    "laytext": "Bướu cổ mãn tính gây tắc nghẽn đường thở",
     "category": "chronic"
   },
   {
     "name": "NonTBMycobacteriaeC",
     "text": "Chronic nontuberculous mycobacterial lung infection",
-    "laytext": "Chronic nontuberculous mycobacterial lung infection",
+    "laytext": "Nhiễm trùng phổi mãn tính do vi khuẩn lao",
     "category": "chronic"
   },
   {
     "name": "HealthyC",
     "text": "Patient seems free from chronic respiratory issues",
-    "laytext": "Patient seems free from chronic respiratory issues",
+    "laytext": "Bệnh nhân dường như không bị các vấn đề về hô hấp mãn tính",
     "category": "chronic"
   },
   {
     "name": "CCC",
     "text": "Colon cancer",
-    "laytext": "Colon cancer",
+    "laytext": "Ung thư ruột kết",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4837,31 +4837,31 @@
   {
     "name": "EndomC",
     "text": "Endometrial neoplasm",
-    "laytext": "Endometrial neoplasm",
+    "laytext": "Ung thư nội mạc tử cung",
     "category": "chronic"
   },
   {
     "name": "OvarianC",
     "text": "Ovarian neoplasm",
-    "laytext": "Ovarian neoplasm",
+    "laytext": "Ung thư buồng trứng",
     "category": "chronic"
   },
   {
     "name": "CervicalC",
     "text": "Cervical neoplasm",
-    "laytext": "Cervical neoplasm",
+    "laytext": "Ung thư cổ tử cung",
     "category": "chronic"
   },
   {
     "name": "EAC",
     "text": "Esophageal achalasia",
-    "laytext": "Esophageal achalasia",
+    "laytext": "Đau thực quản",
     "category": "chronic"
   },
   {
     "name": "IDAC",
     "text": "Iron deficiency anemia",
-    "laytext": "Iron deficiency anemia",
+    "laytext": "Thiếu máu do thiếu sắt",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4877,7 +4877,7 @@
   {
     "name": "ID",
     "text": "Iron deficiency",
-    "laytext": "Iron deficiency",
+    "laytext": "Thiếu sắt",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4894,7 +4894,7 @@
   {
     "name": "CKDAnemia",
     "text": "Anemia related to chronic kidney disease",
-    "laytext": "Anemia related to chronic kidney disease",
+    "laytext": "Thiếu máu do bệnh thận mãn tính",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4911,7 +4911,7 @@
   {
     "name": "B12DAC",
     "text": "Anemia from vitamin B12 deficiency",
-    "laytext": "Anemia from vitamin B12 deficiency",
+    "laytext": "Thiếu máu do thiếu vitamin B12",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4928,7 +4928,7 @@
   {
     "name": "B12D",
     "text": "Vitamin B12 deficiency",
-    "laytext": "Vitamin B12 deficiency",
+    "laytext": "Thiếu vitamin B12",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4945,7 +4945,7 @@
   {
     "name": "FolateDAC",
     "text": "Anemia from folate (vitamin B9) deficiency",
-    "laytext": "Anemia from folate (vitamin B9) deficiency",
+    "laytext": "Thiếu máu do thiếu vitamin B9",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4962,7 +4962,7 @@
   {
     "name": "FolateD",
     "text": "Folate (vitamin B9) deficiency",
-    "laytext": "Folate (vitamin B9) deficiency",
+    "laytext": "Thiếu vitamin B9",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4979,7 +4979,7 @@
   {
     "name": "PernDAC",
     "text": "Pernicious anemia (anemia from b12 deficiency due to autoantibodies to intrinsic factor IF)",
-    "laytext": "Pernicious anemia (anemia from b12 deficiency due to autoantibodies to intrinsic factor IF)",
+    "laytext": "Thiếu máu ác tính do tự kháng thể với yếu tố nội tại IF",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -4996,7 +4996,7 @@
   {
     "name": "HemolyticAnemia",
     "text": "Hemolytic anemia",
-    "laytext": "Hemolytic anemia",
+    "laytext": "Chứng tan máu, thiếu máu",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -5013,13 +5013,13 @@
   {
     "name": "IntenParasC",
     "text": "Intestinal parasites",
-    "laytext": "Intestinal parasites",
+    "laytext": "Ký sinh trùng đường ruột",
     "category": "chronic"
   },
   {
     "name": "HepA",
     "text": "Hepatitis A",
-    "laytext": "Hepatitis A",
+    "laytext": "Viêm gan A",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5036,7 +5036,7 @@
   {
     "name": "HepCA",
     "text": "Acute hepatitis C",
-    "laytext": "Acute hepatitis C",
+    "laytext": "Viêm gan C cấp tính",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5053,7 +5053,7 @@
   {
     "name": "HepBC",
     "text": "Hepatitis B",
-    "laytext": "Hepatitis B",
+    "laytext": "Viêm gan B",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5070,7 +5070,7 @@
   {
     "name": "HIVC",
     "text": "Human immunodeficiency virus (HIV) infection",
-    "laytext": "Human immunodeficiency virus (HIV) infection",
+    "laytext": "HIV",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5087,7 +5087,7 @@
   {
     "name": "SyphilisC",
     "text": "Syphilis",
-    "laytext": "Syphilis",
+    "laytext": "Giang mai",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5104,7 +5104,7 @@
   {
     "name": "HemorrhoidsC",
     "text": "Hemorrhoids - chronic",
-    "laytext": "Hemorrhoids - chronic",
+    "laytext": "Trĩ - mãn tính",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5121,7 +5121,7 @@
   {
     "name": "IschCoitisC",
     "text": "Chronic ischemic colitis",
-    "laytext": "Chronic ischemic colitis",
+    "laytext": "Viêm đại tràng mãn tính do thiếu máu cục bộ",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5138,7 +5138,7 @@
   {
     "name": "EndometriosisC",
     "text": "Endometriosis",
-    "laytext": "Endometriosis",
+    "laytext": "Lạc nội mạc tử cung",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5154,25 +5154,25 @@
   {
     "name": "DepressC",
     "text": "Depression",
-    "laytext": "Depression",
+    "laytext": "Trầm cảm",
     "category": "chronic"
   },
   {
     "name": "HypogonadismC",
     "text": "Hypogonadism",
-    "laytext": "Hypogonadism",
+    "laytext": "Suy sinh dục",
     "category": "chronic"
   },
   {
     "name": "KCC",
     "text": "Kidney neoplasm",
-    "laytext": "Kidney neoplasm",
+    "laytext": "Ung thư thận",
     "category": "chronic"
   },
   {
     "name": "BladderCC",
     "text": "Bladder cancer",
-    "laytext": "Urinary bladder cancer",
+    "laytext": "Ung thư bàng quang tiết niệu",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5189,7 +5189,7 @@
   {
     "name": "StressIC",
     "text": "Stress incontinence ",
-    "laytext": "Stress incontinence ",
+    "laytext": "Rối loạn căng thẳng",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5206,7 +5206,7 @@
   {
     "name": "MixedIC",
     "text": "Mixed incontinence ",
-    "laytext": "Mixed incontinence ",
+    "laytext": "Tiểu không kiểm soát",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5223,7 +5223,7 @@
   {
     "name": "UrgencyIC",
     "text": "Urge incontinence ",
-    "laytext": "Urge incontinence ",
+    "laytext": "Tiểu són",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5240,7 +5240,7 @@
   {
     "name": "OverflowIC",
     "text": "Overflow incontinence ",
-    "laytext": "Overflow incontinence ",
+    "laytext": "Đại tiện không kiểm soát",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5257,7 +5257,7 @@
   {
     "name": "UreterCC",
     "text": "Ureter neoplasm",
-    "laytext": "Ureter neoplasm",
+    "laytext": "Ung thư niệu quản",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5273,7 +5273,7 @@
   {
     "name": "GDS",
     "text": "Goodpasture syndrome",
-    "laytext": "Goodpasture syndrome",
+    "laytext": "Hội chứng Goodpasture",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5290,7 +5290,7 @@
   {
     "name": "AntiGBM",
     "text": "Anti-GBM disease",
-    "laytext": "Anti-GBM disease",
+    "laytext": "Chống bệnh GBM",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5306,97 +5306,97 @@
   {
     "name": "ASpondC",
     "text": "Ankylosing spondylitis",
-    "laytext": "Ankylosing spondylitis",
+    "laytext": "Viêm cột sống dính khớp",
     "category": "chronic"
   },
   {
     "name": "SSC",
     "text": "Spinal stenosis",
-    "laytext": "Spinal stenosis",
+    "laytext": "Hẹp ống sống",
     "category": "chronic"
   },
   {
     "name": "MetasSpineC",
     "text": "Metastatic disease to spine or bones, or primary spine or bones neoplasm",
-    "laytext": "Metastatic disease to spine or bones, or primary spine or bones neoplasm",
+    "laytext": "Bệnh di căn hoặc ung thư xương",
     "category": "chronic"
   },
   {
     "name": "VascKD",
     "text": "Kidneys' disease related to vasculitis",
-    "laytext": "Kidneys' disease related to vasculitis",
+    "laytext": "Bệnh thận do viêm mạch",
     "category": "chronic"
   },
   {
     "name": "IgAKD",
     "text": "IgA nephropathy",
-    "laytext": "IgA nephropathy",
+    "laytext": "Bệnh thận IgA",
     "category": "chronic"
   },
   {
     "name": "FGKD",
     "text": "Fibrillary glomerulonephritis",
-    "laytext": "Fibrillary glomerulonephritis",
+    "laytext": "Viêm cầu thận dạng sợi",
     "category": "chronic"
   },
   {
     "name": "PSKD",
     "text": "Poststreptococcal glomerulonephritis",
-    "laytext": "Poststreptococcal glomerulonephritis",
+    "laytext": "Viêm cầu thận hậu liên cầu",
     "category": "chronic"
   },
   {
     "name": "MCKD",
     "text": "Minimal change disease",
-    "laytext": "Minimal change disease",
+    "laytext": "Bệnh thận thay đổi tối thiểu",
     "category": "chronic"
   },
   {
     "name": "FSGSKD",
     "text": "Focal segmental glomerulosclerosis",
-    "laytext": "Focal segmental glomerulosclerosis",
+    "laytext": "Xơ vữa cầu thận phân đoạn khu trú",
     "category": "chronic"
   },
   {
     "name": "MPKD",
     "text": "Membranoproliferative glomerulonephritis",
-    "laytext": "Membranoproliferative glomerulonephritis",
+    "laytext": "Viêm cầu thận tăng sinh màng",
     "category": "chronic"
   },
   {
     "name": "KC",
     "text": "Kidney cysts",
-    "laytext": "Kidney cysts",
+    "laytext": "U nang thận",
     "category": "chronic"
   },
   {
     "name": "ATN",
     "text": "Acute tubular necrosis",
-    "laytext": "Acute tubular necrosis",
+    "laytext": "Hoại tử ống thận cấp tính",
     "category": "chronic"
   },
   {
     "name": "AIN",
     "text": "Acute interstitial nephritis",
-    "laytext": "Acute interstitial nephritis",
+    "laytext": "Viêm thận kẽ cấp tính",
     "category": "chronic"
   },
   {
     "name": "CSDC",
     "text": "Cushing syndrome or disease",
-    "laytext": "Cushing syndrome or disease",
+    "laytext": "Hội chứng Cushing",
     "category": "chronic"
   },
   {
     "name": "ADC",
     "text": "Addisons disease (adrenal insufficiency)",
-    "laytext": "Addisons disease (adrenal insufficiency)",
+    "laytext": "Suy tuyến thượng thận",
     "category": "chronic"
   },
   {
     "name": "PregnancyC",
     "text": "Pregnancy",
-    "laytext": "Pregnancy",
+    "laytext": "Mang thai",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5413,7 +5413,7 @@
   {
     "name": "BladderTumorC",
     "text": "Bladder tumor.",
-    "laytext": "Bladder tumor.",
+    "laytext": "U bàng quang.",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5430,7 +5430,7 @@
   {
     "name": "BPHC",
     "text": "Benign prostatic hypertrophy (BPH)",
-    "laytext": "Benign prostatic hypertrophy (BPH)",
+    "laytext": "Phì đại lành tính tuyến tiền liệt (BPH)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5447,7 +5447,7 @@
   {
     "name": "TesticC",
     "text": "Testicular cancer",
-    "laytext": "Testicular cancer",
+    "laytext": "Ung thư tinh hoàn",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5464,13 +5464,13 @@
   {
     "name": "VaricoceleC",
     "text": "Varicocele",
-    "laytext": "Varicocele",
+    "laytext": "Giãn tĩnh mạch thừng tinh",
     "category": "chronic"
   },
   {
     "name": "EpididymitisC",
     "text": "Epididymitis",
-    "laytext": "Epididymitis",
+    "laytext": "Viêm mào tinh hoàn",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5487,7 +5487,7 @@
   {
     "name": "EpiSperC",
     "text": "Epididymal cysts or spermatocele",
-    "laytext": "Epididymal cysts or spermatocele",
+    "laytext": "U nang biểu mô hoặc ống sinh tinh",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5503,7 +5503,7 @@
   {
     "name": "GallStonesC",
     "text": "Gallbladder stones (cholelithiasis)",
-    "laytext": "Gallbladder stones (cholelithiasis)",
+    "laytext": "Sỏi túi mật",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5520,7 +5520,7 @@
   {
     "name": "IBSC",
     "text": "Irritable bowel syndrome",
-    "laytext": "Irritable bowel syndrome",
+    "laytext": "Hội chứng ruột kích thích",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5537,25 +5537,25 @@
   {
     "name": "AscariasisC",
     "text": "Ascariasis",
-    "laytext": "Ascariasis",
+    "laytext": "Bệnh giun đũa",
     "category": "chronic"
   },
   {
     "name": "EnterobiasisC",
     "text": "Enterobiasis (pinworm)",
-    "laytext": "Enterobiasis (pinworm)",
+    "laytext": "Bệnh giun kim",
     "category": "chronic"
   },
   {
     "name": "GiardiasisC",
     "text": "Giardiasis",
-    "laytext": "Giardiasis",
+    "laytext": "Tiêu chảy do khuẩn Giardiasis",
     "category": "chronic"
   },
   {
     "name": "ChronsC",
     "text": "Crohn's disease",
-    "laytext": "Crohn's disease",
+    "laytext": "Bệnh Crohn",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5572,25 +5572,25 @@
   {
     "name": "HealthyAllC",
     "text": "Patient seems free from chronic issues",
-    "laytext": "Patient seems free from chronic issues",
+    "laytext": "Bệnh nhân dường như không bị các vấn đề mãn tính",
     "category": "chronic"
   },
   {
     "name": "HypoThyroC",
     "text": "Chronic hypothyroidism",
-    "laytext": "Chronic hypothyroidism",
+    "laytext": "Suy giáp mãn tính",
     "category": "chronic"
   },
   {
     "name": "HyperThyroC",
     "text": "Chronic hyperthyroidism",
-    "laytext": "Chronic hyperthyroidism",
+    "laytext": "Cường giáp mãn tính",
     "category": "chronic"
   },
   {
     "name": "PheoC",
     "text": "Pheochromocytoma",
-    "laytext": "Pheochromocytoma",
+    "laytext": "U tủy thượng thận",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5606,19 +5606,19 @@
   {
     "name": "CarcinoidC",
     "text": "Carcinoid",
-    "laytext": "Carcinoid",
+    "laytext": "Ung thư bất thường",
     "category": "chronic"
   },
   {
     "name": "MetSynC",
     "text": "Metabolic syndrome",
-    "laytext": "Metabolic syndrome",
+    "laytext": "Hội chứng chuyển hóa",
     "category": "chronic"
   },
   {
     "name": "PDA",
     "text": "Patent ductus arteriosus",
-    "laytext": "Patent ductus arteriosus",
+    "laytext": "Còn ống động mạch",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5634,7 +5634,7 @@
   {
     "name": "ChronicAspiration",
     "text": "Chronic aspiration",
-    "laytext": "Chronic aspiration",
+    "laytext": "Nghiện hút mãn tính",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5651,7 +5651,7 @@
   {
     "name": "Nephrolithiasis",
     "text": "Nephrolithiasis (kidney stones)",
-    "laytext": "Stone or stones in kidney",
+    "laytext": "Sỏi",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5668,7 +5668,7 @@
   {
     "name": "BreastCancer",
     "text": "Breast cancer",
-    "laytext": "Breast cancer",
+    "laytext": "Ung thư vú",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5685,7 +5685,7 @@
   {
     "name": "ThromboembolicPulmonaryHypertensionCTEPH",
     "text": "Thromboembolic pulmonary hypertension (CTEPH)",
-    "laytext": "Thromboembolic pulmonary hypertension (CTEPH)",
+    "laytext": "Tăng huyết áp động mạch phổi do huyết khối (CTEPH)",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5702,7 +5702,7 @@
   {
     "name": "PulmonaryHTNSecondaryToLHD",
     "text": "Pulmonary hypertension secondary to left heart disease",
-    "laytext": "Pulmonary hypertension secondary to left heart disease",
+    "laytext": "Tăng áp động mạch phổi thứ phát sau bệnh tim trái",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5719,7 +5719,7 @@
   {
     "name": "Hypercholesterolemia",
     "text": "Hypercholesterolemia",
-    "laytext": "Hypercholesterolemia",
+    "laytext": "Tăng cholesterol máu",
     "category": "chronic",
     "alias": "cholesterol",
     "wiki": "",
@@ -5736,43 +5736,43 @@
   {
     "name": "PlaceHolderChronicDiagnosisAlias8ChronicDxAlias",
     "text": "Chronic atrial fibrillation (Afib)",
-    "laytext": "Chronic atrial fibrillation (Afib)",
+    "laytext": "Rung tâm nhĩ mãn tính (Afib)",
     "category": "chronic"
   },
   {
     "name": "PlaceHolderChronicDiagnosisAlias9ChronicDxAlias",
     "text": "Esophageal cancer (i.e. adenocarcinoma)",
-    "laytext": "Esophageal cancer (i.e. adenocarcinoma)",
+    "laytext": "Ung thư thực quản",
     "category": "chronic"
   },
   {
     "name": "PlaceHolderChronicDiagnosisAlias10ChronicDxAlias",
     "text": "Barrett's esophagus",
-    "laytext": "Barrett's esophagus",
+    "laytext": "Barrett thực quản",
     "category": "chronic"
   },
   {
     "name": "PlaceHolderChronicDiagnosisAlias11ChronicDxAlias",
     "text": "Stomach cancer (i.e. adenocarcinoma)",
-    "laytext": "Stomach cancer (i.e. adenocarcinoma)",
+    "laytext": "Ung thư dạ dày",
     "category": "chronic"
   },
   {
     "name": "PlaceHolderChronicDiagnosisAlias12ChronicDxAlias",
     "text": "Metastatic disease to lungs or primary lungs neoplasm",
-    "laytext": "Metastatic disease to lungs or primary lungs neoplasm",
+    "laytext": "Bệnh di căn đến phổi hoặc ung thư phổi nguyên phát",
     "category": "chronic"
   },
   {
     "name": "PlaceHolderChronicDiagnosisAlias13ChronicDxAlias",
     "text": "Metastatic disease to brain or primary brain neoplasm",
-    "laytext": "Metastatic disease to brain or primary brain neoplasm",
+    "laytext": "Bệnh di căn đến não hoặc ung thư não nguyên phát",
     "category": "chronic"
   },
   {
     "name": "BladderOutletObstructionMale",
     "text": "Below-the-bladder urinary tract obstruction.",
-    "laytext": "Below-the-bladder urinary tract obstruction.",
+    "laytext": "Tắc nghẽn đường tiết niệu dưới bàng quang.",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5789,7 +5789,7 @@
   {
     "name": "BladderOutletObstructionFeMale",
     "text": "Below-the-bladder urinary tract obstruction.",
-    "laytext": "Below-the-bladder urinary tract obstruction.",
+    "laytext": "Tắc nghẽn đường tiết niệu dưới bàng quang.",
     "category": "chronic",
     "alias": "",
     "wiki": "",
@@ -5806,19 +5806,19 @@
   {
     "name": "PlaceHolderChronicDiagnosisAlias14ChronicDxAlias",
     "text": "Portal hypertension",
-    "laytext": "Portal hypertension",
+    "laytext": "Tăng áp tĩnh mạch cửa",
     "category": "chronic"
   },
   {
     "name": "PlaceHolderChronicDiagnosisAlias15ChronicDxAlias",
     "text": "Cirrhosis",
-    "laytext": "Cirrhosis",
+    "laytext": "Xơ gan",
     "category": "chronic"
   },
   {
     "name": "NephroticSyndrome",
     "text": "Nephrotic syndrome",
-    "laytext": "Nephrotic syndrome",
+    "laytext": "Thận hư",
     "category": "chronic",
     "alias": "nephrotic syndrome, nephrosis",
     "wiki": "",
@@ -5835,7 +5835,7 @@
   {
     "name": "NephriticSyndrome",
     "text": "Nephritic syndrome",
-    "laytext": "Nephritic syndrome",
+    "laytext": "Thận hư",
     "category": "chronic",
     "alias": "nephritic syndrome",
     "wiki": "",
@@ -5852,7 +5852,7 @@
   {
     "name": "MembranousNephropathy",
     "text": "Membranous nephropathy",
-    "laytext": "Membranous nephropathy",
+    "laytext": "Bệnh màng thận",
     "category": "chronic",
     "alias": "MN",
     "wiki": "",
@@ -5869,7 +5869,7 @@
   {
     "name": "PrimaryMembranousNephropathy",
     "text": "Primary membranous nephropathy",
-    "laytext": "Primary membranous nephropathy",
+    "laytext": "Bệnh màng thận nguyên phát",
     "category": "chronic",
     "alias": "Primary MN",
     "wiki": "",
@@ -5886,7 +5886,7 @@
   {
     "name": "SecondaryMembranousNephropathy",
     "text": "Secondary membranous nephropathy",
-    "laytext": "Secondary membranous nephropathy",
+    "laytext": "Bệnh màng thận thứ phát",
     "category": "chronic",
     "alias": "Secondary MN",
     "wiki": "",
@@ -5903,7 +5903,7 @@
   {
     "name": "AnemiaInMale",
     "text": "Anemia in male",
-    "laytext": "low hemoglobin (anemia in male)",
+    "laytext": "Thiếu máu ở nam giới",
     "category": "chronic",
     "alias": "AnemiaM",
     "wiki": "https://www.uptodate.com/contents/approach-to-the-adult-with-anemia?search=anemia&source=search_result&selectedTitle=1~150&usage_type=default&display_rank=1",
@@ -5920,7 +5920,7 @@
   {
     "name": "AnemiaInFemale",
     "text": "Anemia in female",
-    "laytext": "low hemoglobin (anemia in female)",
+    "laytext": "Thiếu máu ở nữ giới",
     "category": "chronic",
     "alias": "AnemiaF",
     "wiki": "https://www.uptodate.com/contents/approach-to-the-adult-with-anemia?search=anemia&source=search_result&selectedTitle=1~150&usage_type=default&display_rank=1",
@@ -5937,7 +5937,7 @@
   {
     "name": "StateOfHealth",
     "text": "State of health, no health issues.",
-    "laytext": "State of health, no health issues.",
+    "laytext": "Không có vấn đề sức khỏe.",
     "category": "chronic",
     "alias": "Healthy patient",
     "wiki": "",
