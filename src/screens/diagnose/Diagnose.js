@@ -1,11 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  SectionList,
-  Button,
-  Text,
-  View,
-} from 'react-native';
+import {SafeAreaView, SectionList, Button, Text, View} from 'react-native';
 import {Overlay, Icon} from 'react-native-elements';
 import Sysptom from '../../components/diagnose/Sysptom';
 import Diseases from '../../components/diagnose/Diseases';
@@ -106,12 +100,12 @@ const Diagnose = props => {
   const formatDisease = () => {
     let data = [];
     diseasesDiagnose.forEach(diseaseDiagnose => {
-      console.log(diseaseDiagnose);
       for (const key in diseaseDiagnose) {
         const percent = parseFloat(diseaseDiagnose[key]).toFixed(2) * 100;
         if (percent > 0 && percent <= 100) {
           const disease = diseases.find(element => element.text === key);
           data.push({
+            department: disease.department,
             name: disease.laytext,
             percent: percent + '%',
           });
@@ -208,9 +202,7 @@ const Diagnose = props => {
       <Button title="Chẩn đoán" onPress={analyze} />
       <Overlay isVisible={show} onBackdropPress={() => setShow(false)}>
         {formatDisease().length > 0 ? (
-          formatDisease().map(disease => (
-            <Diseases name={disease.name} percent={disease.percent} />
-          ))
+          formatDisease().map(disease => <Diseases disease={disease} />)
         ) : (
           <Text>Khỏe mạnh</Text>
         )}
