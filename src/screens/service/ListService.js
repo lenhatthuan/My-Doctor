@@ -18,6 +18,7 @@ const ListService = (props) => {
         getNameUser();
         getAllDoctor();
         getListReg();
+        return(() => {});
     },[])
 
     const getNameUser = () => {

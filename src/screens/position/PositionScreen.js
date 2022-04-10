@@ -4,7 +4,7 @@ import {
   Text,
   FlatList,
   ImageBackground,
-  Picker,
+  Picker
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../../theme/style";
@@ -15,7 +15,7 @@ import {
   getPositionsByState,
 } from "../../store/actions/position";
 import Position from "../../components/position/position";
-
+//import Picker from "@react-native-picker/picker"
 export default function PositionScreen(props) {
   const [data, setData] = useState();
   const [selectedValue, setSelectedValue] = useState("all");

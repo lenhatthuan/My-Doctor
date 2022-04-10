@@ -134,7 +134,7 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Diagnose" component={Diagnose} />
+      {/* <Stack.Screen name="Diagnose" component={Diagnose} /> */}
 
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="SignIn" component={SignIn} />

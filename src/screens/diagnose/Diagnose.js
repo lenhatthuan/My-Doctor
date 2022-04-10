@@ -1,10 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, SectionList, Button, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  SectionList,
+  Button,
+  Text,
+  View,
+  Modal,
+  StyleSheet,
+  Pressable,
+} from 'react-native';
 import {Overlay, Icon} from 'react-native-elements';
 import Sysptom from '../../components/diagnose/Sysptom';
 import Diseases from '../../components/diagnose/Diseases';
 import MultiSelect from 'react-native-multiple-select';
-
 const Diagnose = props => {
   let questions = require('../../config/SymptomsOutput.json').filter(
     question => question.IsPatientProvided === false,
@@ -137,30 +145,38 @@ const Diagnose = props => {
         }
         displayKey="text"
       />
-      <Overlay isVisible={visible} onBackdropPress={() => setVisible(false)}>
-        <Sysptom
-          initAnswer={() => {
-            const index = answers.findIndex(
-              answer => answer.question === question,
-            );
-            return index === -1 ? question.default : answers[index].answer;
-          }}
-          question={question}
-          submit={answer => {
-            updateSymptom(question.name, answer.value);
-            let current = [...answers];
-            const index = answers.findIndex(
-              answer => answer.question === question,
-            );
-            index === -1
-              ? current.push({question: question, answer: answer})
-              : (current[index] = {question: question, answer: answer});
-            setAnswers(current);
-            setQuestion({});
-            setVisible(false);
-          }}
-        />
-      </Overlay>
+      <Modal
+        visible={visible}
+        transparent={true}
+        animationType="fade"
+        >
+        <Pressable onPress={() => {setVisible(false); console.log("press: " + visible)}} style={styles.modalSym}>
+          <View style={styles.modalBody}>
+            <Sysptom
+              initAnswer={() => {
+                const index = answers.findIndex(
+                  answer => answer.question === question,
+                );
+                return index === -1 ? question.default : answers[index].answer;
+              }}
+              question={question}
+              submit={answer => {
+                updateSymptom(question.name, answer.value);
+                let current = [...answers];
+                const index = answers.findIndex(
+                  answer => answer.question === question,
+                );
+                index === -1
+                  ? current.push({question: question, answer: answer})
+                  : (current[index] = {question: question, answer: answer});
+                setAnswers(current);
+                setQuestion({});
+                setVisible(false);
+              }}
+            />
+          </View>
+        </Pressable>
+      </Modal>
       <SectionList
         style={{padding: 10}}
         sections={format()}
@@ -211,5 +227,24 @@ const Diagnose = props => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  modalSym: {
+    flex: 1,
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(52, 52, 52, 0.5)',
+    alignItems: 'center',
+  },
+  modalBody: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    width: '90%',
+    borderRadius: 10,
+    padding: 20
+  },
+});
 
 export default Diagnose;
