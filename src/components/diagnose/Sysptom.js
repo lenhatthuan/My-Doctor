@@ -46,7 +46,7 @@ const Symptom = ({initAnswer, question, submit}) => {
         ))
       )}
       </View>
-      <Button title="Triệu chứng" onPress={() => submit(answer)} />
+      <Button title="Thêm triệu chứng" onPress={() => submit(answer)} />
     </View>
   );
 };

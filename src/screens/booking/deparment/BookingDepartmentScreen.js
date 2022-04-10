@@ -63,7 +63,7 @@ const BookingDepartmentScreen = (props) => {
   }
 
   const onBack = () => {
-   props.navigation.navigate("Schedule")
+   props.navigation.navigate("ScheduleDepartment")
   }
 
   React.useEffect(() => {
@@ -255,7 +255,6 @@ const BookingDepartmentScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      <HeaderReloadComponent title = "Đăng kí khám bệnh" onBack = {onBack} onReload  ={onReload}/>
       <View style={{ marginTop: 10, marginBottom: 5, borderBottomLeftRadius: 8, borderBottomRightRadius: 8 }}>
           <Text
             style={{
@@ -280,7 +279,6 @@ const BookingDepartmentScreen = (props) => {
           </Text>
         </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <LoadingPageComponent setPageVisible = {setPageVisible} visible = {isPageLoading}/>
         <ErrorAlert visible = {isErrorAlert} message = {messageAlert} onCancel = {onHandleErorrAlertPress}/>
         <SuccessAlert visible = {isSuccessAlert} message = {messageAlert} onPress = {onHandleErorrAlertPress}/>
         <View

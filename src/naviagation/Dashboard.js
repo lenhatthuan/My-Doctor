@@ -51,7 +51,7 @@ const Dashboard = () => (
       component={MainDepartmentScreen}
       options={{
         title: 'Khám bệnh',
-        tabBarIcon: ({color}) => <Icon type="font-awesome" name="clipboard-list-check" color={color} />,
+        tabBarIcon: ({color}) => <Icon type="font-awesome" name="bookmark-o" color={color} />,
       }}
     />
     <Tab.Screen

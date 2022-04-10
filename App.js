@@ -125,7 +125,6 @@ import OtpAuth from './src/screens/auth/OtpAuth';
 import Dashboard from './src/naviagation/Dashboard';
 
 import Diagnose from './src/screens/diagnose/Diagnose';
-
 import { LogBox } from 'react-native';
 const App = () => {
 
@@ -135,7 +134,7 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
       {/* <Stack.Screen name="Diagnose" component={Diagnose} /> */}
-
+    
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />

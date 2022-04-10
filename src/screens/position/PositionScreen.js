@@ -3,8 +3,7 @@ import {
   SafeAreaView,
   Text,
   FlatList,
-  ImageBackground,
-  Picker
+  ImageBackground
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../../theme/style";
@@ -15,7 +14,7 @@ import {
   getPositionsByState,
 } from "../../store/actions/position";
 import Position from "../../components/position/position";
-//import Picker from "@react-native-picker/picker"
+import {Picker} from "@react-native-picker/picker";
 export default function PositionScreen(props) {
   const [data, setData] = useState();
   const [selectedValue, setSelectedValue] = useState("all");
@@ -57,11 +56,11 @@ export default function PositionScreen(props) {
           }}
           mode="dropdown"
         >
-          <Picker.Item label="Tất cả" value="all" />
-          <Picker.Item label="Chưa sử dụng" value={NUMBER_STATE.NOT_USE} />
-          <Picker.Item label="Quá hạn" value={NUMBER_STATE.EXPIRED} />
-          <Picker.Item label="Đã sử dụng" value={NUMBER_STATE.USED} />
-          <Picker.Item label="Đã hủy" value={NUMBER_STATE.CANCEL} />
+          <Picker.Item label="Tất cả" value={"all"} key={0}/>
+          <Picker.Item label="Chưa sử dụng" value={NUMBER_STATE.NOT_USE} key={1}/>
+          <Picker.Item label="Quá hạn" value={NUMBER_STATE.EXPIRED} key={2}/>
+          <Picker.Item label="Đã sử dụng" value={NUMBER_STATE.USED} key={3}/>
+          <Picker.Item label="Đã hủy" value={NUMBER_STATE.CANCEL} key={4}/>
         </Picker>
         <FlatList
           ListEmptyComponent={

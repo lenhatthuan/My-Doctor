@@ -3,10 +3,11 @@ import { environment } from "../../../environment/enviroment";
 
 const BASE_URL = environment.baseURL;
 const header = {
-  Accept: "application/json",
+  "Accept": "application/json",
   "Content-Type": "application/json",
 };
 export const signin = async (username, pass) => {
+  console.log("signin 10")
   return await fetch(BASE_URL + "/accounts/signin", {
     method: "POST",
     headers: header,
