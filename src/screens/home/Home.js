@@ -135,7 +135,7 @@ class Home extends Component {
           <TouchableOpacity
             style={styles.bgBtnSTT}
             onPress={() => {
-              // props.navigation.navigate("Position");
+              this.props.navigation.navigate("Position");
             }}
           >
             <Image
@@ -151,7 +151,6 @@ class Home extends Component {
           <TouchableOpacity
             style={styles.bgBtnOnline}
             onPress={() => {
-              console.log("navigation from service");
               this.props.navigation.navigate("Service");
             }}
           >

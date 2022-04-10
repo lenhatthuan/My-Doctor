@@ -1,6 +1,6 @@
 [
   {
-    "department": "Khoa ",
+    "department": "Khoa Nội tiết",
     "name": "DM2",
     "text": "Diabetes melltus type 2",
     "laytext": "Đái tháo đường",
@@ -18,7 +18,7 @@
     "ICD10": "E11"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Xét nghiệm",
     "name": "ANEMIAA",
     "text": "Anemia",
     "laytext": "Thiếu máu",
@@ -36,7 +36,7 @@
     "ICD10": "D64.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Xét nghiệm",
     "name": "Thrombocytopenia",
     "text": "Thrombocytopenia",
     "laytext": "Giảm tiểu cầu",
@@ -54,7 +54,7 @@
     "ICD10": "D69.6"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "GcCervicitis",
     "text": "Gonococcal cervicitis",
     "laytext": "Viêm cổ tử cung do lậu cầu",
@@ -72,7 +72,7 @@
     "ICD10": "A54.03"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "PCaC",
     "text": "Prostate cancer",
     "laytext": "Ung thư tuyến tiền liệt",
@@ -90,7 +90,7 @@
     "ICD10": "C61"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "ProstatisA",
     "text": "Prostatitis",
     "laytext": "Viêm tuyến tiền liệt",
@@ -108,7 +108,7 @@
     "ICD10": "N41.0"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "GcUA",
     "text": "Gonococcal urethritis",
     "laytext": "Viêm niệu đạo do lậu cầu",
@@ -126,7 +126,7 @@
     "ICD10": "A54.01"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "Covid19Test",
     "text": "COVID-19 virus identified",
     "laytext": "COVID-19",
@@ -145,7 +145,7 @@
     "ICD10": "U07.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "CUC",
     "text": "Ulcerative colitis",
     "laytext": "Viêm loét đại tràng",
@@ -163,7 +163,7 @@
     "ICD10": "K51.90"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "CUA",
     "text": "Ulcerative colitis exacerbation",
     "laytext": "Viêm loét đại tràng nghiêm trọng",
@@ -181,7 +181,7 @@
     "ICD10": "K51.90"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "Covid19Contact",
     "text": "Contact with and (suspected) exposure to COVID-19",
     "laytext": "Tiếp xúc COVID-19",
@@ -200,7 +200,7 @@
     "ICD10": "Z20.822"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "CAPPNA",
     "text": "Community acquired pneumonia (CAP)",
     "laytext": "Viêm phổi",
@@ -219,7 +219,7 @@
     "ICD10": "J18.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "Covid19URTI",
     "text": "Coronavirus disease 2019 (Covid-19) mostly upper respiratory tract infection with, or without bronchitis, but without significant pneumonia",
     "laytext": "SARS-CoV-2",
@@ -238,7 +238,7 @@
     "ICD10": "U07.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "Covid19PNA",
     "text": "Coronavirus disease 2019 (covid-19) with pneumonia",
     "laytext": "SARS-CoV-2 kèm viêm phổi",
@@ -257,7 +257,7 @@
     "ICD10": "J12.82"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "CommonCold",
     "text": "Common cold or viral upper respiratory tract infection (URTI)",
     "laytext": "Cảm lạnh",
@@ -275,7 +275,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisETOH",
     "text": "Acute pancreatitis triggered by alcohol",
     "laytext": "Viêm tụy cấp tính do rượu gây ra",
@@ -293,7 +293,7 @@
     "ICD10": "K85.2"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisA",
     "text": "Idiopathic acute pancreatitis",
     "laytext": "Viêm tụy cấp tính không rõ nguyên nhân",
@@ -311,7 +311,7 @@
     "ICD10": "K85.00"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "ClusterHeadache",
     "text": "Cluster headaches",
     "laytext": "Đau đầu theo cụm",
@@ -329,7 +329,7 @@
     "ICD10": "G44.009"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "UncontrolledHTN",
     "text": "Uncontrolled hypertension.",
     "laytext": "Huyết áp tăng không kiểm soát",
@@ -347,7 +347,7 @@
     "ICD10": "I10,R03.0"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Nội tiết",
     "name": "DiabetesKACA",
     "text": "Diabetic ketoacidosis",
     "laytext": "Nhiễm toan xeton do tiểu đường",
@@ -365,7 +365,7 @@
     "ICD10": "E11.10"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "FusobacteriumNecrophorumPharyngitisComplicatedWithLemierreSyndrome",
     "text": "Fusobacterium necrophorum pharyngitis complicated with Lemierre syndrome",
     "laytext": "Viêm họng do vi khuẩn Fusobacterium hoại tử phức tạp với hội chứng Lemierre",
@@ -383,7 +383,7 @@
     "ICD10": "A69.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "PrimaryArterialHypertension",
     "text": "Primary systemic arterial hypertension",
     "laytext": "Tăng huyết áp nguyên phát",
@@ -401,7 +401,7 @@
     "ICD10": "I10"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "PrimaryArterialHypertensionByHx",
     "text": "History of systemic hypertension",
     "laytext": "Tăng huyết áp động mạch nguyên phát",
@@ -419,7 +419,7 @@
     "ICD10": "I10"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisHyperTGL",
     "text": "Acute pancreatitis due to hyperglyceridemia",
     "laytext": "Viêm tụy do tăng đường huyết",
@@ -437,7 +437,7 @@
     "ICD10": "K85.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisGAP",
     "text": "Acute pancreatitis due to gallstones",
     "laytext": "Viêm tụy do sỏi mật",
@@ -455,7 +455,7 @@
     "ICD10": "K85.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisHIV",
     "text": "Acute pancreatitis due to HIV",
     "laytext": "Viêm tụy do HIV",
@@ -473,7 +473,7 @@
     "ICD10": "K85.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HypertensiveEmergencyA",
     "text": "Hypertensive emergency",
     "laytext": "Tăng huyết áp cấp tính",
@@ -491,7 +491,7 @@
     "ICD10": "I16.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisPancreaticCa",
     "text": "Acute pancreatitis due to pancreatic cancer",
     "laytext": "Viêm tụy do ung thư tuyến tụy",
@@ -509,7 +509,7 @@
     "ICD10": "C25.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "SecondaryArterialHypertensionObesity",
     "text": "Arterial hypertension (chronic) secondary to obesity",
     "laytext": "Huyết áp cao thứ phát do béo phì",
@@ -527,7 +527,7 @@
     "ICD10": "I15.9,E66.01"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "HeadacheAfterNitrates",
     "text": "Headache after use of nitroglycerin or nitrates.",
     "laytext": "Nhức đầu do sử dụng nitroglycerin hoặc nitrat",
@@ -545,7 +545,7 @@
     "ICD10": "T46.3X5A"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "CoronaryArteryDiseaseCAD",
     "text": "Coronary artery disease, stable angina (CAD)",
     "laytext": "Bệnh động mạch vành, đau thắt ngực ổn định (CAD)",
@@ -563,7 +563,7 @@
     "ICD10": "I25.119"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "UnstableAngina",
     "text": "Unstable angina (CAD)",
     "laytext": "Đau thắt ngực không ổn định (CAD)",
@@ -581,7 +581,7 @@
     "ICD10": "I20.0"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HeadacheDueToHTN",
     "text": "Headache due to uncontrolled hypertension.",
     "laytext": "Đau đầu do tăng huyết áp không kiểm soát",
@@ -599,7 +599,7 @@
     "ICD10": "I67.4"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HypertensiveUrgencyA",
     "text": "Hypertensive urgency",
     "laytext": "Tăng huyết áp khẩn cấp",
@@ -617,7 +617,7 @@
     "ICD10": "I16.0"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "HeadacheDueToCaffeineWithdrawal",
     "text": "Headache due to caffeine withdrawal",
     "laytext": "Nhức đầu do cai coffee",
@@ -635,7 +635,7 @@
     "ICD10": "F15.93"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisDueToMeds",
     "text": "Acute pancreatitis due to medications",
     "laytext": "Viêm tụy do thuốc",
@@ -653,7 +653,7 @@
     "ICD10": "K85.30"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisHyperCalcemia",
     "text": "Acute pancreatitis due to hypercalcemia",
     "laytext": "Viêm tụy do tăng calci trong máu",
@@ -671,7 +671,7 @@
     "ICD10": "K85.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "SecondaryArterialHypertensionCKD",
     "text": "Arterial hypertension (chronic) secondary to chronic kidney disease",
     "laytext": "Huyết áp cao thứ phát do bệnh thận mãn tính",
@@ -689,7 +689,7 @@
     "ICD10": "I12"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "TensionHeadache",
     "text": "Tension headaches",
     "laytext": "Đau đầu do căng thẳng",
@@ -707,7 +707,7 @@
     "ICD10": "G44.209"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisOddis",
     "text": "Acute pancreatitis due to sphincter of Oddi dysfunction",
     "laytext": "Viêm tụy do rối loạn chức năng cơ vòng",
@@ -725,7 +725,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisERCP",
     "text": "Acute pancreatitis due to recent endoscopic retrograde cholangiopancreatography (ERCP)",
     "laytext": "Viêm tụy do chụp mật tụy bằng ngược dòng nội soi (ERCP)",
@@ -743,7 +743,7 @@
     "ICD10": "K86.89"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "GastrittisBleedingA",
     "text": "Gastritis related upper GI bleeding ",
     "laytext": "Chảy máu trên do viêm dạ dày ",
@@ -761,7 +761,7 @@
     "ICD10": "K29.71"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "MigraineHeadache",
     "text": "Migraine headaches",
     "laytext": "Đau nửa đầu",
@@ -779,7 +779,7 @@
     "ICD10": "G43.909"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "FusobacteriumNecrophorumPharyngitis",
     "text": "Fusobacterium necrophorum pharyngitis",
     "laytext": "Viêm họng do vi khuẩn Fusobacterium hoại tử",
@@ -797,7 +797,7 @@
     "ICD10": "A69.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Xét nghiệm",
     "name": "Leukopenia",
     "text": "Leukopenia (leukocytopenia)",
     "laytext": "Bạch cầu thấp",
@@ -815,7 +815,7 @@
     "ICD10": "D72.819"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "BRONCHITISA",
     "text": "Acute bronchitis",
     "laytext": "Viêm phế quản cấp tính",
@@ -833,7 +833,7 @@
     "ICD10": "J20.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "FluA",
     "text": "Influenza",
     "laytext": "Bệnh cúm",
@@ -851,7 +851,7 @@
     "ICD10": "J10.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "AorticDissectionThoracic",
     "text": "Thoracic aortic dissection",
     "laytext": "Bóc tách động mạch chủ ngực",
@@ -869,7 +869,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PeritionitisA",
     "text": "Peritonitis",
     "laytext": "Viêm phúc mạc",
@@ -886,7 +886,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "VaricealBleedingA",
     "text": "Variceal (esophagus) bleeding",
     "laytext": "Chảy máu vùng kín",
@@ -903,7 +903,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreatitisC",
     "text": "Chronic pancreatitis",
     "laytext": "Viêm tụy mãn tính",
@@ -921,7 +921,7 @@
     "ICD10": "K86.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "SecondaryArterialHypertension",
     "text": "Secondary arterial hypertension (chronic)",
     "laytext": "Huyết áp cao thứ phát",
@@ -939,7 +939,7 @@
     "ICD10": "I15.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "PTXA",
     "text": "Acute pneumothorax",
     "laytext": "Tràn khí màng phổi cấp tính",
@@ -957,7 +957,7 @@
     "ICD10": "J93.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "ChronsA",
     "text": "Crohn's disease exacerbation",
     "laytext": "Bệnh Crohn nghiêm trọng",
@@ -975,7 +975,7 @@
     "ICD10": "K50.90"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "TracheobronchitisA",
     "text": "Acute tracheobronchitis",
     "laytext": "Viêm khí quản cấp tính",
@@ -992,7 +992,7 @@
     "ICD10": "J20.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "Ureterolithiasis",
     "text": "Ureterolithiasis (ureteral stones)",
     "laytext": "Đá hoặc sỏi trong niệu quản",
@@ -1010,7 +1010,7 @@
     "ICD10": "N20.0"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "PericarditisA",
     "text": "Pericarditis",
     "laytext": "Viêm màng ngoài của tim",
@@ -1027,7 +1027,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "ViralPharyngitis",
     "text": "Viral pharyngitis (etiology usually rhinovirus, coronavirus, adenovirus, parainfluenza)",
     "laytext": "Viêm họng do vi rút",
@@ -1045,7 +1045,7 @@
     "ICD10": "J02.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "AllergicRhinitisToPollen",
     "text": "Allergic rhinitis to pollen",
     "laytext": "Viêm mũi di ứng do phấn hoa",
@@ -1063,7 +1063,7 @@
     "ICD10": "J30.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "AllergicRhinitisToDustMites",
     "text": "Allergic rhinitis to dust mites",
     "laytext": "Viêm mũi dị ứng do bụi",
@@ -1081,7 +1081,7 @@
     "ICD10": "J30.89"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "StrepThroatA",
     "text": "Streptococcal pharyngitis",
     "laytext": "Viêm họng do liên cầu",
@@ -1099,7 +1099,7 @@
     "ICD10": "J02"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "LVFA",
     "text": "Acute left ventricle heart failure",
     "laytext": "Suy tâm thất trái cấp tính",
@@ -1117,7 +1117,7 @@
     "ICD10": "I50.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "GERDA",
     "text": "Gastroesophageal reflux without esophagitis",
     "laytext": "Trào ngược dạ dày không viêm thực quản",
@@ -1135,7 +1135,7 @@
     "ICD10": "K21.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "SecondaryArterialHypertensionSecondaryRASAtherosclerotic",
     "text": "Secondary arterial hypertension secondary to renal artery stenosis secondary to atherosclerosis",
     "laytext": "Cao huyết áp thứ phát do hẹp động mạch thận thứ phát khi bị xơ vữa động mạch",
@@ -1153,7 +1153,7 @@
     "ICD10": "I15. 0"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "EsophagealSpasmA",
     "text": "Esophageal spasm",
     "laytext": "Co thắt thực quản",
@@ -1170,7 +1170,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "SecondaryArterialHypertensionHyperaldo",
     "text": "Arterial hypertension (chronic) secondary to hyperaldosteronism",
     "laytext": "Huyết áp cao thứ phát do tuyến thượng thận hoạt động quá mức trong việc sản xuất aldosterone",
@@ -1188,7 +1188,7 @@
     "ICD10": "E26.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "GERDAWEsophagitisWOBleed",
     "text": "Gastroesophageal reflux with esophagitis without bleed",
     "laytext": "Trào ngược dạ dày kèm theo viêm thực quản không chảy máu",
@@ -1206,7 +1206,7 @@
     "ICD10": "K21.00"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "SinusitisC",
     "text": "Chronic sinusitis",
     "laytext": "Viêm xoang mãn tính",
@@ -1224,7 +1224,7 @@
     "ICD10": "J32.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "CKD",
     "text": "Chronic kidney disease stages (III, IV and V)",
     "laytext": "Bệnh thận mãn tính (III, IV và V)",
@@ -1242,7 +1242,7 @@
     "ICD10": "N18.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "!CKD",
     "text": "Chronic kidney disease",
     "laytext": "Bệnh thận mãn tính",
@@ -1260,7 +1260,7 @@
     "ICD10": "N18.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "RVFA",
     "text": "Acute right ventricle heart failure",
     "laytext": "Suy tâm thất phải cấp tính",
@@ -1278,7 +1278,7 @@
     "ICD10": "I50.811"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "PleuralEffusionA",
     "text": "Pleural effusion",
     "laytext": "Tràn dịch màng phổi",
@@ -1296,7 +1296,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "FissureA",
     "text": "Perirectal fissure",
     "laytext": "Rò hậu môn trực tràng",
@@ -1314,7 +1314,7 @@
     "ICD10": "K60.2"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "SinusitisA",
     "text": "Acute sinusitis",
     "laytext": "Viêm xoang cấp tính",
@@ -1332,7 +1332,7 @@
     "ICD10": "J01.90"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "GERDAWEsophagitisWBleed",
     "text": "Gastroesophageal reflux with esophagitis with bleed",
     "laytext": "Trào ngược dạ dày kèm viêm thực quản có chảy máu",
@@ -1350,7 +1350,7 @@
     "ICD10": "K21.01"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "LaryngitisA",
     "text": "Acute laryngitis",
     "laytext": "Viêm thanh quản cấp tính",
@@ -1368,7 +1368,7 @@
     "ICD10": "J04.0"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "RespiratoryAcidosis",
     "text": "Respiratory acidosis",
     "laytext": "Nhiễm toan hô hấp",
@@ -1386,7 +1386,7 @@
     "ICD10": "J96.02"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Xét nghiệm",
     "name": "ANEMIAAFromAcuteBloodLoss",
     "text": "Anemia from acute blood loss",
     "laytext": "Thiếu máu cấp tính do mất máu",
@@ -1404,14 +1404,14 @@
     "ICD10": "D62"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "ObesityHypeventA",
     "text": "Obesity hypoventilation syndrome",
     "laytext": "Hội chứng khó thở do béo phì",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Sản",
     "name": "BRCA12Carier",
     "text": "BRCA1/2 (breast or ovarian gene carier) status",
     "laytext": "Đột biến gen BRCA1/2 gây ung thư vú hoặc buồng trứng",
@@ -1429,7 +1429,7 @@
     "ICD10": "Z15.01"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "PE",
     "text": "Pulmonary embolus",
     "laytext": "Thuyên tắt phổi",
@@ -1447,7 +1447,7 @@
     "ICD10": "I26.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "HxOfPE",
     "text": "Past history of pulmonary embolus",
     "laytext": "Thuyên tắt phổi kéo dài",
@@ -1465,7 +1465,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HxOfDVT",
     "text": "Past history of deep vein thrombosis",
     "laytext": "Tắc tĩnh mạch sâu",
@@ -1483,7 +1483,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HxOfCHF",
     "text": "Past history of congestive heart failure (CHF)",
     "laytext": "Suy tim sung huyết",
@@ -1501,7 +1501,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HxOfCAD",
     "text": "Past history of coronary artery disease (CAD)",
     "laytext": "Bệnh động mạch vành",
@@ -1519,7 +1519,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HxOfAfibAflut",
     "text": "Past history of atrial fibrillation (Afib) or atrial flutter (Aflut)",
     "laytext": "Loạn nhịp tim kéo dài",
@@ -1537,7 +1537,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Xét nghiệm",
     "name": "HxOfCVA",
     "text": "Past history of cebrovascular accident (CVA)",
     "laytext": "Tai biến mạch máu kéo dài",
@@ -1555,7 +1555,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "GastroenteritisViralA",
     "text": "Gastroenteritis likely viral",
     "laytext": "Viêm dạ dày ruột do virus",
@@ -1572,7 +1572,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Xét nghiệm",
     "name": "Transaminitis",
     "text": "Transaminitis",
     "laytext": "Nhiễm trùng",
@@ -1590,7 +1590,7 @@
     "ICD10": "R74.0"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "SecondaryArterialHypertensionOSA",
     "text": "Arterial hypertension (chronic) secondary to OSA",
     "laytext": "Huyết áp cao thứ phát sau chứng ngưng thở khi ngủ do tắc nghẽn (OSA)",
@@ -1608,7 +1608,7 @@
     "ICD10": "I15.9,G47.33"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Nội tiết",
     "name": "DM1ByHx",
     "text": "Past medical history of diabetes melltus type 1 per history",
     "laytext": "Bệnh đái tháo đường mãn tính loại 1",
@@ -1626,7 +1626,7 @@
     "ICD10": "E10"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Nội tiết",
     "name": "DiabeticNephropathy",
     "text": "Diabetic Nephropathy",
     "laytext": "Bệnh thận thứ phát do tiểu đường",
@@ -1644,7 +1644,7 @@
     "ICD10": "N18.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Xét nghiệm",
     "name": "AppendicitisA",
     "text": "!!!",
     "laytext": "!!!",
@@ -1661,7 +1661,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PUDPerfA",
     "text": "Perforated peptic or duodenal ulcer",
     "laytext": "Viêm loét dạ dày, tá tràng",
@@ -1679,7 +1679,7 @@
     "ICD10": "K25.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Xét nghiệm",
     "name": "SepsticShockA",
     "text": "Septic shock",
     "laytext": "Sốc nhiễm trùng",
@@ -1697,7 +1697,7 @@
     "ICD10": "R65.21"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "Shock",
     "text": "Shock",
     "laytext": "Sốc do giảm huyết áp nghiêm trọng",
@@ -1715,7 +1715,7 @@
     "ICD10": "R57.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "ShockLiver",
     "text": "Shock liver",
     "laytext": "Tổn thương gan do huyết áp thấp.",
@@ -1733,7 +1733,7 @@
     "ICD10": "K72.0"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "HypertensiveNephropathy",
     "text": "Hypertensive nephropathy",
     "laytext": "Bệnh thận do huyết áp cao",
@@ -1751,7 +1751,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Xét nghiệm",
     "name": "AnaphylacticShock",
     "text": "Anaphylactic shock",
     "laytext": "Sốc phản vệ",
@@ -1769,7 +1769,7 @@
     "ICD10": "T78.00XA"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "HCAP",
     "text": "Healthcare-associated pneumonia (HCAP)",
     "laytext": "Nhiễm trùng phổi bệnh viện",
@@ -1787,7 +1787,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "SVT",
     "text": "Superficial vein thrombosis (SVT) of lower extremities",
     "laytext": "Cục máu đông trong tĩnh mạch nông (SVT) của chi dưới",
@@ -1805,7 +1805,7 @@
     "ICD10": "I82.819"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "DVT",
     "text": "Deep vein thrombosis (DVT)",
     "laytext": "Cục máu đông trong tĩnh mạch sâu (DVT)",
@@ -1823,7 +1823,7 @@
     "ICD10": "I82.40"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "COPDA",
     "text": "COPD exacerbation",
     "laytext": "Phổi tắc nghẽn mãn tính (COPD)",
@@ -1841,7 +1841,7 @@
     "ICD10": "J44.1"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "ACEinhibitorRelatedCough",
     "text": "Cough caused by ACE (angiotensin converting enzyme) inhibitor, or ARB (angiotensin receptor blocker)",
     "laytext": "Ho do chất ức chế ACE (men chuyển đổi angiotensin) hoặc ARB (thuốc chẹn thụ thể angiotensin)",
@@ -1859,7 +1859,7 @@
     "ICD10": "T46.4X5A"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "AsthmaA",
     "text": "Asthma exacerbation without acute respiratory failure",
     "laytext": "Cơn hen kịch phát mà không có suy hô hấp cấp tính",
@@ -1877,7 +1877,7 @@
     "ICD10": "J45.901"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Da liễu",
     "name": "AtopicDermatitis",
     "text": "Atopic dermatitis",
     "laytext": "Viêm da dị ứng",
@@ -1895,7 +1895,7 @@
     "ICD10": "l20.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "BowelObstructionA",
     "text": "Bowel obstruction",
     "laytext": "Tắt ruột",
@@ -1913,7 +1913,7 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "AsthmaARFA",
     "text": "Asthma exacerbation with acute respiratory failure",
     "laytext": "Cơn hen kịch phát với suy hô hấp cấp tính",
@@ -1931,7 +1931,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "OSA",
     "text": "Obstructive sleep apnea",
     "laytext": "Khó thở khi ngủ",
@@ -1949,7 +1949,7 @@
     "ICD10": "G47.33"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "PulmTBA",
     "text": "Pulmonary tuberculosis",
     "laytext": "Bệnh lao phổi",
@@ -1967,7 +1967,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "NonTBMycobacteriaeA",
     "text": "Acute nontuberculous mycobacterial lung infection",
     "laytext": "Nhiễm trùng phổi cấp tính do vi khuẩn lao",
@@ -1985,7 +1985,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "LungAbscessA",
     "text": "Lung abscess",
     "laytext": "Áp xe phổi",
@@ -2003,7 +2003,7 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Da liễu",
     "name": "EmpyemaA",
     "text": "Empyema",
     "laytext": "Viêm mủ",
@@ -2021,7 +2021,7 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "OtitisMediaA",
     "text": "Otitis media",
     "laytext": "Viêm tai giữa",
@@ -2039,7 +2039,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tai-Mũi-Họng",
     "name": "OtitisExternaA",
     "text": "Otitis externa",
     "laytext": "Viêm tai ngoài",
@@ -2057,14 +2057,14 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Mắt",
     "name": "AcuteEyeEmergencyA",
     "text": "Acute eye emergency",
     "laytext": "Cấp cứu cấp tính về mắt",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "AnxietyA",
     "text": "Anxiety",
     "laytext": "Rối loạn lo âu",
@@ -2080,7 +2080,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "AorticStenosisA",
     "text": "Acute aortic stenosis (AS)",
     "laytext": "Hẹp động mạch chủ cấp tính (AS)",
@@ -2097,7 +2097,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Nội tiết",
     "name": "PCDiabetesC",
     "text": "Uncontrolled diabetes",
     "laytext": "Bệnh tiểu đường không kiểm soát",
@@ -2114,7 +2114,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "AorticRegurgitationA",
     "text": "Acute aortic regurgitation (AR or AI)",
     "laytext": "Trào ngược động mạch chủ cấp tính (AR hoặc AI)",
@@ -2131,7 +2131,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "MitralRegurgitationA",
     "text": "Acute mitral regurgitation (MR)",
     "laytext": "Trào ngược hai lá cấp tính (MR)",
@@ -2148,7 +2148,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "PulmonaryRegurgitationA",
     "text": "Pulmonary regurgitation (PR)",
     "laytext": "Trào ngược phổi (PR)",
@@ -2165,17 +2165,17 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Nội tiết",
     "name": "ThyroidGoiterA",
     "text": "Acute thyroid goiter airway obstruction",
     "laytext": "Bướu cổ tuyến giáp tắc nghẽn đường thở",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "MIA",
     "text": "Myocardial infarction",
-    "laytext": "Nhồi máu cơ tim)",
+    "laytext": "Nhồi máu cơ tim",
     "category": "acute",
     "alias": "",
     "wiki": "",
@@ -2190,7 +2190,7 @@
     "ICD10": "I21.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Nội tiết",
     "name": "DiabetesHONKA",
     "text": "Diabetic hyperosmolar hyperglycemic state",
     "laytext": "Trạng thái tăng đường huyết hyperosmolar của bệnh tiểu đường",
@@ -2208,7 +2208,7 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "ACSA",
     "text": "Acute coronary syndrome",
     "laytext": "Hội chứng mạch vành",
@@ -2225,14 +2225,14 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "VSDA",
     "text": "Acute ventricular septal (rupture) defect",
     "laytext": "Thông liên thất cấp tính",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Cơ-Xương-Khớp",
     "name": "CostochondritisAMSKChestPain",
     "text": "Costochondritis or otherwise musculoskeletal chest pain",
     "laytext": "Viêm sụn chêm hoặc đau ngực do cơ xương khớp",
@@ -2250,28 +2250,28 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Cơ-Xương-Khớp",
     "name": "SpinalfacetjointsCPA",
     "text": "Spinal facet joints related chest pain",
     "laytext": "Đau ngực liên quan đến các khớp cột sống",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Cơ-Xương-Khớp",
     "name": "TSpineCPA",
     "text": "Thoracic spine fracture related chest pain",
     "laytext": "Đau ngực do gãy cột sống ngực",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Cơ-Xương-Khớp",
     "name": "SpinalDiscopathyCPA",
     "text": "Spinal discopathy related chest pain",
     "laytext": "Đau ngực do đĩa đệm cột sống",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "PleuritisA",
     "text": "Pleuritis",
     "laytext": "Viêm màng phổi",
@@ -2288,7 +2288,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "AtelectasisA",
     "text": "Atelectasis",
     "laytext": "Xẹp phổi",
@@ -2305,35 +2305,35 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "LobarObstructionA",
     "text": "Lobar obstruction",
     "laytext": "Tắc nghẽn thùy",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "HealthyA",
     "text": "Patient seems free from acute respiratory issues",
     "laytext": "Bệnh nhân dường như không bị các vấn đề về hô hấp cấp tính",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HealthyAllA",
     "text": "Patient seems free from acute issues",
     "laytext": "Bệnh nhân dường như không gặp các vấn đề cấp tính",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Sản",
     "name": "OvarianTorsionA",
     "text": "Ovarian torsion",
     "laytext": "Xoắn buồng trứng",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Sản",
     "name": "MissedAA",
     "text": "Missed abortion",
     "laytext": "Sảy thai",
@@ -2350,21 +2350,21 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "DeathA",
     "text": "Risk of death within 24 hours",
     "laytext": "Nguy cơ tử vong trong vòng 24 giờ",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Sản",
     "name": "TesticularTorsionA",
     "text": "Testicular torsion",
     "laytext": "Xoắn tinh hoàn",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "HemorrhoidsA",
     "text": "Hemorrhoids - acute thrombosis or infection",
     "laytext": "Bệnh trĩ - huyết khối cấp tính hoặc nhiễm trùng",
@@ -2382,7 +2382,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PUDBleed",
     "text": "Bleeding peptic or duodenal ulcer",
     "laytext": "Chảy máu loét dạ dày tá tràng",
@@ -2400,7 +2400,7 @@
     "ICD10": "K25.6"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PUDA",
     "text": "Peptic ulcer disease",
     "laytext": "Bệnh viêm loét dạ dày",
@@ -2418,7 +2418,7 @@
     "ICD10": "K27.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "HPylor",
     "text": "Helicobacter pylory infection",
     "laytext": "Nhiễm vi khuẩn Helicobacter pylori",
@@ -2436,7 +2436,7 @@
     "ICD10": "B96.81"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "GastroenteritisBacterialA",
     "text": "Gastroenteritis likely bacterial (i.e. Shigella)",
     "laytext": "Viêm dạ dày ruột do vi khuẩn",
@@ -2453,7 +2453,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "PortalVeinThrombosisA",
     "text": "Portal vein thrombosis",
     "laytext": "Huyết khối tĩnh mạch cửa",
@@ -2470,14 +2470,14 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "BuddChiariA",
     "text": "Budd-Chiari syndrome",
     "laytext": "Hội chứng Budd-Chiari",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "DM1",
     "text": "Diabetes melltus type 1",
     "laytext": "Đái tháo đường loại 1",
@@ -2495,7 +2495,7 @@
     "ICD10": "E10"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HyperTGL",
     "text": "Hyperglyceridemia",
     "laytext": "Hyperglyceridemia",
@@ -2513,7 +2513,7 @@
     "ICD10": "E78.5"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "PancreaticCaA",
     "text": "Pancreatic cancer",
     "laytext": "Ung thư tuyến tụy",
@@ -2530,7 +2530,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "CholecystitisA",
     "text": "Acute cholecystitis",
     "laytext": "Viêm túi mật cấp tính",
@@ -2548,7 +2548,7 @@
     "ICD10": "K81.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Cơ-Xương-Khớp",
     "name": "GoutFlair",
     "text": "Gout flair",
     "laytext": "Gút",
@@ -2566,7 +2566,7 @@
     "ICD10": "M10.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Cơ-Xương-Khớp",
     "name": "ToeTraumaPain",
     "text": "Trauma to the toe",
     "laytext": "Chấn thương ngón chân",
@@ -2584,7 +2584,7 @@
     "ICD10": "S90.93"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Cơ-Xương-Khớp",
     "name": "GoutFlairFromDiuretics",
     "text": "Gout flair related to diuretic use",
     "laytext": "Gút do sử dụng thuốc lợi tiểu",
@@ -2602,7 +2602,7 @@
     "ICD10": "M10.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "GerdA",
     "text": "Esophageal rupture (rupture)",
     "laytext": "Thủng thực quản",
@@ -2620,7 +2620,7 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "BIA",
     "text": "Bowel ischaemia",
     "laytext": "Thiếu máu cục bộ ở ruột",
@@ -2637,7 +2637,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "CDCA",
     "text": "Clostridium difficile colitis",
     "laytext": "Viêm đại tràng do Clostridium difficile",
@@ -2655,7 +2655,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "SepsisA",
     "text": "Sepsis",
     "laytext": "Nhiễm trùng máu",
@@ -2673,7 +2673,7 @@
     "ICD10": "A41.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "DM2ByHx",
     "text": "Past medical history of diabetes melltus type 2 per history (chronic)",
     "laytext": "Tiền sử bệnh đái tháo đường mãn tính loại 2",
@@ -2691,7 +2691,7 @@
     "ICD10": "E11"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "SuicidialOverdoseA",
     "text": "Suicidal or purposeful overdose",
     "laytext": "Tự tử hoặc dùng thuốc quá liều có mục đích",
@@ -2709,35 +2709,35 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "BeerA",
     "text": "Beer potomania",
     "laytext": "Nghiện rượu, bia",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HypoNaA",
     "text": "Hyponatremia acute",
     "laytext": "Hạ natri trong máu cấp tính",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HypoNaSIADHA",
     "text": "Hyponatremia SIADH",
     "laytext": "Hạ natri máu SIADH",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HyperKA",
     "text": "Hyperkalemia",
     "laytext": "Hạ natri máu",
     "category": "acute"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tim mạch",
     "name": "HyperCaA",
     "text": "Hypercalcemia",
     "laytext": "Hạ natri máu",
@@ -2754,7 +2754,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Cơ-Xương-Khớp",
     "name": "HyperParaCaA",
     "text": "Hyperparathyroidism",
     "laytext": "Cường tuyến cận giáp",
@@ -2770,7 +2770,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "MeningitisA",
     "text": "Bacgterial meningitis",
     "laytext": "Viêm màng não do vi khuẩn",
@@ -2788,7 +2788,7 @@
     "ICD10": "G00.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "EncephalitisA",
     "text": "Encephalitis",
     "laytext": "Viêm não",
@@ -2805,7 +2805,7 @@
     "IsCantMiss": false
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "HypercapnicA",
     "text": "Hypercapnic coma",
     "laytext": "Tăng CO2 trong máu do hôn mê",
@@ -2823,7 +2823,7 @@
     "ICD10": "J96.02"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "SSA",
     "text": "Serotoninergic syndrome",
     "laytext": "Hội chứng serotoninergic",
@@ -2841,7 +2841,7 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Hô hấp",
     "name": "OpiatesA",
     "text": "Opiates overdose",
     "laytext": "Hút phiện quá liều",
@@ -2859,7 +2859,7 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Thần kinh",
     "name": "TCAA",
     "text": "Tricyclic antidepressant overdose (TCA) overdose",
     "laytext": "Quá liều thuốc chống trầm cảm",
@@ -2877,7 +2877,7 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "StarvationKA",
     "text": "Starvation ketoacidosis",
     "laytext": "Nhiễm toan ceton do đói",
@@ -2895,7 +2895,7 @@
     "ICD10": "T73.0XXA"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "Starvation",
     "text": "Starvation",
     "laytext": "Chết đói",
@@ -2913,7 +2913,7 @@
     "ICD10": "T73.0XXA"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "MetabolicGapAcidosis",
     "text": "Metabolic acidosis with elevated anion gap",
     "laytext": "Nhiễm toan chuyển hóa với tăng khoảng trống anion",
@@ -2931,7 +2931,7 @@
     "ICD10": "E87.2"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "MetabolicNonGapAcidosis",
     "text": "Metabolic acidosis without elevated anion gap",
     "laytext": "Nhiễm toan chuyển hóa mà không tăng khoảng trống anion",
@@ -2949,7 +2949,7 @@
     "ICD10": "E87.2"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "LacticAcidosis",
     "text": "Lactic acidosis",
     "laytext": "Nhiễm toan lactic",
@@ -2966,7 +2966,7 @@
     "ICD10": "E87.2"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "HypoA",
     "text": "Hypoglycemia",
     "laytext": "Hạ đường huyết",
@@ -2984,7 +2984,7 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Nội tiết",
     "name": "HypoThyroA",
     "text": "Hypothyroidism severe (myxedema coma or crisis)",
     "laytext": "Suy giáp nghiêm trọng",
@@ -3002,7 +3002,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Nội tiết",
     "name": "HyperthyroidCrisisA",
     "text": "Hyperthyroidism acute (hyperthyroid crisis or thyrotoxic storm)",
     "laytext": "Cường giáp cấp tính",
@@ -3020,7 +3020,7 @@
     "Risk": 4
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "GastroparesisA",
     "text": "Gastroparesis",
     "laytext": "Chứng dạ dày",
@@ -3038,7 +3038,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "SecondaryArterialHypertensionSecondaryRASFibromuscularDysplasia",
     "text": "Secondary arterial hypertension secondary to renal artery stenosis, secondary to fibromuscular dysplasia",
     "laytext": "Huyết áp cao thứ phát do hẹp động mạch thận sau loạn sản cơ xơ",
@@ -3056,7 +3056,7 @@
     "ICD10": "I15"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "ARFA",
     "text": "Acute renal failure",
     "laytext": "Suy thận",
@@ -3074,7 +3074,7 @@
     "ICD10": "N17.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiêu hóa",
     "name": "UTIA",
     "text": "UTI",
     "laytext": "UTI",
@@ -3092,14 +3092,14 @@
     "ICD10": "N39.0"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "MNKD",
     "text": "Membranous nephropathy",
     "laytext": "Bệnh màng thận",
     "category": "chronic"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Tiết niệu",
     "name": "PIDA",
     "text": "Pelvic inflammatory disease",
     "laytext": "Bệnh viêm vùng chậu",
@@ -3117,7 +3117,7 @@
     "Risk": 3
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Sản",
     "name": "EPA",
     "text": "Ectopic pregnancy",
     "laytext": "Mang thai ngoài tử cung",
@@ -3135,7 +3135,7 @@
     "ICD10": "O00.9"
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Sản",
     "name": "PastHxOfPregnancy",
     "text": "Past history of pregnancy",
     "laytext": "Từng mang thai",
@@ -3153,7 +3153,7 @@
     "ICD10": ""
   },
   {
-    "department": "Khoa ",
+    "department": "Khoa Sản",
     "name": "PastHxOfSpontaneousAbortion",
     "text": "Past history of spontaneous abortion",
     "laytext": "Sảy thai tự nhiên",

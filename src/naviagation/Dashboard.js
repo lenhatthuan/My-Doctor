@@ -8,7 +8,7 @@ import FollowHealthy from './FollowHealthy';
 import VNPay from '../screens/payment/VNPay';
 import Home from './Home';
 import DoctorBooking from './DoctorBooking';
-
+import MainDepartmentScreen from '../screens/booking/deparment/Main';
 const Dashboard = () => (
   <Tab.Navigator
     screenOptions={{
@@ -47,11 +47,11 @@ const Dashboard = () => (
       }}
     />
     <Tab.Screen
-      name="Payment"
-      component={VNPay}
+      name="Schedule"
+      component={MainDepartmentScreen}
       options={{
-        title: 'Thanh toán',
-        tabBarIcon: ({color}) => <Icon name="payment" color={color} />,
+        title: 'Khám bệnh',
+        tabBarIcon: ({color}) => <Icon type="font-awesome" name="bookmark-o" color={color} />,
       }}
     />
     <Tab.Screen

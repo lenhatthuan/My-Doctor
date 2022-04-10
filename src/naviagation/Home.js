@@ -4,6 +4,7 @@ const Stack = createNativeStackNavigator();
 
 import HomeScreen from '../screens/home/Home';
 import Service from '../screens/service/MainServiceScreen';
+import Position from '../screens/position/PositionScreen';
 const Home = () => (
     <Stack.Navigator
         screenOptions= {{
@@ -24,6 +25,12 @@ const Home = () => (
             name="Service"
             options={{headerShown: false}}
             component={Service}
+        />
+
+<Stack.Screen
+            name="Position"
+            options={{headerShown: false}}
+            component={Position}
         />
 
     </Stack.Navigator>

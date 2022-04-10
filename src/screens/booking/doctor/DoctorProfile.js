@@ -156,9 +156,9 @@ const getScheduleByDateAndDoctor = async(date) => {
   })
 
   if (lSchedule.length > 0 && listRoom.length > 0) {
-    alert("Tiếp tục chọn lịch khám theo phòng!!");
-   // let lRoom = await getListRoom(lSchedule); 
-      navigation.navigate("doctor-schedule", {
+  //   alert("Tiếp tục chọn lịch khám theo phòng!!");
+  //  // let lRoom = await getListRoom(lSchedule); 
+      navigation.navigate("DoctorSchedule", {
         schedule: lSchedule,
         room: listRoom,
         doctor: doctor,

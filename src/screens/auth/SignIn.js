@@ -28,22 +28,23 @@ const SignInScreen = (props) => {
     console.log("login!");
     let username = phone;
     let pass = password;
-    setIsLoading(true);
-    signin(username, pass).then((data) => {
-      console.log("data: " + data);
-      if (data.count == 1) {
-        sendOTP(data.account.id);
-      } else {
-        setIsLoading(false);
-        Alert.alert("Thông báo", "Đăng nhập không thành công!", [
-          {
-            text: "OK",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel",
-          },
-        ]);
-      }
-    });
+    //setIsLoading(true);
+    // signin(username, pass).then((data) => {
+    //   console.log("data: " + data);
+    //   if (data.count == 1) {
+    //     sendOTP(data.account.id);
+    //   } else {
+    //     setIsLoading(false);
+    //     Alert.alert("Thông báo", "Đăng nhập không thành công!", [
+    //       {
+    //         text: "OK",
+    //         onPress: () => console.log("Cancel Pressed"),
+    //         style: "cancel",
+    //       },
+    //     ]);
+    //   }
+    // });
+    props.navigation.navigate("Dashboard");
   }
 
   const signinHandle = () => {
