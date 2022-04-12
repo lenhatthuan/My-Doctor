@@ -117,6 +117,7 @@ const Stack = createNativeStackNavigator();
 
 // auth
 import Welcome from './src/screens/auth/Welcome';
+import WelcomeHome from './src/screens/auth/WelcomeHome';
 import SignIn from './src/screens/auth/SignIn';
 import SignUp from './src/screens/auth/SignUp';
 import ForgotPass from './src/screens/auth/ForgotPass';
@@ -126,6 +127,7 @@ import Dashboard from './src/naviagation/Dashboard';
 
 import Diagnose from './src/screens/diagnose/Diagnose';
 import { LogBox } from 'react-native';
+import { isLogin } from './src/store/actions/account';
 const App = () => {
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
@@ -134,7 +136,8 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
       {/* <Stack.Screen name="Diagnose" component={Diagnose} /> */}
-    
+      {!isLogin? (
+        <>
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
@@ -151,6 +154,29 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
           }}
         />
         <Stack.Screen name="Dashboard" component={Dashboard} />
+        </>
+      ): (
+        <>
+         <Stack.Screen name="WelcomeHome" component={WelcomeHome} />
+        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="Welcome" component={Welcome} />
+        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="ForgotPass" component={ForgotPass} />
+        <Stack.Screen
+          name="OtpAuth"
+          component={OtpAuth}
+          options={{
+            title: '',
+            headerStyle: {backgroundColor: '#009387'},
+            headerShadowVisible: false,
+            headerShown: true,
+            headerTintColor: 'white',
+          }}
+        />
+        </>
+      )}
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

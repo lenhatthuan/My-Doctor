@@ -11,9 +11,14 @@ import {
   Pressable,
   ScrollView,
   Linking,
+  Dimensions
 } from "react-native";
 import COLORS from "../../assets/colors";
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {SwiperFlatList} from 'react-native-swiper-flatlist';
+import {CustomPagination} from './CustomPagination';
+import { logout } from "../../store/actions/account";
+const {width: windowWidth} = Dimensions.get('window');
 class Home extends Component {
 
   state = {
@@ -23,65 +28,85 @@ class Home extends Component {
     isLogout: false
   }
 
-  gotoLogin() {
-    // props.navigation.push("Signin");
+  componentDidMount() {
+    let patient = null;
+    AsyncStorage.getItem("patientData").then((res) => {
+      patient = JSON.parse(res);
+      this.setState({patientName: patient.fullName})
+    });
   }
 
-  signup() {
-    // logout();
-    // setCheckIsLogin(false);
-    // setPatientName("");
-    // props.navigation.navigate("Signin");
+  gotoLogout() {
+   logout();
+   this.props.navigation.navigate("SignIn")
   }
+
+  listImageBanner = [{
+    image: require("../../../assets/imgs/bg.jpg")
+  },
+  {
+    image: require("../../../assets/imgs/bg1.jpg")
+  },
+  {
+    image: require("../../../assets/imgs/bg2.jpg")
+  },
+  {
+    image: require("../../../assets/imgs/bg.jpg")
+  }]
+
+  _renderItem = ({item, index}) => {
+    return (
+      <ImageBackground
+      style={styles.imgBg}
+      source={item.image}
+    >
+      <View style={styles.viewTextName}>
+        <Text style={styles.txtHello}>Xin chào !</Text>
+        <Text style={styles.txtName}>{this.state.patientName}</Text>
+      </View>
+      <View style={styles.viewBtnLogin}>
+        
+          <Pressable
+            style={{
+              padding: 10,
+              backgroundColor: "#333",
+              borderRadius: 50,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 6,
+              },
+              shadowOpacity: 0.39,
+              shadowRadius: 8.3,
+
+              elevation: 13,
+            }}
+            onPress={() => this.gotoLogout()}
+          >
+            <Icon name ="arrow-circle-right" solid color ="white"></Icon>
+          </Pressable>
+      
+      </View>
+    </ImageBackground>
+    );
+  };
 
 
   
   render() {
     return(
       <SafeAreaView style={styles.screen}>
-      {/* <LoadingComponent visible = {isLogout} message = "Logout..."/> */}
       <View style={styles.background}>
-        <ImageBackground
-          style={styles.imgBg}
-          source={require("../../../assets/imgs/bg.jpg")}
-        >
-          <View style={styles.viewTextName}>
-            <Text style={styles.txtHello}>Xin chào !</Text>
-            <Text style={styles.txtName}>{this.state.patientName}</Text>
-          </View>
-          <View style={styles.viewBtnLogin}>
-            {!this.state.checkIsLogin ? (
-              <Pressable style={styles.btnLogin} onPress={() => gotoLogin()}>
-                  <Icon name="arrow-circle-left" solid color ="white">
-                </Icon>
-                <Text style={styles.txtLogin}>Đăng nhập</Text>
-              </Pressable>
-            ) : null}
-            {this.state.checkIsLogin ? (
-              <Pressable
-                style={{
-                  padding: 10,
-                  backgroundColor: "#333",
-                  borderRadius: 50,
-                  shadowColor: "#000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 6,
-                  },
-                  shadowOpacity: 0.39,
-                  shadowRadius: 8.3,
-
-                  elevation: 13,
-                }}
-                onPress={() => signup()}
-              >
-                 {/* <FontAwesomeIcon icon={ faCoffee } size = {16} /> */}
-                {/* <Text style={styles.txtLogin}>Đăng xuất</Text> */}
-                <Icon name ="arrow-circle-right" solid color ="white"></Icon>
-              </Pressable>
-            ) : null}
-          </View>
-        </ImageBackground>
+        <SwiperFlatList
+              autoplay
+              autoplayDelay={2}
+              data={this.listImageBanner}
+              renderItem={this._renderItem}
+              showPagination
+              PaginationComponent={CustomPagination}
+              e2eID="container_swiper_renderItem"
+            />
+       
       </View>
       <View style={styles.personalOption} disabled={!this.state.checkIsLogin}>
         <TouchableOpacity
@@ -173,7 +198,7 @@ class Home extends Component {
               source={require("../../../assets/imgs/payment.png")}
             />
             <View style={styles.viewTextPersonal}>
-              <Text style={styles.textPersonal}>Thanh toán online</Text>
+              <Text style={styles.textPersonal}>Chat với bác sĩ</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -186,6 +211,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
   txtHello: {
     fontWeight: "bold",
+    fontSize: 14
   },
   txtName: {
     fontWeight: "bold",
@@ -423,7 +449,7 @@ const styles = StyleSheet.create({
   },
   imgBg: {
     flex: 1,
-
+    width: windowWidth,
     justifyContent: "flex-start",
   },
 });

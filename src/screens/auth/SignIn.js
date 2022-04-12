@@ -25,26 +25,23 @@ const SignInScreen = (props) => {
   const [secure, setSecure] = useState(true);
 
   function checkLogin() {
-    console.log("login!");
     let username = phone;
     let pass = password;
-    //setIsLoading(true);
-    // signin(username, pass).then((data) => {
-    //   console.log("data: " + data);
-    //   if (data.count == 1) {
-    //     sendOTP(data.account.id);
-    //   } else {
-    //     setIsLoading(false);
-    //     Alert.alert("Thông báo", "Đăng nhập không thành công!", [
-    //       {
-    //         text: "OK",
-    //         onPress: () => console.log("Cancel Pressed"),
-    //         style: "cancel",
-    //       },
-    //     ]);
-    //   }
-    // });
-    props.navigation.navigate("Dashboard");
+    setIsLoading(true);
+    signin(username, pass).then((data) => {
+      if (data.count == 1) {
+        sendOTP(data.account.id);
+      } else {
+        setIsLoading(false);
+        Alert.alert("Thông báo", "Đăng nhập không thành công!", [
+          {
+            text: "OK",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
+        ]);
+      }
+    });
   }
 
   const signinHandle = () => {

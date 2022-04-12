@@ -9,6 +9,7 @@ import VNPay from '../screens/payment/VNPay';
 import Home from './Home';
 import DoctorBooking from './DoctorBooking';
 import MainDepartmentScreen from '../screens/booking/deparment/Main';
+import HeathyNavigator from './follow-heathy/HeathyNavigator';
 const Dashboard = () => (
   <Tab.Navigator
     screenOptions={{
@@ -38,7 +39,7 @@ const Dashboard = () => (
 
     <Tab.Screen
       name="FollowHealthy"
-      component={FollowHealthy}
+      component={HeathyNavigator}
       options={{
         title: 'Sức khỏe',
         tabBarIcon: ({color}) => (
