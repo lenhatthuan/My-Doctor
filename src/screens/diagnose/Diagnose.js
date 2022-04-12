@@ -256,17 +256,6 @@ const Diagnose = props => {
           <Text style={{fontWeight: 'bold'}}>{category}</Text>
         )}
       />
-<<<<<<< HEAD
-      <Button title="Chẩn đoán" onPress={analyze} />
-      <Overlay isVisible={show} onBackdropPress={() => setShow(false)}>
-        {formatDisease().length > 0 ? (
-          formatDisease().map(disease => <Diseases disease={disease} />)
-        ) : (
-          <Text>Khỏe mạnh</Text>
-        )}
-        <Button title="OK" />
-      </Overlay>
-=======
       <BtnAddComponent title="Chuẩn đoán" onPress={analyze} />
 
       {/* <>
@@ -289,7 +278,6 @@ const Diagnose = props => {
         <BtnAddComponent title="OK" onPress={setShow(false)} />
       </Modal>
     </> */}
->>>>>>> db5e89a (trans)
     </SafeAreaView>
   );
 };

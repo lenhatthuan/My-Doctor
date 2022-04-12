@@ -25,7 +25,6 @@ const SbNotification = (props) => {
       visible={props.visible}
       animationType="fade"
       onRequestClose={() => {
-        Alert.alert("Bạn có chắc thoát.");
         setModalVisible(!modalVisible);
       }}
     >
