@@ -114,18 +114,23 @@ const ListBMIComponent = (props) =>{
 
     const renderDate = ({item}) =>{
         return (
-            <TouchableOpacity style = {styles.dateComponent} onPress = {() =>{
-                console.log("press")
+            <TouchableOpacity style = {styles.dateComponent} 
+            onPressIn = { () =>{
+                console.log("press nhaa")
                 setIsBMISelected(item.id);
             }}
+            // onPress = {() =>{
+            //     console.log("press")
+            //     setIsBMISelected(item.id);
+            // }}
             onLongPress = {() => {
                 console.log("long")
                 setIsBMISelected(item.id);
             }}
 
-            onFocus = {() => {
-                console.log("focus")
-            }}
+            // onFocus = {() => {
+            //     console.log("focus")
+            // }}
             >
                 <DateHistory 
             date = {formatDate(item.createdAt)}
@@ -171,10 +176,11 @@ const ListBMIComponent = (props) =>{
     const renderHiddenItem = () => (
         <View style={styles.btnDelete}>
             <View >
-                <Text style={styles.backTextWhite}>Delete</Text>
+                <Text style={styles.backTextWhite}>Xóa</Text>
             </View>
         </View>
     );
+    
     return (
         <View style = {styles.screen}>
             <HeaderFilterByDate
@@ -232,9 +238,13 @@ const styles = StyleSheet.create({
     main:{
         flex:1
     },
+
     backTextWhite: {
         color: '#FFF',
+        textAlign: 'right',
+        paddingRight: 20
     },
+
     rowFront: {
         alignItems: 'center',
         backgroundColor: '#CCC',
@@ -243,6 +253,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 50,
     },
+
     rowBack: {
         alignItems: 'center',
        
@@ -251,6 +262,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingLeft: 15,
     },
+
     backRightBtn: {
         alignItems: 'center',
         bottom: 0,
@@ -259,8 +271,9 @@ const styles = StyleSheet.create({
         top: 0,
         width: 75,
     },
+
     backRightBtnRight: {
-        backgroundColor: 'red',
+        backgroundColor: '#E9290F',
         right: 0,
     },
 
@@ -286,12 +299,13 @@ const styles = StyleSheet.create({
     btnDelete : {
         marginTop: 10,
         marginBottom: 10,
-        backgroundColor: 'red',
+        backgroundColor: '#E9290F',
         paddingBottom: 15,
         paddingTop: 15,
         borderRadius: 10,
         marginLeft: 3,
-        marginRight: 3
+        marginRight: 3,
+        justifyContent: 'flex-end'
     },
 
     dateComponent:{

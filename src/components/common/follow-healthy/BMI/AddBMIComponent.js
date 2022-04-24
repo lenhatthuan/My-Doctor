@@ -201,4 +201,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddBMIComponent;
+export default React.memo(AddBMIComponent);

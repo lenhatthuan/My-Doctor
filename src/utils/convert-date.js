@@ -20,3 +20,9 @@ export const compareDateBookingByDepartment = (date1, date2) => {
     
 }
 
+export const sortByTimestamp = (list) => {
+    return list.sort(function (x, y) {
+        return x.createdAt - y.createdAt;
+    })
+}
+

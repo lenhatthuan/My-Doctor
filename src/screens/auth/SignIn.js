@@ -31,6 +31,7 @@ const SignInScreen = (props) => {
     signin(username, pass).then((data) => {
       if (data.count == 1) {
         sendOTP(data.account.id);
+        // setIsLoading(false);
       } else {
         setIsLoading(false);
         Alert.alert("Thông báo", "Đăng nhập không thành công!", [
@@ -57,14 +58,15 @@ const SignInScreen = (props) => {
   };
 
   const sendOTP = (id) => {
-    updateToken(id, token)
-      .then(() =>
+    // updateToken(id, token)
+      // .then(() =>
         getPatientById(id).then((result) => {
-          setIsLoading(false);
+          
           props.navigation.navigate("Dashboard");
+          setIsLoading(false);
         })
-      )
-      .catch(() => null);
+      // )
+      // .catch(() => null);
   };
 
   const loginHandle = (userName, password) => {

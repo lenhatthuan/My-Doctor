@@ -242,4 +242,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AddHeartComponent;
+export default React.memo(AddHeartComponent);

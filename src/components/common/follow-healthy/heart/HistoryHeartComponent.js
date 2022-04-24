@@ -4,7 +4,6 @@ import COLORS from '../../../../assets/colors';
 import STRING from '../../../../utils/string';
 import AntDesign from "react-native-vector-icons/AntDesign";
 import HeaderBackComponent from '../../HeaderBackComponent';
-// import { Chart, VerticalAxis, HorizontalAxis, Line } from 'react-native-responsive-linechart';
 const HistoryHeartComponent = (props) =>{
 
     const [isAddModel, setIsAddModel] = React.useState(false);

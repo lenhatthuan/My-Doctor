@@ -262,4 +262,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditHeartBeat;
+export default React.memo(EditHeartBeat);

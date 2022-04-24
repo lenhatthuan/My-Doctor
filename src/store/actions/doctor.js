@@ -52,14 +52,25 @@ export const getListDoctorService = async(id, status) => {
   try {
     const registration = await getAllByPatientId(id);
     let doctors = [];
+    // doctors= await registration.map((res) => {
+    //   if(res.status == status){
+    //     getDoctor(res.doctorId).then(res => {
+    //       if(!!res)
+    //         return res;
+    //     })}
+    // })
     await registration.forEach(res => {
+      console.log("first")
      if(res.status == status){
+      console.log("two")
       getDoctor(res.doctorId).then(res => {
         doctors.push(res);
-        console.log("doctor action 59: " + res.id);
+        console.log("333")
       })
      }
-    })
+    });
+    console.log("firtruest")
+
     return doctors;
   } catch (err) {
     console.log(err);

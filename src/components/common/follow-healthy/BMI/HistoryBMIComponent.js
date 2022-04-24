@@ -203,4 +203,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HistoryBMIComponent;
+export default React.memo(HistoryBMIComponent);
