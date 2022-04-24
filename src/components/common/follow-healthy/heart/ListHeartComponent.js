@@ -22,23 +22,22 @@ const ListHeartComponent = (props) =>{
     const [isLoading, setIsloading] = useState(false);
     const [doctors, setDoctors] = useState([]);
 
-    useFocusEffect(
-        React.useCallback(() => {
-          setIsloading(checkList());
-        }, [])
-      );
+    useEffect(() => {
+        setIsloading(checkList());
+    }, [listHeart])
 
-    useEffect(() =>{
-        getListDoctor();
-    },[])
 
-    const getListDoctor = () => {
-        AsyncStorage.getItem("id").then(id => {
-            getListDoctorService(id, "CONFIRMED").then(res => {
-                setDoctors(res);
-            })
-        })
-    }
+    // useEffect(() =>{
+    //     getListDoctor();
+    // },[])
+
+    // const getListDoctor = () => {
+    //     AsyncStorage.getItem("id").then(id => {
+    //         getListDoctorService(id, "CONFIRMED").then(res => {
+    //             setDoctors(res);
+    //         })
+    //     })
+    // }
 
     const reloadListHeartBeat = () => {
         getAllListHeart();
@@ -118,7 +117,7 @@ const ListHeartComponent = (props) =>{
             heartBeat = {item.heartBeat}
             title = {convertTitle(item.systole, item.diastole)}
             status = {statusHA(item.diastole, item.systole)}
-            doctors = {doctors}
+          //  doctors = {doctors}
             diastole = {item.diastole}
             systole = {item.systole}
             id = {item.id}
@@ -167,20 +166,13 @@ const ListHeartComponent = (props) =>{
            {isLoading ? ( <FlatList
             data = {listHeart}
             renderItem = {renderDate}
+            keyExtractor = {item => item.id}
             >
 
             </FlatList>): null}
 
             {!isLoading ? ( <Image source = {require('../../../../../assets/imgs/not-found-heart.gif')} style = {{height: '100%', width: '100%'}}/>): null}
             </View>
-            {/* <AddFitlerComponent
-                    visible = {filter}
-                    onCancel = {cancelOpenCalendar}
-                    setDateFilter = {callbackFunction}
-                    onPress = {getFilter}
-                    onCancelFilter  ={onCancelFitler}
-                    
-            /> */}
             <FillterCalandar
                  visible = {filter}
                  onCancel = {cancelOpenCalendar}
@@ -231,4 +223,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ListHeartComponent;
+export default React.memo(ListHeartComponent);

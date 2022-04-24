@@ -1,117 +1,174 @@
-import React, {
-    useState,
-    useEffect,
-    useLayoutEffect,
-    useCallback
-  } from 'react';
-  import { TouchableOpacity, Text } from 'react-native';
-  import { GiftedChat } from 'react-native-gifted-chat';
-  import {
-    collection,
-    addDoc,
-    orderBy,
-    query,
-    onSnapshot
-  } from '@react-native-firebase/firestore';
-  import { signOut } from '@react-native-firebase/app';
-//  import {auth, database} from '../../config/firebase';
-  import { useNavigation } from '@react-navigation/native';
-  import { AntDesign } from '@ant-design/icons';
-  import getAuth from '@react-native-firebase/auth';
-  import  firebase  from '@react-native-firebase/app';
-  import getFirestore from '@react-native-firebase/firestore';
-  const firebaseConfig = {
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOMAIN,
-    projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET,
-    messagingSenderId: process.env.MESSAGING_SENDER_ID,
-    appId: process.env.APP_ID,
-  //databaseURL: Constants.manifest.extra.databaseURL
-};
+import React, {useState, useEffect, useRef} from 'react';
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  FlatList,
+  TextInput,
+  StyleSheet,
+  Dimensions,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback
+} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+  orderBy,
+  addDoc,
+} from 'firebase/firestore';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import {db, firestore} from '../../config/firebase';
+import SenderMessage from './components/SenderMessage';
+import ReceiverMessage from './components/ReceiverMessage';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+const ChatScreen = () => {
+  const [messages, setMessages] = useState([]);
+  const [userId, setUserId] = useState('');
+  const [messageSend, setMessageSend] = useState('');
+  const receiverId = '099f459d-561c-400c-8f99-271e9465efe4';
+  // const messageCollection = firestore().collection('message');
+  useEffect(() => {
+    AsyncStorage.getItem('id').then(id => {
+      setUserId(id.toString());
+      console.log('userId', id);
+    });
+    //setUserId(AsyncStorage.getItem("id"));
+  }, []);
 
-  export default function Chat() {
-    firebase.initializeApp(firebaseConfig);
-    const auth = getAuth();
-    const database = getFirestore();
-    
-    const [messages, setMessages] = useState([]);
-    const navigation = useNavigation();
+  useEffect(() => {
+    onSnapshot(
+      query(
+        collection(db, 'message'),
+        where('users', 'array-contains-any', [receiverId, userId]),
+        // orderBy('createdAt', 'asc'),
+      ),
+      snapshot => {
+        setMessages(
+          snapshot?.docs
+            .map(mess => mess.data())
+            .sort(function (x, y) {
+              return x.createdAt - y.createdAt;
+            }),
+        );
+      },
+    );
+  }, [db]);
 
-  const onSignOut = () => {
-      signOut(auth).catch(error => console.log('Error logging out: ', error));
+  const messList = React.useRef(FlatList);
+
+
+  React.useLayoutEffect(() => {
+    const timeout = setTimeout(() => {
+      if (messList.current && messages && messages.length > 0) {
+        messList.current.scrollToEnd({ animated: true });
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeout);
     };
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-          headerRight: () => (
-            <TouchableOpacity
-              style={{
-                marginRight: 10
-              }}
-              onPress={onSignOut}
-            >
-              <AntDesign name="logout" size={24} color="#222222" style={{marginRight: 10}}/>
-            </TouchableOpacity>
-          )
-        });
-      }, [navigation]);
+   }, [messages]);
 
-    useLayoutEffect(() => {
 
-        const collectionRef = collection(database, 'chats');
-        const q = query(collectionRef, orderBy('createdAt', 'desc'));
-
-    const unsubscribe = onSnapshot(q, querySnapshot => {
-        console.log('querySnapshot unsusbscribe');
-          setMessages(
-            querySnapshot.docs.map(doc => ({
-              _id: doc.data()._id,
-              createdAt: doc.data().createdAt.toDate(),
-              text: doc.data().text,
-              user: doc.data().user
-            }))
-          );
-        });
-    return unsubscribe;
-      }, []);
-
-    const onSend = useCallback((messages = []) => {
-        setMessages(previousMessages =>
-          GiftedChat.append(previousMessages, messages)
-        );
-        // setMessages([...messages, ...messages]);
-        const { _id, createdAt, text, user } = messages[0];    
-        addDoc(collection(database, 'chats'), {
-          _id,
-          createdAt,
-          text,
-          user
-        });
-      }, []);
-
-      return (
-        // <>
-        //   {messages.map(message => (
-        //     <Text key={message._id}>{message.text}</Text>
-        //   ))}
-        // </>
-        <GiftedChat
-          messages={messages}
-          showAvatarForEveryMessage={false}
-          showUserAvatar={false}
-          onSend={messages => onSend(messages)}
-          messagesContainerStyle={{
-            backgroundColor: '#fff'
-          }}
-          textInputStyle={{
-            backgroundColor: '#fff',
-            borderRadius: 20,
-          }}
-          user={{
-            _id: auth?.currentUser?.email,
-            avatar: 'https://i.pravatar.cc/300'
+  const sendMessage = () => {
+      setMessageSend('');
+    addDoc(collection(db, 'message'), {
+      senderId: userId,
+      receiverId: receiverId,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      users: [userId, receiverId],
+      message: messageSend,
+    });
+    messList.current.scrollToEnd({ animating: true });
+  
+  };
+  return (
+    <View style={styles.screen}>
+        <KeyboardAvoidingView
+        // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={10}
+        >
+      <TouchableWithoutFeedback  style={styles.chatContainer}>
+      
+        <FlatList
+        style = {{height: windowHeight*0.8}}
+          ref = {messList}
+          showsVerticalScrollIndicator={false}
+          onLayout={() => messList.current.scrollToEnd({ animated: true })}
+          data={messages}
+          ListFooterComponent = {() => (
+            <View style = {{height: 50}}></View>
+          )}
+          ListFooterComponentStyle = {{height: 50}}
+          //onLayout={() => flatListRef.current.scrollToEnd({ animated: true })}
+          //keyExtractor={item => }
+          renderItem={({item}) =>
+            item.senderId === userId ? (
+              <SenderMessage message={item.message} />
+            ) : (
+              <ReceiverMessage message={item.message} />
+            )
+          }></FlatList>
+          {/* <View style = {styles.blankView}></View> */}
+      </TouchableWithoutFeedback>
+      <View style={styles.inputSendContainer}>
+        <TextInput
+          style={styles.txtInputSend}
+          placeholder={'gửi tin nhắn nha'}
+          value={messageSend}
+          onChangeText={text => {
+            setMessageSend(text);
           }}
         />
-      );
-}
+        <AntDesign
+          name="right"
+          size={24}
+          onPress={() => {
+            sendMessage();
+          }}
+        />
+       
+      </View>
+      </KeyboardAvoidingView>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  blankView: {
+    height : windowHeight*0.1
+  },
+  chatContainer: {
+    // flex: 1,
+    height: windowHeight*0.9,
+    // backgroundColor: 'red'
+  },
+
+  screen: {
+    height: windowHeight,
+    backgroundColor: '#F2F2F2',
+    
+  },
+  txtInputSend: {
+    flex: 1,
+  
+  },
+  inputSendContainer: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    alignItems: 'center',
+    height: windowHeight*0.1
+  },
+});
+
+export default ChatScreen;

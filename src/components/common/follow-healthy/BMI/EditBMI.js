@@ -240,4 +240,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditBMI;
+export default React.memo(EditBMI);

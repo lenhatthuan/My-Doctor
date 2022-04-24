@@ -7,17 +7,26 @@ import {
   Pressable,
   Image,
   Text,
-  AsyncStorage,
   Alert,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FlatList } from "react-native-gesture-handler";
-import { getListDoctorService } from "../../store/actions/doctor";
+import { getDoctor, getListDoctorService } from "../../store/actions/doctor";
 import { CheckBox, SearchBar, Input, Icon } from "react-native-elements";
 import { Avatar } from "react-native-elements";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import COLORS from "../../assets/colors";
 import { createMessage } from "../../store/actions/message";
-
+import {db} from "../../config/firebase";
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+  orderBy,
+  addDoc,
+} from 'firebase/firestore';
+import { getAllByPatientId } from "../../store/actions/doctor-registration";
 const AlertDoctorSend = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [isLoading, setIsloading] = useState(false);
@@ -27,15 +36,55 @@ const AlertDoctorSend = (props) => {
   const [listCheck, setListCheck] = useState([]);
   const [message, setMessage] = useState("");
   const [txtBtnSend, setTxtBtnSend] = useState("Gửi");
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
     setModalVisible(props.visible);
   });
 
   useEffect(() => {
-    //  setDoctors(props.doctors);
-    getListDoctor();
+    AsyncStorage.getItem('id').then(id => {
+      setUserId(id.toString());
+      console.log('userId', id);
+    });
+    //setUserId(AsyncStorage.getItem("id"));
   }, []);
+
+  useEffect(() => {
+    setIsloading(true);
+    setDoctors([]);
+    setListSearchDoctor([]);
+    AsyncStorage.getItem("id").then((id) => {
+      getAllByPatientId(id).then(res => {
+        if (res) {
+          let doctorTemp = doctors;
+            res.forEach(res => {
+             if(res.status == "CONFIRMED"){
+              getDoctor(res.doctorId).then(res => {
+                doctorTemp.push(res);
+                setDoctors(doctorTemp);
+                setListSearchDoctor(doctorTemp);
+                setIsloading(false);
+              })
+             }
+            });
+        }
+      })})
+  }, []);
+
+  const receiverId = '099f459d-561c-400c-8f99-271e9465efe4';
+
+  const sendMessage = (content) => {
+    addDoc(collection(db, 'message'), {
+      senderId: userId,
+      receiverId: receiverId,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      users: [userId, receiverId],
+      message: content,
+    });
+  
+  };
 
   const sendToDoctor = () => {
     if (listCheck.length == 0) {
@@ -43,20 +92,20 @@ const AlertDoctorSend = (props) => {
     } else {
       AsyncStorage.getItem("id").then((id) => {
         setTxtBtnSend("Đang gửi ......");
-        let content = "Tin nhắn: " + message + props.content;
+        let content = "Tin nhắn: " + message + " " + props.content;
+        setMessage(content);
         listCheck.forEach((doctorId) => {
           let messages = {
             senderId: id,
             recieverId: doctorId,
             content: content,
           };
-
+          sendMessage(content);
           createMessage(messages).then((res) => {
             setTxtBtnSend("Gửi");
             setModalVisible(false);
             cancelGoalHandler();
             props.onSend();
-            Alert.alert("Thông báo", "Đã gửi thông tin đến bác sĩ!");
           });
         });
       });
@@ -78,15 +127,6 @@ const AlertDoctorSend = (props) => {
     } else {
       setListCheck(ids);
     }
-  };
-
-  const getListDoctor = () => {
-    AsyncStorage.getItem("id").then((id) => {
-      getListDoctorService(id, "CONFIRMED").then((res) => {
-        setDoctors(res);
-        setListSearchDoctor(res);
-      });
-    });
   };
 
   const onHandlePress = () => {
@@ -168,7 +208,6 @@ const AlertDoctorSend = (props) => {
       visible={props.visible}
       animationType="fade"
       onRequestClose={() => {
-        Alert.alert("Bạn có chắc thoát.");
         setModalVisible(!modalVisible);
       }}
     >
@@ -248,7 +287,19 @@ const AlertDoctorSend = (props) => {
             />
           </View>
 
-          {listSearchDoctor.length == 0 ? (
+          {isLoading?<View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: "#aaa" }}>
+                Đang lấy dữ liệu
+              </Text>
+            </View>:null}
+
+          {/* {listSearchDoctor.length == 0 ? (
             <View
               style={{
                 flex: 1,
@@ -260,13 +311,14 @@ const AlertDoctorSend = (props) => {
                 Hiện bạn chưa đăng ký bác sĩ nào.
               </Text>
             </View>
-          ) : (
+            ) : (*/}
             <FlatList
               data={listSearchDoctor}
               renderItem={renderDoctor}
               style={{ width: "100%" }}
+              keyExtractor = {item => item.id}
             />
-          )}
+          {/* // )} */}
           <View
             style={{
               width: "100%",

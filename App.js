@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
 import React from 'react';
 //import type {Node} from 'react';
@@ -52,46 +45,6 @@ const Section = ({children, title}) => {
     </View>
   );
 };
-
-// const App: () => Node = () => {
-// const App = () => {
-//   const isDarkMode = useColorScheme() === 'dark';
-
-//   const backgroundStyle = {
-//     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-//   };
-
-//   return (
-//     <SafeAreaView style={backgroundStyle}>
-//       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-//       <ScrollView
-//         contentInsetAdjustmentBehavior="automatic"
-//         style={backgroundStyle}>
-//         <Header />
-//         <View
-//           style={{
-//             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-//           }}>
-//           <Section title="Step One">
-//             Edit <Text style={styles.highlight}>App.js</Text> to change this
-//             screen and then come back to see your edits.
-//           </Section>
-//           <Section title="See Your Changes">
-//             <ReloadInstructions />
-//           </Section>
-//           <Section title="Debug">
-//             <DebugInstructions />
-//           </Section>
-//           <Section title="Learn More">
-//             Read the docs to discover what to do next:
-//           </Section>
-//           <LearnMoreLinks />
-//         </View>
-//       </ScrollView>
-//     </SafeAreaView>
-//   );
-// };
-
 const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
@@ -128,6 +81,7 @@ import Dashboard from './src/naviagation/Dashboard';
 import Diagnose from './src/screens/diagnose/Diagnose';
 import { LogBox } from 'react-native';
 import { isLogin } from './src/store/actions/account';
+import ChatScreen from './src/screens/contact/ChatScreen';
 const App = () => {
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
@@ -136,7 +90,7 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
       {/* <Stack.Screen name="Diagnose" component={Diagnose} /> */}
-      {!isLogin? (
+      {isLogin? (
         <>
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="SignIn" component={SignIn} />
@@ -154,6 +108,12 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
           }}
         />
         <Stack.Screen name="Dashboard" component={Dashboard} />
+        
+<Stack.Screen
+            name="ChatScreen"
+            options={{headerShown: false}}
+            component={ChatScreen}
+        />
         </>
       ): (
         <>
@@ -173,6 +133,12 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
             headerShown: true,
             headerTintColor: 'white',
           }}
+        />
+        
+        <Stack.Screen
+            name="ChatScreen"
+            options={{headerShown: false}}
+            component={ChatScreen}
         />
         </>
       )}

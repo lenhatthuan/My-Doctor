@@ -1,3 +1,4 @@
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { environment } from "../../../environment/enviroment";
 
@@ -51,13 +52,11 @@ const saveDataToStorage = (token, accountId, expirationDate, username) => {
 };
 
 
-export const isLogin = () => {
-  const accountData = AsyncStorage.getItem("accountData");
-  if (!accountData) {
-    return null;
-  } else {
-    return accountData;
-  }
+export const isLogin = async() => {
+  let account = await AsyncStorage.getItem("accountData");
+  if(account) return false;
+  return true;
+ 
 };
 
 export const isAccount = async (phone) => {

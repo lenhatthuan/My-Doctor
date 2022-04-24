@@ -190,7 +190,7 @@ class Home extends Component {
           <TouchableOpacity
             style={styles.bgBtnPayment}
             onPress={() => {
-              // props.navigation.navigate("OnlinePayment");
+              this.props.navigation.navigate("ChatScreen");
             }}
           >
             <Image
