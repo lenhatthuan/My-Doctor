@@ -1,10 +1,10 @@
 const profile = {
-  fullname: {
+  fullName: {
     title: 'Họ và tên',
     icon: 'person',
     color: 'blue',
   },
-  birthdate: {
+  birthDate: {
     title: 'Ngày sinh',
     icon: 'today',
     color: 'gold',

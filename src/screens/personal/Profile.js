@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {
   View,
   SafeAreaView,
@@ -10,10 +10,13 @@ import {
 import {Avatar, Icon} from 'react-native-elements';
 import {styles} from '../../theme/basic';
 import profile from '../../config/profile';
-// import {formatDate} from '../../utils/string-format';
+import {formatDate} from '../../utils/string-format';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useFocusEffect} from '@react-navigation/native';
 
 const Profile = props => {
   const anim = useRef(new Animated.Value(0)).current;
+  const [account, setAccount] = useState({});
   useEffect(() => {
     Animated.timing(anim, {
       toValue: 1,
@@ -22,13 +25,13 @@ const Profile = props => {
     }).start();
   }, []);
 
-  const account = {
-    avatar: null,
-    fullname: 'Lê Nhật Thu An',
-    birthdate: '2000-02-11',
-    address: 'Ninh Thuận',
-    gender: 'nữ',
-  };
+  useFocusEffect(
+    useCallback(() => {
+      AsyncStorage.getItem('patientData').then(res => {
+        setAccount(JSON.parse(res));
+      });
+    }, []),
+  );
 
   const info = () => {
     let view = [];
@@ -43,7 +46,7 @@ const Profile = props => {
           />
           <Text style={{flex: 3}}>{profile[key].title}</Text>
           <Text style={{flex: 5}}>
-            {key !== 'birthdate' ? account[key] : 'format'}
+            {key !== 'birthDate' ? account[key] : formatDate(account[key])}
           </Text>
         </View>,
       );
@@ -89,9 +92,9 @@ const Profile = props => {
             onPress={() =>
               props.navigation.navigate('UpdateProfile', {
                 avatar: account.avatar,
-                fullname: account.fullname,
+                fullname: account.fullName,
                 address: account.address,
-                birthdate: account.birthdate,
+                birthdate: account.birthDate,
                 gender: account.gender,
               })
             }>

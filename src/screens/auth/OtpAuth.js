@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import OTPInputView from 'react-native-otp-input';
 import auth from '@react-native-firebase/auth';
-
+import {signup, forgotpass} from '../../store/actions/account';
 import {styles} from '../../theme/basic';
 import Loading from '../../components/common/Loading';
 import Message from '../../components/common/Message';
@@ -32,12 +32,21 @@ const OtpAuth = props => {
     setIsLoading(true);
     try {
       await state.confirm(otp);
-
+      switch (params.action) {
+        case 'signup':
+          signup(params.data);
+          break;
+        case 'forgotPass':
+          forgotpass(params.data);
+          break;
+        default:
+          break;
+      }
       setType(message.success);
       setContent('Xác thực thành công');
     } catch (error) {
       setType(message.error);
-      setContent(error);
+      setContent('Xác thực không thành công');
     } finally {
       setIsLoading(false);
       setVisible(true);

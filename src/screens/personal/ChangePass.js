@@ -14,6 +14,8 @@ import {styles} from '../../theme/basic';
 import Loading from '../../components/common/Loading';
 import Message from '../../components/common/Message';
 import message from '../../config/message';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {changePass} from '../../store/actions/account';
 
 const ChangePass = props => {
   const anim = useRef(new Animated.Value(0)).current;
@@ -66,32 +68,25 @@ const ChangePass = props => {
   const showMessage = () => {
     if (newPass === confirmPass && code === captcha) {
       setIsLoading(true);
-      //   AsyncStorage.getItem('accountData').then(res => {
-      //     const account = JSON.parse(res);
-      //     changePass(account.accountId, account.username, oldPass, newPass)
-      //       .then(result => {
-      //         setIsLoading(false);
-      //         Alert.alert('Thông báo', 'Đổi mật khẩu thành công', [
-      //           {
-      //             text: 'OK',
-      //             onPress: () => props.navigation.goBack(),
-      //           },
-      //         ]);
-      //       })
-      //       .catch(err => {
-      //         setIsLoading(false);
-      //         Alert.alert('Thông báo', 'Mật khẩu không đúng');
-      //         clear();
-      //       });
-      //   });
-      // } else {
-      //   Alert.alert('Thông báo', 'Mật khẩu mới hoặc mã xác nhận không đúng');
-      //   clear();
+      AsyncStorage.getItem('accountData').then(res => {
+        const account = JSON.parse(res);
+        changePass(account.accountId, account.username, oldPass, newPass)
+          .then(result => {
+            setType(message.success);
+            setContent('Đổi mật khẩu thành công');
+          })
+          .catch(err => {
+            setType(message.error);
+            setContent('Đổi mật khẩu không thành công');
+            clear();
+          });
+      });
+      setIsLoading(false);
     } else {
-      setVisible(true);
       setType(message.warning);
       setContent('Mật khẩu hoặc mã xác nhận không trùng khớp');
     }
+    setVisible(true);
   };
 
   const clear = () => {

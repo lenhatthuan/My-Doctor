@@ -1,19 +1,25 @@
 import React, {useState} from 'react';
 import Form from '../../components/auth/Form';
 import message from '../../config/message';
+import {isAccount} from '../../store/actions/account';
 
 const ForgotPass = props => {
   const [visible, setVisible] = useState(false);
   const [content, setContent] = useState('');
   const [type, setType] = useState(message.infomation);
+  const [data, setData] = useState();
 
-  const forgotPass = data => {
+  const forgotPass = async data => {
     try {
-      setType(message.success);
-      setContent('Mã xác thực sẽ được gửi đến số điện thoại này');
-
-      setType(message.warning);
-      setContent('Số điện thoại chưa được đăng ký');
+      const result = await isAccount(data.phone);
+      if (result !== 0) {
+        setType(message.success);
+        setContent('Mã xác thực sẽ được gửi đến số điện thoại này');
+        setData(data);
+      } else {
+        setType(message.warning);
+        setContent('Số điện thoại chưa được đăng ký');
+      }
     } catch (error) {
       setType(message.error);
       setContent(error);
@@ -27,15 +33,14 @@ const ForgotPass = props => {
       submit={forgotPass}
       visible={visible}
       navigation={props.navigation}
-
       content={content}
       type={type}
       press={() => {
         setVisible(false);
         if (type === message.success)
           props.navigation.push('OtpAuth', {
-            data: forgotPass.arguments,
-            action: "forgotPass",
+            data: data,
+            action: 'forgotPass',
           });
       }}
     />

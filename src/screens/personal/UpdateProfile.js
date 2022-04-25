@@ -9,12 +9,13 @@ import {
 } from 'react-native';
 import {Avatar, Icon, Overlay} from 'react-native-elements';
 import {styles} from '../../theme/basic';
-// import {formatDate} from '../../util/string-format';
+import {formatDate} from '../../utils/string-format';
 import Loading from '../../components/common/Loading';
-// import {getPatientById, updateProfile} from '../../store/actions/patient';
+import {getPatientById, updateProfile} from '../../store/actions/patient';
 import {Calendar} from 'react-native-calendars';
 import {launchImageLibrary} from 'react-native-image-picker';
 import message from '../../config/message';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const UpdateProfile = props => {
   const [avatar, setAvatar] = useState(props.route.params.avatar);
@@ -43,20 +44,22 @@ const UpdateProfile = props => {
   };
 
   const save = () => {
-    // AsyncStorage.getItem('accountData').then(res => {
-    //   const id = JSON.parse(res).accountId;
-    //   setIsLoading(true);
-    //   updateProfile(id, avatar, fullname, birthdate, gender, address)
-    //     .then(result => {
-    //       getPatientById(id)
-    //         .then(() => props.navigation.goBack())
-    //         .catch(err => console.error(err));
-    //     })
-    //     .catch(err => {
-    //       setIsLoading(false);
-    //       Alert.alert('Cập nhật thông tin cá nhân không thành công');
-    //     });
-    // });
+    AsyncStorage.getItem('accountData').then(res => {
+      const id = JSON.parse(res).accountId;
+      setIsLoading(true);
+      updateProfile(id, avatar, fullname, birthdate, gender, address)
+        .then(result => {
+          getPatientById(id)
+            .then(() => props.navigation.goBack())
+            .catch(err => console.error(err));
+        })
+        .catch(err => {
+          setIsLoading(false);
+          setType(message.error);
+          setContent('Cập nhật thông tin cá nhân không thành công');
+          setVisible(true);
+        });
+    });
   };
   return (
     <View style={styles.container}>
@@ -141,7 +144,7 @@ const UpdateProfile = props => {
             onPress={() => setIsCalendar(true)}
           />
           <TextInput
-            value={birthdate ? birthdate : null}
+            value={birthdate ? formatDate(birthdate) : null}
             placeholder="dd/MM/yyyy"
             placeholderTextColor="#666666"
             style={styles.textInput}
