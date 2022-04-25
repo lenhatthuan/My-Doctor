@@ -1,4 +1,3 @@
-
 import React from 'react';
 //import type {Node} from 'react';
 import {
@@ -79,70 +78,68 @@ import OtpAuth from './src/screens/auth/OtpAuth';
 import Dashboard from './src/naviagation/Dashboard';
 
 import Diagnose from './src/screens/diagnose/Diagnose';
-import { LogBox } from 'react-native';
-import { isLogin } from './src/store/actions/account';
+import {LogBox} from 'react-native';
+import {isLogin} from './src/store/actions/account';
 import ChatScreen from './src/screens/contact/ChatScreen';
 const App = () => {
-
-LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
-LogBox.ignoreAllLogs(); //Ignore all log notifications
+  LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
+  LogBox.ignoreAllLogs(); //Ignore all log notifications
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-      {/* <Stack.Screen name="Diagnose" component={Diagnose} /> */}
-      {isLogin? (
-        <>
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="ForgotPass" component={ForgotPass} />
-        <Stack.Screen
-          name="OtpAuth"
-          component={OtpAuth}
-          options={{
-            title: '',
-            headerStyle: {backgroundColor: '#009387'},
-            headerShadowVisible: false,
-            headerShown: true,
-            headerTintColor: 'white',
-          }}
-        />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
-        
-<Stack.Screen
-            name="ChatScreen"
-            options={{headerShown: false}}
-            component={ChatScreen}
-        />
-        </>
-      ): (
-        <>
-         <Stack.Screen name="WelcomeHome" component={WelcomeHome} />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="ForgotPass" component={ForgotPass} />
-        <Stack.Screen
-          name="OtpAuth"
-          component={OtpAuth}
-          options={{
-            title: '',
-            headerStyle: {backgroundColor: '#009387'},
-            headerShadowVisible: false,
-            headerShown: true,
-            headerTintColor: 'white',
-          }}
-        />
-        
-        <Stack.Screen
-            name="ChatScreen"
-            options={{headerShown: false}}
-            component={ChatScreen}
-        />
-        </>
-      )}
-        
+        {/* <Stack.Screen name="Diagnose" component={Diagnose} /> */}
+        {isLogin ? (
+          <>
+            <Stack.Screen name="Welcome" component={Welcome} />
+            <Stack.Screen name="SignIn" component={SignIn} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+            <Stack.Screen name="ForgotPass" component={ForgotPass} />
+            <Stack.Screen
+              name="OtpAuth"
+              component={OtpAuth}
+              options={{
+                title: '',
+                headerStyle: {backgroundColor: '#009387'},
+                headerShadowVisible: false,
+                headerShown: true,
+                headerTintColor: 'white',
+              }}
+            />
+            <Stack.Screen name="Dashboard" component={Dashboard} />
+
+            <Stack.Screen
+              name="ChatScreen"
+              options={{headerShown: false}}
+              component={ChatScreen}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen name="WelcomeHome" component={WelcomeHome} />
+            <Stack.Screen name="Dashboard" component={Dashboard} />
+            <Stack.Screen name="Welcome" component={Welcome} />
+            <Stack.Screen name="SignIn" component={SignIn} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+            <Stack.Screen name="ForgotPass" component={ForgotPass} />
+            <Stack.Screen
+              name="OtpAuth"
+              component={OtpAuth}
+              options={{
+                title: '',
+                headerStyle: {backgroundColor: '#009387'},
+                headerShadowVisible: false,
+                headerShown: true,
+                headerTintColor: 'white',
+              }}
+            />
+
+            <Stack.Screen
+              name="ChatScreen"
+              options={{headerShown: false}}
+              component={ChatScreen}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
