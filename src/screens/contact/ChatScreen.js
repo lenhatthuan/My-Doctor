@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Dimensions,
   KeyboardAvoidingView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -60,23 +60,20 @@ const ChatScreen = () => {
 
   const messList = React.useRef(FlatList);
 
-
   React.useLayoutEffect(() => {
     const timeout = setTimeout(() => {
       if (messList.current && messages && messages.length > 0) {
-        messList.current.scrollToEnd({ animated: true });
+        messList.current.scrollToEnd({animated: true});
       }
     }, 1000);
 
     return () => {
       clearTimeout(timeout);
     };
-
-   }, [messages]);
-
+  }, [messages]);
 
   const sendMessage = () => {
-      setMessageSend('');
+    setMessageSend('');
     addDoc(collection(db, 'message'), {
       senderId: userId,
       receiverId: receiverId,
@@ -85,56 +82,50 @@ const ChatScreen = () => {
       users: [userId, receiverId],
       message: messageSend,
     });
-    messList.current.scrollToEnd({ animating: true });
-  
+    messList.current.scrollToEnd({animating: true});
   };
   return (
     <View style={styles.screen}>
-        <KeyboardAvoidingView
+      <KeyboardAvoidingView
         // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={10}
-        >
-      <TouchableWithoutFeedback  style={styles.chatContainer}>
-      
-        <FlatList
-        style = {{height: windowHeight*0.8}}
-          ref = {messList}
-          showsVerticalScrollIndicator={false}
-          onLayout={() => messList.current.scrollToEnd({ animated: true })}
-          data={messages}
-          ListFooterComponent = {() => (
-            <View style = {{height: 50}}></View>
-          )}
-          ListFooterComponentStyle = {{height: 50}}
-          //onLayout={() => flatListRef.current.scrollToEnd({ animated: true })}
-          //keyExtractor={item => }
-          renderItem={({item}) =>
-            item.senderId === userId ? (
-              <SenderMessage message={item.message} />
-            ) : (
-              <ReceiverMessage message={item.message} />
-            )
-          }></FlatList>
+        keyboardVerticalOffset={10}>
+        <TouchableWithoutFeedback style={styles.chatContainer}>
+          <FlatList
+            style={{height: windowHeight * 0.8}}
+            ref={messList}
+            showsVerticalScrollIndicator={false}
+            onLayout={() => messList.current.scrollToEnd({animated: true})}
+            data={messages}
+            ListFooterComponent={() => <View style={{height: 50}}></View>}
+            ListFooterComponentStyle={{height: 50}}
+            //onLayout={() => flatListRef.current.scrollToEnd({ animated: true })}
+            //keyExtractor={item => }
+            renderItem={({item}) =>
+              item.senderId === userId ? (
+                <SenderMessage message={item.message} />
+              ) : (
+                <ReceiverMessage message={item.message} />
+              )
+            }></FlatList>
           {/* <View style = {styles.blankView}></View> */}
-      </TouchableWithoutFeedback>
-      <View style={styles.inputSendContainer}>
-        <TextInput
-          style={styles.txtInputSend}
-          placeholder={'gửi tin nhắn nha'}
-          value={messageSend}
-          onChangeText={text => {
-            setMessageSend(text);
-          }}
-        />
-        <AntDesign
-          name="right"
-          size={24}
-          onPress={() => {
-            sendMessage();
-          }}
-        />
-       
-      </View>
+        </TouchableWithoutFeedback>
+        <View style={styles.inputSendContainer}>
+          <TextInput
+            style={styles.txtInputSend}
+            placeholder={'gửi tin nhắn nha'}
+            value={messageSend}
+            onChangeText={text => {
+              setMessageSend(text);
+            }}
+          />
+          <AntDesign
+            name="right"
+            size={24}
+            onPress={() => {
+              sendMessage();
+            }}
+          />
+        </View>
       </KeyboardAvoidingView>
     </View>
   );
@@ -142,22 +133,20 @@ const ChatScreen = () => {
 
 const styles = StyleSheet.create({
   blankView: {
-    height : windowHeight*0.1
+    height: windowHeight * 0.1,
   },
   chatContainer: {
     // flex: 1,
-    height: windowHeight*0.9,
+    height: windowHeight * 0.9,
     // backgroundColor: 'red'
   },
 
   screen: {
     height: windowHeight,
     backgroundColor: '#F2F2F2',
-    
   },
   txtInputSend: {
     flex: 1,
-  
   },
   inputSendContainer: {
     flexDirection: 'row',
@@ -167,7 +156,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     alignItems: 'center',
-    height: windowHeight*0.1
+    height: windowHeight * 0.1,
   },
 });
 
