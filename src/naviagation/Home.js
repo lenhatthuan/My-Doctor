@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 import HomeScreen from '../screens/home/Home';
-import Service from '../screens/service/MainServiceScreen';
+import ServiceTap from './DoctorContact/service';
 import Position from '../screens/position/PositionScreen';
 import Record from '../screens/record/Record';
 import Prescription from '../screens/record/Prescription';
@@ -25,7 +25,7 @@ const Home = () => (
     <Stack.Screen
       name="Service"
       options={{headerShown: false}}
-      component={Service}
+      component={ServiceTap}
     />
 
     <Stack.Screen

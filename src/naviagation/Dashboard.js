@@ -4,7 +4,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 const Tab = createBottomTabNavigator();
 
 import Personal from './Personal';
-import FollowHealthy from './FollowHealthy';
 import VNPay from '../screens/payment/VNPay';
 import Home from './Home';
 import DoctorBooking from './DoctorBooking';
@@ -26,7 +25,7 @@ const Dashboard = () => (
       }}
     />
 
-      <Tab.Screen
+    <Tab.Screen
       name="DoctorBooking"
       component={DoctorBooking}
       options={{
@@ -52,7 +51,9 @@ const Dashboard = () => (
       component={MainDepartmentScreen}
       options={{
         title: 'Khám bệnh',
-        tabBarIcon: ({color}) => <Icon type="font-awesome" name="bookmark-o" color={color} />,
+        tabBarIcon: ({color}) => (
+          <Icon type="font-awesome" name="bookmark-o" color={color} />
+        ),
       }}
     />
     <Tab.Screen

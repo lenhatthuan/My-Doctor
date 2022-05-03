@@ -9,6 +9,7 @@ import {
   Dimensions,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
+  Platform,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -19,24 +20,24 @@ import {
   orderBy,
   addDoc,
 } from 'firebase/firestore';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {db, firestore} from '../../config/firebase';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {db} from '../../config/firebase';
 import SenderMessage from './components/SenderMessage';
 import ReceiverMessage from './components/ReceiverMessage';
+import HeaderChat from './components/HeaderChat';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const ChatScreen = () => {
+const ChatScreen = props => {
   const [messages, setMessages] = useState([]);
   const [userId, setUserId] = useState('');
   const [messageSend, setMessageSend] = useState('');
-  const receiverId = '099f459d-561c-400c-8f99-271e9465efe4';
-  // const messageCollection = firestore().collection('message');
+  const receiverId = props.route.params.doctor.id;
+  const name = props.route.params.doctor.fullname;
+  const imageUrl = props.route.params.doctor.avatar;
   useEffect(() => {
     AsyncStorage.getItem('id').then(id => {
       setUserId(id.toString());
-      console.log('userId', id);
     });
-    //setUserId(AsyncStorage.getItem("id"));
   }, []);
 
   useEffect(() => {
@@ -44,7 +45,6 @@ const ChatScreen = () => {
       query(
         collection(db, 'message'),
         where('users', 'array-contains-any', [receiverId, userId]),
-        // orderBy('createdAt', 'asc'),
       ),
       snapshot => {
         setMessages(
@@ -86,9 +86,16 @@ const ChatScreen = () => {
   };
   return (
     <View style={styles.screen}>
+      <HeaderChat
+        onPress={() => {
+          props.navigation.goBack();
+        }}
+        name={name}
+        imageUrl={imageUrl}
+      />
       <KeyboardAvoidingView
-        // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={10}>
+        style={styles.screen}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <TouchableWithoutFeedback style={styles.chatContainer}>
           <FlatList
             style={{height: windowHeight * 0.8}}
@@ -96,18 +103,22 @@ const ChatScreen = () => {
             showsVerticalScrollIndicator={false}
             onLayout={() => messList.current.scrollToEnd({animated: true})}
             data={messages}
-            ListFooterComponent={() => <View style={{height: 50}}></View>}
-            ListFooterComponentStyle={{height: 50}}
-            //onLayout={() => flatListRef.current.scrollToEnd({ animated: true })}
-            //keyExtractor={item => }
-            renderItem={({item}) =>
-              item.senderId === userId ? (
-                <SenderMessage message={item.message} />
+            ListFooterComponent={() => <View style={styles.blankView}></View>}
+            ListFooterComponentStyle={styles.blankView}
+            renderItem={({item}) => {
+              console.log('item chat 110, ', item);
+              return item.senderId === userId ? (
+                <SenderMessage
+                  message={item.message}
+                  // createdAt={item.createdAt}
+                />
               ) : (
-                <ReceiverMessage message={item.message} />
-              )
-            }></FlatList>
-          {/* <View style = {styles.blankView}></View> */}
+                <ReceiverMessage
+                  message={item.message}
+                  // createdAt={item.createdAt}
+                />
+              );
+            }}></FlatList>
         </TouchableWithoutFeedback>
         <View style={styles.inputSendContainer}>
           <TextInput
@@ -118,11 +129,12 @@ const ChatScreen = () => {
               setMessageSend(text);
             }}
           />
-          <AntDesign
-            name="right"
+          <FontAwesome
+            name="send-o"
+            color={'#C0FFB3'}
             size={24}
             onPress={() => {
-              sendMessage();
+              messageSend !== '' ? sendMessage() : null;
             }}
           />
         </View>
@@ -142,11 +154,16 @@ const styles = StyleSheet.create({
   },
 
   screen: {
-    height: windowHeight,
-    backgroundColor: '#F2F2F2',
+    flex: 1,
+    backgroundColor: 'white',
   },
   txtInputSend: {
     flex: 1,
+    borderRadius: 20,
+    backgroundColor: '#C0FFB3',
+    paddingLeft: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
   inputSendContainer: {
     flexDirection: 'row',
@@ -156,7 +173,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     alignItems: 'center',
-    height: windowHeight * 0.1,
+    // height: windowHeight * 0.1,
   },
 });
 

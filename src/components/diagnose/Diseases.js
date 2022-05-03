@@ -2,21 +2,20 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import diseases from '../../config/diseases';
 const Diseases = ({name, percent}) => {
-
-  const convertToVN = (name) => {
-    console.log(name)
+  const convertToVN = name => {
+    console.log(name);
     let newName = diseases.find(o => o.text == name);
     return newName?.laytext;
-  }
+  };
 
   return (
-    <View style = {styles.body}>
-      <Text style = {styles.txtName}>{convertToVN(name)}</Text>
+    <View style={styles.body}>
+      <Text style={styles.txtName}>{convertToVN(name)}</Text>
       <View style={{width: '100%', backgroundColor: 'whitesmoke', height: 10}}>
         <View style={{width: percent, backgroundColor: 'blue', height: 10}} />
       </View>
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({

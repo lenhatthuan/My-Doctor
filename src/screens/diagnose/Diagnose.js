@@ -111,7 +111,6 @@ const Diagnose = props => {
 
   const formatDisease = () => {
     let data = [];
-    console.log('hhhhhhh', diseasesDiagnose);
     diseasesDiagnose.forEach(diseaseDiagnose => {
       for (const key in diseaseDiagnose) {
         const percent = parseFloat(diseaseDiagnose[key]).toFixed(2) * 100;

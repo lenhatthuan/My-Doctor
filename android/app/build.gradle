@@ -190,7 +190,7 @@ android {
 }
 
 dependencies {
-     
+      implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
     implementation 'com.android.support:multidex:1.0.3'
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
     implementation 'com.google.firebase:firebase-auth'

@@ -95,13 +95,13 @@ const DateHistoryHeart = props => {
         onPress={onHandleSnackbar}
         action="OK"
       />
-       <AlertDoctorSend
-      visible={isGetSend}
-      doctors={doctors}
-      onCancel={onCancel}
-      onSend={onSend}
-      content={message}
-    />
+      <AlertDoctorSend
+        visible={isGetSend}
+        doctors={doctors}
+        onCancel={onCancel}
+        onSend={onSend}
+        content={message}
+      />
       <View
         style={{justifyContent: 'flex-end', flexDirection: 'row', margin: 5}}>
         <Pressable

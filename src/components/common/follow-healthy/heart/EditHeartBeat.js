@@ -1,5 +1,5 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React from 'react';
+import {useState, useEffect} from 'react';
 import {
   Modal,
   View,
@@ -8,13 +8,13 @@ import {
   Image,
   Text,
   TextInput,
-} from "react-native";
+} from 'react-native';
 
-const EditHeartBeat = (props) => {
+const EditHeartBeat = props => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [heartBeat, setHeartBeat] = useState(props.HeartBeat.heartBeat + "");
-  const [diastole, setDiastole] = useState(props.HeartBeat.diastole + "");
-  const [systole, setSystole] = useState(props.HeartBeat.systole + "");
+  const [heartBeat, setHeartBeat] = useState(props.HeartBeat.heartBeat + '');
+  const [diastole, setDiastole] = useState(props.HeartBeat.diastole + '');
+  const [systole, setSystole] = useState(props.HeartBeat.systole + '');
 
   useEffect(() => {
     setModalVisible(props.visible);
@@ -38,60 +38,55 @@ const EditHeartBeat = (props) => {
       visible={props.visible}
       animationType="fade"
       onRequestClose={() => {
-        Alert.alert("Bạn có chắc thoát.");
+        Alert.alert('Bạn có chắc thoát.');
         setModalVisible(!modalVisible);
-      }}
-    >
+      }}>
       <View style={styles.view}>
         <Pressable style={styles.errorComponent}>
           <View
             style={{
-              backgroundColor: "white",
+              backgroundColor: 'white',
               height: 450,
-              width: "90%",
+              width: '90%',
               borderRadius: 8,
-              alignItems: "center",
-            }}
-          >
+              alignItems: 'center',
+            }}>
             <Image
-              source={require("../../../../../assets/imgs/edit.gif")}
-              style={{ width: 50, height: 50 }}
+              source={require('../../../../../assets/imgs/edit.gif')}
+              style={{width: 50, height: 50}}
             />
             <View
-              style={{ borderWidth: 1, width: "100%", borderColor: "#04293A" }}
+              style={{borderWidth: 1, width: '100%', borderColor: '#04293A'}}
             />
             <View
               style={{
-                justifyContent: "center",
+                justifyContent: 'center',
                 // alignItems: "center",
                 flex: 1,
-              }}
-            >
+              }}>
               <View
                 style={{
                   flex: 1,
-                  justifyContent: "center",
+                  justifyContent: 'center',
                   //   alignItems: "center",
-                }}
-              >
+                }}>
                 <Text style={styles.txt}>Chỉnh sửa chỉ số nhịp tim</Text>
                 <Text
                   style={{
-                    fontWeight: "bold",
-                    color: "black",
+                    fontWeight: 'bold',
+                    color: 'black',
                     fontSize: 15,
                     paddingLeft: 10,
                     paddingRight: 10,
-                    alignItems: "center",
-                    textAlign: "center",
-                  }}
-                >
+                    alignItems: 'center',
+                    textAlign: 'center',
+                  }}>
                   {props.message}
                 </Text>
                 <Text style={styles.txt}>Tâm thu</Text>
                 <TextInput
                   style={styles.input}
-                  onChangeText={(text) => {
+                  onChangeText={text => {
                     setSystole(text);
                   }}
                   value={systole}
@@ -101,18 +96,18 @@ const EditHeartBeat = (props) => {
                 <Text style={styles.txt}>Tâm trương</Text>
                 <TextInput
                   style={styles.input}
-                  onChangeText={(text) => {
+                  onChangeText={text => {
                     setDiastole(text);
                   }}
                   value={diastole}
                   placeholder={diastole}
                   keyboardType="numeric"
                 />
-              
+
                 <Text style={styles.txt}>Nhịp tim</Text>
                 <TextInput
                   style={styles.input}
-                  onChangeText={(text) => {
+                  onChangeText={text => {
                     setHeartBeat(text);
                   }}
                   value={heartBeat}
@@ -123,26 +118,25 @@ const EditHeartBeat = (props) => {
                   Ngày cập nhập: {props.HeartBeat.updatedAt}
                 </Text>
               </View>
-              <View style={{ justifyContent: "center", flexDirection: "row" }}>
+              <View style={{justifyContent: 'center', flexDirection: 'row'}}>
                 <Pressable
                   style={{
                     marginBottom: 10,
                   }}
                   onPress={() => {
                     onHandlePress();
-                  }}
-                >
+                  }}>
                   <View
                     style={{
                       padding: 10,
                       paddingTop: 5,
                       paddingBottom: 5,
                       borderRadius: 5,
-                      backgroundColor: "#FF5959",
-                      alignItems: "center",
+                      backgroundColor: '#FF5959',
+                      alignItems: 'center',
                       marginLeft: 5,
                       marginRight: 5,
-                      shadowColor: "#000",
+                      shadowColor: '#000',
                       shadowOffset: {
                         width: 0,
                         height: 5,
@@ -151,9 +145,8 @@ const EditHeartBeat = (props) => {
                       shadowRadius: 6.68,
 
                       elevation: 11,
-                    }}
-                  >
-                    <Text style={{ fontWeight: "bold", color: "white" }}>
+                    }}>
+                    <Text style={{fontWeight: 'bold', color: 'white'}}>
                       Hủy
                     </Text>
                   </View>
@@ -164,19 +157,18 @@ const EditHeartBeat = (props) => {
                   }}
                   onPress={() => {
                     onHandleDeletePress();
-                  }}
-                >
+                  }}>
                   <View
                     style={{
                       padding: 10,
                       paddingTop: 5,
                       paddingBottom: 5,
                       borderRadius: 5,
-                      backgroundColor: "#FFAB76",
-                      alignItems: "center",
+                      backgroundColor: '#FFAB76',
+                      alignItems: 'center',
                       marginLeft: 5,
                       marginRight: 5,
-                      shadowColor: "#000",
+                      shadowColor: '#000',
                       shadowOffset: {
                         width: 0,
                         height: 5,
@@ -185,9 +177,8 @@ const EditHeartBeat = (props) => {
                       shadowRadius: 6.68,
 
                       elevation: 11,
-                    }}
-                  >
-                    <Text style={{ fontWeight: "bold", color: "white" }}>
+                    }}>
+                    <Text style={{fontWeight: 'bold', color: 'white'}}>
                       Xóa
                     </Text>
                   </View>
@@ -198,19 +189,18 @@ const EditHeartBeat = (props) => {
                   }}
                   onPress={() => {
                     update();
-                  }}
-                >
+                  }}>
                   <View
                     style={{
                       padding: 10,
                       paddingTop: 5,
                       paddingBottom: 5,
                       borderRadius: 5,
-                      backgroundColor: "#00AF91",
-                      alignItems: "center",
+                      backgroundColor: '#00AF91',
+                      alignItems: 'center',
                       marginLeft: 5,
                       marginRight: 5,
-                      shadowColor: "#000",
+                      shadowColor: '#000',
                       shadowOffset: {
                         width: 0,
                         height: 5,
@@ -219,9 +209,8 @@ const EditHeartBeat = (props) => {
                       shadowRadius: 6.68,
 
                       elevation: 11,
-                    }}
-                  >
-                    <Text style={{ fontWeight: "bold", color: "white" }}>
+                    }}>
+                    <Text style={{fontWeight: 'bold', color: 'white'}}>
                       Chỉnh sửa
                     </Text>
                   </View>
@@ -237,28 +226,28 @@ const EditHeartBeat = (props) => {
 
 const styles = StyleSheet.create({
   errorComponent: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   view: {
     flex: 1,
-    justifyContent: "center",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(52, 52, 52, 0.5)",
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(52, 52, 52, 0.5)',
   },
   input: {
-    borderColor: "black",
+    borderColor: 'black',
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
     borderRadius: 10,
     marginTop: 10,
     width: 200,
-    textAlign: "center",
+    textAlign: 'center',
   },
   txt: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
 

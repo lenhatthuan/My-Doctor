@@ -51,25 +51,28 @@ const DoctorRegistrationComponent = props => {
                 flexDirection: 'row',
               }}>
               <Pressable>
-              <Image
-                source={require('../../../assets/imgs/call.png')}
-                style={{height: 20, width: 20, margin: 10}}
-              />
+                <Image
+                  source={require('../../../assets/imgs/call.png')}
+                  style={{height: 20, width: 20, margin: 10}}
+                />
               </Pressable>
-              <Pressable onPress={() => {
-                  navigateChatWithDoctor("hihi");
-              }}>
-              <Image
-                source={require('../../../assets/imgs/message.png')}
-                style={{height: 20, width: 20, margin: 10}}
-                
-              />
+              <Pressable
+                onPress={() => {
+                  navigateChatWithDoctor('hihi');
+                }}>
+                <Image
+                  source={require('../../../assets/imgs/message.png')}
+                  style={{height: 20, width: 20, margin: 10}}
+                />
               </Pressable>
             </View>
           </View>
         </View>
       ) : (
-        MyFacebookLoader()
+        // <MyFacebookLoader />
+        <View>
+          <Text>hi</Text>
+        </View>
       )}
       {/* </View> */}
     </>

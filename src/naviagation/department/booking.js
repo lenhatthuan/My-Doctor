@@ -1,7 +1,7 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import ScheduleDepartmentScreen from '../../screens/booking/deparment/ScheduleDepartmentScreen';
-import Question from "../../screens/diagnose/Diagnose";
+import Question from '../../screens/diagnose/Diagnose';
 import Department from './department';
 const Tab = createMaterialTopTabNavigator();
 function serviceTap() {
@@ -13,8 +13,7 @@ function serviceTap() {
         tabBarLabelStyle: {fontSize: 11, fontWeight: 'bold'},
         tabBarStyle: {backgroundColor: 'white'},
       }}>
-
-        {/* <Tab.Screen name ="chat" component={}/> */}
+      {/* <Tab.Screen name ="chat" component={}/> */}
       <Tab.Screen
         name="Department"
         component={Department}
@@ -25,7 +24,6 @@ function serviceTap() {
         component={Question}
         options={{tabBarLabel: 'Chuẩn đoán'}}
       />
-      
     </Tab.Navigator>
   );
 }
