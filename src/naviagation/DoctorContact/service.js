@@ -6,57 +6,63 @@ import CancelSeviceScreen from '../../screens/service/CancelServiceScreen';
 import ExpiredSeviceScreen from '../../screens/service/ExpiredServiceScreen';
 import PenddingSeviceScreen from '../../screens/service/PenddingServiceScreen';
 import CreatedSeviceScreen from '../../screens/service/CreatedServiceScreen';
-import DoctorOrder from './DoctorOrder';
-import Created from './ServiceDetail/Created';
-import Comfirmed from './ServiceDetail/Comfirmed';
-import Cancel from './ServiceDetail/Cancel';
-import Expired from './ServiceDetail/Expired';
-import Pendding from './ServiceDetail/Pendding';
 const Tab = createMaterialTopTabNavigator();
 
-function serviceTap() {
+function ServiceTap() {
   return (
     <Tab.Navigator
       initialRouteName="DoctorOrder"
       screenOptions={{
-        tabBarActiveTintColor: '#85C88A',
-        tabBarLabelStyle: {fontSize: 11, fontWeight: 'bold'},
-        tabBarStyle: {backgroundColor: 'white'},
+        tabBarIndicatorContainerStyle: {
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          alignContent: 'center',
+        },
+        tabBarLabelStyle: {
+          fontSize: 14,
+          color: 'black',
+          textTransform: 'none',
+          textAlign: 'center',
+        },
+        tabBarIndicatorStyle: {
+          backgroundColor: 'red',
+          alignContent: 'center',
+        },
       }}>
-
-        {/* <Tab.Screen name ="chat" component={}/> */}
+      {/* <Tab.Screen name ="chat" component={}/> */}
       <Tab.Screen
         name="DoctorOrder"
-        component={DoctorOrder}
+        component={DoctorOrderScreen}
         options={{tabBarLabel: 'Bác sĩ riêng'}}
       />
       <Tab.Screen
         name="Comfirmed"
-        component={Comfirmed}
+        component={ComfirmedSeviceScreen}
         options={{tabBarLabel: 'Dịch vụ'}}
       />
       <Tab.Screen
         name="Pendding"
-        component={Pendding}
+        component={PenddingSeviceScreen}
         options={{tabBarLabel: 'Chờ xác nhận'}}
       />
       <Tab.Screen
         name="Created"
-        component={Created}
+        component={CreatedSeviceScreen}
         options={{tabBarLabel: 'Chờ thanh toán'}}
       />
       <Tab.Screen
         name="Cancel"
-        component={Cancel}
+        component={CancelSeviceScreen}
         options={{tabBarLabel: 'Đã hủy'}}
       />
       <Tab.Screen
         name="Expired"
-        component={Expired}
+        component={ExpiredSeviceScreen}
         options={{tabBarLabel: 'Hết hạn'}}
       />
     </Tab.Navigator>
   );
 }
 
-export default serviceTap;
+export default ServiceTap;

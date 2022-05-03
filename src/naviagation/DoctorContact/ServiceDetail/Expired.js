@@ -6,15 +6,19 @@ const Stack = createNativeStackNavigator();
 import ExpiredSeviceScreen from '../../../screens/service/ExpiredServiceScreen';
 import ServiceDetail from '../../../screens/service/ServiceDetail';
 const Expired = () => (
-    <Stack.Navigator
-    screenOptions={
-        {title: '', headerShadowVisible: false}
-    }>
-        <Stack.Screen name = "ExpiredSevice" options={{headerShown: false}} component={ExpiredSeviceScreen}/>
-        <Stack.Screen name = "ServiceDetail" options={{headerShown: false}} component={ServiceDetail}/>
-        <Stack.Screen name="payment" component={PaymentScreen}/>
-
-    </Stack.Navigator>
-)
+  <Stack.Navigator screenOptions={{title: '', headerShadowVisible: false}}>
+    <Stack.Screen
+      name="ExpiredSevice"
+      options={{headerShown: false}}
+      component={ExpiredSeviceScreen}
+    />
+    <Stack.Screen
+      name="ServiceDetail"
+      options={{headerShown: false}}
+      component={ServiceDetail}
+    />
+    <Stack.Screen name="payment" component={PaymentScreen} />
+  </Stack.Navigator>
+);
 
 export default Expired;

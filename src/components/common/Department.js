@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { View, Text, Button } from "react-native";
-import { Icon } from "react-native-elements";
-import { styles } from "../../theme/style";
+import React, {useState} from 'react';
+import {View, Text, Button} from 'react-native';
+import {Icon} from 'react-native-elements';
+import {styles} from '../../theme/style';
 
-function Department({ name, color, department, onPress }) {
+function Department({name, color, department, onPress}) {
   return (
-    <View style={{ alignItems: "center" }}>
+    <View style={{alignItems: 'center'}}>
       <Icon
         name={name}
         type="font-awesome-5"
@@ -21,7 +21,7 @@ function Department({ name, color, department, onPress }) {
   );
 }
 
-export default function DepartmentList({ onPress }) {
+export default function DepartmentList({onPress}) {
   return (
     <View>
       <View style={styles.table}>

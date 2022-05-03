@@ -11,9 +11,10 @@ import SbNotification from '../../snackbar/SbNotification';
 const AddBMIComponent = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [isNotifiSuccess, setIsNotifSuccess] = useState(false);
+  const [isNotifiFail, setIsNotifFail] = useState(false);
   const [tall, setTall] = useState('');
   const [weigh, setWeigh] = useState('');
-  const [message, setMessage] = useState({tall: "", weigh: ""})
+  const [message, setMessage] = useState({tall: '', weigh: ''});
   useEffect(() => {
     setModalVisible(props.visible);
   });
@@ -24,18 +25,18 @@ const AddBMIComponent = props => {
 
   const onSave = () => {
     if (modalVisible) {
+      setModalVisible(false);
+      setIsNotifFail(false);
+      props.onCancel();
       AsyncStorage.getItem('patientData').then(res => {
         const patient = JSON.parse(res);
         createBMI(patient.patientId, tall, weigh).then(bmi => {
           if (bmi) {
-            // alert("Đã thêm BMI thành công !")
-            setModalVisible(false);
-            props.onCancel();
             setTall('');
             setWeigh('');
             setIsNotifSuccess(true);
           } else {
-            alert('Lỗi, không thêm được!');
+            setIsNotifFail(true);
           }
         });
       });
@@ -48,6 +49,11 @@ const AddBMIComponent = props => {
         visible={isNotifiSuccess}
         message={'Đã thêm BMI thành công!'}
         onPress={() => setIsNotifSuccess(false)}
+      />
+      <SbNotification
+        visible={isNotifiFail}
+        message={'Lỗi không thêm được!'}
+        onPress={() => setIsNotifFail(false)}
       />
       <Modal
         animationType="fade"
@@ -87,7 +93,6 @@ const AddBMIComponent = props => {
                     setTall(text);
                   }}></TextInput>
                 <Text style={styles.txtMessage}> {message.tall}</Text>
-
               </View>
 
               <View style={styles.bodyComponent}>
@@ -116,9 +121,9 @@ const styles = StyleSheet.create({
   txtMessage: {
     fontWeight: '400',
     fontSize: 12,
-    color: "#FF0000",
-    marginBottom: 5
-}, 
+    color: '#FF0000',
+    marginBottom: 5,
+  },
   centeredView: {
     flex: 1,
     justifyContent: 'flex-end',

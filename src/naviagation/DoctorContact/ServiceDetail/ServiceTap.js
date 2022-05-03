@@ -1,16 +1,17 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import PaymentScreen from '../../../screens/service/payment/PaymentScreen';
 
 const Stack = createNativeStackNavigator();
-import CreatedSeviceScreen from '../../../screens/service/CreatedServiceScreen';
 import ServiceDetail from '../../../screens/service/ServiceDetail';
-const Created = () => (
+import PaymentScreen from '../../../screens/service/payment/PaymentScreen';
+import Service from '../service';
+
+const ServiceTap = () => (
   <Stack.Navigator screenOptions={{title: '', headerShadowVisible: false}}>
     <Stack.Screen
-      name="CreatedSevice"
+      name="SeviceMain"
       options={{headerShown: false}}
-      component={CreatedSeviceScreen}
+      component={Service}
     />
     <Stack.Screen
       name="ServiceDetail"
@@ -21,4 +22,4 @@ const Created = () => (
   </Stack.Navigator>
 );
 
-export default Created;
+export default ServiceTap;

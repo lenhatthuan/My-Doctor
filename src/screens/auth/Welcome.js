@@ -1,10 +1,9 @@
 import React, {useEffect, useRef} from 'react';
-import {Animated, StyleSheet, SafeAreaView, StatusBar} from 'react-native';
-
+import {Animated, StyleSheet, SafeAreaView} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Welcome = props => {
   const logo = useRef(new Animated.Value(0)).current;
   const text = useRef(new Animated.Value(0)).current;
-
   useEffect(() => {
     Animated.sequence([
       Animated.timing(logo, {
@@ -17,7 +16,13 @@ const Welcome = props => {
         duration: 500,
         useNativeDriver: true,
       }),
-    ]).start(() => props.navigation.replace('SignIn'));
+    ]).start(() => {
+      AsyncStorage.getItem('accountData').then(data => {
+        !data
+          ? props.navigation.replace('SignIn')
+          : props.navigation.replace('Dashboard');
+      });
+    });
   }, []);
 
   return (

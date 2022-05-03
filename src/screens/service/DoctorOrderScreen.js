@@ -20,13 +20,17 @@ const DoctorOrderScreen = props => {
     });
   }, []);
 
-  const navigateChatWithDoctor = (id) => {
-    props.navigation.navigate("chat");
-  }
-
+  const navigateChatWithDoctor = id => {
+    //props.navigation.navigate("chat");
+  };
 
   const renderItem = ({item}) => {
-    return <DoctorRegistrationComponent doctorId={item.doctorId} navigateChatWithDoctor = {navigateChatWithDoctor} />;
+    return (
+      <DoctorRegistrationComponent
+        doctorId={item.doctorId}
+        navigateChatWithDoctor={navigateChatWithDoctor}
+      />
+    );
   };
   return (
     <View style={styles.screen}>

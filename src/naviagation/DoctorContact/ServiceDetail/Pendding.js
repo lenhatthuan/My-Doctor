@@ -6,15 +6,19 @@ const Stack = createNativeStackNavigator();
 import PenddingSeviceScreen from '../../../screens/service/PenddingServiceScreen';
 import ServiceDetail from '../../../screens/service/ServiceDetail';
 const Pendding = () => (
-    <Stack.Navigator
-    screenOptions={
-        {title: '', headerShadowVisible: false}
-    }>
-        <Stack.Screen name = "PenddingSevice" options={{headerShown: false}} component={PenddingSeviceScreen}/>
-        <Stack.Screen name = "ServiceDetail" options={{headerShown: false}} component={ServiceDetail}/>
-        <Stack.Screen name="payment" component={PaymentScreen}/>
-
-    </Stack.Navigator>
-)
+  <Stack.Navigator screenOptions={{title: '', headerShadowVisible: false}}>
+    <Stack.Screen
+      name="PenddingSevice"
+      options={{headerShown: false}}
+      component={PenddingSeviceScreen}
+    />
+    <Stack.Screen
+      name="ServiceDetail"
+      options={{headerShown: false}}
+      component={ServiceDetail}
+    />
+    <Stack.Screen name="payment" component={PaymentScreen} />
+  </Stack.Navigator>
+);
 
 export default Pendding;
