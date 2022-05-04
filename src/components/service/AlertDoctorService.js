@@ -33,10 +33,10 @@ const AlertDoctorService = props => {
         };
         createRegistration(registration).then(res => {
           if (res) {
+            setModalVisible(false);
             props.setRegistration(res);
             props.setPrice(props.price);
             props.payment();
-            setModalVisible(false);
           } else {
             Alert.alert('Đăng ký không thành công, lỗi hệ thống!');
           }
@@ -51,8 +51,7 @@ const AlertDoctorService = props => {
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        Alert.alert('Bạn có chắc thoát.');
-        setModalVisible(!modalVisible);
+        setModalVisible(false);
       }}>
       <Pressable
         style={styles.centeredView}

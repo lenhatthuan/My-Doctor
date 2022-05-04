@@ -1,27 +1,49 @@
 import React from 'react';
-import {Facebook} from 'react-content-loader/native';
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {getDoctor} from '../../store/actions/doctor';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+
 const DoctorRegistrationComponent = props => {
-  const MyFacebookLoader = () => <Facebook />;
   const [doctor, setDoctor] = React.useState(null);
 
   const navigateChatWithDoctor = id => {
     props.navigateChatWithDoctor(id);
   };
 
+  const gotoDoctor = () => {
+    props.gotoDoctorProfile(doctor);
+  };
+
+  const EmptyChat = () => (
+    <SkeletonPlaceholder>
+      <View style={styles.emplyContainer}>
+        <View style={styles.imgEmpty}></View>
+        <View style={styles.txtEmptyContainer}>
+          <View style={styles.txtEmpty}></View>
+          <View style={styles.txtEmptyMess}></View>
+        </View>
+      </View>
+    </SkeletonPlaceholder>
+  );
+
   React.useEffect(() => {
     getDoctor(props.doctorId).then(res => {
       setDoctor(res);
-      console.log('load doctor');
     });
   }, []);
   return (
     <>
-      {/* // <View style = {styles.screen}> */}
       {doctor != null ? (
-        <View
+        <TouchableOpacity
+          onPress={gotoDoctor}
           style={{
             flexDirection: 'row',
             padding: 10,
@@ -67,14 +89,10 @@ const DoctorRegistrationComponent = props => {
               </Pressable>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       ) : (
-        // <MyFacebookLoader />
-        <View>
-          <Text>hi</Text>
-        </View>
+        <EmptyChat />
       )}
-      {/* </View> */}
     </>
   );
 };
@@ -89,6 +107,40 @@ const styles = StyleSheet.create({
     borderColor: '#95D1CC',
     padding: 10,
     width: '100%',
+  },
+  emplyContainer: {
+    width: 400,
+    height: 100,
+    margin: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 5,
+    borderRadius: 5,
+  },
+  txtEmptyContainer: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  imgEmpty: {
+    height: 70,
+    width: 70,
+    borderRadius: 70,
+  },
+  txtEmpty: {
+    width: 250,
+    marginLeft: 5,
+    marginRight: 5,
+    height: 20,
+    borderRadius: 15,
+    marginTop: 10,
+  },
+  txtEmptyMess: {
+    width: 150,
+    marginLeft: 5,
+    marginRight: 5,
+    height: 5,
+    borderRadius: 15,
+    marginTop: 10,
   },
 });
 

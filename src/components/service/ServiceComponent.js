@@ -3,10 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {balanceFormat} from '../../utils/string-format';
 import AlertDoctorService from './AlertDoctorService';
-import {
-  getAllByPatientId,
-  getAllByPatientIdAndDoctorId,
-} from '../../store/actions/doctor-registration';
+import {getAllByPatientIdAndDoctorId} from '../../store/actions/doctor-registration';
 import ErrorAlert from '../common/ErrorAlertComponent';
 const ServiceComponent = props => {
   const [isAddModel, setIsAddModel] = React.useState(false);
@@ -25,6 +22,7 @@ const ServiceComponent = props => {
   };
 
   const gotoPayment = () => {
+    cancelGoalApplicationHandler();
     props.gotoPayment();
   };
 

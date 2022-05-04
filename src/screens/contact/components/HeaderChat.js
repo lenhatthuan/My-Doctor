@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     borderRadius: 30,
+    marginRight: 30,
+    marginLeft: 30,
   },
   nameContainer: {},
   icon: {

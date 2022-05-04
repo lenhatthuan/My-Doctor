@@ -18,7 +18,6 @@ import PaymentScreen from './src/screens/service/payment/PaymentScreen';
 import {LogBox} from 'react-native';
 import ChatDetailScreen from './src/screens/contact/ChatScreen';
 import ChatScreen from './src/screens/contact/ListChatScreen';
-
 const App = () => {
   LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
   LogBox.ignoreAllLogs(); //Ignore all log notifications

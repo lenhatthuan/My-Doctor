@@ -1,32 +1,30 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { environment } from "../../../environment/enviroment";
+import {environment} from '../../../environment/enviroment';
 
 const BASE_URL = environment.baseURL;
 const header = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
 };
 
-export const getPatientById = async (patientId) => {
+export const getPatientById = async patientId => {
   return await fetch(BASE_URL + `/patient/${patientId}`, {
-    method: "GET",
+    method: 'GET',
     Headers: header,
   })
-    .then((response) => response.json())
-    .then((json) => {
-      console.log("go to get patient");
-      console.log("patien: " + json);
+    .then(response => response.json())
+    .then(json => {
       if (json.patient) savePatientToStorage(json.patient);
       return json;
     })
-    .catch((err) => {
-      console.error("Get patient by id fail: " + err);
+    .catch(err => {
+      console.error('Get patient by id fail: ' + err);
     });
 };
 
-const savePatientToStorage = (patient) => {
+const savePatientToStorage = patient => {
   AsyncStorage.setItem(
-    "patientData",
+    'patientData',
     JSON.stringify({
       patientId: patient.id,
       fullName: patient.fullName,
@@ -36,7 +34,7 @@ const savePatientToStorage = (patient) => {
       address: patient.address,
       createdAt: patient.createdAt,
       updatedAt: patient.updatedAt,
-    })
+    }),
   );
 };
 
@@ -46,10 +44,10 @@ export const updateProfile = async (
   fullName,
   birthDate,
   gender,
-  address
+  address,
 ) => {
-  return await fetch(BASE_URL + "/patient/" + id, {
-    method: "PUT",
+  return await fetch(BASE_URL + '/patient/' + id, {
+    method: 'PUT',
     headers: header,
     body: JSON.stringify({
       avatar: avatar,
@@ -59,28 +57,28 @@ export const updateProfile = async (
       address: address,
     }),
   })
-    .then((response) => response.json())
-    .then((result) => console.log(result.message))
-    .catch((err) => console.log(err));
+    .then(response => response.json())
+    .then(result => console.log(result.message))
+    .catch(err => console.log(err));
 };
 
 export const updateToken = async (id, token) => {
-  return await fetch(BASE_URL + "/patient/token/notification", {
-    method: "PUT",
+  return await fetch(BASE_URL + '/patient/token/notification', {
+    method: 'PUT',
     headers: header,
     body: JSON.stringify({
       id: id,
       token: token,
     }),
   })
-    .then((response) => response.json())
-    .then((result) => console.log(result.message))
-    .catch((err) => console.log(err));
+    .then(response => response.json())
+    .then(result => console.log(result.message))
+    .catch(err => console.log(err));
 };
 
 export const getAge = async () => {
   try {
-    const response = AsyncStorage.getItem("patientData");
+    const response = AsyncStorage.getItem('patientData');
     const patient = JSON.parse(response);
     return new Date().getFullYear - new Date(patient.birthDate).getFullYear();
   } catch (error) {

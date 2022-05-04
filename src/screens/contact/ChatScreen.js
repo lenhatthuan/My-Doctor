@@ -29,22 +29,21 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const ChatScreen = props => {
   const [messages, setMessages] = useState([]);
-  const [userId, setUserId] = useState('');
+  // const [userId, setUserId] = useState('');
+  const userId = props.route.params.userId;
   const [messageSend, setMessageSend] = useState('');
   const receiverId = props.route.params.doctor.id;
   const name = props.route.params.doctor.fullname;
   const imageUrl = props.route.params.doctor.avatar;
-  useEffect(() => {
-    AsyncStorage.getItem('id').then(id => {
-      setUserId(id.toString());
-    });
-  }, []);
 
   useEffect(() => {
     onSnapshot(
       query(
         collection(db, 'message'),
-        where('users', 'array-contains-any', [receiverId, userId]),
+        where('users', 'in', [
+          [userId, receiverId],
+          [receiverId, userId],
+        ]),
       ),
       snapshot => {
         setMessages(
@@ -84,6 +83,21 @@ const ChatScreen = props => {
     });
     messList.current.scrollToEnd({animating: true});
   };
+
+  const EmplyChat = () => {
+    return (
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View
+          style={{
+            height: 100,
+            width: 100,
+            borderRadius: 100,
+            backgroundColor: '#aaa',
+          }}></View>
+        <Text>Bắt đầu trò chuyện với bác sĩ nào</Text>
+      </View>
+    );
+  };
   return (
     <View style={styles.screen}>
       <HeaderChat
@@ -103,11 +117,11 @@ const ChatScreen = props => {
             showsVerticalScrollIndicator={false}
             onLayout={() => messList.current.scrollToEnd({animated: true})}
             data={messages}
+            ListEmptyComponent={EmplyChat}
             ListFooterComponent={() => <View style={styles.blankView}></View>}
             ListFooterComponentStyle={styles.blankView}
             renderItem={({item}) => {
-              console.log('item chat 110, ', item);
-              return item.senderId === userId ? (
+              return item.senderId == userId ? (
                 <SenderMessage
                   message={item.message}
                   // createdAt={item.createdAt}
