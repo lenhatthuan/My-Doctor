@@ -40,17 +40,21 @@ const ListChatScreen = props => {
           res.forEach(res => {
             if (res.status == 'CONFIRMED') {
               getDoctor(res.doctorId).then(res => {
+                doctorTemp.push(res);
                 onSnapshot(
                   query(
                     collection(db, 'message'),
-                    where('users', 'array-contains-any', [res.id, userId]),
+                    where('users', 'in', [
+                      [res.id, id],
+                      [id, res.id],
+                    ]),
                   ),
                   snapshot => {
                     res.lastMessage = snapshot?.docs
                       .map(mess => mess.data())
                       .sort(function (x, y) {
                         return y.createdAt - x.createdAt;
-                      })[0].message;
+                      })[0]?.message;
                     const updatedList = doctorTemp.filter(
                       item => item.id !== res.id,
                     );
@@ -71,6 +75,7 @@ const ListChatScreen = props => {
   const gotoChatDetail = doctor => {
     props.navigation.navigate('ChatDetailScreen', {
       doctor: doctor,
+      userId: userId,
     });
   };
   const EmptyChat = () => (

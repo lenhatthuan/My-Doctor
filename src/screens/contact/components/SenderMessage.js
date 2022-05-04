@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(SenderMessage);
+export default SenderMessage;

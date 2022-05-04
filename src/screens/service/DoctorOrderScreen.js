@@ -24,9 +24,16 @@ const DoctorOrderScreen = props => {
     //props.navigation.navigate("chat");
   };
 
+  const gotoDoctorProfile = doctor => {
+    props.navigation.navigate('DoctorProfile', {
+      doctor: doctor,
+    });
+  };
+
   const renderItem = ({item}) => {
     return (
       <DoctorRegistrationComponent
+        gotoDoctorProfile={gotoDoctorProfile}
         doctorId={item.doctorId}
         navigateChatWithDoctor={navigateChatWithDoctor}
       />
