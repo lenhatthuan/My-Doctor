@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -15,12 +15,12 @@ import {getPatientById, updateToken} from '../../store/actions/patient';
 import LoadingComponent from '../../components/common/LoadingComponent';
 import {styles} from '../../theme/basic';
 import auth from '@react-native-firebase/auth';
+import messaging from '@react-native-firebase/messaging';
 import {Icon} from 'react-native-elements';
 const SignInScreen = props => {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [token, setToken] = useState();
   const [secure, setSecure] = useState(true);
 
   function checkLogin() {
@@ -63,14 +63,19 @@ const SignInScreen = props => {
   };
 
   const sendOTP = id => {
-    // updateToken(id, token)
-    // .then(() =>
-    getPatientById(id).then(result => {
-      props.navigation.navigate('Dashboard');
-      setIsLoading(false);
-    });
-    // )
-    // .catch(() => null);
+    messaging()
+      .getToken()
+      .then(token => {
+        console.log(token);
+        updateToken(id, token)
+          .then(() =>
+            getPatientById(id).then(result => {
+              props.navigation.navigate('Dashboard');
+              setIsLoading(false);
+            }),
+          )
+          .catch(() => null);
+      });
   };
 
   const loginHandle = (userName, password) => {

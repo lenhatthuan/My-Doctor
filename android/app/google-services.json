@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "277901999857-c6da550hmcvi5qs912j9jponf05tfrg6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mydoctor",
+            "certificate_hash": "01529e663f54386a3e85cb4417c3e4e8855908ff"
+          }
+        },
+        {
           "client_id": "277901999857-j1etrv0s7t770ldeuatgnvav2kdgghhb.apps.googleusercontent.com",
           "client_type": 3
         }
