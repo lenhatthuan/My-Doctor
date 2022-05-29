@@ -131,7 +131,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.mydoctor"
+        applicationId "com.spkt.mydoctor"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -190,6 +190,7 @@ android {
 }
 
 dependencies {
+     implementation 'com.google.android.gms:play-services-location:19.0.1'
       implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
     implementation 'com.android.support:multidex:1.0.3'
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
