@@ -1,7 +1,6 @@
 package com.spkt.mydoctor;
 
 import com.facebook.react.ReactActivity;
-import com.google.firebase.auth.FirebaseAuth;
 
 import android.os.Bundle;
 

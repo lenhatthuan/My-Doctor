@@ -214,7 +214,7 @@ dependencies {
 
   // For WebP support, without animations
   implementation 'com.facebook.fresco:webpsupport:2.5.0'
- 
+
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
