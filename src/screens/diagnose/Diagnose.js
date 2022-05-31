@@ -33,9 +33,6 @@ const Diagnose = props => {
       const response = await fetch(url + 'Analyze?SessionID=' + sessionId);
       const json = await response.json();
       console.log('json: ', json);
-      json.Diagnose
-        ? setDiseasesDiagnose(json.Diagnose)
-        : setDiseasesDiagnose([]);
       setDiseasesDiagnose(json.Diseases);
       setShow(true);
     } catch (err) {
@@ -157,26 +154,22 @@ const Diagnose = props => {
               setShow(false);
             }}>
             <View style={styles.modalBody}>
+              <Image
+                style={styles.img}
+                source={
+                  formatDisease().length > 0
+                    ? require('../../../assets/imgs/sick.gif')
+                    : require('../../../assets/imgs/heathy_ok.gif')
+                }
+              />
               {formatDisease().length > 0 ? (
-                (
-                  <Image
-                    style={styles.img}
-                    source={require('../../../assets/imgs/sick.gif')}
-                  />
-                ) &&
                 formatDisease().map(disease => (
                   <Diseases name={disease.name} percent={disease.percent} />
                 ))
               ) : (
-                <View style={styles.modalBody}>
-                  <Image
-                    style={styles.img}
-                    source={require('../../../assets/imgs/heathy_ok.gif')}
-                  />
-                  <Text style={styles.txtHeathy}>
-                    Sức khỏe của bạn hiện tại rất tốt !!
-                  </Text>
-                </View>
+                <Text style={styles.txtHeathy}>
+                  Sức khỏe của bạn hiện tại rất tốt !!
+                </Text>
               )}
             </View>
           </Pressable>
