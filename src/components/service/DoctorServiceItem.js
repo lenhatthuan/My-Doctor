@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {getDoctor} from '../../store/actions/doctor';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -47,12 +47,11 @@ const DoctorServiceItem = props => {
     });
   };
 
-  const getNameDoctor = () => {
+  const getNameDoctor = useCallback(() => {
     getDoctor(props.doctorId).then(res => {
       if (res) setDoctorName(res.fullname);
-      console.log('name');
     });
-  };
+  }, []);
 
   const getTimeSeconds = () => {
     return getTime(props.updatedAt, duration);
@@ -133,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DoctorServiceItem;
+export default React.memo(DoctorServiceItem);
