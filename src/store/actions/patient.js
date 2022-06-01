@@ -1,16 +1,62 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {environment} from '../../../environment/enviroment';
-
+import axios from 'axios';
 const BASE_URL = environment.baseURL;
 const header = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
 };
 
+export const updateAvatar = async (data, patientId) => {
+  let headers = {
+    Accept: 'application/json',
+    'Content-Type': 'multipart/form-data',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Origin': '*',
+    crossDomain: 'true',
+  };
+
+  // return new Promise((resolve, reject) => {
+  //   axios
+  //     .request({
+  //       method: 'POST',
+  //       url: `${BASE_URL}/patient/${patientId}/`,
+  //       headers: {
+  //         ...headers,
+  //       },
+  //       data: data,
+  //     })
+  //     // .post(`${BASE_URL}/patient/${patientId}/`, data)
+  //     .then(res => {
+  //       console.log({res});
+  //       resolve(res);
+  //     })
+  //     .catch(err => {
+  //       console.log({err});
+  //     });
+  // });
+
+  const formData = new FormData();
+  formData.append('image', data);
+
+  try {
+    const response = await fetch(BASE_URL + `/patient/${patientId}`, {
+      // give something like https://xx.yy.zz/upload/whatever
+      method: 'POST',
+      body: formData,
+      headers: headers,
+    });
+    const res = await response.json();
+    return res;
+  } catch (error) {
+    return console.log('uploadImage error:', error);
+  }
+};
+
 export const getPatientById = async patientId => {
   return await fetch(BASE_URL + `/patient/${patientId}`, {
     method: 'GET',
-    Headers: header,
+    headers: header,
   })
     .then(response => response.json())
     .then(json => {

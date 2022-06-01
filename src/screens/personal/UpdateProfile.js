@@ -6,19 +6,24 @@ import {
   TextInput,
   StatusBar,
   Animated,
+  Platform,
 } from 'react-native';
 import {Avatar, Icon, Overlay} from 'react-native-elements';
 import {styles} from '../../theme/basic';
 import {formatDate} from '../../utils/string-format';
 import Loading from '../../components/common/Loading';
-import {getPatientById, updateProfile} from '../../store/actions/patient';
+import {
+  getPatientById,
+  updateAvatar,
+  updateProfile,
+} from '../../store/actions/patient';
 import {Calendar} from 'react-native-calendars';
-import {launchImageLibrary} from 'react-native-image-picker';
+import ImagePicker, {launchImageLibrary} from 'react-native-image-picker';
 import message from '../../config/message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const UpdateProfile = props => {
-  const [avatar, setAvatar] = useState(props.route.params.avatar);
+  const [avatar, setAvatar] = useState({uri: props.route.params.avatar});
   const [fullname, setFullname] = useState(props.route.params.fullname);
   const [birthdate, setBirthdate] = useState(props.route.params.birthdate);
   const [gender, setGender] = useState(props.route.params.gender);
@@ -40,18 +45,61 @@ const UpdateProfile = props => {
   }, []);
 
   const pickImage = async () => {
-    await launchImageLibrary(response => setAvatar(response.uri));
+    console.log('pik');
+    await launchImageLibrary(
+      {
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      },
+      response => {
+        setAvatar(response?.assets[0]);
+        console.log(response);
+      },
+    );
   };
 
   const save = () => {
+    const data = {
+      name: avatar.fileName,
+      type: avatar.type,
+      uri:
+        Platform.OS === 'ios' ? avatar.uri.replace('file://', '') : avatar.uri,
+    };
+
+    console.log({avatar});
     AsyncStorage.getItem('accountData').then(res => {
       const id = JSON.parse(res).accountId;
       setIsLoading(true);
-      updateProfile(id, avatar, fullname, birthdate, gender, address)
-        .then(result => {
-          getPatientById(id)
-            .then(() => props.navigation.goBack())
-            .catch(err => console.error(err));
+      updateAvatar(data, id)
+        .then(res => {
+          console.log({res});
+          if (res.count !== 0) {
+            updateProfile(
+              id,
+              res.patient.avatar,
+              fullname,
+              birthdate,
+              gender,
+              address,
+            )
+              .then(result => {
+                getPatientById(id)
+                  .then(() => props.navigation.goBack())
+                  .catch(err => console.error(err));
+              })
+              .catch(err => {
+                setIsLoading(false);
+                setType(message.error);
+                setContent('Cập nhật thông tin cá nhân không thành công');
+                setVisible(true);
+              });
+          } else {
+            setIsLoading(false);
+            setType(message.error);
+            setContent('Cập nhật thông tin cá nhân không thành công');
+            setVisible(true);
+          }
         })
         .catch(err => {
           setIsLoading(false);
@@ -81,13 +129,9 @@ const UpdateProfile = props => {
         containerStyle={{alignSelf: 'center', marginBottom: 20}}
         size={100}
         rounded
-        source={
-          avatar
-            ? {
-                uri: avatar,
-              }
-            : require('../../assets/logo.png')
-        }>
+        source={{
+          uri: avatar.uri,
+        }}>
         <Avatar.Accessory size={25} onPress={pickImage} />
       </Avatar>
       <Animated.View
