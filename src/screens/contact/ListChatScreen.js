@@ -172,16 +172,7 @@ const ListChatScreen = props => {
               inputContainerStyle={{backgroundColor: '#EEF2FF'}}
               leftIconContainerStyle={{backgroundColor: '#EEF2FF'}}
               inputStyle={{backgroundColor: '#EEF2FF'}}
-              containerStyle={{
-                backgroundColor: '#EEF2FF',
-                justifyContent: 'space-around',
-                borderTopWidth: 0,
-                borderBottomWidth: 0,
-                borderRadius: 10,
-                marginLeft: 10,
-                marginRight: 10,
-                padding: 0,
-              }}
+              containerStyle={styles.searchContainerStyle}
               searchIcon={{size: 24}}
               style={styles.searchBar}
               placeholder="Tên bác sĩ"
@@ -216,6 +207,16 @@ const ListChatScreen = props => {
 };
 
 const styles = StyleSheet.create({
+  searchContainerStyle: {
+    backgroundColor: '#EEF2FF',
+    justifyContent: 'space-around',
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    borderRadius: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    padding: 0,
+  },
   screen: {
     flex: 1,
     backgroundColor: 'white',

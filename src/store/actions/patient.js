@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {environment} from '../../../environment/enviroment';
-import axios from 'axios';
 const BASE_URL = environment.baseURL;
 const header = {
   Accept: 'application/json',
@@ -15,33 +14,11 @@ export const updateAvatar = async (data, patientId) => {
     'Access-Control-Allow-Origin': '*',
     crossDomain: 'true',
   };
-
-  // return new Promise((resolve, reject) => {
-  //   axios
-  //     .request({
-  //       method: 'POST',
-  //       url: `${BASE_URL}/patient/${patientId}/`,
-  //       headers: {
-  //         ...headers,
-  //       },
-  //       data: data,
-  //     })
-  //     // .post(`${BASE_URL}/patient/${patientId}/`, data)
-  //     .then(res => {
-  //       console.log({res});
-  //       resolve(res);
-  //     })
-  //     .catch(err => {
-  //       console.log({err});
-  //     });
-  // });
-
   const formData = new FormData();
   formData.append('image', data);
 
   try {
     const response = await fetch(BASE_URL + `/patient/${patientId}`, {
-      // give something like https://xx.yy.zz/upload/whatever
       method: 'POST',
       body: formData,
       headers: headers,

@@ -18,7 +18,7 @@ import {
   updateProfile,
 } from '../../store/actions/patient';
 import {Calendar} from 'react-native-calendars';
-import ImagePicker, {launchImageLibrary} from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 import message from '../../config/message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -30,11 +30,6 @@ const UpdateProfile = props => {
   const [address, setAddress] = useState(props.route.params.address);
   const [isLoading, setIsLoading] = useState(false);
   const [isCalendar, setIsCalendar] = useState(false);
-
-  const [visible, setVisible] = useState(false);
-  const [content, setContent] = useState('');
-  const [type, setType] = useState(message.infomation);
-
   const anim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.timing(anim, {
@@ -45,7 +40,6 @@ const UpdateProfile = props => {
   }, []);
 
   const pickImage = async () => {
-    console.log('pik');
     await launchImageLibrary(
       {
         allowsEditing: true,
@@ -54,7 +48,6 @@ const UpdateProfile = props => {
       },
       response => {
         setAvatar(response?.assets[0]);
-        console.log(response);
       },
     );
   };
@@ -66,14 +59,11 @@ const UpdateProfile = props => {
       uri:
         Platform.OS === 'ios' ? avatar.uri.replace('file://', '') : avatar.uri,
     };
-
-    console.log({avatar});
     AsyncStorage.getItem('accountData').then(res => {
       const id = JSON.parse(res).accountId;
       setIsLoading(true);
       updateAvatar(data, id)
         .then(res => {
-          console.log({res});
           if (res.count !== 0) {
             updateProfile(
               id,
