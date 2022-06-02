@@ -124,4 +124,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ServiceComponent;
+export default React.memo(ServiceComponent);

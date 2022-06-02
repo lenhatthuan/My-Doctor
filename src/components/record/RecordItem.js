@@ -33,4 +33,4 @@ const RecordItem = ({item, onPress}) => {
   );
 };
 
-export default RecordItem;
+export default React.memo(RecordItem);

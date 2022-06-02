@@ -184,4 +184,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AlertDoctorService;
+export default React.memo(AlertDoctorService);

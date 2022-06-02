@@ -1,18 +1,36 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
 
-const SenderMessage = ({message, createdAt}) => {
-  return (
+const SenderMessage = ({message, createdAt, isImage = false, url = null}) => {
+  return !isImage ? (
     <View style={styles.main}>
       <View style={styles.messageContainer}>
         <Text style={styles.message}>{message}</Text>
         {/* <Text style={styles.message}>{createdAt}</Text> */}
       </View>
     </View>
+  ) : (
+    <View style={styles.imageContainer}>
+      <Image style={styles.image} source={{uri: url}} />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  imageContainer: {
+    borderRadius: 10,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingLeft: 25,
+    paddingVertical: 10,
+    paddingRight: 10,
+  },
+  image: {
+    borderRadius: 10,
+    resizeMode: 'cover',
+    height: 300,
+    width: 300,
+  },
   main: {
     flex: 1,
     flexDirection: 'row',
@@ -34,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SenderMessage;
+export default React.memo(SenderMessage);

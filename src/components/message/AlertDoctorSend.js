@@ -404,4 +404,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AlertDoctorSend;
+export default React.memo(AlertDoctorSend);

@@ -144,4 +144,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DoctorRegistrationComponent;
+export default React.memo(DoctorRegistrationComponent);
