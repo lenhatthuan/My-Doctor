@@ -1,6 +1,8 @@
 import React, {useEffect, useRef} from 'react';
 import {Animated, StyleSheet, SafeAreaView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import PushNotification from 'react-native-push-notification';
+
 const Welcome = props => {
   const logo = useRef(new Animated.Value(0)).current;
   const text = useRef(new Animated.Value(0)).current;
@@ -22,6 +24,10 @@ const Welcome = props => {
           ? props.navigation.replace('SignIn')
           : props.navigation.replace('Dashboard');
       });
+    });
+    PushNotification.createChannel({
+      channelId: 'channel',
+      channelName: 'My doctor channel',
     });
   }, []);
 
