@@ -1,14 +1,9 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput
-} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {styles} from '../../../theme/basic';
-import EMOTION from "../../../config/emotion";
-// import {add, edit} from '../../../store/actions/emotion';
+import EMOTION from '../../../config/emotion';
+import {add, edit} from '../../../store/actions/emotion';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const EmotionDialog = ({
   id,
@@ -82,7 +77,7 @@ const EmotionDialog = ({
               .catch(err => console.log(err));
           }
         }}>
-        {/* <Text style={styles.textSign,{color:emotion.color}}>Lưu</Text> */}
+        <Text style={[styles.textSign, {color: emotion.color}]}>Lưu</Text>
       </TouchableOpacity>
     </View>
   );

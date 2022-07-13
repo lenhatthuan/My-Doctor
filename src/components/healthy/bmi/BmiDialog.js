@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import {styles} from '../../../theme/basic';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {createBMI, updateBMI} from '../../../store/actions/bmi';
+
 const BmiDialog = ({id, initTall, initWeight, action = 'add', close}) => {
   const [tall, setTall] = useState(initTall);
   const [weight, setWeight] = useState(initWeight);
@@ -34,18 +36,18 @@ const BmiDialog = ({id, initTall, initWeight, action = 'add', close}) => {
         disabled={!(tall > 0 && weight > 0)}
         style={[styles.signIn, {backgroundColor: '#009387', marginTop: 15}]}
         onPress={() => {
-          //   if (action === "add") {
-          //     AsyncStorage.getItem("accountData").then((res) => {
-          //       const account = JSON.parse(res);
-          //       createBMI(account.accountId, tall, weight)
-          //         .then((res) => close())
-          //         .catch((err) => console.log(err));
-          //     });
-          //   } else if (action === "edit") {
-          //     updateBMI(id, tall, weight)
-          //       .then((res) => close())
-          //       .catch((err) => console.log(err));
-          //   }
+          if (action === 'add') {
+            AsyncStorage.getItem('accountData').then(res => {
+              const account = JSON.parse(res);
+              createBMI(account.accountId, tall, weight)
+                .then(res => close())
+                .catch(err => console.log(err));
+            });
+          } else if (action === 'edit') {
+            updateBMI(id, tall, weight)
+              .then(res => close())
+              .catch(err => console.log(err));
+          }
         }}>
         <Text style={styles.textSign}>Lưu</Text>
       </TouchableOpacity>

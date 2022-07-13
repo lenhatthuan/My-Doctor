@@ -6,7 +6,7 @@ import Healthy from '../screens/healthy/Healthy';
 import Bmi from '../screens/healthy/Bmi';
 import Emotion from '../screens/healthy/Emotion';
 import HeartBeat from '../screens/healthy/HeartBeat';
-//import Healthy from '../screens/healthy/Healthy';
+import HeartBeatChart from '../screens/healthy/HeartBeatChartScreen';
 
 const FollowHealthy = () => (
   <Stack.Navigator
@@ -21,8 +21,8 @@ const FollowHealthy = () => (
     />
     <Stack.Screen name="Bmi" component={Bmi} />
     <Stack.Screen name="Emotion" component={Emotion} />
+    <Stack.Screen name="HeartBeatChart" component={HeartBeatChart} />
     <Stack.Screen name="HeartBeat" component={HeartBeat} />
-    {/* <Stack.Screen name="HeartBeat" component={HeartBeat} /> */}
   </Stack.Navigator>
 );
 

@@ -6,7 +6,7 @@ import DoctorProfile from '../screens/booking/doctor/DoctorProfile';
 import PaymentScreen from '../screens/service/payment/PaymentScreen';
 import ServiceDetail from '../screens/service/ServiceDetail';
 
-const FollowHealthy = () => (
+const DoctorBooking = () => (
   <Stack.Navigator
     screenOptions={{
       title: '',
@@ -23,4 +23,4 @@ const FollowHealthy = () => (
   </Stack.Navigator>
 );
 
-export default FollowHealthy;
+export default DoctorBooking;
