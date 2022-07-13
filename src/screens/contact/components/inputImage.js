@@ -1,11 +1,37 @@
-import {StyleSheet, Image, View} from 'react-native';
+import {StyleSheet, Image, View, Animated} from 'react-native';
 import React from 'react';
+import {PinchGestureHandler, State} from 'react-native-gesture-handler';
 
 const InputImage = ({imageUri}) => {
+  const scale = new Animated.Value(1);
+  const onZoomEvent = Animated.event(
+    [
+      {
+        nativeEvent: {
+          scale: scale,
+        },
+      },
+    ],
+    {
+      useNativeDriver: true,
+    },
+  );
+  const onHandleStateChange = event => {
+    if (event.nativeEvent.oldState == State.ACTIVE) {
+      Animated.spring(scale, {
+        toValue: 1,
+        useNativeDriver: true,
+      }).start();
+    }
+  };
   return (
     <View style={styles.inputImageContainer}>
       <View style={styles.imageContainer}>
-        <Image source={imageUri} />
+        <PinchGestureHandler
+          onGestureEvent={onZoomEvent}
+          onHandlerStateChange={onHandleStateChange}>
+          <Animated.Image source={imageUri} />
+        </PinchGestureHandler>
       </View>
     </View>
   );

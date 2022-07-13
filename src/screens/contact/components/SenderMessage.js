@@ -1,8 +1,18 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
-
-const SenderMessage = ({message, createdAt, isImage = false, url = null}) => {
-  return !isImage ? (
+import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import InfoDetail from './infoDetail';
+const SenderMessage = ({
+  message,
+  createdAt,
+  isImage = false,
+  url = null,
+  goToImageDetail,
+  isInfo = false,
+  item,
+}) => {
+  return isInfo ? (
+    <InfoDetail message={item} />
+  ) : !isImage ? (
     <View style={styles.main}>
       <View style={styles.messageContainer}>
         <Text style={styles.message}>{message}</Text>
@@ -10,13 +20,23 @@ const SenderMessage = ({message, createdAt, isImage = false, url = null}) => {
       </View>
     </View>
   ) : (
-    <View style={styles.imageContainer}>
+    <TouchableOpacity
+      onPress={() => {
+        goToImageDetail(url);
+      }}
+      style={styles.imageContainer}>
       <Image style={styles.image} source={{uri: url}} />
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
+  imageModalContainer: {
+    justifyContent: 'center',
+  },
+  imageModal: {
+    resizeMode: 'cover',
+  },
   imageContainer: {
     borderRadius: 10,
     flexDirection: 'row',

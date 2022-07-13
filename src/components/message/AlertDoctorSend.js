@@ -18,16 +18,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import COLORS from '../../assets/colors';
 import {createMessage} from '../../store/actions/message';
 import {db} from '../../config/firebase';
-import {
-  collection,
-  onSnapshot,
-  query,
-  where,
-  orderBy,
-  addDoc,
-} from 'firebase/firestore';
+import {collection, addDoc} from 'firebase/firestore';
 import {getAllByPatientId} from '../../store/actions/doctor-registration';
-const AlertDoctorSend = props => {
+const AlertDoctorSend = ({title, time, heartBeat, status, ...props}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [isLoading, setIsloading] = useState(false);
   const [doctors, setDoctors] = useState([]);
@@ -45,7 +38,6 @@ const AlertDoctorSend = props => {
   useEffect(() => {
     AsyncStorage.getItem('id').then(id => {
       setUserId(id.toString());
-      console.log('userId', id);
     });
   }, []);
 
@@ -57,6 +49,7 @@ const AlertDoctorSend = props => {
       getAllByPatientId(id).then(res => {
         if (res) {
           let doctorTemp = doctors;
+          doctorTemp = [];
           res.forEach(res => {
             if (res.status == 'CONFIRMED') {
               getDoctor(res.doctorId).then(res => {
@@ -71,17 +64,19 @@ const AlertDoctorSend = props => {
       });
     });
   }, []);
-
-  const receiverId = '099f459d-561c-400c-8f99-271e9465efe4';
-
-  const sendMessage = content => {
+  const sendMessage = (content, doctorId) => {
     addDoc(collection(db, 'message'), {
       senderId: userId,
-      receiverId: receiverId,
+      receiverId: doctorId,
       createdAt: new Date(),
       updatedAt: new Date(),
-      users: [userId, receiverId],
+      users: [userId, doctorId],
       message: content,
+      title: title,
+      time: time,
+      heartBeat: heartBeat,
+      status: status,
+      isInfo: true,
     });
   };
 
@@ -92,14 +87,14 @@ const AlertDoctorSend = props => {
       AsyncStorage.getItem('id').then(id => {
         setTxtBtnSend('Đang gửi ......');
         let content = 'Tin nhắn: ' + message + ' ' + props.content;
-        setMessage(content);
+        // setMessage(content);
         listCheck.forEach(doctorId => {
           let messages = {
             senderId: id,
             recieverId: doctorId,
             content: content,
           };
-          sendMessage(content);
+          sendMessage(message, doctorId);
           createMessage(messages).then(res => {
             setTxtBtnSend('Gửi');
             setModalVisible(false);

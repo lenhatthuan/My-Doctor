@@ -1,5 +1,10 @@
 import Moment from 'moment';
 
+import {Dimensions} from 'react-native';
+
+const {width, height} = Dimensions.get('screen');
+export {width, height};
+
 export const convertTitle = (first, second) => {
   return first + '/' + second;
 };
@@ -138,4 +143,8 @@ export const convertTimestampToDate = timestamp => {
     date: 'date',
     time: 'time',
   };
+};
+
+export const shortMessage = (message, length) => {
+  return message?.length > length ? `${message.slice(0, length)}...` : message;
 };

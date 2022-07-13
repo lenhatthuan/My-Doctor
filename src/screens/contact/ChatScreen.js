@@ -10,14 +10,11 @@ import {
   TouchableWithoutFeedback,
   Platform,
   PermissionsAndroid,
+  Animated,
 } from 'react-native';
 import {collection, onSnapshot, query, where, addDoc} from 'firebase/firestore';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {
-  launchImageLibrary,
-  launchCamera,
-  requestMediaLibraryPermissionsAsync,
-} from 'react-native-image-picker';
+import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import {db} from '../../config/firebase';
 import SenderMessage from './components/SenderMessage';
 import ReceiverMessage from './components/ReceiverMessage';
@@ -156,9 +153,12 @@ const ChatScreen = props => {
   const renderItemChat = ({item}) => {
     return item.senderId == userId ? (
       <SenderMessage
+        item={item}
+        isInfo={item.isInfo}
         isImage={item.isImage}
         message={item.message}
         url={item.urlImage}
+        goToImageDetail={goToImageDetail}
         // createdAt={item.createdAt}
       />
     ) : (
@@ -166,6 +166,7 @@ const ChatScreen = props => {
         url={item.urlImage}
         isImage={item.isImage}
         message={item.message}
+        goToImageDetail={goToImageDetail}
         // createdAt={item.createdAt}
       />
     );
@@ -191,6 +192,12 @@ const ChatScreen = props => {
   const goback = useCallback(() => {
     props.navigation.goBack();
   }, []);
+
+  const goToImageDetail = url => {
+    props.navigation.navigate('ImageDetailChat', {
+      url: url,
+    });
+  };
 
   return (
     <View style={styles.screen}>

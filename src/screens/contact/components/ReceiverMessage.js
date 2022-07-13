@@ -1,7 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
-
-const ReceiverMessage = ({message, createdAt, isImage = false, url = null}) => {
+import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+const ReceiverMessage = ({
+  message,
+  createdAt,
+  isImage = false,
+  url = null,
+  goToImageDetail,
+}) => {
   return !isImage ? (
     <View style={styles.main}>
       <View style={styles.messageContainer}>
@@ -10,9 +15,13 @@ const ReceiverMessage = ({message, createdAt, isImage = false, url = null}) => {
       </View>
     </View>
   ) : (
-    <View style={styles.imageContainer}>
+    <TouchableOpacity
+      onPress={() => {
+        goToImageDetail(url);
+      }}
+      style={styles.imageContainer}>
       <Image style={styles.image} source={{uri: url}} />
-    </View>
+    </TouchableOpacity>
   );
 };
 
