@@ -143,7 +143,7 @@ const BookingDepartmentScreen = (props) => {
       getAll().then((res) => {
         let lPosition = res;
         setLAllposition(lAllPosition);
-        let number = 0;
+        let number = 1;
         let date = dateBooking();
         for (let i = 0; i < lPosition.length; i++) {
           if (

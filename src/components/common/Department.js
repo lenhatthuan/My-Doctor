@@ -3,12 +3,12 @@ import {View, Text, Button} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {styles} from '../../theme/style';
 
-function Department({name, color, department, onPress}) {
+function Department({name, color, department, type, onPress}) {
   return (
     <View style={{alignItems: 'center'}}>
       <Icon
         name={name}
-        type="font-awesome-5"
+        type={type}
         color={color}
         raised
         size={34}
@@ -26,12 +26,14 @@ export default function DepartmentList({onPress}) {
     <View>
       <View style={styles.table}>
         <Department
+          type="font-awesome-5"
           name="lungs"
           color="cornflowerblue"
           department="Hô hấp"
           onPress={onPress}
         />
         <Department
+          type="font-awesome-5"
           name="assistive-listening-systems"
           color="navajowhite"
           department="Tai-Mũi-Họng"
@@ -41,6 +43,7 @@ export default function DepartmentList({onPress}) {
           name="eye"
           color="dodgerblue"
           department="Mắt"
+          type="font-awesome-5"
           onPress={onPress}
         />
       </View>
@@ -49,17 +52,20 @@ export default function DepartmentList({onPress}) {
           name="brain"
           color="coral"
           department="Thần kinh"
+          type="font-awesome-5"
           onPress={onPress}
         />
         <Department
           name="tooth"
           color="whitesmoke"
           department="Răng-Hàm-Mặt"
+          type="font-awesome-5"
           onPress={onPress}
         />
         <Department
           //name="kidney"
           name="question"
+          type="font-awesome-5"
           color="indianred"
           department="Thận"
           onPress={onPress}
@@ -68,6 +74,7 @@ export default function DepartmentList({onPress}) {
       <View style={styles.table}>
         <Department
           name="baby"
+          type="font-awesome-5"
           color="navajowhite"
           department="Phụ sản"
           onPress={onPress}
@@ -76,19 +83,21 @@ export default function DepartmentList({onPress}) {
           name="heartbeat"
           color="red"
           department="Tim mạch"
+          type="font-awesome-5"
           onPress={onPress}
         />
         <Department
           name="child"
           color="royalblue"
           department="Nhi"
+          type="font-awesome-5"
           onPress={onPress}
         />
       </View>
       <View style={styles.table}>
         <Department
-          //name="stomach"
-          name="question"
+          name="stomach"
+          type="material-community"
           color="orangered"
           department="Tiêu hóa"
           onPress={onPress}
@@ -96,12 +105,14 @@ export default function DepartmentList({onPress}) {
         <Department
           name="bone"
           color="whitesmoke"
+          type="font-awesome-5"
           department="Cơ-Xương-Khớp"
           onPress={onPress}
         />
         <Department
           name="allergies"
           color="navajowhite"
+          type="font-awesome-5"
           department="Da liễu"
           onPress={onPress}
         />

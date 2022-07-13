@@ -10,7 +10,7 @@ const Welcome = props => {
     Animated.sequence([
       Animated.timing(logo, {
         toValue: 1,
-        duration: 1000,
+        duration: 500,
         useNativeDriver: true,
       }),
       Animated.timing(text, {

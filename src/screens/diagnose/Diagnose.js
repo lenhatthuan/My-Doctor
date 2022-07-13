@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   SectionList,
@@ -9,7 +9,7 @@ import {
   Pressable,
   Image,
 } from 'react-native';
-import {Overlay, Icon} from 'react-native-elements';
+import {Icon} from 'react-native-elements';
 import Sysptom from '../../components/diagnose/Sysptom';
 import Diseases from '../../components/diagnose/Diseases';
 import MultiSelect from 'react-native-multiple-select';
@@ -25,22 +25,10 @@ const Diagnose = props => {
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState({});
   const [visible, setVisible] = useState(false);
-  const [sessionId, setSessionId] = useState();
   const [diseasesDiagnose, setDiseasesDiagnose] = useState([]);
   const [show, setShow] = useState(false);
-  const analyze = async () => {
-    try {
-      const response = await fetch(url + 'Analyze?SessionID=' + sessionId);
-      const json = await response.json();
-      console.log('json: ', json);
-      setDiseasesDiagnose(json.Diseases);
-      setShow(true);
-    } catch (err) {
-      console.log('Get sessionId error: ' + err);
-    }
-  };
 
-  const updateSymptom = async (name, value) => {
+  const updateSymptom = async (sessionId, name, value) => {
     return await fetch(
       url +
         'UpdateFeature?SessionID=' +
@@ -56,37 +44,34 @@ const Diagnose = props => {
       .catch(err => null);
   };
 
-  const deleteSymptom = async name => {
-    return await fetch(
-      url + 'DeleteFeature?SessionID=' + sessionId + '&name=' + name,
-      {method: 'POST'},
-    )
-      .then(response => response.json())
-      .then(json => console.log(json.status))
-      .catch(err => null);
-  };
-
-  const connect = async () => {
-    console.log('get secsion!');
+  const diagnose = async () => {
     try {
+      // get session
       const response = await fetch(url + 'InitSession');
       const json = await response.json();
+      const SessionID = json.SessionID;
+      console.log(SessionID);
+      // accept
       await fetch(
         url +
           'AcceptTermsOfUse?passphrase=I have read, understood and I accept and agree to comply with the Terms of Use of EndlessMedicalAPI and Endless Medical services. The Terms of Use are available on endlessmedical.com&SessionID=' +
-          json.SessionID,
+          SessionID,
         {method: 'POST'},
       );
-      setSessionId(json.SessionID);
-      console.log('get secsion success!');
+      // add answer
+      answers.forEach(element =>
+        updateSymptom(SessionID, element.question.name, element.answer),
+      );
+      // analyze
+      const res = await fetch(url + 'Analyze?SessionID=' + SessionID);
+      const body = await res.json();
+      console.log('json: ', body);
+      setDiseasesDiagnose(body.Diseases);
+      setShow(true);
     } catch (err) {
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    connect();
-  }, []);
 
   let currentQuestions = () =>
     questions.filter(
@@ -135,7 +120,7 @@ const Diagnose = props => {
           setVisible(true);
           setQuestionFilter(currentQuestions());
         }}
-        selectText="Triệu chứng"
+        selectText="  Triệu chứng"
         searchInputPlaceholderText="Triệu chứng"
         onChangeInput={text =>
           setQuestionFilter(
@@ -164,7 +149,7 @@ const Diagnose = props => {
               />
               {formatDisease().length > 0 ? (
                 formatDisease().map(disease => (
-                  <Diseases name={disease.name} percent={disease.percent} />
+                   <Diseases name={disease.name} percent={disease.percent} />
                 ))
               ) : (
                 <Text style={styles.txtHeathy}>
@@ -192,7 +177,6 @@ const Diagnose = props => {
                 }}
                 question={question}
                 submit={answer => {
-                  updateSymptom(question.name, answer.value);
                   let current = [...answers];
                   const index = answers.findIndex(
                     answer => answer.question === question,
@@ -215,61 +199,49 @@ const Diagnose = props => {
         sections={format()}
         renderItem={({item}) => (
           <View
-            style={{flexDirection: 'row', alignItems: 'center', padding: 10}}>
-            <Text style={{flex: 10}}>
-              {item.question.text}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              padding: 10,
+              borderRadius: 10,
+              backgroundColor: 'white',
+              marginVertical: 5,
+              elevation: 5,
+            }}>
+            <Text style={{width: '80%'}}>
+              {item.question.text + ' '}
               <Text style={{fontWeight: 'bold'}}>
                 {item.question.type !== 'categorical'
                   ? item.answer
                   : item.answer.text}
               </Text>
             </Text>
-            <View style={{flexDirection: 'row', flex: 1}}>
-              <Icon
-                name="edit"
-                onPress={() => {
-                  setQuestion(item.question);
-                  setVisible(true);
-                }}
-              />
-              <Icon
-                name="delete"
-                onPress={() => {
-                  deleteSymptom(item.question.name);
-                  let current = [...answers];
-                  current.splice(current.indexOf(item), 1);
-                  setAnswers(current);
-                }}
-              />
-            </View>
+            <Icon
+              name="edit"
+              color="blue"
+              onPress={() => {
+                setQuestion(item.question);
+                setVisible(true);
+              }}
+            />
+            <Icon
+              name="delete"
+              color="red"
+              onPress={() => {
+                let current = [...answers];
+                current.splice(current.indexOf(item), 1);
+                setAnswers(current);
+              }}
+            />
           </View>
         )}
         renderSectionHeader={({section: {category}}) => (
-          <Text style={{fontWeight: 'bold'}}>{category}</Text>
+          <Text style={{fontWeight: 'bold', color: 'green', fontSize: 15}}>
+            {category}
+          </Text>
         )}
       />
-      <BtnAddComponent title="Chuẩn đoán" onPress={analyze} />
-
-      {/* <>
-    <Modal visible={show} transparent={true} animationType="fade">
-        <Pressable
-          style={styles.modalSym}
-          onPress={() => {
-            setShow(false);
-          }}>
-          <View style={styles.modalBody}>
-            {formatDisease().length > 0 ? (
-              formatDisease().map(disease => (
-                <Diseases name={disease.name} percent={disease.percent} />
-              ))
-            ) : (
-              <Text>Khỏe mạnh</Text>
-            )}
-          </View>
-        </Pressable>
-        <BtnAddComponent title="OK" onPress={setShow(false)} />
-      </Modal>
-    </> */}
+      <BtnAddComponent title="Chuẩn đoán" onPress={diagnose} />
     </SafeAreaView>
   );
 };
@@ -285,7 +257,6 @@ const styles = StyleSheet.create({
   },
   modalBody: {
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'white',
     width: '90%',
     borderRadius: 10,

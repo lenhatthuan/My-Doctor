@@ -8,11 +8,11 @@ const Message = ({visible, type, content, press}) => {
       <View style={[styles.container, {backgroundColor: type.backgroundColor}]}>
         <Text style={[styles.title, {color: type.color}]}>{type.name}</Text>
         <Icon name={type.icon} color={type.color} size={150} />
-        <Text style={{fontSize: 25, textAlign: 'center'}}>{content}</Text>
+        <Text style={{fontSize: 18, textAlign: 'center'}}>{content}</Text>
         <Pressable
           onPress={press}
           style={[styles.button, {backgroundColor: type.color}]}>
-          <Text style={{color: 'white', fontSize: 30}}>{type.button}</Text>
+          <Text style={{color: 'white', fontSize: 18}}>{type.button}</Text>
         </Pressable>
       </View>
     </Modal>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 40,
+    fontSize: 25,
   },
   button: {
     borderRadius: 20,
