@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useMemo, useState, useCallback} from 'react';
 import {
   SafeAreaView,
   SectionList,
@@ -8,12 +8,20 @@ import {
   StyleSheet,
   Pressable,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
 import Sysptom from '../../components/diagnose/Sysptom';
 import Diseases from '../../components/diagnose/Diseases';
 import MultiSelect from 'react-native-multiple-select';
 import BtnAddComponent from '../../components/common/BtnAddComponent';
+import {MotiView} from '@motify/components';
+import {Easing} from 'react-native-reanimated';
+const COUNT = 5;
+const DURATION = 2000;
+const initialPhase = {scale: 0, opacity: 1};
+const constructAnimations = () =>
+  [...Array(COUNT).keys()].map(() => initialPhase);
 const Diagnose = props => {
   let questions = require('../../config/SymptomsOutput.json').filter(
     question => question.IsPatientProvided === false,
@@ -79,7 +87,7 @@ const Diagnose = props => {
         answers.findIndex(answer => answer.question == question) == -1,
     );
 
-  const format = () => {
+  const format = useMemo(() => {
     let data = [];
     const categories = new Set(answers.map(answer => answer.question.category));
     categories.forEach(category =>
@@ -89,18 +97,18 @@ const Diagnose = props => {
       }),
     );
     return data;
-  };
+  }, [answers]);
 
   const formatDisease = () => {
     let data = [];
-    diseasesDiagnose.forEach(diseaseDiagnose => {
+    diseasesDiagnose?.forEach(diseaseDiagnose => {
       for (const key in diseaseDiagnose) {
         const percent = parseFloat(diseaseDiagnose[key]).toFixed(2) * 100;
         if (percent > 0 && percent <= 100) {
           const disease = diseases.find(element => element.text === key);
           data.push({
-            department: disease.department,
-            name: disease.laytext,
+            department: disease?.department ?? 'none',
+            name: disease?.laytext ?? 'Không rõ',
             percent: percent + '%',
           });
         }
@@ -109,26 +117,137 @@ const Diagnose = props => {
     return data;
   };
 
+  const renderItemSectionList = useCallback(
+    ({item}) => {
+      return (
+        <TouchableOpacity
+          onPress={() => {
+            setQuestion(item.question);
+            setVisible(true);
+          }}
+          style={styles.sessionContainer}>
+          <Text style={styles.txtQuestion}>{item.question.text}</Text>
+          <View style={styles.answerContainer}>
+            <Text style={styles.txtAnswer}>
+              {item.question.type !== 'categorical'
+                ? item.answer
+                : item.answer.text}
+            </Text>
+          </View>
+          <View style={styles.actionSessionContainer}>
+            <Icon
+              name="edit"
+              onPress={() => {
+                setQuestion(item.question);
+                setVisible(true);
+              }}
+            />
+            <Icon
+              name="delete"
+              onPress={() => {
+                deleteSymptom(item.question.name);
+                let current = [...answers];
+                current.splice(current.indexOf(item), 1);
+                setAnswers(current);
+              }}
+            />
+          </View>
+        </TouchableOpacity>
+      );
+    },
+    [question, answers],
+  );
+
+  const onChangeTextSearch = useCallback(
+    text => {
+      setQuestionFilter(
+        currentQuestions().filter(question =>
+          question.text.toLowerCase().includes(text.toLowerCase()),
+        ),
+      );
+    },
+    [question, answers],
+  );
+
+  const onchangeSelectedItem = useCallback(
+    item => {
+      setQuestion(questions.find(question => question.name == item));
+      setVisible(true);
+      setQuestionFilter(currentQuestions());
+    },
+    [question, visible, questionFilter, answers],
+  );
+
+  const renderEmptySection = useCallback(() => {
+    return (
+      <View
+        style={{
+          width: 400,
+          height: 400,
+          justifyContent: 'center',
+          paddingLeft: 20,
+        }}>
+        {[...Array(3).keys()].map(index => {
+          return (
+            <MotiView
+              from={{opacity: 0.6, scale: 1}}
+              animate={{opacity: 0, scale: 4}}
+              transition={{
+                type: 'timing',
+                duration: DURATION,
+                easing: Easing.out(Easing.ease),
+                loop: true,
+                delay: index * 400,
+                repeatReverse: false,
+              }}
+              key={index}
+              style={{
+                backgroundColor: '#90C8AC',
+                height: 100,
+                width: 100,
+                borderRadius: 100,
+                position: 'absolute',
+                left: 20,
+              }}
+            />
+          );
+        })}
+
+        <View style={styles.btnImage}>
+          <Image
+            style={styles.imageAnimated}
+            source={require('../../../assets/imgs/doctor_dis.png')}
+          />
+        </View>
+
+        <View style={styles.guideContainer}>
+          <View style={styles.chatGuiTopContainer}>
+            <Text style={styles.txtGuide}>Bạn hãy chọn một câu hỏi bất kỳ</Text>
+          </View>
+          <View style={styles.chatGuiBottomContainer}>
+            <Text style={styles.txtGuide}>
+              Sau đó trả lời câu hỏi và chọn chẩn đoán nhé!
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
+  }, []);
+
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <MultiSelect
+        itemTextColor="#000"
+        styleTextDropdown={{
+          marginVertical: 20,
+        }}
         hideTags
         items={questionFilter}
         uniqueKey="name"
-        onSelectedItemsChange={item => {
-          setQuestion(questions.find(question => question.name == item));
-          setVisible(true);
-          setQuestionFilter(currentQuestions());
-        }}
-        selectText="  Triệu chứng"
+        onSelectedItemsChange={onchangeSelectedItem}
+        selectText="Triệu chứng"
         searchInputPlaceholderText="Triệu chứng"
-        onChangeInput={text =>
-          setQuestionFilter(
-            currentQuestions().filter(question =>
-              question.text.toLowerCase().includes(text.toLowerCase()),
-            ),
-          )
-        }
+        onChangeInput={onChangeTextSearch}
         displayKey="text"
       />
       <Modal visible={visible || show} transparent={true} animationType="fade">
@@ -143,13 +262,13 @@ const Diagnose = props => {
                 style={styles.img}
                 source={
                   formatDisease().length > 0
-                    ? require('../../../assets/imgs/sick.gif')
-                    : require('../../../assets/imgs/heathy_ok.gif')
+                    ? require('../../../assets/imgs/not-ok.png')
+                    : require('../../../assets/imgs/doctor-ok.png')
                 }
               />
               {formatDisease().length > 0 ? (
                 formatDisease().map(disease => (
-                   <Diseases name={disease.name} percent={disease.percent} />
+                  <Diseases name={disease.name} percent={disease.percent} />
                 ))
               ) : (
                 <Text style={styles.txtHeathy}>
@@ -196,45 +315,9 @@ const Diagnose = props => {
 
       <SectionList
         style={{padding: 10}}
-        sections={format()}
-        renderItem={({item}) => (
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              padding: 10,
-              borderRadius: 10,
-              backgroundColor: 'white',
-              marginVertical: 5,
-              elevation: 5,
-            }}>
-            <Text style={{width: '80%'}}>
-              {item.question.text + ' '}
-              <Text style={{fontWeight: 'bold'}}>
-                {item.question.type !== 'categorical'
-                  ? item.answer
-                  : item.answer.text}
-              </Text>
-            </Text>
-            <Icon
-              name="edit"
-              color="blue"
-              onPress={() => {
-                setQuestion(item.question);
-                setVisible(true);
-              }}
-            />
-            <Icon
-              name="delete"
-              color="red"
-              onPress={() => {
-                let current = [...answers];
-                current.splice(current.indexOf(item), 1);
-                setAnswers(current);
-              }}
-            />
-          </View>
-        )}
+        sections={format}
+        ListEmptyComponent={renderEmptySection}
+        renderItem={renderItemSectionList}
         renderSectionHeader={({section: {category}}) => (
           <Text style={{fontWeight: 'bold', color: 'green', fontSize: 15}}>
             {category}
@@ -247,6 +330,109 @@ const Diagnose = props => {
 };
 
 const styles = StyleSheet.create({
+  txtQuestion: {fontWeight: '500', color: '#000', fontSize: 15},
+  txtAnswer: {fontWeight: '600', color: '#2196f3', fontSize: 14},
+  answerContainer: {
+    backgroundColor: '#e3f2fd',
+    paddingVertical: 3,
+    paddingHorizontal: 10,
+    borderRadius: 2,
+    marginVertical: 5,
+  },
+  actionSessionContainer: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  sessionContainer: {
+    padding: 10,
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: '#79DAE8',
+    marginVertical: 5,
+    borderRadius: 5,
+    borderStyle: 'dotted',
+  },
+  txtGuide: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#2C3639',
+  },
+  chatGuiTopContainer: {
+    width: 200,
+    height: 70,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: '#E8F9FD',
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 70,
+    shadowColor: '#F5F0BB',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+
+    elevation: 4,
+  },
+  chatGuiBottomContainer: {
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+    paddingLeft: 25,
+    width: 230,
+    height: 80,
+    backgroundColor: '#DFF6FF',
+    borderTopRightRadius: 50,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 60,
+    marginTop: 30,
+    shadowColor: '#F5F0BB',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+
+    elevation: 4,
+  },
+  guideContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    height: 500,
+    width: 500,
+    alignItems: 'flex-end',
+    paddingRight: 30,
+    paddingTop: 50,
+    justifyContent: 'center',
+  },
+  imageAnimated: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+  },
+  btnImage: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 17,
+  },
   modalSym: {
     flex: 1,
     justifyContent: 'center',
@@ -263,14 +449,14 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   img: {
-    width: '100%',
-    height: 200,
+    width: 100,
+    height: 100,
     resizeMode: 'stretch',
-    borderRadius: 3,
+    borderRadius: 100,
   },
   txtHeathy: {
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#05595B',
     padding: 5,

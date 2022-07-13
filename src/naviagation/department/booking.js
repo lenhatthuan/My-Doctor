@@ -22,7 +22,7 @@ function serviceTap() {
       <Tab.Screen
         name="Question"
         component={Question}
-        options={{tabBarLabel: 'Chuẩn đoán'}}
+        options={{tabBarLabel: 'Chẩn đoán'}}
       />
     </Tab.Navigator>
   );

@@ -7,6 +7,7 @@ import ServiceTap from './DoctorContact/service';
 import Position from '../screens/position/PositionScreen';
 import Record from '../screens/record/Record';
 import Prescription from '../screens/record/Prescription';
+import ImageDetail from '../screens/contact/components/imageDetail';
 
 const Home = () => (
   <Stack.Navigator

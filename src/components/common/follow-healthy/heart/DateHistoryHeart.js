@@ -24,7 +24,7 @@ const DateHistoryHeart = props => {
       props.heartBeat +
       '.';
     setMessage(send);
-  });
+  }, []);
 
   const successSnackbar = () => {
     setIsSnackbar(true);
@@ -77,16 +77,6 @@ const DateHistoryHeart = props => {
     });
   };
 
-  // const sendToDoctor = React.useCallback(() => (
-  //   <AlertDoctorSend
-  //     visible={isGetSend}
-  //     doctors={doctors}
-  //     onCancel={onCancel}
-  //     onSend={onSend}
-  //     content={message}
-  //   />
-  // ));
-
   return (
     <View>
       <SbNotification
@@ -101,6 +91,10 @@ const DateHistoryHeart = props => {
         onCancel={onCancel}
         onSend={onSend}
         content={message}
+        title={props.title}
+        time={props.time}
+        heartBeat={props.heartBeat}
+        status={props.status}
       />
       <View
         style={{justifyContent: 'flex-end', flexDirection: 'row', margin: 5}}>

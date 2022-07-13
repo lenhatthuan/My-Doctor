@@ -18,6 +18,7 @@ import PaymentScreen from './src/screens/service/payment/PaymentScreen';
 import {LogBox} from 'react-native';
 import ChatDetailScreen from './src/screens/contact/ChatScreen';
 import ChatScreen from './src/screens/contact/ListChatScreen';
+import ImageDetail from './src/screens/contact/components/imageDetail';
 const App = () => {
   LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
   LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -57,6 +58,11 @@ const App = () => {
           name="ChatDetailScreen"
           options={{headerShown: false}}
           component={ChatDetailScreen}
+        />
+        <Stack.Screen
+          name="ImageDetailChat"
+          options={{headerShown: false}}
+          component={ImageDetail}
         />
       </Stack.Navigator>
     </NavigationContainer>

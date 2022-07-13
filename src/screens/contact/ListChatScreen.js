@@ -16,6 +16,7 @@ import {getDoctor} from '../../store/actions/doctor';
 import {db} from '../../config/firebase';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import HeaderBackComponent from '../../components/common/HeaderBackComponent';
+import {shortMessage} from '../../utils/string-format';
 
 const ListChatScreen = props => {
   const [name, setName] = useState('');
@@ -110,7 +111,7 @@ const ListChatScreen = props => {
           }}>
           <Text style={{fontSize: 15, fontWeight: '500'}}>{item.fullname}</Text>
           <Text style={{fontSize: 13, fontWeight: '400', marginTop: 5}}>
-            {item.lastMessage}
+            {shortMessage(item.lastMessage, 30)}
           </Text>
         </View>
       </Pressable>
