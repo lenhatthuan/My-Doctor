@@ -12,6 +12,8 @@ import COLORS from '../../../../assets/colors';
 import BtnAddComponent from '../../BtnAddComponent';
 import {getAllBMI} from '../../../../store/actions/bmi';
 import {convertTitle, formatDate} from '../../../../utils/string-format';
+import {LineChart, Grid, YAxis} from 'react-native-svg-charts';
+
 const HistoryBMIComponent = props => {
   const [isAddModel, setIsAddModel] = useState(false);
   const [isLoadingBMI, setIsLoadingBMI] = useState(true);
@@ -19,6 +21,10 @@ const HistoryBMIComponent = props => {
   const [weight, setWeight] = useState('0');
   const [date, setDate] = useState(new Date());
   const [bmi, setBmi] = useState('0');
+  const [chart, setChart] = useState([]);
+
+  const formatChart = array =>
+    array.map(element => element.weigh / ((element.tall / 100) * 2));
 
   const cancelGoalApplicationHandler = () => {
     setIsAddModel(false);
@@ -65,7 +71,7 @@ const HistoryBMIComponent = props => {
         setDate(new Date());
         setBmi(0);
       }
-
+      setChart(formatChart(bmi));
       setIsLoadingBMI(isNotHaveListBMI());
     });
   };
@@ -82,10 +88,10 @@ const HistoryBMIComponent = props => {
           <MainComponent />
         </View>
         <View style={styles.chartComponent}>
-          <Image
-            source={require('../../../../../assets/imgs/hi.gif')}
-            style={{height: '100%', width: '100%'}}
-          />
+          <YAxis svg={{fill: 'grey'}} data={chart} />
+          <LineChart style={{flex: 1}} data={chart} svg={{stroke: 'blue'}}>
+            <Grid />
+          </LineChart>
         </View>
         <View style={styles.historyComponent}>
           <View style={styles.detailDate}>
@@ -170,6 +176,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
+    flexDirection: "row",
   },
   historyComponent: {
     backgroundColor: 'white',

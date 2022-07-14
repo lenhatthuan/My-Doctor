@@ -1,113 +1,85 @@
-import React from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
-import COLORS from '../../../../assets/colors';
-import STRING from '../../../../utils/string';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import HeaderBackComponent from '../../HeaderBackComponent';
-const HistoryHeartComponent = props => {
-  const [isAddModel, setIsAddModel] = React.useState(false);
-  const cancelGoalApplicationHandler = () => {
-    setIsAddModel(false);
-  };
-  const onBack = () => {
-    props.navigation.navigate('FollowHeathy');
-  };
+import React, {useState, useEffect} from 'react';
+import {BarChart, Grid, YAxis, LineChart} from 'react-native-svg-charts';
+import {Text, View, Button, StyleSheet} from 'react-native';
+import {getAllHeart} from '../../../../store/actions/heart';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-  const data1 = [
-    {x: -2, y: 1},
-    {x: -1, y: 0},
-    {x: 8, y: 13},
-    {x: 9, y: 11.5},
-    {x: 10, y: 12},
-  ];
+const HeartBeatChart = props => {
+  const [data, setData] = useState([]);
 
-  const data2 = [
-    {x: -2, y: 15},
-    {x: -1, y: 10},
-    {x: 0, y: 12},
-    {x: 1, y: 7},
-    {x: 8, y: 12},
-    {x: 9, y: 13.5},
-    {x: 10, y: 18},
+  useEffect(() => {
+    AsyncStorage.getItem('accountData').then(res => {
+      const account = JSON.parse(res);
+      getAllHeart(account.accountId)
+        .then(data => setData(data))
+        .catch(err => console.log(err));
+    });
+  }, []);
+
+  const barData = [
+    {data: data.map(element => element.diastole), svg: {fill: 'blue'}},
+    {data: data.map(element => element.systole), svg: {fill: 'red'}},
   ];
 
   return (
-    <View style={styles.screen}>
-      {/* <View style = {styles.header}>
-           <HeaderBackComponent title="Theo dõi số đo nhịp tim" onBack={onBack} />
-           </View>
-           <View style = {styles.bodyContainer}>
-           <View style = {styles.chartContainer}>
-           <Chart
-            style={{ height: 200, width: '100%', backgroundColor: '#eee' }}
-            xDomain={{ min: -2, max: 10 }}
-            yDomain={{ min: -2, max: 20 }}
-            padding={{ left: 20, top: 10, bottom: 10, right: 10 }}
-            >
-            <VerticalAxis tickValues={[0, 4, 8, 12, 16, 20]} />
-            <HorizontalAxis tickCount={3} />
-            <Line data={data1} smoothing="none" theme={{ stroke: { color: 'red', width: 1 } }} />
-            <Line data={data2} smoothing="cubic-spline" theme={{ stroke: { color: 'blue', width: 1 } }} />
-            </Chart>
-           </View>
-           <View style = {styles.getAllContainer}>
-           <Pressable style={styles.getAll} onPress={() => {
-            props.navigation.navigate("ListHeart");
-          }}>
-            <Text style={styles.txtGetAll}>{STRING.getAllData}</Text>
-            <AntDesign name="arrowright" size={24} color={COLORS.blueMint} />
-          </Pressable>
-           </View>
-           <View style = {styles.notificationContainer}></View>
-           </View> */}
+    <View style={styles.main}>
+      <Text style={styles.title}>Huyết áp</Text>
+      <View style={styles.chart}>
+        <YAxis
+          svg={{fill: 'grey'}}
+          data={data.map(element => [element.diastole, element.systole]).flat()}
+        />
+        <BarChart style={{flex: 1}} data={barData}>
+          <Grid />
+        </BarChart>
+      </View>
+      <Text style={[styles.title, {marginTop: 10}]}>Nhịp tim</Text>
+      <View style={[styles.chart, {marginBottom: 10}]}>
+        <YAxis
+          svg={{fill: 'grey'}}
+          data={data.map(element => element.heartBeat)}
+        />
+        <LineChart
+          style={{flex: 1}}
+          data={data.map(element => element.heartBeat)}
+          svg={{stroke: 'blue'}}>
+          <Grid />
+        </LineChart>
+      </View>
+      <Button
+        title="Lịch sử đo"
+        onPress={() => props.navigation.push('ListHeart')}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  notificationContainer: {
+  main: {
     flex: 1,
+    margin: 10,
+  },
+  title: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  chart: {
+    margin: 10,
+    padding: 10,
     backgroundColor: 'white',
-    borderRadius: 10,
+    flex: 3,
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
     elevation: 3,
-    width: '100%',
-  },
-
-  getAllContainer: {
-    flex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    elevation: 3,
-    width: '100%',
-  },
-
-  chartContainer: {
-    flex: 4,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    elevation: 3,
-    width: '100%',
-  },
-
-  header: {
-    width: '100%',
-  },
-
-  bodyContainer: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flexDirection: 'column',
-    backgroundColor: COLORS.backround,
-    width: '100%',
-  },
-
-  screen: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: COLORS.backround,
+    flexDirection: "row",
   },
 });
 
-export default HistoryHeartComponent;
+export default HeartBeatChart;
