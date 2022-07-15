@@ -10,6 +10,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import SoundPlayer from 'react-native-sound-player';
 import {Icon} from 'react-native-elements';
 import Sysptom from '../../components/diagnose/Sysptom';
 import Diseases from '../../components/diagnose/Diseases';
@@ -22,6 +23,7 @@ const DURATION = 2000;
 const initialPhase = {scale: 0, opacity: 1};
 const constructAnimations = () =>
   [...Array(COUNT).keys()].map(() => initialPhase);
+
 const Diagnose = props => {
   let questions = require('../../config/SymptomsOutput.json').filter(
     question => question.IsPatientProvided === false,
@@ -35,6 +37,7 @@ const Diagnose = props => {
   const [visible, setVisible] = useState(false);
   const [diseasesDiagnose, setDiseasesDiagnose] = useState([]);
   const [show, setShow] = useState(false);
+  const [audio, setAudio] = useState();
 
   const updateSymptom = async (sessionId, name, value) => {
     return await fetch(
@@ -74,8 +77,10 @@ const Diagnose = props => {
       const res = await fetch(url + 'Analyze?SessionID=' + SessionID);
       const body = await res.json();
       console.log('json: ', body);
-      setDiseasesDiagnose(body.Diseases);
+      const data = formatDisease(body.Diseases);
+      setDiseasesDiagnose(data);
       setShow(true);
+      await convertAudio(data);
     } catch (err) {
       console.log(err);
     }
@@ -99,7 +104,7 @@ const Diagnose = props => {
     return data;
   }, [answers]);
 
-  const formatDisease = () => {
+  const formatDisease = diseasesDiagnose => {
     let data = [];
     diseasesDiagnose?.forEach(diseaseDiagnose => {
       for (const key in diseaseDiagnose) {
@@ -115,6 +120,45 @@ const Diagnose = props => {
       }
     });
     return data;
+  };
+
+  const convertAudio = async data => {
+    let audio =
+      'https://file01.fpt.ai/text2speech-v5/short/2022-07-15/3be9c475a6baf2b03773aea0facbb997.mp3';
+    if (data.length > 0) {
+      let word =
+        'Kết quả chẩn đoán của bạn là bạn có thể mắc phải ' +
+        data.length +
+        ' căn bệnh sau:';
+      data.forEach(
+        element =>
+          (word +=
+            '\n' + element.name + ' với tỉ lệ là ' + element.percent + '.'),
+      );
+      await fetch('https://api.fpt.ai/hmi/tts/v5', {
+        method: 'POST',
+        body: word,
+        headers: {
+          api_key: 'KBL1n4nxX9i8KIiH9lTWlO5cuQUEcgqy',
+          speech: '1',
+          voice: 'banmai',
+          'Content-Type': 'text/plain',
+        },
+      })
+        .then(response => response.json())
+        .then(json => (audio = json.async))
+        .catch(err => console.log('convert: ' + err));
+    }
+    setAudio(audio);
+    play(audio);
+  };
+
+  const play = audio => {
+    try {
+      SoundPlayer.playUrl(audio);
+    } catch (e) {
+      console.log(`cannot play the sound file`, e);
+    }
   };
 
   const renderItemSectionList = useCallback(
@@ -145,7 +189,6 @@ const Diagnose = props => {
             <Icon
               name="delete"
               onPress={() => {
-                deleteSymptom(item.question.name);
                 let current = [...answers];
                 current.splice(current.indexOf(item), 1);
                 setAnswers(current);
@@ -261,13 +304,18 @@ const Diagnose = props => {
               <Image
                 style={styles.img}
                 source={
-                  formatDisease().length > 0
+                  diseasesDiagnose.length > 0
                     ? require('../../../assets/imgs/not-ok.png')
                     : require('../../../assets/imgs/doctor-ok.png')
                 }
               />
-              {formatDisease().length > 0 ? (
-                formatDisease().map(disease => (
+              <Icon
+                name="account-voice"
+                type="material-community"
+                onPress={() => play(audio)}
+              />
+              {diseasesDiagnose.length > 0 ? (
+                diseasesDiagnose.map(disease => (
                   <Diseases name={disease.name} percent={disease.percent} />
                 ))
               ) : (
@@ -324,7 +372,7 @@ const Diagnose = props => {
           </Text>
         )}
       />
-      <BtnAddComponent title="Chuẩn đoán" onPress={diagnose} />
+      <BtnAddComponent title="Chẩn đoán" onPress={diagnose} />
     </SafeAreaView>
   );
 };
