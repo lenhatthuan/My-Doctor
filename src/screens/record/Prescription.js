@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -9,10 +9,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import {DataTable} from 'react-native-paper';
-import {styles} from '../../theme/style';
 import {getByRecord} from '../../store/actions/prescription';
 import {Icon, Overlay} from 'react-native-elements';
 import PushNotification from 'react-native-push-notification';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Prescription = props => {
   const [prescription, setPrescription] = useState([]);
@@ -26,8 +26,20 @@ const Prescription = props => {
       .catch(err => console.error(err));
   }, []);
 
+  const onPressBack = useCallback(() => {
+    props.navigation.goBack();
+  }, []);
+
   return (
     <SafeAreaView style={{flex: 1}}>
+      <View style={styles.header}>
+        <Ionicons
+          onPress={onPressBack}
+          name={'chevron-back'}
+          size={24}
+          color={'black'}
+        />
+      </View>
       <ImageBackground
         source={require('../../assets/record.png')}
         style={[
@@ -35,7 +47,7 @@ const Prescription = props => {
           {paddingVertical: 20, paddingHorizontal: 10},
         ]}>
         <View style={{opacity: 1}}>
-          <Text style={stylesNew.title}>Đơn thuốc</Text>
+          <Text style={styles.title}>Đơn thuốc</Text>
           <View
             style={{
               backgroundColor: 'white',
@@ -46,31 +58,31 @@ const Prescription = props => {
             <DataTable style={{backgroundColor: 'white'}}>
               <DataTable.Header>
                 <DataTable.Title style={{flex: 1}}>
-                  <Text style={stylesNew.txtMedicalHeader}>#</Text>
+                  <Text style={styles.txtMedicalHeader}>#</Text>
                 </DataTable.Title>
                 <DataTable.Title style={{flex: 3}}>
-                  <Text style={stylesNew.txtMedicalHeader}>Tên thuốc</Text>
+                  <Text style={styles.txtMedicalHeader}>Tên thuốc</Text>
                 </DataTable.Title>
                 <DataTable.Title style={{flex: 2}}>
-                  <Text style={stylesNew.txtMedicalHeader}>Liều </Text>
+                  <Text style={styles.txtMedicalHeader}>Liều </Text>
                 </DataTable.Title>
                 <DataTable.Title style={{flex: 4, justifyContent: 'center'}}>
-                  <Text style={stylesNew.txtMedicalHeader}>Cách dùng</Text>
+                  <Text style={styles.txtMedicalHeader}>Cách dùng</Text>
                 </DataTable.Title>
               </DataTable.Header>
               {prescription.map((medicine, index) => (
                 <DataTable.Row>
                   <DataTable.Cell style={{flex: 1}}>
-                    <Text style={stylesNew.txtMedical}>{++index}</Text>
+                    <Text style={styles.txtMedical}>{++index}</Text>
                   </DataTable.Cell>
                   <DataTable.Cell style={{flex: 3}}>
-                    <Text style={stylesNew.txtMedical}>{medicine.name}</Text>
+                    <Text style={styles.txtMedical}>{medicine.name}</Text>
                   </DataTable.Cell>
                   <DataTable.Cell style={{flex: 2, justifyContent: 'center'}}>
-                    <Text style={stylesNew.txtMedical}>{medicine.amount}</Text>
+                    <Text style={styles.txtMedical}>{medicine.amount}</Text>
                   </DataTable.Cell>
                   <DataTable.Cell style={{flex: 4}}>
-                    <Text style={stylesNew.txtMedical}>{medicine.use}</Text>
+                    <Text style={styles.txtMedical}>{medicine.use}</Text>
                   </DataTable.Cell>
                 </DataTable.Row>
               ))}
@@ -88,7 +100,7 @@ const Prescription = props => {
               setMinute(null);
               setIsVisible(false);
             }}>
-            <Text style={stylesNew.txtAlarm}>Nhắc uống thuốc</Text>
+            <Text style={styles.txtAlarm}>Nhắc uống thuốc</Text>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-around'}}>
               <TextInput
@@ -134,7 +146,7 @@ const Prescription = props => {
           </Overlay>
         </View>
         <Icon
-          style={stylesNew.alarmNew}
+          style={styles.alarmNew}
           name="alarm"
           onPress={() => setIsVisible(true)}
           size={30}
@@ -151,7 +163,11 @@ const Prescription = props => {
   );
 };
 
-const stylesNew = StyleSheet.create({
+const styles = StyleSheet.create({
+  header: {
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+  },
   alarmNew: {
     shadowColor: '#000',
     shadowOffset: {
