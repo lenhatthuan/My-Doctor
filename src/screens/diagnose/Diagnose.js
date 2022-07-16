@@ -37,7 +37,7 @@ const Diagnose = props => {
   const [visible, setVisible] = useState(false);
   const [diseasesDiagnose, setDiseasesDiagnose] = useState([]);
   const [show, setShow] = useState(false);
-  const [audio, setAudio] = useState();
+  const [audio, setAudio] = useState('');
 
   const updateSymptom = async (sessionId, name, value) => {
     return await fetch(
@@ -56,34 +56,39 @@ const Diagnose = props => {
   };
 
   const diagnose = async () => {
-    try {
-      // get session
-      const response = await fetch(url + 'InitSession');
-      const json = await response.json();
-      const SessionID = json.SessionID;
-      console.log(SessionID);
-      // accept
-      await fetch(
-        url +
-          'AcceptTermsOfUse?passphrase=I have read, understood and I accept and agree to comply with the Terms of Use of EndlessMedicalAPI and Endless Medical services. The Terms of Use are available on endlessmedical.com&SessionID=' +
-          SessionID,
-        {method: 'POST'},
-      );
-      // add answer
-      answers.forEach(element =>
-        updateSymptom(SessionID, element.question.name, element.answer),
-      );
-      // analyze
-      const res = await fetch(url + 'Analyze?SessionID=' + SessionID);
-      const body = await res.json();
-      console.log('json: ', body);
-      const data = formatDisease(body.Diseases);
-      setDiseasesDiagnose(data);
-      setShow(true);
-      await convertAudio(data);
-    } catch (err) {
-      console.log(err);
+    if (answers.length === 0) {
+      setDiseasesDiagnose([]);
+      setAudio('');
+    } else {
+      try {
+        // get session
+        const response = await fetch(url + 'InitSession');
+        const json = await response.json();
+        const SessionID = json.SessionID;
+        console.log(SessionID);
+        // accept
+        await fetch(
+          url +
+            'AcceptTermsOfUse?passphrase=I have read, understood and I accept and agree to comply with the Terms of Use of EndlessMedicalAPI and Endless Medical services. The Terms of Use are available on endlessmedical.com&SessionID=' +
+            SessionID,
+          {method: 'POST'},
+        );
+        // add answer
+        answers.forEach(element =>
+          updateSymptom(SessionID, element.question.name, element.answer),
+        );
+        // analyze
+        const res = await fetch(url + 'Analyze?SessionID=' + SessionID);
+        const body = await res.json();
+        console.log('json: ', body);
+        const data = formatDisease(body.Diseases);
+        setDiseasesDiagnose(data);
+        await convertAudio(data);
+      } catch (err) {
+        console.log(err);
+      }
     }
+    setShow(true);
   };
 
   let currentQuestions = () =>
@@ -123,18 +128,20 @@ const Diagnose = props => {
   };
 
   const convertAudio = async data => {
-    let audio =
-      'https://file01.fpt.ai/text2speech-v5/short/2022-07-15/3be9c475a6baf2b03773aea0facbb997.mp3';
     if (data.length > 0) {
       let word =
         'Kết quả chẩn đoán của bạn là bạn có thể mắc phải ' +
         data.length +
-        ' căn bệnh sau:';
-      data.forEach(
-        element =>
-          (word +=
-            '\n' + element.name + ' với tỉ lệ là ' + element.percent + '.'),
-      );
+        ' căn bệnh sau. Trong đó, xác xuất cao là: ';
+      data
+        .filter(
+          disease => disease.percent === '100%' || disease.percent >= '50%',
+        )
+        .forEach(
+          element =>
+            (word +=
+              '\n' + element.name + ' với tỉ lệ là ' + element.percent + '.'),
+        );
       await fetch('https://api.fpt.ai/hmi/tts/v5', {
         method: 'POST',
         body: word,
@@ -146,16 +153,18 @@ const Diagnose = props => {
         },
       })
         .then(response => response.json())
-        .then(json => (audio = json.async))
+        .then(json => setAudio(json.async))
         .catch(err => console.log('convert: ' + err));
+    } else {
+      setAudio('');
     }
-    setAudio(audio);
-    play(audio);
   };
 
-  const play = audio => {
+  const play = () => {
     try {
-      SoundPlayer.playUrl(audio);
+      audio.length > 0
+        ? SoundPlayer.playUrl(audio)
+        : SoundPlayer.playSoundFile('sound', 'mp3');
     } catch (e) {
       console.log(`cannot play the sound file`, e);
     }
@@ -312,7 +321,7 @@ const Diagnose = props => {
               <Icon
                 name="account-voice"
                 type="material-community"
-                onPress={() => play(audio)}
+                onPress={play}
               />
               {diseasesDiagnose.length > 0 ? (
                 diseasesDiagnose.map(disease => (
