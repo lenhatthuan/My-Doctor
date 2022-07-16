@@ -13,7 +13,10 @@ export const formatDate = date => {
   Moment.locale('en');
   return Moment(date).format('DD/MM/YYYY');
 };
-
+export const formatDateYear = date => {
+  Moment.locale('en');
+  return Moment(date).format('DD/MM/YY');
+};
 export const formatDateCalandar = date => {
   Moment.locale('en');
   return Moment(date).format('YYYY-MM-DD');
