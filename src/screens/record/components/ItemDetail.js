@@ -27,7 +27,6 @@ const ItemDetail = ({rowData, sectionID, rowID, gotoMedical}) => {
         <View style={styles.infoSickDetailContainer}>
           <View style={styles.txtDetailContainer}>
             <Text style={styles.txtNameDoctorSick}>
-              {' '}
               BS. {doctor?.fullname}
             </Text>
           </View>
@@ -44,8 +43,8 @@ const ItemDetail = ({rowData, sectionID, rowID, gotoMedical}) => {
           <View style={styles.onPressMecialContainer}>
             <TouchableOpacity
               style={styles.btnMedicalContainer}
-              onPress={() => gotoMedical(rowData.id)}>
-              <Text style={styles.txtBtnMedical}>Đơn thuốc</Text>
+              onPress={() => gotoMedical(rowData)}>
+              <Text style={styles.txtBtnMedical}>Toa thuốc</Text>
             </TouchableOpacity>
           </View>
         </View>

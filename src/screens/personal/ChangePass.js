@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -9,13 +9,13 @@ import {
   Animated,
   SafeAreaView,
 } from 'react-native';
-import {Icon} from 'react-native-elements';
-import {styles} from '../../theme/basic';
+import { Icon } from 'react-native-elements';
+import { styles } from '../../theme/basic';
 import Loading from '../../components/common/Loading';
 import Message from '../../components/common/Message';
 import message from '../../config/message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {changePass} from '../../store/actions/account';
+import { changePass } from '../../store/actions/account';
 
 const ChangePass = props => {
   const anim = useRef(new Animated.Value(0)).current;
@@ -65,22 +65,33 @@ const ChangePass = props => {
     setCaptcha(result);
   };
 
-  const showMessage = () => {
+  const showMessage = async () => {
     if (newPass === confirmPass && code === captcha) {
       setIsLoading(true);
-      AsyncStorage.getItem('accountData').then(res => {
-        const account = JSON.parse(res);
-        changePass(account.accountId, account.username, oldPass, newPass)
-          .then(result => {
+      const res = await AsyncStorage.getItem('accountData');
+      const account = JSON.parse(res);
+      await changePass(
+        account.accountId,
+        account.username,
+        oldPass,
+        newPass,
+        account.token,
+      )
+        .then(result => {
+          if (result.message === 'Change password success!') {
             setType(message.success);
             setContent('Đổi mật khẩu thành công');
-          })
-          .catch(err => {
+          } else {
             setType(message.error);
             setContent('Đổi mật khẩu không thành công');
             clear();
-          });
-      });
+          }
+        })
+        .catch(err => {
+          setType(message.error);
+          setContent('Đổi mật khẩu không thành công');
+          clear();
+        });
       setIsLoading(false);
     } else {
       setType(message.warning);
@@ -110,7 +121,7 @@ const ChangePass = props => {
           if (type === message.success) props.navigation.pop();
         }}
       />
-      <View style={[styles.header, {marginVertical: -20}]}>
+      <View style={[styles.header, { marginVertical: -20 }]}>
         <Text style={styles.text_header}>Đổi mật khẩu</Text>
       </View>
       <Animated.View
@@ -141,7 +152,7 @@ const ChangePass = props => {
           />
           {onSecure(0)}
         </View>
-        <Text style={[styles.text_footer, {marginTop: 10}]}>Mật khẩu mới</Text>
+        <Text style={[styles.text_footer, { marginTop: 10 }]}>Mật khẩu mới</Text>
         <View style={styles.action}>
           <TextInput
             value={newPass}
@@ -153,7 +164,7 @@ const ChangePass = props => {
           />
           {onSecure(1)}
         </View>
-        <Text style={[styles.text_footer, {marginTop: 10}]}>
+        <Text style={[styles.text_footer, { marginTop: 10 }]}>
           Nhập lại mật khẩu mới
         </Text>
         <View style={styles.action}>
@@ -168,7 +179,7 @@ const ChangePass = props => {
           {onSecure(2)}
         </View>
 
-        <Text style={[styles.text_footer, {marginTop: 10}]}>Mã xác thực</Text>
+        <Text style={[styles.text_footer, { marginTop: 10 }]}>Mã xác thực</Text>
         <View style={styles.action}>
           <TextInput
             value={code}
@@ -177,7 +188,7 @@ const ChangePass = props => {
             style={styles.textInput}
             onChangeText={text => setCode(text)}
           />
-          <View style={{flexDirection: 'row-reverse', alignItems: 'center'}}>
+          <View style={{ flexDirection: 'row-reverse', alignItems: 'center' }}>
             <Icon color="#009387" name="refresh" onPress={randomCaptcha} />
             <ImageBackground
               source={require('../../assets/captcha.png')}
@@ -192,7 +203,7 @@ const ChangePass = props => {
             disabled={!(newPass && confirmPass && oldPass && code)}
             style={[
               styles.signIn,
-              {backgroundColor: '#009387', marginTop: -20},
+              { backgroundColor: '#009387', marginTop: -20 },
             ]}
             onPress={showMessage}>
             <Text style={styles.textSign}>Lưu</Text>

@@ -29,8 +29,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 35,
   },
   title: {
-    margin: 30,
-    marginBottom: 15,
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",

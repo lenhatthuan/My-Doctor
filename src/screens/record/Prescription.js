@@ -7,8 +7,9 @@ import {
   Button,
   View,
   StyleSheet,
+  Pressable,
+  ScrollView,
 } from 'react-native';
-import {DataTable} from 'react-native-paper';
 import {getByRecord} from '../../store/actions/prescription';
 import {Icon, Overlay} from 'react-native-elements';
 import PushNotification from 'react-native-push-notification';
@@ -19,9 +20,10 @@ const Prescription = props => {
   const [isVisible, setIsVisible] = useState(false);
   const [hour, setHour] = useState();
   const [minute, setMinute] = useState();
+  const record = props.route.params.record;
 
   useEffect(() => {
-    getByRecord(props.route.params.recordId)
+    getByRecord(record.id)
       .then(result => setPrescription(result.prescription))
       .catch(err => console.error(err));
   }, []);
@@ -32,62 +34,92 @@ const Prescription = props => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={styles.header}>
-        <Ionicons
-          onPress={onPressBack}
-          name={'chevron-back'}
-          size={24}
-          color={'black'}
-        />
-      </View>
       <ImageBackground
         source={require('../../assets/record.png')}
-        style={[
-          styles.containerList,
-          {paddingVertical: 20, paddingHorizontal: 10},
-        ]}>
+        style={{flex: 1}}>
+        <View style={styles.header}>
+          <Ionicons
+            onPress={onPressBack}
+            name="chevron-back"
+            size={24}
+            color="white"
+          />
+        </View>
         <View style={{opacity: 1}}>
-          <Text style={styles.title}>Đơn thuốc</Text>
-          <View
-            style={{
-              backgroundColor: 'white',
-              borderRadius: 10,
-              paddingTop: 20,
-              paddingBottom: 40,
-            }}>
-            <DataTable style={{backgroundColor: 'white'}}>
-              <DataTable.Header>
-                <DataTable.Title style={{flex: 1}}>
-                  <Text style={styles.txtMedicalHeader}>#</Text>
-                </DataTable.Title>
-                <DataTable.Title style={{flex: 3}}>
-                  <Text style={styles.txtMedicalHeader}>Tên thuốc</Text>
-                </DataTable.Title>
-                <DataTable.Title style={{flex: 2}}>
-                  <Text style={styles.txtMedicalHeader}>Liều </Text>
-                </DataTable.Title>
-                <DataTable.Title style={{flex: 4, justifyContent: 'center'}}>
-                  <Text style={styles.txtMedicalHeader}>Cách dùng</Text>
-                </DataTable.Title>
-              </DataTable.Header>
-              {prescription.map((medicine, index) => (
-                <DataTable.Row>
-                  <DataTable.Cell style={{flex: 1}}>
-                    <Text style={styles.txtMedical}>{++index}</Text>
-                  </DataTable.Cell>
-                  <DataTable.Cell style={{flex: 3}}>
-                    <Text style={styles.txtMedical}>{medicine.name}</Text>
-                  </DataTable.Cell>
-                  <DataTable.Cell style={{flex: 2, justifyContent: 'center'}}>
-                    <Text style={styles.txtMedical}>{medicine.amount}</Text>
-                  </DataTable.Cell>
-                  <DataTable.Cell style={{flex: 4}}>
-                    <Text style={styles.txtMedical}>{medicine.use}</Text>
-                  </DataTable.Cell>
-                </DataTable.Row>
-              ))}
-            </DataTable>
+          <Text style={styles.title}>Toa thuốc</Text>
+          <View style={{flexDirection: 'row-reverse', alignItems: 'center'}}>
+            <Text style={{color: 'white', fontSize: 18, paddingHorizontal: 2}}>
+              Nhắc uống thuốc
+            </Text>
+            <Icon
+              name="alarm"
+              onPress={() => setIsVisible(true)}
+              color="white"
+            />
           </View>
+          <ScrollView>
+            {prescription.map(medicine => (
+              <View
+                style={{
+                  borderColor: '#A9EDF2',
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  backgroundColor: 'white',
+                  padding: 10,
+                  marginVertical: 10,
+                  marginHorizontal: 20,
+                }}>
+                <View
+                  style={{
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}>
+                  <Text style={{fontWeight: 'bold', fontSize: 18}}>
+                    {medicine.name}
+                  </Text>
+                  <Text
+                    style={{
+                      backgroundColor: '#E5F9FC',
+                      color: '#0BC4DC',
+                      borderRadius: 10,
+                      padding: 5,
+                      fontSize: 18,
+                    }}>
+                    Liều lượng: {medicine.amount}
+                  </Text>
+                </View>
+                <Text style={{fontSize: 18}}>{medicine.use}</Text>
+              </View>
+            ))}
+          </ScrollView>
+          <ImageBackground
+            source={require('../../../assets/imgs/card_doctor.png')}
+            borderRadius={10}
+            style={{
+              height: 150,
+              justifyContent: 'space-between',
+              padding: 20,
+              margin: 20,
+            }}>
+            <Text style={{color: 'white', fontSize: 18}}>
+              "Lời dặn của bác sĩ: {record.commentByDoctor}
+            </Text>
+            <Pressable
+              style={{
+                borderRadius: 10,
+                borderColor: 'white',
+                borderWidth: 1,
+                padding: 10,
+                flexDirection: 'row',
+                alignSelf: 'center',
+              }}>
+              <Text style={{color: 'white', fontSize: 18}}>
+                Kết nối với bác sĩ
+              </Text>
+              <Icon name="navigate-next" color="white" />
+            </Pressable>
+          </ImageBackground>
           <Overlay
             overlayStyle={{
               borderRadius: 5,
@@ -145,19 +177,6 @@ const Prescription = props => {
             />
           </Overlay>
         </View>
-        <Icon
-          style={styles.alarmNew}
-          name="alarm"
-          onPress={() => setIsVisible(true)}
-          size={30}
-          reverse
-          color="#C4DFAA"
-          containerStyle={{
-            flex: 1,
-            justifyContent: 'flex-end',
-            alignSelf: 'flex-end',
-          }}
-        />
       </ImageBackground>
     </SafeAreaView>
   );
@@ -194,7 +213,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'white',
     textAlign: 'center',
-    marginVertical: 10,
   },
   txtAlarm: {
     fontSize: 16,
