@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   SafeAreaView,
   Text,
@@ -9,15 +9,15 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {getRecordByPatient} from '../../store/actions/record';
+import { getRecordByPatient } from '../../store/actions/record';
 import RecordItem from '../../components/record/RecordItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Timeline from 'react-native-timeline-flatlist';
-import {getAll, getDoctor} from '../../store/actions/doctor';
+import { getAll, getDoctor } from '../../store/actions/doctor';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ItemDetail from './components/ItemDetail';
-import {formatDateYear} from '../../utils/string-format';
+import { formatDateYear } from '../../utils/string-format';
 const Record = props => {
   const [data, setData] = useState([]);
   const [doctors, setDoctors] = useState([]);
@@ -26,8 +26,8 @@ const Record = props => {
   const getDoctorByDoctorId = doctorId => {
     getDoctor(doctorId).then(res => setDoctorFirst(res));
   };
-  const gotoMedical = useCallback(id => {
-    props.navigation.navigate('Prescription', {recordId: id});
+  const gotoMedical = useCallback(record => {
+    props.navigation.navigate('Prescription', { record: record });
   }, []);
   const renderTime = (rowData, sectionID, rowID) => {
     return (
@@ -59,7 +59,7 @@ const Record = props => {
             let list = result.sort(function (x, y) {
               return new Date(y.createdAt) - new Date(x.createdAt);
             });
-            console.log({list});
+            console.log({ list });
             setData(list);
             getDoctorByDoctorId(list[0]?.doctorId);
           })
@@ -71,7 +71,7 @@ const Record = props => {
     props.navigation.goBack();
   }, []);
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <View style={styles.header}>
         <Ionicons
           onPress={onPressBack}
@@ -116,7 +116,6 @@ const Record = props => {
                 <View style={styles.txtInfoContainer}>
                   <MaterialCommunityIcons name="format-quote-open" size={24} />
                   <Text style={styles.txtInfo}>
-                    {' '}
                     “ Bạn chưa đi khám bệnh lần nào á hihi, hy vọng bạn luôn
                     khỏe mạnh như vậy nhé!!
                   </Text>
@@ -141,10 +140,10 @@ const Record = props => {
               lineColor="#65DFED"
               innerCircle={'dot'}
               options={{
-                style: {paddingTop: 5},
+                style: { paddingTop: 5 },
               }}
             />
-            <Text style={styles.title}>Các đơn thuốc</Text>
+            {/* <Text style={styles.title}>Các đơn thuốc</Text>
             {data.map(item => (
               <RecordItem
                 key={item.id}
@@ -153,7 +152,7 @@ const Record = props => {
                   props.navigation.navigate('Prescription', {recordId: id})
                 }
               />
-            ))}
+            ))} */}
           </>
         ) : null}
       </ScrollView>
@@ -194,7 +193,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#754090',
   },
-  txtCmtDetailContainer: {flexDirection: 'row', flex: 1},
+  txtCmtDetailContainer: { flexDirection: 'row', flex: 1 },
   txtCmtByDoctor: {},
   infoSickDetailContainer: {
     marginVertical: 3,
@@ -214,8 +213,8 @@ const styles = StyleSheet.create({
   infoDetailContainer: {
     flexDirection: 'row',
   },
-  txtNameSick: {fontWeight: 'bold', color: '#6CC4A1', fontSize: 14},
-  txtNameDoctorSick: {fontWeight: 'bold', color: 'black', fontSize: 14},
+  txtNameSick: { fontWeight: 'bold', color: '#6CC4A1', fontSize: 14 },
+  txtNameDoctorSick: { fontWeight: 'bold', color: 'black', fontSize: 14 },
   title: {
     marginVertical: 15,
     textAlign: 'center',
