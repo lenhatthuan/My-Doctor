@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   container: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
     paddingVertical: 4,
     borderRadius: 15,
     flex: 1,

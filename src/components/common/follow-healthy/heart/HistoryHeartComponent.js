@@ -309,11 +309,6 @@ const HeartBeatChart = props => {
                 svg={{stroke: '#D61C4E', strokeWidth: 2}}>
                 <Grid />
               </LineChart>
-
-              <YAxis
-                svg={{fill: 'grey'}}
-                data={dataChartHeart?.map(element => element.heartBeat)}
-              />
             </>
           ) : (
             <>

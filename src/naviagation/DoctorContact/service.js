@@ -20,7 +20,7 @@ function ServiceTap() {
           alignContent: 'center',
         },
         tabBarLabelStyle: {
-          fontSize: 14,
+          fontSize: 11,
           color: 'black',
           textTransform: 'none',
           textAlign: 'center',

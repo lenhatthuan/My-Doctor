@@ -14,6 +14,7 @@ import {getByRecord} from '../../store/actions/prescription';
 import {Icon, Overlay} from 'react-native-elements';
 import PushNotification from 'react-native-push-notification';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {getDoctor} from '../../store/actions/doctor';
 
 const Prescription = props => {
   const [prescription, setPrescription] = useState([]);
@@ -34,7 +35,7 @@ const Prescription = props => {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-      <View style={{flex: 1, backgroundColor: 'white'}}>
+      <View style={{flex: 3}}>
         <View style={styles.header}>
           <Ionicons
             onPress={onPressBack}
@@ -68,7 +69,7 @@ const Prescription = props => {
               Nhắc uống thuốc
             </Text>
           </View>
-          <ScrollView>
+          <ScrollView style={{height: '80%'}}>
             {prescription.map(medicine => (
               <View
                 style={{
@@ -109,7 +110,7 @@ const Prescription = props => {
           <Overlay
             overlayStyle={{
               borderRadius: 5,
-              paddingHorizontal: 100,
+              paddingHorizontal: 20,
               paddingVertical: 20,
             }}
             isVisible={isVisible}
@@ -168,15 +169,22 @@ const Prescription = props => {
         source={require('../../../assets/imgs/card_doctor.png')}
         borderRadius={10}
         style={{
-          height: 150,
+          flex: 1,
           justifyContent: 'space-between',
           padding: 20,
           margin: 20,
         }}>
-        <Text style={{color: 'white', fontSize: 18}}>
+        <Text style={{color: 'white', fontSize: 15}}>
           "Lời dặn của bác sĩ: {record.commentByDoctor}
         </Text>
         <Pressable
+          onPress={() =>
+            getDoctor(record.doctorId).then(res =>
+              props.navigation.navigate('DoctorProfile', {
+                doctor: res,
+              }),
+            )
+          }
           style={{
             borderRadius: 10,
             borderColor: 'white',

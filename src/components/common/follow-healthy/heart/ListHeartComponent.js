@@ -11,7 +11,7 @@ import {statusHA} from '../../../../utils/string-format';
 import {
   convertTitle,
   formatDate,
-  formatDateTime,
+  formatDateTimeYear,
 } from '../../../../utils/string-format';
 import FillterCalandar from '../../FillterCalandar';
 import {getListDoctorService} from '../../../../store/actions/doctor';
@@ -116,7 +116,7 @@ const ListHeartComponent = props => {
           );
         }}>
         <DateHistoryHeart
-          time={formatDateTime(item.createdAt)}
+          time={formatDateTimeYear(item.createdAt)}
           heartBeat={item.heartBeat}
           title={convertTitle(item.systole, item.diastole)}
           status={statusHA(item.diastole, item.systole)}
