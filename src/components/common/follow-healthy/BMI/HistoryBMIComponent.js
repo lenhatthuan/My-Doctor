@@ -87,9 +87,18 @@ const HistoryBMIComponent = props => {
         <View style={styles.mainComponent}>
           <MainComponent />
         </View>
+        <View>
+          <Text>Bạn đang hơi mập rồi đó!</Text>
+        </View>
+        <View style={styles.txtChartContainer}>
+          <Text style={styles.txtChart}>Biểu đồ BMI trong năm</Text>
+        </View>
         <View style={styles.chartComponent}>
           <YAxis svg={{fill: 'grey'}} data={chart} />
-          <LineChart style={{flex: 1}} data={chart} svg={{stroke: 'blue'}}>
+          <LineChart
+            style={{flex: 1}}
+            data={chart}
+            svg={{stroke: 'blue', strokeWidth: 2}}>
             <Grid />
           </LineChart>
         </View>
@@ -138,6 +147,20 @@ const HistoryBMIComponent = props => {
 };
 
 const styles = StyleSheet.create({
+  txtChart: {
+    fontSize: 14,
+    color: 'black',
+    fontWeight: '500',
+  },
+  txtChartContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    marginHorizontal: 10,
+    marginVertical: 5,
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
   screen: {
     flex: 1,
   },
@@ -176,7 +199,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   historyComponent: {
     backgroundColor: 'white',
