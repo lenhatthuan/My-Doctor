@@ -107,10 +107,14 @@ export const forgotpass = async data => {
     .catch(err => console.error(err));
 };
 
-export const changePass = async (id, username, oldPass, newPass) => {
+export const changePass = async (id, username, oldPass, newPass, token) => {
   return await fetch(BASE_URL + `/accounts/${id}/changePass`, {
     method: 'PUT',
-    headers: header,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    },
     body: JSON.stringify({
       oldPass: oldPass,
       newPass: newPass,
@@ -118,7 +122,6 @@ export const changePass = async (id, username, oldPass, newPass) => {
     }),
   })
     .then(response => response.json())
-    .then(result => console.log(result.message))
     .catch(err => console.log(err));
 };
 

@@ -21,6 +21,7 @@ import {Calendar} from 'react-native-calendars';
 import {launchImageLibrary} from 'react-native-image-picker';
 import message from '../../config/message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Message from '../../components/common/Message';
 
 const UpdateProfile = props => {
   const [avatar, setAvatar] = useState({uri: props.route.params.avatar});
@@ -30,6 +31,10 @@ const UpdateProfile = props => {
   const [address, setAddress] = useState(props.route.params.address);
   const [isLoading, setIsLoading] = useState(false);
   const [isCalendar, setIsCalendar] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [content, setContent] = useState('');
+  const [type, setType] = useState(message.infomation);
+
   const anim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.timing(anim, {
@@ -47,22 +52,34 @@ const UpdateProfile = props => {
         quality: 1,
       },
       response => {
-        setAvatar(response?.assets[0]);
+        if (!response.didCancel) setAvatar(response.assets[0]);
       },
     );
   };
 
-  const save = () => {
-    const data = {
-      name: avatar.fileName,
-      type: avatar.type,
-      uri:
-        Platform.OS === 'ios' ? avatar.uri.replace('file://', '') : avatar.uri,
-    };
-    AsyncStorage.getItem('accountData').then(res => {
-      const id = JSON.parse(res).accountId;
-      setIsLoading(true);
-      updateAvatar(data, id)
+  const save = async () => {
+    setIsLoading(true);
+    const id = props.route.params.id;
+    if (avatar.uri === props.route.params.avatar) {
+      await updateProfile(id, avatar.uri, fullname, birthdate, gender, address)
+        .then(result => {
+          setType(message.success);
+          setContent('Cập nhật thông tin cá nhân thành công');
+        })
+        .catch(err => {
+          setType(message.error);
+          setContent('Cập nhật thông tin cá nhân không thành công');
+        });
+    } else {
+      const data = {
+        name: avatar.fileName,
+        type: avatar.type,
+        uri:
+          Platform.OS === 'ios'
+            ? avatar.uri.replace('file://', '')
+            : avatar.uri,
+      };
+      await updateAvatar(data, id)
         .then(res => {
           if (res.count !== 0) {
             updateProfile(
@@ -74,31 +91,27 @@ const UpdateProfile = props => {
               address,
             )
               .then(result => {
-                getPatientById(id)
-                  .then(() => props.navigation.goBack())
-                  .catch(err => console.error(err));
+                setType(message.success);
+                setContent('Cập nhật thông tin cá nhân thành công');
               })
               .catch(err => {
-                setIsLoading(false);
                 setType(message.error);
                 setContent('Cập nhật thông tin cá nhân không thành công');
-                setVisible(true);
               });
           } else {
-            setIsLoading(false);
             setType(message.error);
             setContent('Cập nhật thông tin cá nhân không thành công');
-            setVisible(true);
           }
         })
         .catch(err => {
-          setIsLoading(false);
           setType(message.error);
           setContent('Cập nhật thông tin cá nhân không thành công');
-          setVisible(true);
         });
-    });
+    }
+    setIsLoading(false);
+    setVisible(true);
   };
+
   return (
     <View style={styles.container}>
       <Overlay
@@ -113,15 +126,28 @@ const UpdateProfile = props => {
           }}
         />
       </Overlay>
+      <Message
+        type={type}
+        content={content}
+        visible={visible}
+        press={() => {
+          setVisible(false);
+          if (type === message.success) props.navigation.goBack();
+        }}
+      />
       <Loading visible={isLoading} message="Cập nhật..." />
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
       <Avatar
         containerStyle={{alignSelf: 'center', marginBottom: 20}}
         size={100}
         rounded
-        source={{
-          uri: avatar.uri,
-        }}>
+        source={
+          avatar.uri
+            ? {
+                uri: avatar.uri,
+              }
+            : require('../../assets/logo.png')
+        }>
         <Avatar.Accessory size={25} onPress={pickImage} />
       </Avatar>
       <Animated.View
@@ -166,7 +192,6 @@ const UpdateProfile = props => {
             placeholder="Your gender"
             placeholderTextColor="#666666"
             style={styles.textInput}
-            onChangeText={text => setGender(text)}
             editable={false}
           />
         </View>
@@ -182,7 +207,6 @@ const UpdateProfile = props => {
             placeholder="dd/MM/yyyy"
             placeholderTextColor="#666666"
             style={styles.textInput}
-            onChangeText={text => setBirthdate(text)}
             editable={false}
           />
         </View>

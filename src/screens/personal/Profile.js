@@ -13,10 +13,12 @@ import profile from '../../config/profile';
 import {formatDate} from '../../utils/string-format';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect} from '@react-navigation/native';
+import {getPatientById} from '../../store/actions/patient';
 
 const Profile = props => {
   const anim = useRef(new Animated.Value(0)).current;
   const [account, setAccount] = useState({});
+  
   useEffect(() => {
     Animated.timing(anim, {
       toValue: 1,
@@ -27,8 +29,10 @@ const Profile = props => {
 
   useFocusEffect(
     useCallback(() => {
-      AsyncStorage.getItem('patientData').then(res => {
-        setAccount(JSON.parse(res));
+      AsyncStorage.getItem('accountData').then(res => {
+        getPatientById(JSON.parse(res).accountId).then(res =>
+          setAccount(res.patient),
+        );
       });
     }, []),
   );
@@ -91,6 +95,7 @@ const Profile = props => {
             style={[styles.signIn, {backgroundColor: '#009387'}]}
             onPress={() =>
               props.navigation.navigate('UpdateProfile', {
+                id: account.id,
                 avatar: account.avatar,
                 fullname: account.fullName,
                 address: account.address,
