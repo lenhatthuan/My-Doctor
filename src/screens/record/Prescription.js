@@ -33,29 +33,40 @@ const Prescription = props => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ImageBackground
-        source={require('../../assets/record.png')}
-        style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <View style={{flex: 1, backgroundColor: 'white'}}>
         <View style={styles.header}>
           <Ionicons
             onPress={onPressBack}
             name="chevron-back"
             size={24}
-            color="white"
+            color="black"
           />
         </View>
         <View style={{opacity: 1}}>
           <Text style={styles.title}>Toa thuốc</Text>
-          <View style={{flexDirection: 'row-reverse', alignItems: 'center'}}>
-            <Text style={{color: 'white', fontSize: 18, paddingHorizontal: 2}}>
-              Nhắc uống thuốc
-            </Text>
+          <View
+            style={{
+              flexDirection: 'row-reverse',
+              alignItems: 'center',
+              marginHorizontal: 15,
+              marginVertical: 5,
+            }}>
             <Icon
               name="alarm"
               onPress={() => setIsVisible(true)}
-              color="white"
+              color="black"
             />
+            <Text
+              style={{
+                color: '#44BE92',
+                fontSize: 18,
+                paddingHorizontal: 2,
+                marginHorizontal: 5,
+                fontWeight: '500',
+              }}>
+              Nhắc uống thuốc
+            </Text>
           </View>
           <ScrollView>
             {prescription.map(medicine => (
@@ -82,9 +93,10 @@ const Prescription = props => {
                     style={{
                       backgroundColor: '#E5F9FC',
                       color: '#0BC4DC',
-                      borderRadius: 10,
+                      borderRadius: 5,
                       padding: 5,
                       fontSize: 18,
+                      fontWeight: '500',
                     }}>
                     Liều lượng: {medicine.amount}
                   </Text>
@@ -93,33 +105,7 @@ const Prescription = props => {
               </View>
             ))}
           </ScrollView>
-          <ImageBackground
-            source={require('../../../assets/imgs/card_doctor.png')}
-            borderRadius={10}
-            style={{
-              height: 150,
-              justifyContent: 'space-between',
-              padding: 20,
-              margin: 20,
-            }}>
-            <Text style={{color: 'white', fontSize: 18}}>
-              "Lời dặn của bác sĩ: {record.commentByDoctor}
-            </Text>
-            <Pressable
-              style={{
-                borderRadius: 10,
-                borderColor: 'white',
-                borderWidth: 1,
-                padding: 10,
-                flexDirection: 'row',
-                alignSelf: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 18}}>
-                Kết nối với bác sĩ
-              </Text>
-              <Icon name="navigate-next" color="white" />
-            </Pressable>
-          </ImageBackground>
+
           <Overlay
             overlayStyle={{
               borderRadius: 5,
@@ -177,6 +163,31 @@ const Prescription = props => {
             />
           </Overlay>
         </View>
+      </View>
+      <ImageBackground
+        source={require('../../../assets/imgs/card_doctor.png')}
+        borderRadius={10}
+        style={{
+          height: 150,
+          justifyContent: 'space-between',
+          padding: 20,
+          margin: 20,
+        }}>
+        <Text style={{color: 'white', fontSize: 18}}>
+          "Lời dặn của bác sĩ: {record.commentByDoctor}
+        </Text>
+        <Pressable
+          style={{
+            borderRadius: 10,
+            borderColor: 'white',
+            borderWidth: 1,
+            padding: 10,
+            flexDirection: 'row',
+            alignSelf: 'center',
+          }}>
+          <Text style={{color: 'white', fontSize: 18}}>Kết nối với bác sĩ</Text>
+          <Icon name="navigate-next" color="white" />
+        </Pressable>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -209,9 +220,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontWeight: '500',
-    fontSize: 25,
-    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'black',
     textAlign: 'center',
   },
   txtAlarm: {

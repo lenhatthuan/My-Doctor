@@ -87,9 +87,9 @@ const HistoryBMIComponent = props => {
         <View style={styles.mainComponent}>
           <MainComponent />
         </View>
-        <View>
+        {/* <View>
           <Text>Bạn đang hơi mập rồi đó!</Text>
-        </View>
+        </View> */}
         <View style={styles.txtChartContainer}>
           <Text style={styles.txtChart}>Biểu đồ BMI trong năm</Text>
         </View>
