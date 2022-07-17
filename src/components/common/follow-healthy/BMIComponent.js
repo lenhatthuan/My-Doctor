@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
   txtBtnBody: {
     color: COLORS.BayofMany,
     fontWeight: 'bold',
+    fontSize: 13,
   },
 });
 

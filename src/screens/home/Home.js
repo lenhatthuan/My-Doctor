@@ -1,15 +1,14 @@
-import React, {Component} from 'react';
+import React, {useState, useCallback} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import {SafeAreaView, Text} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   View,
   StyleSheet,
-  Button,
   Image,
   ImageBackground,
   TouchableOpacity,
   Pressable,
-  ScrollView,
   Linking,
   Dimensions,
 } from 'react-native';
@@ -18,49 +17,40 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {CustomPagination} from './CustomPagination';
 import {logout} from '../../store/actions/account';
+import {getPatientById} from '../../store/actions/patient';
 const {width: windowWidth} = Dimensions.get('window');
-class Home extends Component {
-  state = {
-    checkIsLogin: false,
-    patientName: '',
-    isLoading: false,
-    isLogout: false,
+
+const Home = props => {
+  const [patientName, setPatientName] = useState('');
+
+  useFocusEffect(
+    useCallback(() => {
+      AsyncStorage.getItem('accountData').then(res => {
+        getPatientById(JSON.parse(res).accountId).then(res =>
+          setPatientName(res.patient.fullName),
+        );
+      });
+    }, []),
+  );
+
+  const gotoLogout = () => {
+    logout();
+    props.navigation.navigate('SignIn');
   };
 
-  componentDidMount() {
-    let patient = null;
-    AsyncStorage.getItem('patientData').then(res => {
-      patient = JSON.parse(res);
-      this.setState({patientName: patient.fullName});
-    });
-  }
-
-  gotoLogout() {
-    logout();
-    this.props.navigation.navigate('SignIn');
-  }
-
-  listImageBanner = [
-    {
-      image: require('../../../assets/imgs/bg.jpg'),
-    },
-    {
-      image: require('../../../assets/imgs/bg1.jpg'),
-    },
-    {
-      image: require('../../../assets/imgs/bg2.jpg'),
-    },
-    {
-      image: require('../../../assets/imgs/bg.jpg'),
-    },
+  const listImageBanner = [
+    {image: require('../../../assets/imgs/bg.jpg')},
+    {image: require('../../../assets/imgs/bg1.jpg')},
+    {image: require('../../../assets/imgs/bg2.jpg')},
+    {image: require('../../../assets/imgs/bg.jpg')},
   ];
 
-  _renderItem = ({item, index}) => {
+  const renderItem = ({item, index}) => {
     return (
       <ImageBackground style={styles.imgBg} source={item.image}>
         <View style={styles.viewTextName}>
           <Text style={styles.txtHello}>Xin chào !</Text>
-          <Text style={styles.txtName}>{this.state.patientName}</Text>
+          <Text style={styles.txtName}>{patientName}</Text>
         </View>
         <View style={styles.viewBtnLogin}>
           <Pressable
@@ -75,124 +65,121 @@ class Home extends Component {
               },
               shadowOpacity: 0.39,
               shadowRadius: 8.3,
-
               elevation: 13,
             }}
-            onPress={() => this.gotoLogout()}>
-            <Icon name="arrow-circle-right" solid color="white"></Icon>
+            onPress={gotoLogout}>
+            <Icon name="arrow-circle-right" solid color="white" />
           </Pressable>
         </View>
       </ImageBackground>
     );
   };
 
-  render() {
-    return (
-      <SafeAreaView style={styles.screen}>
-        <View style={styles.background}>
-          <SwiperFlatList
-            autoplay
-            autoplayDelay={2}
-            data={this.listImageBanner}
-            renderItem={this._renderItem}
-            showPagination
-            PaginationComponent={CustomPagination}
-            e2eID="container_swiper_renderItem"
+  return (
+    <SafeAreaView style={styles.screen}>
+      <View style={styles.background}>
+        <SwiperFlatList
+          autoplay
+          autoplayDelay={2}
+          data={listImageBanner}
+          renderItem={renderItem}
+          showPagination
+          PaginationComponent={CustomPagination}
+          e2eID="container_swiper_renderItem"
+        />
+      </View>
+      <View style={styles.personalOption}>
+        <TouchableOpacity
+          style={styles.buttonPersonal}
+          onPress={() => {
+            props.navigation.navigate('FollowHealthy');
+          }}>
+          <Image
+            style={styles.imgPersonal}
+            source={require('../../../assets/imgs/h3.png')}
           />
-        </View>
-        <View style={styles.personalOption} disabled={!this.state.checkIsLogin}>
-          <TouchableOpacity
-            style={styles.buttonPersonal}
-            onPress={() => {
-              this.props.navigation.navigate('FollowHealthy');
-            }}>
-            <Image
-              style={styles.imgPersonal}
-              source={require('../../../assets/imgs/h3.png')}
-            />
-            <View style={styles.viewTextPersonal}>
-              <Text style={styles.textPersonal}>Theo dõi sức khỏe</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonPersonal}
-            onPress={() => {
-              this.props.navigation.navigate('Record');
-            }}>
-            <Image
-              style={styles.imgPersonal}
-              source={require('../../../assets/imgs/record.png')}
-            />
-            <View style={styles.viewTextPersonal}>
-              <Text style={styles.textPersonal}>Hồ sơ bệnh án</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+          <View style={styles.viewTextPersonal}>
+            <Text style={styles.textPersonal}>Theo dõi sức khỏe</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonPersonal}
+          onPress={() => {
+            props.navigation.navigate('Record');
+          }}>
+          <Image
+            style={styles.imgPersonal}
+            source={require('../../../assets/imgs/record.png')}
+          />
+          <View style={styles.viewTextPersonal}>
+            <Text style={styles.textPersonal}>Hồ sơ bệnh án</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
 
-        <View style={styles.mainOption} disabled={!this.state.checkIsLogin}>
-          <View style={styles.viewMainOption}>
-            <TouchableOpacity
-              style={styles.bgBtnGuide}
-              onPress={() =>
-                Linking.openURL(
-                  'https://docs.google.com/document/d/1t4UoxC5OWkSfWRKGtPw3aV3-Au9rexTLPhdTbydI_GA/edit',
-                )
-              }>
-              <View style={styles.viewTextPersonal}>
-                <Text style={styles.textPersonal}>Hướng dẫn khám bệnh</Text>
-              </View>
-              <Image
-                style={styles.imgOption}
-                source={require('../../../assets/imgs/h1.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.bgBtnSTT}
-              onPress={() => {
-                this.props.navigation.navigate('Position');
-              }}>
-              <Image
-                style={styles.imgOption}
-                source={require('../../../assets/imgs/h2.png')}
-              />
-              <View style={styles.viewTextPersonal}>
-                <Text style={styles.textPersonal}>Theo dõi STT khám bệnh</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.viewMainOption}>
-            <TouchableOpacity
-              style={styles.bgBtnOnline}
-              onPress={() => {
-                this.props.navigation.navigate('Service');
-              }}>
-              <View style={styles.viewTextPersonal}>
-                <Text style={styles.textPersonal}>Bác sĩ riêng</Text>
-              </View>
-              <Image
-                style={styles.imgOption}
-                source={require('../../../assets/imgs/online.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.bgBtnPayment}
-              onPress={() => {
-                this.props.navigation.navigate('ChatScreen');
-              }}>
-              <Image
-                style={styles.imgOption}
-                source={require('../../../assets/imgs/payment.png')}
-              />
-              <View style={styles.viewTextPersonal}>
-                <Text style={styles.textPersonal}>Chat với bác sĩ</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+      <View style={styles.mainOption}>
+        <View style={styles.viewMainOption}>
+          <TouchableOpacity
+            style={styles.bgBtnGuide}
+            onPress={() =>
+              Linking.openURL(
+                'https://docs.google.com/document/d/1t4UoxC5OWkSfWRKGtPw3aV3-Au9rexTLPhdTbydI_GA/edit',
+              )
+            }>
+            <View style={styles.viewTextPersonal}>
+              <Text style={styles.textPersonal}>Hướng dẫn khám bệnh</Text>
+            </View>
+            <Image
+              style={styles.imgOption}
+              source={require('../../../assets/imgs/h1.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.bgBtnSTT}
+            onPress={() => {
+              props.navigation.navigate('Position');
+            }}>
+            <Image
+              style={styles.imgOption}
+              source={require('../../../assets/imgs/h2.png')}
+            />
+            <View style={styles.viewTextPersonal}>
+              <Text style={styles.textPersonal}>Theo dõi STT khám bệnh</Text>
+            </View>
+          </TouchableOpacity>
         </View>
-      </SafeAreaView>
-    );
-  }
-}
+        <View style={styles.viewMainOption}>
+          <TouchableOpacity
+            style={styles.bgBtnOnline}
+            onPress={() => {
+              props.navigation.navigate('Service');
+            }}>
+            <View style={styles.viewTextPersonal}>
+              <Text style={styles.textPersonal}>Bác sĩ riêng</Text>
+            </View>
+            <Image
+              style={styles.imgOption}
+              source={require('../../../assets/imgs/online.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.bgBtnPayment}
+            onPress={() => {
+              props.navigation.navigate('ChatScreen');
+            }}>
+            <Image
+              style={styles.imgOption}
+              source={require('../../../assets/imgs/payment.png')}
+            />
+            <View style={styles.viewTextPersonal}>
+              <Text style={styles.textPersonal}>Chat với bác sĩ</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   txtHello: {

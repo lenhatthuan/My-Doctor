@@ -27,6 +27,11 @@ export const formatDateTime = date => {
   return Moment(date).format('DD/MM/YYYY, h:mm:ss a');
 };
 
+export const formatDateTimeYear = date => {
+  Moment.locale('en');
+  return Moment(date).format('DD/MM/YY, h:mm:ss a');
+};
+
 export const formatSession = date => {
   Moment.locale('en');
   let session = 'Sáng';

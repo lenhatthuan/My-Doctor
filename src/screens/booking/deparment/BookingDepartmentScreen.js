@@ -359,7 +359,7 @@ const BookingDepartmentScreen = (props) => {
           </View>
         </View>
         <View style={{   marginBottom: 5, marginTop: 5,padding: 5 }}>
-          <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
+          <Text style={{ fontWeight: "bold", marginVertical: 10 }}>
             Chọn phòng khám
           </Text>
           <View

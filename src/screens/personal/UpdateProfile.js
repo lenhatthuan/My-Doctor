@@ -12,15 +12,10 @@ import {Avatar, Icon, Overlay} from 'react-native-elements';
 import {styles} from '../../theme/basic';
 import {formatDate} from '../../utils/string-format';
 import Loading from '../../components/common/Loading';
-import {
-  getPatientById,
-  updateAvatar,
-  updateProfile,
-} from '../../store/actions/patient';
+import {updateAvatar, updateProfile} from '../../store/actions/patient';
 import {Calendar} from 'react-native-calendars';
 import {launchImageLibrary} from 'react-native-image-picker';
 import message from '../../config/message';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Message from '../../components/common/Message';
 
 const UpdateProfile = props => {

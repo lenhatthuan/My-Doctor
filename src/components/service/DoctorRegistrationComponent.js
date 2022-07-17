@@ -49,6 +49,7 @@ const DoctorRegistrationComponent = props => {
             padding: 10,
             width: '100%',
             backgroundColor: 'white',
+            marginBottom:10
           }}>
           <Avatar size="large" rounded source={{uri: doctor.avatar}} />
 

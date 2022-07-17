@@ -34,9 +34,7 @@ const HeaderFilterByDate = props => {
 
 const styles = StyleSheet.create({
   header: {
-    width: '100%',
     height: 70,
-    paddingTop: 36,
     backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
